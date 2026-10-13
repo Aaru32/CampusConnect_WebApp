@@ -1,0 +1,168 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isAppOwner() {
+      return isSignedIn() && request.auth.token.email == 'arti63531@gmail.com';
+    }
+
+    function isAdmin() {
+      return isAppOwner() || (
+        isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isFaculty() {
+      return isAdmin() || (
+        isSignedIn() && exists(/databases/$(database)/documents/faculty/$(request.auth.uid))
+      );
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // 1. Users Collection (Auth records & roles)
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      
+      allow create: if isOwner(userId) && isValidId(userId) &&
+        request.resource.data.keys().hasAll(['uid', 'email', 'role', 'name']) &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.email is string &&
+        request.resource.data.name is string && request.resource.data.name.size() <= 100 &&
+        (request.resource.data.role == 'student' || 
+         (request.resource.data.role in ['faculty', 'admin'] && request.resource.data.authorizationStatus == 'PENDING_APPROVAL') ||
+         isAdmin());
+
+      allow update: if (
+        isAdmin() || 
+        (isOwner(userId) && 
+         !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'authorizationStatus', 'uid', 'email']))
+      );
+      
+      allow delete: if isAdmin();
+
+      match /tasks/{taskId} {
+        allow read, write: if isOwner(userId) && isValidId(taskId);
+      }
+    }
+
+    // 2. Students Collection (With Strict Field-Level Restrictions)
+    match /students/{studentId} {
+      allow get: if isOwner(studentId) || isFaculty() || isAdmin();
+      allow list: if isFaculty() || isAdmin();
+      allow create: if (isOwner(studentId) || isAdmin()) && isValidId(studentId) &&
+        request.resource.data.uid == studentId &&
+        request.resource.data.fullName is string && request.resource.data.fullName.size() <= 100;
+
+      // Field-level security: Students can only update photoUrl, mobileNumber, bloodGroup, dateOfBirth, updatedAt
+      // Protected academic fields (rollNumber, registrationNumber, department, branch, semester, academicYear, email, uid) can only be changed by Admin
+      allow update: if isValidId(studentId) && (
+        isAdmin() || (
+          isOwner(studentId) &&
+          request.resource.data.uid == resource.data.uid &&
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+            'uid', 'rollNumber', 'registrationNumber', 'department', 'branch', 'semester', 'academicYear', 'email'
+          ])
+        )
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    // 3. Faculty Collection
+    match /faculty/{facultyId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 4. Admins Collection
+    match /admins/{adminId} {
+      allow get: if isSignedIn() && (isOwner(adminId) || isAdmin());
+      allow list: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 5. Notices Collection (Strict Admin/Faculty authoring, published-only reads for students/public)
+    match /notices/{noticeId} {
+      allow get: if resource.data.status == 'published' || isFaculty() || isAdmin();
+      allow list: if resource.data.status == 'published' || isFaculty() || isAdmin();
+
+      allow create: if (isAdmin() || isFaculty()) && isValidId(noticeId) &&
+        request.resource.data.keys().hasAll(['title', 'content', 'authorUid', 'status']) &&
+        request.resource.data.title is string && request.resource.data.title.size() <= 200 &&
+        request.resource.data.content is string && request.resource.data.content.size() <= 5000 &&
+        request.resource.data.status in ['published', 'draft'] &&
+        request.resource.data.authorUid == request.auth.uid;
+
+      allow update: if (isAdmin() || (isFaculty() && resource.data.authorUid == request.auth.uid)) &&
+        isValidId(noticeId) &&
+        request.resource.data.authorUid == resource.data.authorUid;
+
+      allow delete: if isAdmin() || (isFaculty() && resource.data.authorUid == request.auth.uid);
+    }
+
+    // 6. Assignments Collection & Submissions
+    match /assignments/{assignmentId} {
+      allow read: if isSignedIn();
+      allow create: if isFaculty() && isValidId(assignmentId) &&
+        request.resource.data.facultyUid == request.auth.uid;
+      allow update, delete: if isAdmin() || (isFaculty() && resource.data.facultyUid == request.auth.uid);
+
+      match /submissions/{submissionId} {
+        allow get: if isOwner(submissionId) || isFaculty() || isAdmin();
+        allow list: if isFaculty() || isAdmin();
+        allow create: if isOwner(submissionId) && isValidId(submissionId) &&
+          request.resource.data.studentUid == request.auth.uid;
+        allow update: if (isOwner(submissionId) || isFaculty() || isAdmin()) &&
+          request.resource.data.studentUid == resource.data.studentUid;
+        allow delete: if isAdmin();
+      }
+    }
+
+    // 7. Attendance Collection
+    match /attendance/{attendanceId} {
+      allow read: if isSignedIn();
+      allow create, update: if isFaculty() || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // 8. Doubts Collection
+    match /doubts/{doubtId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(doubtId) &&
+        request.resource.data.studentUid == request.auth.uid;
+      allow update: if isSignedIn() && (
+        resource.data.studentUid == request.auth.uid || isFaculty() || isAdmin()
+      );
+      allow delete: if isAdmin() || resource.data.studentUid == request.auth.uid;
+    }
+
+    // 9. SafeSpeak Grievances (Confidential, strictly Admin only for reads)
+    match /grievances/{grievanceId} {
+      allow get, list: if isAdmin();
+      allow create: if isValidId(grievanceId) &&
+        request.resource.data.keys().hasAll(['trackingCode', 'category', 'subject', 'description', 'status']) &&
+        request.resource.data.trackingCode is string && request.resource.data.trackingCode.size() <= 50 &&
+        request.resource.data.description is string && request.resource.data.description.size() <= 4000;
+      allow update, delete: if isAdmin();
+    }
+  }
+}

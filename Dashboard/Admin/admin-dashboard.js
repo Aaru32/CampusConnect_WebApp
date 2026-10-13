@@ -1895,12 +1895,30 @@ window.CampusConnectAdmin = {
 // Dynamic admin name
 async function loadAdminProfile() {
     const adminNameElement = document.getElementById("adminName");
+    if (!adminNameElement) return;
 
     try {
-        const response = await fetch("/api/admin/profile");
+        const headers = { "Content-Type": "application/json" };
+        const sessionUser = sessionStorage.getItem("campusConnectUser");
+        if (sessionUser) {
+            try {
+                const parsed = JSON.parse(sessionUser);
+                if (parsed.email) headers["X-User-Email"] = parsed.email;
+                if (parsed.role) headers["X-User-Role"] = parsed.role;
+                if (parsed.uid) headers["X-User-Uid"] = parsed.uid;
+            } catch (e) {}
+        }
+        if (window.CampusConnectFirebase && window.CampusConnectFirebase.auth?.currentUser) {
+            try {
+                const token = await window.CampusConnectFirebase.auth.currentUser.getIdToken();
+                if (token) headers["Authorization"] = `Bearer ${token}`;
+            } catch (e) {}
+        }
+
+        const response = await fetch("/api/admin/profile", { headers });
 
         if (!response.ok) {
-            throw new Error("Unable to load admin profile");
+            throw new Error(`Unable to load admin profile (HTTP ${response.status})`);
         }
 
         const admin = await response.json();
@@ -1910,7 +1928,7 @@ async function loadAdminProfile() {
         }
 
     } catch (error) {
-        console.error("Failed to load admin profile:", error);
+        console.warn("Notice: Admin profile fetch requires admin privileges:", error.message || error);
     }
 }
 

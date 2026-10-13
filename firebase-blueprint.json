@@ -1,0 +1,229 @@
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "User account and core role mapping",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["student", "faculty", "admin"] },
+        "name": { "type": "string", "maxLength": 100 },
+        "mobile": { "type": "string", "maxLength": 20 },
+        "authorizationStatus": { "type": "string", "enum": ["AUTHORIZED", "PENDING_APPROVAL"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role", "name"]
+    },
+    "student": {
+      "title": "Student",
+      "description": "Student detailed academic and personal record",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "rollNumber": { "type": "string", "maxLength": 30 },
+        "registrationNumber": { "type": "string", "maxLength": 50 },
+        "department": { "type": "string", "maxLength": 100 },
+        "branch": { "type": "string", "maxLength": 100 },
+        "semester": { "type": "string", "maxLength": 30 },
+        "academicYear": { "type": "string", "maxLength": 20 },
+        "dateOfBirth": { "type": "string", "maxLength": 20 },
+        "bloodGroup": { "type": "string", "maxLength": 10 },
+        "mobileNumber": { "type": "string", "maxLength": 20 },
+        "email": { "type": "string", "format": "email" },
+        "photoUrl": { "type": "string", "maxLength": 500 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "fullName", "email"]
+    },
+    "faculty": {
+      "title": "Faculty",
+      "description": "Faculty member academic and departmental profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "employeeId": { "type": "string", "maxLength": 30 },
+        "department": { "type": "string", "maxLength": 100 },
+        "designation": { "type": "string", "maxLength": 100 },
+        "qualification": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email" },
+        "mobile": { "type": "string", "maxLength": 20 },
+        "photoUrl": { "type": "string", "maxLength": 500 },
+        "isApproved": { "type": "boolean" }
+      },
+      "required": ["uid", "fullName", "employeeId", "department", "email"]
+    },
+    "admin": {
+      "title": "Admin",
+      "description": "Designated administrator profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "adminId": { "type": "string", "maxLength": 30 },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "designation": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email" },
+        "isSuperAdmin": { "type": "boolean" }
+      },
+      "required": ["uid", "adminId", "fullName", "email"]
+    },
+    "notice": {
+      "title": "Notice",
+      "description": "Institutional notification or circular",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "type": { "type": "string", "maxLength": 50 },
+        "priority": { "type": "string", "maxLength": 20 },
+        "targetAudience": { "type": "string", "maxLength": 50 },
+        "department": { "type": "string", "maxLength": 100 },
+        "content": { "type": "string", "maxLength": 5000 },
+        "authorUid": { "type": "string" },
+        "authorName": { "type": "string", "maxLength": 100 },
+        "status": { "type": "string", "enum": ["published", "draft"] },
+        "publishDate": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "content", "authorUid", "status"]
+    },
+    "assignment": {
+      "title": "Assignment",
+      "description": "Faculty coursework assignment",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 5000 },
+        "department": { "type": "string", "maxLength": 100 },
+        "semester": { "type": "string", "maxLength": 30 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "facultyUid": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "department", "semester", "subject", "facultyUid"]
+    },
+    "assignmentSubmission": {
+      "title": "AssignmentSubmission",
+      "description": "Student assignment submission",
+      "type": "object",
+      "properties": {
+        "studentUid": { "type": "string" },
+        "studentName": { "type": "string", "maxLength": 100 },
+        "rollNumber": { "type": "string", "maxLength": 30 },
+        "submittedAt": { "type": "string" },
+        "content": { "type": "string", "maxLength": 5000 },
+        "attachmentUrl": { "type": "string", "maxLength": 500 },
+        "marks": { "type": "number" },
+        "feedback": { "type": "string", "maxLength": 1000 }
+      },
+      "required": ["studentUid", "studentName"]
+    },
+    "attendance": {
+      "title": "Attendance",
+      "description": "Daily lecture attendance record",
+      "type": "object",
+      "properties": {
+        "department": { "type": "string", "maxLength": 100 },
+        "semester": { "type": "string", "maxLength": 30 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "facultyUid": { "type": "string" },
+        "date": { "type": "string", "maxLength": 20 },
+        "records": { "type": "object" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["department", "semester", "subject", "facultyUid", "date"]
+    },
+    "doubt": {
+      "title": "Doubt",
+      "description": "Student academic question and faculty reply",
+      "type": "object",
+      "properties": {
+        "studentUid": { "type": "string" },
+        "studentName": { "type": "string", "maxLength": 100 },
+        "department": { "type": "string", "maxLength": 100 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "question": { "type": "string", "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["pending", "answered"] },
+        "reply": { "type": "string", "maxLength": 2000 },
+        "answeredByUid": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["studentUid", "studentName", "department", "question", "status"]
+    },
+    "task": {
+      "title": "Task",
+      "description": "Private personal task item",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "completed": { "type": "boolean" },
+        "dueDate": { "type": "string", "maxLength": 30 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "completed"]
+    },
+    "grievance": {
+      "title": "Grievance",
+      "description": "SafeSpeak confidential student grievance report",
+      "type": "object",
+      "properties": {
+        "trackingCode": { "type": "string", "maxLength": 50 },
+        "category": { "type": "string", "maxLength": 50 },
+        "subject": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 4000 },
+        "status": { "type": "string", "enum": ["submitted", "under_review", "resolved"] },
+        "adminNotes": { "type": "string", "maxLength": 2000 },
+        "submittedAt": { "type": "string" }
+      },
+      "required": ["trackingCode", "category", "subject", "description", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "Base user roles and credentials"
+    },
+    "/students/{studentId}": {
+      "schema": "student",
+      "description": "Student records and profiles"
+    },
+    "/faculty/{facultyId}": {
+      "schema": "faculty",
+      "description": "Faculty profiles and approvals"
+    },
+    "/admins/{adminId}": {
+      "schema": "admin",
+      "description": "System administrators"
+    },
+    "/notices/{noticeId}": {
+      "schema": "notice",
+      "description": "Campus announcements"
+    },
+    "/assignments/{assignmentId}": {
+      "schema": "assignment",
+      "description": "Course assignments"
+    },
+    "/assignments/{assignmentId}/submissions/{submissionId}": {
+      "schema": "assignmentSubmission",
+      "description": "Student homework submissions"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": "attendance",
+      "description": "Lecture attendance records"
+    },
+    "/doubts/{doubtId}": {
+      "schema": "doubt",
+      "description": "Student queries and doubts"
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": "task",
+      "description": "Private personal tasks"
+    },
+    "/grievances/{grievanceId}": {
+      "schema": "grievance",
+      "description": "SafeSpeak grievances (confidential)"
+    }
+  }
+}

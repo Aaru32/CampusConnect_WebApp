@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (registerForm) {
 
-        registerForm.addEventListener("submit", function (event) {
+        registerForm.addEventListener("submit", async function (event) {
 
             event.preventDefault();
 
@@ -636,9 +636,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* =================================================
-               SAVE ACCOUNT
+               FIREBASE PERSISTENT REGISTRATION
             ================================================= */
+            if (window.CampusConnectFirebase && window.CampusConnectFirebase.registerWithEmail) {
+                try {
+                    await window.CampusConnectFirebase.registerWithEmail(email, password, {
+                        role: selectedRole,
+                        name: fullName,
+                        mobile: mobileNumber,
+                        rollNo: rollNo,
+                        branch: branch,
+                        employeeId: employeeId,
+                        department: department,
+                        designation: designation,
+                        adminId: adminId
+                    });
+                } catch (fbError) {
+                    console.warn("Firebase registration:", fbError);
+                    if (fbError.code === 'auth/email-already-in-use') {
+                        showError("An account with this email already exists. Please use another email or log in.");
+                        return;
+                    }
+                }
+            }
 
+            /* =================================================
+               SAVE ACCOUNT (LOCAL BACKUP)
+            ================================================= */
             users.push(user);
 
 

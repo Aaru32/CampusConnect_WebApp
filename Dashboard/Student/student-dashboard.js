@@ -227,19 +227,33 @@ async function loadAssignmentStatistics() {
            return the actual assignment counts.
         */
 
+        const headers = { "Content-Type": "application/json" };
+        const sessionUser = sessionStorage.getItem("campusConnectUser");
+        if (sessionUser) {
+            try {
+                const parsed = JSON.parse(sessionUser);
+                if (parsed.email) headers["X-User-Email"] = parsed.email;
+                if (parsed.role) headers["X-User-Role"] = parsed.role;
+                if (parsed.uid) headers["X-User-Uid"] = parsed.uid;
+            } catch (e) {}
+        }
+        if (window.CampusConnectFirebase && window.CampusConnectFirebase.auth?.currentUser) {
+            try {
+                const token = await window.CampusConnectFirebase.auth.currentUser.getIdToken();
+                if (token) headers["Authorization"] = `Bearer ${token}`;
+            } catch (e) {}
+        }
+
         const response =
             await fetch(
-                "/api/student/assignments/statistics"
+                "/api/student/assignments/statistics",
+                { headers }
             );
-
-
 
         if (!response.ok) {
-
             throw new Error(
-                "Failed to load assignment statistics."
+                `Failed to load assignment statistics (HTTP ${response.status})`
             );
-
         }
 
 

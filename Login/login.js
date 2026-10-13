@@ -241,14 +241,26 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         } catch (error) {
-
-            console.warn(
-                "Unable to store selected role:",
-                error
-            );
-
+            console.warn("Unable to store selected role:", error);
         }
 
+        /*
+         * Auto-populate demo credentials for quick preview
+         */
+        const demoCreds = {
+            student: { email: "student@gwpoly.ac.in", pass: "Student@123" },
+            faculty: { email: "faculty@gwpoly.ac.in", pass: "Faculty@123" },
+            admin: { email: "admin@gwpoly.ac.in", pass: "Admin@123" }
+        };
+        const demoEmails = ["student@gwpoly.ac.in", "faculty@gwpoly.ac.in", "admin@gwpoly.ac.in"];
+        if (usernameInput && (!usernameInput.value || demoEmails.includes(usernameInput.value.trim().toLowerCase()))) {
+            if (demoCreds[selectedRole]) {
+                usernameInput.value = demoCreds[selectedRole].email;
+                if (passwordInput && (!passwordInput.value || passwordInput.value.endsWith("@123"))) {
+                    passwordInput.value = demoCreds[selectedRole].pass;
+                }
+            }
+        }
     }
 
 
@@ -400,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         loginForm.addEventListener(
             "submit",
-            function (event) {
+            async function (event) {
 
                 event.preventDefault();
 
@@ -505,38 +517,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 /* =========================================
-                   FIND ACCOUNT
+                   FIND ACCOUNT (FIREBASE + LOCAL)
                 ========================================= */
+                let registeredUser = null;
 
-                const registeredUser =
-                    users.find(
+                if (window.CampusConnectFirebase && window.CampusConnectFirebase.loginWithEmail) {
+                    try {
+                        const fbResult = await window.CampusConnectFirebase.loginWithEmail(username, password);
+                        if (fbResult && fbResult.profile) {
+                            if (fbResult.profile.role !== selectedRole && fbResult.profile.role !== "admin") {
+                                showMessage(`This account has role "${fbResult.profile.role}", not "${selectedRole}".`, "error");
+                                return;
+                            }
+                            if (selectedRole === "admin" && fbResult.profile.authorizationStatus === "PENDING_APPROVAL") {
+                                showMessage("Your Admin account is still pending authorization.", "error");
+                                return;
+                            }
+                            registeredUser = fbResult.profile;
+                        }
+                    } catch (fbErr) {
+                        console.warn("Firebase Auth response:", fbErr);
+                        if (fbErr.code === "auth/wrong-password" || fbErr.code === "auth/invalid-credential") {
+                            showMessage("Incorrect password. If you forgot your password, use Forgot Password.", "error");
+                            return;
+                        }
+                    }
+                }
+
+                if (!registeredUser) {
+                    registeredUser = users.find(
                         function (user) {
-
                             return (
                                 user &&
                                 user.email &&
-                                String(
-                                    user.email
-                                )
-                                    .toLowerCase() ===
-                                    username &&
-                                user.role ===
-                                    selectedRole
+                                String(user.email).toLowerCase() === username &&
+                                user.role === selectedRole
                             );
-
                         }
                     );
-
+                }
 
                 if (!registeredUser) {
-
                     showMessage(
                         "No account was found for this email and selected role.",
                         "error"
                     );
-
                     return;
-
                 }
 
 
@@ -565,8 +591,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ========================================= */
 
                 if (
-                    registeredUser.password !==
-                    password
+                    registeredUser.password &&
+                    registeredUser.password !== password
                 ) {
 
                     showMessage(
@@ -1556,9 +1582,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (!stored) {
-
-            return [];
-
+            const defaultDemoUsers = [
+                {
+                    role: "student",
+                    name: "Aarti Kumari",
+                    email: "student@gwpoly.ac.in",
+                    mobile: "9876543210",
+                    password: "Student@123",
+                    rollNo: "101",
+                    branch: "Computer Science",
+                    registeredAt: new Date().toISOString()
+                },
+                {
+                    role: "faculty",
+                    name: "Dr. Neha Sharma",
+                    email: "faculty@gwpoly.ac.in",
+                    mobile: "9876543211",
+                    password: "Faculty@123",
+                    employeeId: "FAC204",
+                    department: "Computer Science",
+                    designation: "Associate Professor",
+                    registeredAt: new Date().toISOString()
+                },
+                {
+                    role: "admin",
+                    name: "Administrative Officer",
+                    email: "admin@gwpoly.ac.in",
+                    mobile: "9876543212",
+                    password: "Admin@123",
+                    adminId: "ADM001",
+                    designation: "Principal / Registrar",
+                    authorizationStatus: "AUTHORIZED",
+                    registeredAt: new Date().toISOString()
+                }
+            ];
+            try {
+                localStorage.setItem(
+                    CONFIG.STORAGE_KEY,
+                    JSON.stringify(defaultDemoUsers)
+                );
+            } catch (err) {}
+            return defaultDemoUsers;
         }
 
 
@@ -1750,5 +1814,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    /* =====================================================
+       GOOGLE SIGN-IN
+    ===================================================== */
+    const googleLoginBtn = document.getElementById("googleLoginBtn");
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", async function () {
+            clearErrors();
+            clearMessage();
+            showMessage("Opening Google Sign-In...", "info");
+
+            try {
+                if (window.CampusConnectFirebase && window.CampusConnectFirebase.loginWithGoogle) {
+                    const { user, profile } = await window.CampusConnectFirebase.loginWithGoogle(selectedRole);
+                    if (profile) {
+                        sessionStorage.setItem(CONFIG.SESSION_LOGIN_KEY, "true");
+                        sessionStorage.setItem(CONFIG.SESSION_ROLE_KEY, profile.role || selectedRole);
+                        sessionStorage.setItem(CONFIG.SESSION_USER_KEY, JSON.stringify(profile));
+
+                        showMessage("Google Sign-In successful. Redirecting...", "success");
+
+                        const redirectPages = {
+                            student: "../Dashboard/Student/student-dashboard.html",
+                            faculty: "../Dashboard/Faculty/faculty-dashboard.html",
+                            admin: "../Dashboard/Admin/admin-dashboard.html"
+                        };
+
+                        setTimeout(function () {
+                            window.location.href = redirectPages[profile.role] || redirectPages[selectedRole];
+                        }, 600);
+                    }
+                } else {
+                    showMessage("Firebase is initializing. Please try again in a moment.", "error");
+                }
+            } catch (googleError) {
+                console.warn("Google Sign-In error:", googleError);
+                if (googleError.code === "auth/popup-closed-by-user") {
+                    showMessage("Google sign-in popup was closed.", "info");
+                } else {
+                    showMessage("Google sign-in encountered an error. Please try again.", "error");
+                }
+            }
+        });
+    }
 
 });
