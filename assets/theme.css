@@ -1,0 +1,298 @@
+/* =========================================================
+   CAMPUSCONNECT GLOBAL THEME
+   Applies to Student / Faculty / Admin / Login
+========================================================= */
+
+:root {
+  --cc-bg: #f5f8fc;
+  --cc-surface: #ffffff;
+  --cc-card: #ffffff;
+  --cc-input: #ffffff;
+  
+  --cc-text: #172033;
+  --cc-heading: #0f172a;
+  --cc-muted: #64748b;
+  
+  --cc-border: #dbe3ee;
+  --cc-shadow: rgba(15, 23, 42, 0.08);
+  
+  --cc-primary: #0757c9;
+  --cc-primary-light: #edf5ff;
+}
+
+
+/* =========================================================
+   DARK THEME VARIABLES
+========================================================= */
+
+html[data-theme="dark"] {
+  
+  --cc-bg: #0b1220;
+  --cc-surface: #111827;
+  --cc-card: #172033;
+  --cc-input: #1e293b;
+  
+  --cc-text: #e5e7eb;
+  --cc-heading: #f8fafc;
+  --cc-muted: #94a3b8;
+  
+  --cc-border: #334155;
+  --cc-shadow: rgba(0, 0, 0, 0.35);
+  
+  --cc-primary: #4d8df7;
+  --cc-primary-light: #1e3a64;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+html,
+body {
+  background: var(--cc-bg);
+  color: var(--cc-text);
+}
+
+html[data-theme="dark"] body {
+  background: var(--cc-bg) !important;
+  color: var(--cc-text) !important;
+}
+
+
+/* =========================================================
+   COMMON TEXT
+========================================================= */
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6 {
+  color: var(--cc-heading) !important;
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] span,
+html[data-theme="dark"] label,
+html[data-theme="dark"] small {
+  color: var(--cc-text);
+}
+
+
+/* =========================================================
+   COMMON PAGE CONTAINERS
+========================================================= */
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] section,
+html[data-theme="dark"] article,
+html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .content,
+html[data-theme="dark"] .page-content,
+html[data-theme="dark"] .settings-page {
+  background: var(--cc-bg) !important;
+  color: var(--cc-text) !important;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .settings-intro,
+html[data-theme="dark"] .settings-tabs,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .content-card,
+html[data-theme="dark"] .info-card,
+html[data-theme="dark"] .form-card,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .workspace-card {
+  background: var(--cc-card) !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+  box-shadow: 0 4px 18px var(--cc-shadow);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+html[data-theme="dark"] header,
+html[data-theme="dark"] .top-header,
+html[data-theme="dark"] .header,
+html[data-theme="dark"] .page-header {
+  background: var(--cc-surface) !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] aside {
+  background: #0f172a !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+}
+
+html[data-theme="dark"] .sidebar a,
+html[data-theme="dark"] .sidebar button,
+html[data-theme="dark"] .nav-item {
+  color: var(--cc-text) !important;
+}
+
+html[data-theme="dark"] .nav-item:hover {
+  background: var(--cc-primary-light) !important;
+  color: var(--cc-primary) !important;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: var(--cc-input) !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #64748b !important;
+}
+
+html[data-theme="dark"] option {
+  background: var(--cc-input);
+  color: var(--cc-text);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+html[data-theme="dark"] button {
+  color: var(--cc-text);
+}
+
+html[data-theme="dark"] .back-btn,
+html[data-theme="dark"] .icon-btn,
+html[data-theme="dark"] .refresh-btn {
+  color: var(--cc-text) !important;
+}
+
+
+/* =========================================================
+   SETTINGS TABS
+========================================================= */
+
+html[data-theme="dark"] .settings-tab {
+  color: var(--cc-muted) !important;
+}
+
+html[data-theme="dark"] .settings-tab:hover,
+html[data-theme="dark"] .settings-tab.active {
+  color: var(--cc-primary) !important;
+}
+
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+html[data-theme="dark"] table {
+  background: var(--cc-card) !important;
+  color: var(--cc-text) !important;
+}
+
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+  background: transparent !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+}
+
+html[data-theme="dark"] tr:hover td {
+  background: #1e293b !important;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+html[data-theme="dark"] .modal,
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .dialog,
+html[data-theme="dark"] .popup {
+  background: var(--cc-card) !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+}
+
+
+/* =========================================================
+   DROPDOWNS
+========================================================= */
+
+html[data-theme="dark"] .dropdown,
+html[data-theme="dark"] .dropdown-menu {
+  background: var(--cc-card) !important;
+  color: var(--cc-text) !important;
+  border-color: var(--cc-border) !important;
+}
+
+
+/* =========================================================
+   DIVIDERS
+========================================================= */
+
+html[data-theme="dark"] hr {
+  border-color: var(--cc-border) !important;
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+html[data-theme="dark"] a {
+  color: var(--cc-primary);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+html[data-theme="dark"] {
+  scrollbar-color: #475569 #0f172a;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

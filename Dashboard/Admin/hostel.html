@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CampusConnect Hostel Management"
+    >
+
+    <title>Hostel Management | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="hostel.css">
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <div class="header-left">
+        <button
+            type="button"
+            id="backBtn"
+            class="back-btn"
+            title="Go back"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <div class="page-title">
+        <h1>Hostel Management</h1>
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            id="refreshBtn"
+            class="header-btn"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+
+        <button
+            type="button"
+            id="notificationBtn"
+            class="header-btn"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+            <i class="fa-regular fa-bell"></i>
+            <span id="notificationDot" class="notification-dot" hidden></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="hostel-page">
+
+    <!-- =====================================================
+         DASHBOARD VIEW
+    ====================================================== -->
+
+    <section id="dashboardView" class="page-view">
+
+        <section class="intro-section">
+
+            <div>
+                <span class="section-label">
+                    <i class="fa-solid fa-building"></i>
+                    Campus Accommodation
+                </span>
+
+                <h2>Hostel Overview</h2>
+
+                <p>
+                    Manage hostel buildings, rooms, student allotments,
+                    hostel fees, complaints and accommodation records.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                data-open-view="buildings"
+            >
+                <i class="fa-solid fa-building"></i>
+                Manage Hostels
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             KPI CARDS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">Overview</span>
+                    <h2>Hostel Statistics</h2>
+                    <p>
+                        Select a card to open its detailed management page.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="kpi-grid">
+
+                <button
+                    type="button"
+                    class="kpi-card"
+                    data-open-view="buildings"
+                >
+                    <span class="kpi-icon blue">
+                        <i class="fa-solid fa-building"></i>
+                    </span>
+
+                    <span class="kpi-content">
+                        <small>Total Hostels</small>
+                        <strong id="totalHostels">—</strong>
+                        <span>View hostel buildings</span>
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="kpi-card"
+                    data-open-view="rooms"
+                >
+                    <span class="kpi-icon purple">
+                        <i class="fa-solid fa-door-open"></i>
+                    </span>
+
+                    <span class="kpi-content">
+                        <small>Total Rooms</small>
+                        <strong id="totalRooms">—</strong>
+                        <span>View room inventory</span>
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="kpi-card"
+                    data-open-view="students"
+                >
+                    <span class="kpi-icon green">
+                        <i class="fa-solid fa-users"></i>
+                    </span>
+
+                    <span class="kpi-content">
+                        <small>Hostel Students</small>
+                        <strong id="hostelStudents">—</strong>
+                        <span>View resident students</span>
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="kpi-card"
+                    data-open-view="vacancy"
+                >
+                    <span class="kpi-icon orange">
+                        <i class="fa-solid fa-bed"></i>
+                    </span>
+
+                    <span class="kpi-content">
+                        <small>Vacant Beds</small>
+                        <strong id="vacantBeds">—</strong>
+                        <span>View available capacity</span>
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MANAGEMENT AREAS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">Management</span>
+                    <h2>Hostel Operations</h2>
+                    <p>
+                        Open a dedicated management view for each area.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="management-grid">
+
+                <button
+                    type="button"
+                    class="management-card"
+                    data-open-view="buildings"
+                >
+                    <span class="management-icon blue">
+                        <i class="fa-solid fa-building"></i>
+                    </span>
+
+                    <span>
+                        <strong>Hostel Buildings</strong>
+                        <small>
+                            Manage hostel buildings, wardens and capacity.
+                        </small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="management-card"
+                    data-open-view="rooms"
+                >
+                    <span class="management-icon purple">
+                        <i class="fa-solid fa-door-open"></i>
+                    </span>
+
+                    <span>
+                        <strong>Room Management</strong>
+                        <small>
+                            Manage rooms, beds and occupancy.
+                        </small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="management-card"
+                    data-open-view="allotments"
+                >
+                    <span class="management-icon green">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </span>
+
+                    <span>
+                        <strong>Student Allotments</strong>
+                        <small>
+                            Manage student room allotments and transfers.
+                        </small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="management-card"
+                    data-open-view="fees"
+                >
+                    <span class="management-icon orange">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </span>
+
+                    <span>
+                        <strong>Hostel Fees</strong>
+                        <small>
+                            Track hostel fee payments and outstanding dues.
+                        </small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="management-card"
+                    data-open-view="complaints"
+                >
+                    <span class="management-icon red">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </span>
+
+                    <span>
+                        <strong>Complaints & Maintenance</strong>
+                        <small>
+                            Review accommodation complaints and maintenance.
+                        </small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="management-card"
+                    data-open-view="reports"
+                >
+                    <span class="management-icon teal">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </span>
+
+                    <span>
+                        <strong>Hostel Reports</strong>
+                        <small>
+                            View occupancy, allotment and fee reports.
+                        </small>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACCESS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">Quick Access</span>
+                    <h2>Hostel Directory</h2>
+                </div>
+            </div>
+
+
+            <div class="quick-grid">
+
+                <button
+                    type="button"
+                    class="quick-card"
+                    data-open-view="students"
+                >
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Resident Students</span>
+                    <small>View hostel residents</small>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-card"
+                    data-open-view="vacancy"
+                >
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Vacancy</span>
+                    <small>View vacant beds</small>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-card"
+                    data-open-view="complaints"
+                >
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Maintenance</span>
+                    <small>View open complaints</small>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-card"
+                    data-open-view="reports"
+                >
+                    <i class="fa-solid fa-file-lines"></i>
+                    <span>Reports</span>
+                    <small>Open hostel reports</small>
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- =====================================================
+         DETAIL VIEW
+    ====================================================== -->
+
+    <section
+        id="detailView"
+        class="page-view"
+        hidden
+    >
+
+        <div class="detail-header">
+
+            <div>
+                <span id="detailLabel" class="section-label">
+                    Hostel Management
+                </span>
+
+                <h2 id="detailTitle">
+                    Hostel Details
+                </h2>
+
+                <p id="detailDescription">
+                    Manage hostel information.
+                </p>
+            </div>
+
+            <div class="detail-actions">
+
+                <button
+                    type="button"
+                    id="detailAddBtn"
+                    class="btn btn-primary"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add
+                </button>
+
+                <button
+                    type="button"
+                    id="detailExportBtn"
+                    class="btn btn-secondary"
+                >
+                    <i class="fa-solid fa-download"></i>
+                    Export
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-panel">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="detailSearch"
+                    placeholder="Search..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select id="detailStatusFilter">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="occupied">Occupied</option>
+                <option value="vacant">Vacant</option>
+                <option value="pending">Pending</option>
+                <option value="resolved">Resolved</option>
+            </select>
+
+
+            <button
+                type="button"
+                id="clearDetailFilters"
+                class="filter-clear"
+            >
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                Clear
+            </button>
+
+        </div>
+
+
+        <div class="detail-summary-grid">
+
+            <div class="detail-summary-card">
+                <span>Records</span>
+                <strong id="detailRecordCount">—</strong>
+            </div>
+
+            <div class="detail-summary-card">
+                <span>Active</span>
+                <strong id="detailActiveCount">—</strong>
+            </div>
+
+            <div class="detail-summary-card">
+                <span>Pending</span>
+                <strong id="detailPendingCount">—</strong>
+            </div>
+
+        </div>
+
+
+        <div class="table-card">
+
+            <div class="table-scroll">
+
+                <table>
+
+                    <thead id="detailTableHead"></thead>
+
+                    <tbody id="detailTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="detailEmpty"
+                class="empty-state"
+                hidden
+            >
+                <div class="empty-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+
+                <h3>No records available</h3>
+
+                <p>
+                    Backend data will appear here when available.
+                </p>
+
+                <button
+                    type="button"
+                    id="detailEmptyAddBtn"
+                    class="btn btn-primary"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Record
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     NOTIFICATION PANEL
+========================================================== -->
+
+<div
+    id="notificationPanel"
+    class="notification-panel"
+    hidden
+>
+
+    <div class="notification-header">
+
+        <strong>Notifications</strong>
+
+        <button
+            type="button"
+            id="closeNotificationBtn"
+            aria-label="Close notifications"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <div class="notification-body">
+        <i class="fa-regular fa-bell"></i>
+        <h3>No new notifications</h3>
+        <p>
+            Notifications from the global CampusConnect system
+            will appear here.
+        </p>
+    </div>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="hostel.js"></script>
+
+</body>
+</html>

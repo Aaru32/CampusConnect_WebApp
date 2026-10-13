@@ -1,0 +1,1249 @@
+/* =====================================================
+   CAMPUSCONNECT
+   LEADERBOARD
+===================================================== */
+
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root {
+
+    --primary: #1557a6;
+    --primary-dark: #0e4382;
+    --primary-light: #eaf2fb;
+
+    --white: #ffffff;
+    --background: #f5f8fc;
+
+    --text: #172b4d;
+    --text-light: #68778d;
+
+    --border: #dfe6ef;
+
+    --success: #218739;
+    --success-light: #e9f7ed;
+
+    --warning: #d88900;
+    --warning-light: #fff5df;
+
+    --danger: #c62828;
+    --danger-light: #fdecec;
+
+    --shadow:
+        0 6px 20px rgba(21, 87, 166, 0.08);
+
+    --radius: 14px;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        var(--background);
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app-shell {
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.top-header {
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 24px;
+
+    background:
+        var(--white);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position:
+        sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.back-button {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.back-button:hover {
+
+    background:
+        var(--primary);
+
+    color:
+        var(--white);
+}
+
+
+.page-heading {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.page-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.page-subtitle {
+
+    color:
+        var(--text-light);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   GLOBAL NOTIFICATION PLACEHOLDER
+===================================================== */
+
+.global-notification-placeholder {
+
+    min-width: 42px;
+
+    min-height: 42px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main-content {
+
+    width:
+        min(1100px, 100%);
+
+    margin:
+        0 auto;
+
+    padding:
+        28px 22px 50px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 28px;
+}
+
+
+.intro-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 15px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.intro-section h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+}
+
+
+.intro-section p {
+
+    color:
+        var(--text-light);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.leaderboard-tabs {
+
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    margin-bottom: 20px;
+}
+
+
+.leaderboard-tab {
+
+    flex:
+        0 0 auto;
+
+    padding:
+        11px 18px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    background:
+        var(--white);
+
+    color:
+        var(--text-light);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        0.2s ease;
+}
+
+
+.leaderboard-tab:hover {
+
+    border-color:
+        var(--primary);
+
+    color:
+        var(--primary);
+}
+
+
+.leaderboard-tab.active {
+
+    background:
+        var(--primary);
+
+    border-color:
+        var(--primary);
+
+    color:
+        var(--white);
+}
+
+
+/* =====================================================
+   EXAM SELECTOR
+===================================================== */
+
+.exam-selector-section {
+
+    margin-bottom:
+        20px;
+}
+
+
+.exam-selector-section[hidden] {
+    display:
+        none;
+}
+
+
+.exam-selector-section label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        var(--text);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.exam-selector {
+
+    width: 100%;
+
+    padding:
+        12px 14px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    background:
+        var(--white);
+
+    color:
+        var(--text);
+
+    font-size: 13px;
+
+    outline: none;
+}
+
+
+.exam-selector:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(21, 87, 166, 0.08);
+}
+
+
+/* =====================================================
+   MY RANKING
+===================================================== */
+
+.my-ranking-card {
+
+    display: grid;
+
+    grid-template-columns:
+        auto 1fr auto auto;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding:
+        20px;
+
+    margin-bottom:
+        18px;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.my-ranking-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 12px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.my-ranking-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.my-ranking-label {
+
+    color:
+        var(--text-light);
+
+    font-size: 11px;
+}
+
+
+.my-ranking-content strong {
+
+    color:
+        var(--primary);
+
+    font-size: 24px;
+}
+
+
+.my-ranking-details {
+
+    min-width: 100px;
+
+    padding-left: 18px;
+
+    border-left:
+        1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.my-ranking-details span {
+
+    color:
+        var(--text-light);
+
+    font-size: 11px;
+}
+
+
+.my-ranking-details strong {
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.leaderboard-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+
+.stat-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        17px;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.stat-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 10px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.stat-card div:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.stat-card span {
+
+    color:
+        var(--text-light);
+
+    font-size: 11px;
+}
+
+
+.stat-card strong {
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   RANKING SECTION
+===================================================== */
+
+.ranking-section {
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    box-shadow:
+        var(--shadow);
+
+    overflow:
+        hidden;
+}
+
+
+.section-heading {
+
+    padding:
+        20px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.section-heading h2 {
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        4px;
+}
+
+
+.section-heading p {
+
+    color:
+        var(--text-light);
+
+    font-size:
+        12px;
+}
+
+
+/* =====================================================
+   RANKING HEADER
+===================================================== */
+
+.ranking-header {
+
+    display: grid;
+
+    grid-template-columns:
+        70px 1fr 120px 110px;
+
+    gap: 15px;
+
+    padding:
+        12px 18px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--text-light);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =====================================================
+   RANKING ROW
+===================================================== */
+
+.ranking-row {
+
+    display: grid;
+
+    grid-template-columns:
+        70px 1fr 120px 110px;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding:
+        15px 18px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    transition:
+        0.2s ease;
+}
+
+
+.ranking-row:last-child {
+
+    border-bottom:
+        none;
+}
+
+
+.ranking-row.current-student {
+
+    background:
+        var(--primary-light);
+}
+
+
+.ranking-row:hover {
+
+    background:
+        #f8fbff;
+}
+
+
+/* =====================================================
+   RANK
+===================================================== */
+
+.rank-number {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--primary);
+}
+
+
+.rank-medal {
+
+    width: 25px;
+
+    height: 25px;
+
+    border-radius: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--primary-light);
+
+    font-size:
+        11px;
+}
+
+
+/* =====================================================
+   STUDENT
+===================================================== */
+
+.student-cell {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.student-avatar {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+
+.student-information {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.student-name {
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+}
+
+
+.student-label {
+
+    color:
+        var(--primary);
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+}
+
+
+/* =====================================================
+   SCORE
+===================================================== */
+
+.score-cell {
+
+    color:
+        var(--primary);
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+}
+
+
+/* =====================================================
+   PERCENTAGE
+===================================================== */
+
+.percentage-cell {
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+
+    padding:
+        65px 20px;
+
+    text-align:
+        center;
+}
+
+
+.empty-state-icon {
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        25px;
+}
+
+
+.empty-state h3 {
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        7px;
+}
+
+
+.empty-state p {
+
+    max-width:
+        450px;
+
+    margin:
+        auto;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.6;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-state {
+
+    padding:
+        55px 20px;
+
+    text-align:
+        center;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        13px;
+}
+
+
+.loading-state i {
+
+    display:
+        block;
+
+    color:
+        var(--primary);
+
+    font-size:
+        22px;
+
+    margin-bottom:
+        10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .my-ranking-card {
+
+        grid-template-columns:
+            auto 1fr;
+
+    }
+
+
+    .my-ranking-details {
+
+        padding-left:
+            0;
+
+        padding-top:
+            10px;
+
+        border-left:
+            none;
+
+        border-top:
+            1px solid var(--border);
+    }
+
+
+    .leaderboard-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .ranking-header {
+
+        grid-template-columns:
+            55px 1fr 90px;
+
+    }
+
+
+    .ranking-header span:nth-child(4) {
+
+        display:
+            none;
+
+    }
+
+
+    .ranking-row {
+
+        grid-template-columns:
+            55px 1fr 90px;
+
+    }
+
+
+    .percentage-cell {
+
+        display:
+            none;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .top-header {
+
+        height:
+            64px;
+
+        padding:
+            0 15px;
+
+    }
+
+
+    .main-content {
+
+        padding:
+            20px 14px 40px;
+
+    }
+
+
+    .intro-section {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .intro-icon {
+
+        width:
+            48px;
+
+        height:
+            48px;
+
+        font-size:
+            20px;
+
+    }
+
+
+    .intro-section h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .intro-section p {
+
+        font-size:
+            12px;
+
+        line-height:
+            1.5;
+
+    }
+
+
+    .my-ranking-card {
+
+        padding:
+            16px;
+
+        gap:
+            12px;
+
+    }
+
+
+    .my-ranking-icon {
+
+        width:
+            44px;
+
+        height:
+            44px;
+
+    }
+
+
+    .my-ranking-content strong {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .ranking-header {
+
+        padding:
+            11px 12px;
+
+    }
+
+
+    .ranking-row {
+
+        padding:
+            13px 12px;
+
+    }
+
+
+    .student-avatar {
+
+        width:
+            34px;
+
+        height:
+            34px;
+
+    }
+
+
+    .student-name {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .score-cell {
+
+        font-size:
+            12px;
+
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .page-subtitle {
+
+        display:
+            none;
+
+    }
+
+
+    .my-ranking-card {
+
+        grid-template-columns:
+            auto 1fr;
+
+    }
+
+}

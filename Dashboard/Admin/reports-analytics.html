@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports & Analytics | CampusConnect Admin</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Reports Analytics CSS -->
+    <link rel="stylesheet" href="reports-analytics.css">
+</head>
+
+<body>
+
+
+
+    <!-- =========================================================
+         GLOBAL NOTIFICATION PLACEHOLDER
+         CampusConnect uses ONE global notification system.
+    ========================================================== -->
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <!-- =========================================================
+         TOAST / STATUS MESSAGE
+    ========================================================== -->
+    <div id="toastContainer" class="toast-container"></div>
+
+
+    <!-- =========================================================
+         MAIN APPLICATION
+    ========================================================== -->
+    <div class="reports-app">
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+        <header class="reports-header">
+
+            <div class="header-left">
+
+                <!-- Back -->
+                <button
+                    type="button"
+                    class="back-button"
+                    id="backButton"
+                    title="Go Back"
+                    aria-label="Go Back"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <div class="page-heading">
+                    <span class="page-label">ADMIN</span>
+                    <h1>Reports &amp; Analytics</h1>
+                    <p>Monitor college performance and generate reports.</p>
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <!-- Refresh -->
+                <button
+                    type="button"
+                    class="header-action-button"
+                    id="refreshButton"
+                    title="Refresh Reports"
+                    aria-label="Refresh Reports"
+                >
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+
+
+                <!-- Global Notification -->
+                <button
+                    type="button"
+                    class="header-action-button notification-button"
+                    id="notificationButton"
+                    title="Notifications"
+                    aria-label="Notifications"
+                >
+                    <i class="fa-regular fa-bell"></i>
+                    <span
+                        class="notification-badge"
+                        id="notificationBadge"
+                        hidden
+                    >
+                        0
+                    </span>
+                </button>
+
+
+                <!-- Admin Profile -->
+                <button
+                    type="button"
+                    class="profile-button"
+                    id="profileButton"
+                    title="Admin Profile"
+                    aria-label="Admin Profile"
+                >
+                    <span class="profile-avatar">
+                        <img
+                            src="../../Assets/profile.png"
+                            alt="Admin Profile"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <span class="profile-fallback">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                    </span>
+
+                    <span class="profile-info">
+                        <strong id="adminName">Admin</strong>
+                        <small>Administrator</small>
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down profile-chevron"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             PAGE CONTENT
+        ====================================================== -->
+        <main class="reports-content">
+
+
+            <!-- =================================================
+                 PAGE INTRO
+            ================================================== -->
+            <section class="reports-intro">
+
+                <div class="intro-content">
+                    <span class="section-eyebrow">
+                        <i class="fa-solid fa-chart-line"></i>
+                        College Intelligence
+                    </span>
+
+                    <h2>Reports &amp; Analytics</h2>
+
+                    <p>
+                        View academic, attendance, student, faculty and
+                        administrative insights from one workspace.
+                    </p>
+                </div>
+
+
+                <div class="intro-actions">
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="generateReportButton"
+                    >
+                        <i class="fa-solid fa-file-circle-plus"></i>
+                        Generate Report
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 REPORT PERIOD / FILTER BAR
+            ================================================== -->
+            <section class="global-filter-bar">
+
+                <div class="filter-heading">
+                    <div class="filter-icon">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+
+                    <div>
+                        <strong>Report Filters</strong>
+                        <span>Apply filters to analytics and reports.</span>
+                    </div>
+                </div>
+
+
+                <div class="filter-controls">
+
+                    <!-- Academic Year -->
+                    <div class="filter-group">
+
+                        <label for="academicYearFilter">
+                            Academic Year
+                        </label>
+
+                        <select id="academicYearFilter">
+                            <option value="">All Academic Years</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- Semester -->
+                    <div class="filter-group">
+
+                        <label for="semesterFilter">
+                            Semester
+                        </label>
+
+                        <select id="semesterFilter">
+                            <option value="">All Semesters</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- Department -->
+                    <div class="filter-group">
+
+                        <label for="departmentFilter">
+                            Department
+                        </label>
+
+                        <select id="departmentFilter">
+                            <option value="">All Departments</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- Date Range -->
+                    <div class="filter-group">
+
+                        <label for="dateRangeFilter">
+                            Date Range
+                        </label>
+
+                        <select id="dateRangeFilter">
+                            <option value="">All Time</option>
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                            <option value="365">Last 12 Months</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- Apply -->
+                    <button
+                        type="button"
+                        class="filter-apply-button"
+                        id="applyFiltersButton"
+                    >
+                        <i class="fa-solid fa-check"></i>
+                        Apply
+                    </button>
+
+
+                    <!-- Reset -->
+                    <button
+                        type="button"
+                        class="filter-reset-button"
+                        id="resetFiltersButton"
+                        title="Reset Filters"
+                    >
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 OVERVIEW
+            ================================================== -->
+            <section class="report-section" id="overviewSection">
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="section-number">01</span>
+                        <div class="section-title-wrapper">
+                            <h2>Overview</h2>
+                            <p>Quick snapshot of college-level indicators.</p>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="text-button"
+                        data-action="view-overview"
+                    >
+                        View Details
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="kpi-grid">
+
+
+                    <!-- Total Students -->
+                    <button
+                        type="button"
+                        class="kpi-card"
+                        data-report="students"
+                        id="totalStudentsCard"
+                    >
+
+                        <div class="kpi-card-top">
+                            <span class="kpi-icon">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </span>
+
+                            <span class="kpi-arrow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </span>
+                        </div>
+
+                        <div class="kpi-value" id="totalStudentsValue">
+                            —
+                        </div>
+
+                        <div class="kpi-title">
+                            Total Students
+                        </div>
+
+                        <div class="kpi-description">
+                            Enrolled students
+                        </div>
+
+                    </button>
+
+
+
+                    <!-- Total Faculty -->
+                    <button
+                        type="button"
+                        class="kpi-card"
+                        data-report="faculty"
+                        id="totalFacultyCard"
+                    >
+
+                        <div class="kpi-card-top">
+                            <span class="kpi-icon">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </span>
+
+                            <span class="kpi-arrow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </span>
+                        </div>
+
+                        <div class="kpi-value" id="totalFacultyValue">
+                            —
+                        </div>
+
+                        <div class="kpi-title">
+                            Total Faculty
+                        </div>
+
+                        <div class="kpi-description">
+                            Active faculty members
+                        </div>
+
+                    </button>
+
+
+
+                    <!-- Attendance -->
+                    <button
+                        type="button"
+                        class="kpi-card"
+                        data-report="attendance"
+                        id="attendanceRateCard"
+                    >
+
+                        <div class="kpi-card-top">
+                            <span class="kpi-icon">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </span>
+
+                            <span class="kpi-arrow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </span>
+                        </div>
+
+                        <div class="kpi-value" id="attendanceRateValue">
+                            —
+                        </div>
+
+                        <div class="kpi-title">
+                            Attendance Rate
+                        </div>
+
+                        <div class="kpi-description">
+                            Overall attendance
+                        </div>
+
+                    </button>
+
+
+
+                    <!-- Academic Performance -->
+                    <button
+                        type="button"
+                        class="kpi-card"
+                        data-report="academic"
+                        id="academicPerformanceCard"
+                    >
+
+                        <div class="kpi-card-top">
+                            <span class="kpi-icon">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </span>
+
+                            <span class="kpi-arrow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </span>
+                        </div>
+
+                        <div class="kpi-value" id="academicPerformanceValue">
+                            —
+                        </div>
+
+                        <div class="kpi-title">
+                            Academic Performance
+                        </div>
+
+                        <div class="kpi-description">
+                            Overall performance
+                        </div>
+
+                    </button>
+
+
+
+                    <!-- Active Courses -->
+                    <button
+                        type="button"
+                        class="kpi-card"
+                        data-report="courses"
+                        id="activeCoursesCard"
+                    >
+
+                        <div class="kpi-card-top">
+                            <span class="kpi-icon">
+                                <i class="fa-solid fa-book-open"></i>
+                            </span>
+
+                            <span class="kpi-arrow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </span>
+                        </div>
+
+                        <div class="kpi-value" id="activeCoursesValue">
+                            —
+                        </div>
+
+                        <div class="kpi-title">
+                            Active Courses
+                        </div>
+
+                        <div class="kpi-description">
+                            Currently active courses
+                        </div>
+
+                    </button>
+
+
+
+                    <!-- Pending Fees -->
+                    <button
+                        type="button"
+                        class="kpi-card"
+                        data-report="fees"
+                        id="pendingFeesCard"
+                    >
+
+                        <div class="kpi-card-top">
+                            <span class="kpi-icon">
+                                <i class="fa-solid fa-wallet"></i>
+                            </span>
+
+                            <span class="kpi-arrow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </span>
+                        </div>
+
+                        <div class="kpi-value" id="pendingFeesValue">
+                            —
+                        </div>
+
+                        <div class="kpi-title">
+                            Pending Fees
+                        </div>
+
+                        <div class="kpi-description">
+                            Outstanding fee records
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ANALYTICS NAVIGATION
+            ================================================== -->
+            <section class="report-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="section-number">02</span>
+
+                        <div class="section-title-wrapper">
+                            <h2>Analytics</h2>
+                            <p>Select an area to explore detailed analytics.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-grid">
+
+
+                    <!-- Academic -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="academic"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Academic Analytics</strong>
+                            <small>
+                                Performance, results and semester trends
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Attendance -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="attendance"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Attendance Analytics</strong>
+                            <small>
+                                Attendance trends and subject analysis
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Students -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="students"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Student Analytics</strong>
+                            <small>
+                                Enrollment and student activity
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Faculty -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="faculty"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Faculty Analytics</strong>
+                            <small>
+                                Faculty workload and academic activity
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Examinations -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="examinations"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Examination &amp; Results</strong>
+                            <small>
+                                Results, grades and examination reports
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Admissions -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="admissions"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Admissions Analytics</strong>
+                            <small>
+                                Applications and admission trends
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Fees -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="fees"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Fees &amp; Finance</strong>
+                            <small>
+                                Collection and outstanding fee reports
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Library -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="library"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Library Analytics</strong>
+                            <small>
+                                Books, borrowing and circulation
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Hostel -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="hostel"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Hostel Analytics</strong>
+                            <small>
+                                Occupancy and room allocation
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+
+
+                    <!-- Engagement -->
+                    <button
+                        type="button"
+                        class="analytics-card"
+                        data-report="engagement"
+                    >
+
+                        <span class="analytics-icon">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </span>
+
+                        <span class="analytics-content">
+                            <strong>Student Engagement</strong>
+                            <small>
+                                LMS, assignments, events and activities
+                            </small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right analytics-arrow"></i>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACADEMIC ANALYTICS
+            ================================================== -->
+            <section
+                class="report-section detailed-report-section"
+                id="academicAnalyticsSection"
+                data-section="academic"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="section-number">03</span>
+
+                        <div class="section-title-wrapper">
+                            <h2>Academic Performance</h2>
+                            <p>
+                                Semester and subject-level academic insights.
+                            </p>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="outline-button"
+                        data-report-action="academic"
+                    >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Open Report
+                    </button>
+
+                </div>
+
+
+                <div class="analytics-panel">
+
+                    <div class="panel-toolbar">
+
+                        <div>
+                            <strong>Performance Overview</strong>
+                            <span>
+                                Academic data will appear here when available.
+                            </span>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="icon-button"
+                            data-action="refresh-section"
+                            data-section-target="academic"
+                            title="Refresh Academic Data"
+                        >
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="empty-analytics-state">
+
+                        <div class="empty-state-icon">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+
+                        <h3>No academic data available</h3>
+
+                        <p>
+                            Connect the examination and results data source
+                            to view academic analytics.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            data-report-action="academic"
+                        >
+                            View Academic Report
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ATTENDANCE ANALYTICS
+            ================================================== -->
+            <section
+                class="report-section detailed-report-section"
+                id="attendanceAnalyticsSection"
+                data-section="attendance"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="section-number">04</span>
+
+                        <div class="section-title-wrapper">
+                            <h2>Attendance Analytics</h2>
+                            <p>
+                                Attendance trends, subjects and faculty reports.
+                            </p>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="outline-button"
+                        data-report-action="attendance"
+                    >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Open Report
+                    </button>
+
+                </div>
+
+
+                <div class="analytics-panel">
+
+                    <div class="panel-toolbar">
+
+                        <div>
+                            <strong>Attendance Overview</strong>
+                            <span>
+                                Attendance data will appear here when available.
+                            </span>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="icon-button"
+                            data-action="refresh-section"
+                            data-section-target="attendance"
+                            title="Refresh Attendance Data"
+                        >
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="attendance-summary-grid">
+
+                        <button
+                            type="button"
+                            class="summary-stat"
+                            data-report="attendance"
+                        >
+                            <span>
+                                <i class="fa-solid fa-user-check"></i>
+                            </span>
+
+                            <strong id="presentStudentsValue">—</strong>
+
+                            <small>Present</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="summary-stat"
+                            data-report="attendance"
+                        >
+                            <span>
+                                <i class="fa-solid fa-user-xmark"></i>
+                            </span>
+
+                            <strong id="absentStudentsValue">—</strong>
+
+                            <small>Absent</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="summary-stat"
+                            data-report="attendance"
+                        >
+                            <span>
+                                <i class="fa-solid fa-percent"></i>
+                            </span>
+
+                            <strong id="overallAttendanceValue">—</strong>
+
+                            <small>Attendance Rate</small>
+                        </button>
+
+                    </div>
+
+
+                    <div class="empty-chart-container">
+
+                        <div class="empty-state-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <h3>No attendance trends available</h3>
+
+                        <p>
+                            Attendance records from the Admin Attendance
+                            module will appear here.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            data-report-action="attendance"
+                        >
+                            View Attendance Report
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+            <!-- =========================================================
+     STUDENT & FACULTY ANALYTICS
+========================================================= -->
+<section class="report-section detailed-report-section">
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-number">05</span>
+
+            <div class="section-title-wrapper">
+                <h2>Student &amp; Faculty Analytics</h2>
+                <p>
+                    Monitor enrollment, activity and faculty-related
+                    academic information.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="dual-report-grid">
+
+        <!-- STUDENT ANALYTICS -->
+        <article
+            class="report-card"
+            id="studentAnalyticsCard"
+            data-report="students"
+        >
+
+            <div class="report-card-header">
+
+                <div class="report-card-icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-report-action="students"
+                    title="Open Student Analytics"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+            </div>
+
+            <div class="report-card-body">
+
+                <h3>Student Analytics</h3>
+
+                <p>
+                    Enrollment, semester distribution and student
+                    activity reports.
+                </p>
+
+                <div class="mini-stat-grid">
+
+                    <div class="mini-stat">
+                        <strong id="analyticsStudentCount">—</strong>
+                        <span>Total Students</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong id="activeStudentCount">—</strong>
+                        <span>Active Students</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="card-link"
+                data-report-action="students"
+            >
+                Open Student Report
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </article>
+
+
+
+        <!-- FACULTY ANALYTICS -->
+        <article
+            class="report-card"
+            id="facultyAnalyticsCard"
+            data-report="faculty"
+        >
+
+            <div class="report-card-header">
+
+                <div class="report-card-icon">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-report-action="faculty"
+                    title="Open Faculty Analytics"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+            </div>
+
+            <div class="report-card-body">
+
+                <h3>Faculty Analytics</h3>
+
+                <p>
+                    Faculty workload, teaching activity and
+                    academic participation.
+                </p>
+
+                <div class="mini-stat-grid">
+
+                    <div class="mini-stat">
+                        <strong id="analyticsFacultyCount">—</strong>
+                        <span>Total Faculty</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong id="activeFacultyCount">—</strong>
+                        <span>Active Faculty</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="card-link"
+                data-report-action="faculty"
+            >
+                Open Faculty Report
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     EXAMINATION & RESULTS
+========================================================= -->
+<section
+    class="report-section detailed-report-section"
+    id="examinationSection"
+    data-section="examinations"
+>
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-number">06</span>
+
+            <div class="section-title-wrapper">
+                <h2>Examination &amp; Results</h2>
+                <p>
+                    Examine result trends, grades and examination
+                    performance.
+                </p>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="outline-button"
+            data-report-action="examinations"
+        >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Open Report
+        </button>
+
+    </div>
+
+
+    <div class="report-table-card">
+
+        <div class="panel-toolbar">
+
+            <div>
+                <strong>Result Summary</strong>
+                <span>
+                    Examination statistics will be loaded from the API.
+                </span>
+            </div>
+
+            <button
+                type="button"
+                class="icon-button"
+                data-action="refresh-section"
+                data-section-target="examinations"
+                title="Refresh Examination Data"
+            >
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="analytics-table">
+
+                <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>Students</th>
+                        <th>Average</th>
+                        <th>Pass Rate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="resultSummaryTableBody">
+
+                    <tr class="empty-table-row">
+                        <td colspan="5">
+
+                            <div class="table-empty-state">
+
+                                <i class="fa-solid fa-file-circle-xmark"></i>
+
+                                <strong>
+                                    No examination data available
+                                </strong>
+
+                                <span>
+                                    Results will appear here when
+                                    examination data is connected.
+                                </span>
+
+                            </div>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ADMISSIONS & FEES
+========================================================= -->
+<section class="report-section detailed-report-section">
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-number">07</span>
+
+            <div class="section-title-wrapper">
+                <h2>Admissions &amp; Finance</h2>
+                <p>
+                    Track admission activity and fee-related reports.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="dual-report-grid">
+
+        <!-- ADMISSIONS -->
+        <article class="report-card">
+
+            <div class="report-card-header">
+
+                <div class="report-card-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-report-action="admissions"
+                    title="Open Admissions Analytics"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+            </div>
+
+            <div class="report-card-body">
+
+                <h3>Admissions Analytics</h3>
+
+                <p>
+                    Applications, approvals and admission trends.
+                </p>
+
+                <div class="progress-report">
+
+                    <div class="progress-label">
+                        <span>Applications</span>
+                        <strong id="applicationCount">—</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div
+                            class="progress-fill"
+                            id="applicationProgress"
+                            style="width: 0%;"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="card-link"
+                data-report-action="admissions"
+            >
+                Open Admissions Report
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </article>
+
+
+
+        <!-- FEES -->
+        <article class="report-card">
+
+            <div class="report-card-header">
+
+                <div class="report-card-icon">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-report-action="fees"
+                    title="Open Finance Analytics"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+
+            </div>
+
+            <div class="report-card-body">
+
+                <h3>Fees &amp; Finance</h3>
+
+                <p>
+                    Fee collection, pending dues and payment reports.
+                </p>
+
+                <div class="finance-summary">
+
+                    <div>
+                        <span>Collected</span>
+                        <strong id="collectedFeesValue">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Pending</span>
+                        <strong id="outstandingFeesValue">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="card-link"
+                data-report-action="fees"
+            >
+                Open Finance Report
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     LIBRARY / HOSTEL / ENGAGEMENT
+========================================================= -->
+<section class="report-section detailed-report-section">
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-number">08</span>
+
+            <div class="section-title-wrapper">
+                <h2>Campus Services &amp; Engagement</h2>
+                <p>
+                    Monitor library, hostel and student engagement activity.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="service-analytics-grid">
+
+
+        <!-- LIBRARY -->
+        <button
+            type="button"
+            class="service-report-card"
+            data-report-action="library"
+        >
+
+            <span class="service-report-icon">
+                <i class="fa-solid fa-book"></i>
+            </span>
+
+            <span class="service-report-content">
+                <strong>Library</strong>
+                <small>
+                    Issues, returns and circulation
+                </small>
+            </span>
+
+            <span class="service-report-value">
+                <strong id="issuedBooksValue">—</strong>
+                <small>Issued</small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+
+        <!-- HOSTEL -->
+        <button
+            type="button"
+            class="service-report-card"
+            data-report-action="hostel"
+        >
+
+            <span class="service-report-icon">
+                <i class="fa-solid fa-building"></i>
+            </span>
+
+            <span class="service-report-content">
+                <strong>Hostel</strong>
+                <small>
+                    Occupancy and room allocation
+                </small>
+            </span>
+
+            <span class="service-report-value">
+                <strong id="hostelOccupancyValue">—</strong>
+                <small>Occupancy</small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+
+        <!-- ENGAGEMENT -->
+        <button
+            type="button"
+            class="service-report-card"
+            data-report-action="engagement"
+        >
+
+            <span class="service-report-icon">
+                <i class="fa-solid fa-chart-simple"></i>
+            </span>
+
+            <span class="service-report-content">
+                <strong>Student Engagement</strong>
+                <small>
+                    LMS, assignments and activities
+                </small>
+            </span>
+
+            <span class="service-report-value">
+                <strong id="engagementValue">—</strong>
+                <small>Activity</small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CUSTOM REPORT GENERATOR
+========================================================= -->
+<section
+    class="report-section custom-report-section"
+    id="customReportSection"
+>
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-number">09</span>
+
+            <div class="section-title-wrapper">
+                <h2>Custom Report Generator</h2>
+                <p>
+                    Choose a report type and filters to generate a
+                    customized report.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="custom-report-card">
+
+        <div class="custom-report-form">
+
+
+            <!-- Report Type -->
+            <div class="form-field">
+
+                <label for="reportType">
+                    Report Type
+                </label>
+
+                <select id="reportType">
+
+                    <option value="">
+                        Select Report Type
+                    </option>
+
+                    <option value="students">
+                        Student Report
+                    </option>
+
+                    <option value="faculty">
+                        Faculty Report
+                    </option>
+
+                    <option value="attendance">
+                        Attendance Report
+                    </option>
+
+                    <option value="academic">
+                        Academic Performance Report
+                    </option>
+
+                    <option value="examinations">
+                        Examination &amp; Results Report
+                    </option>
+
+                    <option value="admissions">
+                        Admissions Report
+                    </option>
+
+                    <option value="fees">
+                        Fees &amp; Finance Report
+                    </option>
+
+                    <option value="library">
+                        Library Report
+                    </option>
+
+                    <option value="hostel">
+                        Hostel Report
+                    </option>
+
+                    <option value="engagement">
+                        Student Engagement Report
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Academic Year -->
+            <div class="form-field">
+
+                <label for="customAcademicYear">
+                    Academic Year
+                </label>
+
+                <select id="customAcademicYear">
+
+                    <option value="">
+                        All Academic Years
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Semester -->
+            <div class="form-field">
+
+                <label for="customSemester">
+                    Semester
+                </label>
+
+                <select id="customSemester">
+
+                    <option value="">
+                        All Semesters
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Department -->
+            <div class="form-field">
+
+                <label for="customDepartment">
+                    Department
+                </label>
+
+                <select id="customDepartment">
+
+                    <option value="">
+                        All Departments
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- From Date -->
+            <div class="form-field">
+
+                <label for="reportFromDate">
+                    From Date
+                </label>
+
+                <input
+                    type="date"
+                    id="reportFromDate"
+                >
+
+            </div>
+
+
+
+            <!-- To Date -->
+            <div class="form-field">
+
+                <label for="reportToDate">
+                    To Date
+                </label>
+
+                <input
+                    type="date"
+                    id="reportToDate"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="custom-report-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="previewReportButton"
+            >
+                <i class="fa-solid fa-eye"></i>
+                Preview Report
+            </button>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="generateCustomReportButton"
+            >
+                <i class="fa-solid fa-file-circle-plus"></i>
+                Generate Report
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     GENERATED REPORTS
+========================================================= -->
+<section
+    class="report-section generated-reports-section"
+    id="generatedReportsSection"
+>
+
+    <div class="section-header">
+
+        <div>
+            <span class="section-number">10</span>
+
+            <div class="section-title-wrapper">
+                <h2>Generated Reports</h2>
+                <p>
+                    Reports generated by administrators will appear here.
+                </p>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="outline-button"
+            id="clearReportsButton"
+        >
+            <i class="fa-solid fa-trash-can"></i>
+            Clear View
+        </button>
+
+    </div>
+
+
+    <div class="generated-reports-card">
+
+
+        <!-- Search -->
+        <div class="reports-table-toolbar">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="reportSearchInput"
+                    placeholder="Search generated reports..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="icon-button"
+                id="refreshGeneratedReportsButton"
+                title="Refresh Generated Reports"
+            >
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+
+            <table class="analytics-table generated-reports-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Report</th>
+                        <th>Type</th>
+                        <th>Generated On</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="generatedReportsTableBody">
+
+                    <tr class="empty-table-row">
+
+                        <td colspan="5">
+
+                            <div class="table-empty-state">
+
+                                <i class="fa-solid fa-folder-open"></i>
+
+                                <strong>
+                                    No reports generated yet
+                                </strong>
+
+                                <span>
+                                    Generated reports will appear here.
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     REPORT PREVIEW MODAL
+========================================================= -->
+<div
+    class="modal-overlay"
+    id="reportPreviewModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal report-preview-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="previewModalTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+                <span class="modal-eyebrow">
+                    REPORT PREVIEW
+                </span>
+
+                <h2 id="previewModalTitle">
+                    Report Preview
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="modal-close-button"
+                data-close-modal="reportPreviewModal"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="modal-body" id="reportPreviewContent">
+
+            <div class="modal-empty-state">
+
+                <div class="empty-state-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <h3>Report preview unavailable</h3>
+
+                <p>
+                    Select a report type and generate or preview the
+                    report after data becomes available.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="secondary-button"
+                data-close-modal="reportPreviewModal"
+            >
+                Close
+            </button>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="previewDownloadButton"
+            >
+                <i class="fa-solid fa-download"></i>
+                Download
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     LOGOUT CONFIRMATION MODAL
+========================================================= -->
+<div
+    class="modal-overlay"
+    id="logoutModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal confirmation-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="logoutModalTitle"
+    >
+
+        <div class="confirmation-icon">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+
+        <h2 id="logoutModalTitle">
+            Logout?
+        </h2>
+
+        <p>
+            Are you sure you want to log out of CampusConnect?
+        </p>
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="secondary-button"
+                data-close-modal="logoutModal"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="danger-button"
+                id="confirmLogoutButton"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PROFILE MENU
+========================================================= -->
+<div
+    class="profile-dropdown"
+    id="profileDropdown"
+    aria-hidden="true"
+>
+
+    <button
+        type="button"
+        class="profile-menu-item"
+        id="viewProfileButton"
+    >
+        <i class="fa-regular fa-user"></i>
+        <span>My Profile</span>
+    </button>
+
+
+    <button
+        type="button"
+        class="profile-menu-item"
+        id="profileSettingsButton"
+    >
+        <i class="fa-solid fa-gear"></i>
+        <span>Profile Settings</span>
+    </button>
+
+
+    <div class="profile-menu-divider"></div>
+
+
+    <button
+        type="button"
+        class="profile-menu-item danger-item"
+        id="logoutButton"
+    >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </button>
+
+</div>
+
+
+
+<!-- =========================================================
+     GLOBAL NOTIFICATION PANEL
+========================================================= -->
+<div
+    class="notification-panel"
+    id="notificationPanel"
+    aria-hidden="true"
+>
+
+    <div class="notification-panel-header">
+
+        <div>
+            <strong>Notifications</strong>
+            <span id="notificationCountText">
+                No new notifications
+            </span>
+        </div>
+
+        <button
+            type="button"
+            class="icon-button"
+            id="closeNotificationPanel"
+            aria-label="Close notifications"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <div
+        class="notification-list"
+        id="notificationList"
+    >
+
+        <div class="notification-empty-state">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <strong>No notifications</strong>
+
+            <span>
+                New CampusConnect notifications will appear here.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SCROLL TO TOP
+========================================================= -->
+<button
+    type="button"
+    class="scroll-top-button"
+    id="scrollTopButton"
+    title="Back to Top"
+    aria-label="Back to Top"
+>
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+
+
+<!-- =========================================================
+     API / CONFIGURATION
+========================================================= -->
+<script>
+    /*
+     * CampusConnect Reports & Analytics Configuration
+     *
+     * Keep API_BASE_URL empty during frontend development.
+     * Java backend endpoints can be connected later.
+     */
+    window.CAMPUSCONNECT_REPORTS_CONFIG = {
+
+        API_BASE_URL: "",
+
+        ENDPOINTS: {
+
+            DASHBOARD: "/admin/reports/dashboard",
+
+            STUDENTS: "/admin/reports/students",
+
+            FACULTY: "/admin/reports/faculty",
+
+            ACADEMIC: "/admin/reports/academic",
+
+            ATTENDANCE: "/admin/reports/attendance",
+
+            EXAMINATIONS: "/admin/reports/examinations",
+
+            ADMISSIONS: "/admin/reports/admissions",
+
+            FEES: "/admin/reports/fees",
+
+            LIBRARY: "/admin/reports/library",
+
+            HOSTEL: "/admin/reports/hostel",
+
+            ENGAGEMENT: "/admin/reports/engagement",
+
+            GENERATED_REPORTS: "/admin/reports/generated",
+
+            GENERATE_REPORT: "/admin/reports/generate",
+
+            EXPORT_REPORT: "/admin/reports/export"
+
+        }
+
+    };
+</script>
+
+
+
+<!-- =========================================================
+     REPORTS ANALYTICS JAVASCRIPT
+========================================================= -->
+<script src="reports-analytics.js"></script>
+
+</div>
+<!-- End .reports-app -->
+
+</body>
+</html>

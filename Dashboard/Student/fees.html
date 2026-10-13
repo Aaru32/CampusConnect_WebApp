@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fees | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="fees.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                class="back-button"
+                id="backButton"
+                aria-label="Go back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+
+            <div class="page-heading">
+
+                <span class="page-title">
+                    Fees
+                </span>
+
+                <span class="page-subtitle">
+                    Fee & Payment Management
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!--
+            GLOBAL NOTIFICATION PLACEHOLDER
+
+            The future CampusConnect global notification
+            system will provide the notification bell here.
+        -->
+
+        <div
+            class="global-notification-placeholder"
+            id="globalNotificationPlaceholder"
+            aria-hidden="true"
+        ></div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <section class="intro-section">
+
+            <div class="intro-icon">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Fees
+                </h1>
+
+                <p>
+                    View your fee details, payments and receipts.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FEE SUMMARY
+        ================================================== -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Payable
+                    </span>
+
+                    <strong id="totalPayable">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Paid
+                    </span>
+
+                    <strong id="totalPaid">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-hourglass-half"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Outstanding
+                    </span>
+
+                    <strong id="outstandingAmount">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Next Due Date
+                    </span>
+
+                    <strong id="nextDueDate">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK SERVICES
+        ================================================== -->
+
+        <section class="services-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Fee Services
+                    </h2>
+
+                    <p>
+                        Access your fee-related information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="service-grid">
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-section="structure"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-list-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Fee Structure
+                        </h3>
+
+                        <p>
+                            View applicable fee components.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-section="history"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Payment History
+                        </h3>
+
+                        <p>
+                            View your previous payments.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-section="receipts"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Receipts
+                        </h3>
+
+                        <p>
+                            Access your official receipts.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-section="dues"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Due Dates
+                        </h3>
+
+                        <p>
+                            View upcoming fee deadlines.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-section="scholarships"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-award"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Scholarships
+                        </h3>
+
+                        <p>
+                            View scholarship and concession status.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-section="payment"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-credit-card"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Make Payment
+                        </h3>
+
+                        <p>
+                            Pay applicable outstanding fees.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FEE STRUCTURE
+        ================================================== -->
+
+        <section
+            class="content-section"
+            id="structureSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Fee Structure
+                    </h2>
+
+                    <p>
+                        Applicable fee components for the student.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="feeStructureTable"
+            >
+
+                <!-- Dynamic backend data -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAYMENT HISTORY
+        ================================================== -->
+
+        <section
+            class="content-section"
+            id="historySection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Payment History
+                    </h2>
+
+                    <p>
+                        Previous fee transactions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="paymentHistoryTable"
+            >
+
+                <!-- Dynamic backend data -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECEIPTS
+        ================================================== -->
+
+        <section
+            class="content-section"
+            id="receiptsSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Receipts
+                    </h2>
+
+                    <p>
+                        Official payment receipts.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="receipt-list"
+                id="receiptList"
+            >
+
+                <!-- Dynamic backend data -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DUE DATES
+        ================================================== -->
+
+        <section
+            class="content-section"
+            id="duesSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Due Dates
+                    </h2>
+
+                    <p>
+                        Upcoming fee deadlines.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="due-list"
+                id="dueList"
+            >
+
+                <!-- Dynamic backend data -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SCHOLARSHIPS
+        ================================================== -->
+
+        <section
+            class="content-section"
+            id="scholarshipsSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Scholarships & Concessions
+                    </h2>
+
+                    <p>
+                        Your applicable scholarship information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="scholarship-list"
+                id="scholarshipList"
+            >
+
+                <!-- Dynamic backend data -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAYMENT
+        ================================================== -->
+
+        <section
+            class="content-section payment-section"
+            id="paymentSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Make Payment
+                    </h2>
+
+                    <p>
+                        Pay your outstanding applicable fees.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="payment-card">
+
+                <div class="payment-information">
+
+                    <div class="payment-icon">
+
+                        <i class="fa-solid fa-credit-card"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Outstanding Amount
+                        </h3>
+
+                        <strong id="paymentOutstanding">
+                            --
+                        </strong>
+
+                        <p>
+                            Payment processing will be connected
+                            to the institution's approved payment
+                            system.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="payButton"
+                >
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Proceed to Payment
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     PAYMENT INFORMATION MODAL
+====================================================== -->
+
+<div
+    class="modal"
+    id="paymentModal"
+    aria-hidden="true"
+>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Payment
+            </h2>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="paymentModal"
+                aria-label="Close"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-message">
+
+            <div class="modal-message-icon">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+            </div>
+
+
+            <h3>
+                Payment Gateway
+            </h3>
+
+
+            <p>
+                The payment gateway will be connected
+                here when the CampusConnect backend and
+                institution-approved payment service are
+                configured.
+            </p>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                data-close-modal="paymentModal"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="fees.js"></script>
+
+</body>
+
+</html>

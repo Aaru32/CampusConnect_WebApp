@@ -1,0 +1,510 @@
+/* =========================================================
+   CAMPUSCONNECT
+   ADD FACULTY
+========================================================= */
+
+:root {
+    --primary: #0757c9;
+    --primary-dark: #062e69;
+    --primary-light: #edf5ff;
+
+    --white: #ffffff;
+    --background: #f5f8fc;
+
+    --text: #172b4d;
+    --text-light: #68778d;
+
+    --border: #e3eaf3;
+
+    --success: #18864b;
+    --danger: #d63c3c;
+
+    --shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.add-faculty-page {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header {
+    height: 72px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 28px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow: 0 2px 8px rgba(20, 55, 95, 0.04);
+}
+
+
+.header-button {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.header-button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+
+.header-button:active {
+    transform: scale(0.94);
+}
+
+
+.header-title {
+    margin-left: 14px;
+}
+
+
+.header-title h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.header-title span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+
+#refreshButton {
+    margin-left: auto;
+}
+
+
+/* =========================================================
+   FORM CONTAINER
+========================================================= */
+
+.form-container {
+    width: min(1000px, calc(100% - 32px));
+
+    margin: 28px auto 50px;
+}
+
+
+/* =========================================================
+   FORM SECTION
+========================================================= */
+
+.form-section {
+    margin-bottom: 18px;
+
+    padding: 24px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.section-header {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 24px;
+}
+
+
+.section-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 17px;
+}
+
+
+.section-header h2 {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.section-header p {
+    margin-top: 4px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+.form-field label {
+    margin-bottom: 7px;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.form-field label span {
+    color: var(--danger);
+}
+
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 2px rgba(7, 87, 201, 0.08);
+}
+
+
+.form-field textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+.form-field small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--text-light);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.photo-upload {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.photo-preview {
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 24px;
+}
+
+
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+
+.primary-button,
+.secondary-button {
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.primary-button {
+    border: 1px solid var(--primary);
+
+    background: var(--primary);
+
+    color: var(--white);
+}
+
+
+.primary-button:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+
+.secondary-button {
+    border: 1px solid var(--border);
+
+    background: var(--white);
+
+    color: var(--text);
+}
+
+
+.secondary-button:hover {
+    border-color: var(--primary);
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+
+.primary-button:active,
+.secondary-button:active {
+    transform: scale(0.97);
+}
+
+
+.primary-button i {
+    margin-right: 7px;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+.form-message {
+    margin-bottom: 18px;
+
+    padding: 13px 15px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+.form-message.info {
+    background: var(--primary-light);
+
+    color: var(--primary-dark);
+
+    border: 1px solid #cfe1fa;
+}
+
+
+.form-message.success {
+    background: #edf8f2;
+
+    color: var(--success);
+
+    border: 1px solid #c9ead8;
+}
+
+
+.form-message.error {
+    background: #fff1f1;
+
+    color: var(--danger);
+
+    border: 1px solid #f0cccc;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .page-header {
+        padding: 0 16px;
+    }
+
+
+    .header-title h1 {
+        font-size: 18px;
+    }
+
+
+    .form-container {
+        width: calc(100% - 20px);
+
+        margin-top: 18px;
+    }
+
+
+    .form-section {
+        padding: 18px;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .full-width {
+        grid-column: auto;
+    }
+
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+
+}

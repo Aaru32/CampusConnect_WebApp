@@ -1,0 +1,1145 @@
+/* =========================================================
+   CAMPUSCONNECT
+   ADMIN VIEW ATTENDANCE
+   ========================================================= */
+
+:root {
+    --primary: #0757c9;
+    --primary-dark: #062e69;
+    --primary-light: #edf5ff;
+
+    --white: #ffffff;
+    --background: #f5f8fc;
+
+    --text: #172b4d;
+    --text-light: #68778d;
+    --border: #e3eaf3;
+
+    --success: #16803c;
+    --success-light: #edf9f1;
+
+    --warning: #b26a00;
+    --warning-light: #fff8e8;
+
+    --danger: #c62828;
+    --danger-light: #fff0f0;
+
+    --shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.attendance-page {
+    min-height: 100vh;
+
+    padding-bottom: 50px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.page-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+        0 2px 10px rgba(20, 55, 95, 0.05);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+}
+
+.header-left > div {
+    min-width: 0;
+}
+
+.header-left h1 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.header-left p {
+    margin-top: 3px;
+
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back-button,
+.refresh-button {
+    width: 40px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.12s ease;
+}
+
+.back-button {
+    margin-right: 16px;
+}
+
+.back-button:hover,
+.refresh-button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.back-button:active,
+.refresh-button:active {
+    transform: scale(0.94);
+}
+
+.back-button i,
+.refresh-button i {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+   ========================================================= */
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.attendance-page {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+        28px 28px 50px;
+}
+
+
+/* =========================================================
+   WELCOME BANNER
+   ========================================================= */
+
+.welcome-banner {
+    margin-bottom: 18px;
+
+    padding: 24px;
+
+    border: 1px solid #dce8f7;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #edf5ff 0%,
+            #f8fbff 100%
+        );
+
+    box-shadow: var(--shadow);
+}
+
+.welcome-content {
+    max-width: 760px;
+}
+
+.welcome-label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    color: var(--primary);
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.welcome-label i {
+    font-size: 11px;
+}
+
+.welcome-content h2 {
+    font-size: 21px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.welcome-content p {
+    max-width: 650px;
+
+    margin-top: 7px;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   FILTER SECTION
+   ========================================================= */
+
+.filter-section {
+    margin-bottom: 18px;
+
+    padding: 24px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.section-heading p {
+    margin-top: 4px;
+
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   FILTER GRID
+   ========================================================= */
+
+.filter-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   FILTER GROUP
+   ========================================================= */
+
+.filter-group {
+    min-width: 0;
+}
+
+.filter-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--text-light);
+}
+
+.filter-group select,
+.filter-group input[type="search"] {
+    width: 100%;
+    height: 44px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--text);
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.filter-group select {
+    padding: 0 12px;
+
+    cursor: pointer;
+}
+
+.filter-group input[type="search"] {
+    padding: 0 12px 0 38px;
+}
+
+.filter-group select:focus,
+.filter-group input[type="search"]:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(7, 87, 201, 0.08);
+}
+
+.filter-group input::placeholder {
+    color: #9aa7b7;
+}
+
+
+/* =========================================================
+   SEARCH BOX
+   ========================================================= */
+
+.search-box {
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+
+    top: 50%;
+    left: 13px;
+
+    transform: translateY(-50%);
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    pointer-events: none;
+}
+
+.search-box:focus-within i {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   FILTER ACTIONS
+   ========================================================= */
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.primary-button,
+.secondary-button,
+.export-button {
+    min-height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.12s ease;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.primary-button {
+    border: 1px solid var(--primary);
+
+    background: var(--primary);
+    color: var(--white);
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.primary-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.secondary-button {
+    border: 1px solid var(--border);
+
+    background: var(--white);
+    color: var(--text);
+}
+
+.secondary-button:hover {
+    background: var(--background);
+}
+
+.secondary-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   SUMMARY GRID
+   ========================================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   SUMMARY CARD
+   ========================================================= */
+
+.summary-card {
+    min-height: 104px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 16px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.12s ease;
+}
+
+.summary-card:hover {
+    border-color: #c7d9ed;
+
+    box-shadow:
+        0 5px 16px rgba(20, 55, 95, 0.06);
+}
+
+.summary-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.summary-icon i {
+    font-size: 16px;
+}
+
+.summary-card > div:last-child {
+    min-width: 0;
+
+    margin-left: 11px;
+}
+
+.summary-card span {
+    display: block;
+
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+.summary-card strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   SUMMARY CARD COLORS
+   ========================================================= */
+
+.summary-card:nth-child(2) .summary-icon {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.summary-card:nth-child(3) .summary-icon {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+.summary-card:nth-child(4) .summary-icon {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   ATTENDANCE TABLE SECTION
+   ========================================================= */
+
+.attendance-table-section {
+    margin-bottom: 18px;
+
+    overflow: hidden;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.table-header {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.table-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.table-header p {
+    margin-top: 4px;
+
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   EXPORT BUTTON
+   ========================================================= */
+
+.export-button {
+    flex-shrink: 0;
+
+    border: 1px solid var(--border);
+
+    background: var(--white);
+    color: var(--text);
+}
+
+.export-button:hover {
+    background: var(--primary-light);
+
+    border-color: #c7d9ed;
+
+    color: var(--primary);
+}
+
+.export-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table {
+    width: 100%;
+
+    min-width: 950px;
+
+    border-collapse: collapse;
+
+    font-size: 12px;
+}
+
+thead {
+    background: #f8fbff;
+}
+
+th {
+    height: 46px;
+
+    padding: 0 16px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text-light);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+td {
+    min-height: 58px;
+
+    padding: 12px 16px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text);
+
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition:
+        background 0.15s ease;
+}
+
+tbody tr:hover {
+    background: #fbfdff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   EMPTY ROW
+   ========================================================= */
+
+.empty-row:hover {
+    background: transparent;
+}
+
+.empty-row td {
+    padding: 0;
+
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    min-height: 280px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 24px;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 13px;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.empty-icon i {
+    font-size: 18px;
+}
+
+.empty-state h3 {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.empty-state p {
+    max-width: 420px;
+
+    margin-top: 6px;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.pagination {
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 0;
+
+    padding: 10px 18px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    box-shadow: var(--shadow);
+}
+
+.pagination button {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: var(--white);
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.12s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: var(--primary-light);
+
+    border-color: #c7d9ed;
+
+    color: var(--primary);
+}
+
+.pagination button:active:not(:disabled) {
+    transform: scale(0.94);
+}
+
+.pagination button:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+.pagination button i {
+    font-size: 11px;
+}
+
+#pageInfo {
+    min-width: 65px;
+
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 2px solid rgba(7, 87, 201, 0.25);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REFRESH ANIMATION
+   ========================================================= */
+
+.refreshing i {
+    animation:
+        attendance-refresh-spin
+        0.8s
+        linear
+        infinite;
+}
+
+@keyframes attendance-refresh-spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   HIDDEN
+   ========================================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1000px
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .filter-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 700px
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .page-header {
+        padding: 0 18px;
+    }
+
+    .attendance-page {
+        padding:
+            22px 18px 40px;
+    }
+
+    .filter-section {
+        padding: 20px;
+    }
+
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-actions {
+        justify-content: stretch;
+    }
+
+    .primary-button,
+    .secondary-button {
+        flex: 1;
+    }
+
+    .table-header {
+        align-items: flex-start;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .page-header {
+        min-height: 72px;
+
+        padding: 0 14px;
+    }
+
+    .back-button {
+        margin-right: 10px;
+    }
+
+    .header-left h1 {
+        font-size: 18px;
+    }
+
+    .header-left p {
+        font-size: 11px;
+    }
+
+    .attendance-page {
+        padding:
+            20px 14px 40px;
+    }
+
+    .welcome-banner {
+        padding: 20px;
+    }
+
+    .welcome-content h2 {
+        font-size: 18px;
+    }
+
+    .welcome-content p {
+        font-size: 11px;
+    }
+
+    .filter-section {
+        padding: 18px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .summary-card {
+        min-height: 92px;
+
+        padding: 14px;
+    }
+
+    .summary-card strong {
+        font-size: 18px;
+    }
+
+    .table-header {
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 18px;
+    }
+
+    .export-button {
+        width: 100%;
+    }
+
+    .pagination {
+        min-height: 58px;
+
+        padding: 10px 14px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 420px
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .header-left h1 {
+        font-size: 17px;
+    }
+
+    .header-left p {
+        display: none;
+    }
+
+    .refresh-button,
+    .back-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .attendance-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .welcome-banner {
+        padding: 18px;
+    }
+
+    .filter-section {
+        padding: 16px;
+    }
+
+    .filter-actions {
+        flex-direction: column;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+
+    .attendance-table-section {
+        border-radius: 10px;
+    }
+
+    .table-header {
+        padding: 16px;
+    }
+
+    .table-header h2 {
+        font-size: 15px;
+    }
+
+    .empty-state {
+        min-height: 240px;
+
+        padding:
+            32px 18px;
+    }
+}

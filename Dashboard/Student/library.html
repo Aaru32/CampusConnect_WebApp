@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Library | CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="library.css">
+
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="library-header">
+
+    <div class="header-left">
+
+        <button class="back-btn"
+                type="button"
+                onclick="goBack()"
+                aria-label="Go back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div>
+
+            <span class="portal-label">
+                CAMPUSCONNECT
+            </span>
+
+            <h2>Library</h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATION MODULE PLACEHOLDER -->
+
+    <button class="notification-placeholder"
+            type="button"
+            aria-label="Notifications">
+
+        <i class="fa-regular fa-bell"></i>
+
+    </button>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="library-container">
+
+
+<!-- =====================================================
+     HOME / DASHBOARD
+===================================================== -->
+
+<section id="dashboard"
+         class="library-section active">
+
+
+    <!-- HERO -->
+
+    <div class="library-hero">
+
+        <div class="hero-content">
+
+            <span class="section-label">
+                STUDENT LIBRARY
+            </span>
+
+            <h1>
+                Your Library at a Glance
+            </h1>
+
+            <p>
+                Access your library activity, academic resources,
+                issued books and borrowing records from one place.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <button class="primary-action"
+                        type="button"
+                        onclick="openSection('eresources')">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Explore Resources
+
+                </button>
+
+
+                <button class="secondary-action"
+                        type="button"
+                        onclick="openSection('search')">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Search Library
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-book">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+            <span>LIBRARY</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ACTIVITY -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                LIBRARY ACTIVITY
+            </span>
+
+            <h2>
+                Your Activity
+            </h2>
+
+            <p class="section-description">
+                A quick overview of your current library records.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-slider"
+         id="statsSlider">
+
+
+        <article class="stat-card activity-issued">
+
+            <div class="activity-top">
+
+                <div class="activity-icon">
+
+                    <i class="fa-solid fa-book"></i>
+
+                </div>
+
+                <span class="activity-status">
+                    CURRENT
+                </span>
+
+            </div>
+
+
+            <span class="activity-caption">
+                ISSUED RESOURCES
+            </span>
+
+
+            <strong id="issuedCount">
+                —
+            </strong>
+
+
+            <h3>
+                Currently Issued
+            </h3>
+
+
+            <p>
+                Resources currently associated with your library account.
+            </p>
+
+
+            <div class="activity-footer">
+
+                <span>
+                    <i class="fa-solid fa-layer-group"></i>
+                    Active records
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="stat-card activity-renewed">
+
+            <div class="activity-top">
+
+                <div class="activity-icon">
+
+                    <i class="fa-solid fa-arrows-rotate"></i>
+
+                </div>
+
+                <span class="activity-status">
+                    ACTIVITY
+                </span>
+
+            </div>
+
+
+            <span class="activity-caption">
+                RENEWED RESOURCES
+            </span>
+
+
+            <strong id="renewedCount">
+                —
+            </strong>
+
+
+            <h3>
+                Renewed Resources
+            </h3>
+
+
+            <p>
+                Resources renewed through your library activity.
+            </p>
+
+
+            <div class="activity-footer">
+
+                <span>
+                    <i class="fa-solid fa-rotate"></i>
+                    Renewal records
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="stat-card activity-returned">
+
+            <div class="activity-top">
+
+                <div class="activity-icon">
+
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+
+                </div>
+
+                <span class="activity-status">
+                    HISTORY
+                </span>
+
+            </div>
+
+
+            <span class="activity-caption">
+                RETURNED RESOURCES
+            </span>
+
+
+            <strong id="returnedCount">
+                —
+            </strong>
+
+
+            <h3>
+                Returned Resources
+            </h3>
+
+
+            <p>
+                Resources recorded as returned in your library history.
+            </p>
+
+
+            <div class="activity-footer">
+
+                <span>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Past records
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- LIBRARY SNAPSHOT -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                LIBRARY SNAPSHOT
+            </span>
+
+            <h2>
+                Quick Information
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="information-grid">
+
+
+        <article class="information-card">
+
+            <div class="information-icon blue-icon">
+
+                <i class="fa-solid fa-book-bookmark"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    CURRENT COLLECTION
+                </span>
+
+                <h3>
+                    Issued Books
+                </h3>
+
+                <p>
+                    View the books currently issued to your account
+                    and check their associated dates.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    onclick="scrollToElement('currentBooks')">
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </button>
+
+        </article>
+
+
+
+        <article class="information-card">
+
+            <div class="information-icon teal-icon">
+
+                <i class="fa-solid fa-globe"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    DIGITAL COLLECTION
+                </span>
+
+                <h3>
+                    E-Resources
+                </h3>
+
+                <p>
+                    Explore digital books, PDFs, notes and other
+                    academic resources available through the library.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    onclick="openSection('eresources')">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </article>
+
+
+
+        <article class="information-card">
+
+            <div class="information-icon lavender-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    BORROWING RECORD
+                </span>
+
+                <h3>
+                    Library History
+                </h3>
+
+                <p>
+                    Review your library activity and previously
+                    recorded borrowing information.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    onclick="openSection('account')">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- RECENT E-RESOURCES -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                DIGITAL COLLECTION
+            </span>
+
+            <h2>
+                Recent E-Resources
+            </h2>
+
+            <p class="section-description">
+                Recently available academic resources from the library.
+            </p>
+
+        </div>
+
+
+        <button class="text-button"
+                type="button"
+                onclick="openSection('eresources')">
+
+            View all
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+    </div>
+
+
+    <div id="recentResources"
+         class="recent-resource-slider">
+
+        <div class="loading-state">
+            Loading resources...
+        </div>
+
+    </div>
+
+
+
+    <!-- CURRENT BOOKS -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                YOUR BOOKS
+            </span>
+
+            <h2>
+                Current Issued Books
+            </h2>
+
+            <p class="section-description">
+                Review the resources currently linked to your account.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="currentBooks"
+         class="vertical-book-list">
+
+        <div class="loading-state">
+            Loading books...
+        </div>
+
+    </div>
+
+
+
+    <!-- LIBRARY INFORMATION -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                INFORMATION
+            </span>
+
+            <h2>
+                Library Services
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card">
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+            <h3>
+                Book Collection
+            </h3>
+
+            <p>
+                Browse books and academic resources available through
+                the library system.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-laptop"></i>
+
+            </div>
+
+            <h3>
+                Digital Resources
+            </h3>
+
+            <p>
+                Access digital learning materials and other
+                library-provided academic resources.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+            <h3>
+                Activity Records
+            </h3>
+
+            <p>
+                Keep track of issued, renewed and returned resources
+                through your library account.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+            </div>
+
+            <h3>
+                Library Information
+            </h3>
+
+            <p>
+                Review library rules, account information and
+                other available services.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     E-RESOURCES
+===================================================== -->
+
+<section id="eresources"
+         class="library-section">
+
+
+    <div class="page-heading">
+
+        <span class="section-label">
+            DIGITAL LIBRARY
+        </span>
+
+        <h1>
+            E-Resources
+        </h1>
+
+        <p>
+            Search, filter and explore academic resources available
+            through the CampusConnect library.
+        </p>
+
+    </div>
+
+
+
+    <!-- RESOURCE TYPE -->
+
+    <div class="resource-filter-area">
+
+        <div class="filter-heading">
+
+            <span>
+                FILTER RESOURCES
+            </span>
+
+            <i class="fa-solid fa-filter"></i>
+
+        </div>
+
+
+        <div class="resource-type-box">
+
+            <div>
+
+                <span>
+                    RESOURCE TYPE
+                </span>
+
+                <strong id="resourceType">
+                    All Types
+                </strong>
+
+            </div>
+
+
+            <button type="button"
+                    onclick="toggleResourceTypes()">
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+
+            <div id="resourceTypes"
+                 class="resource-dropdown">
+
+                <button type="button"
+                        onclick="chooseResourceType('ALL')">
+                    All Types
+                </button>
+
+                <button type="button"
+                        onclick="chooseResourceType('BOOK')">
+                    Books
+                </button>
+
+                <button type="button"
+                        onclick="chooseResourceType('PDF')">
+                    PDFs
+                </button>
+
+                <button type="button"
+                        onclick="chooseResourceType('EBOOK')">
+                    E-Books
+                </button>
+
+                <button type="button"
+                        onclick="chooseResourceType('NOTES')">
+                    Notes
+                </button>
+
+                <button type="button"
+                        onclick="chooseResourceType('REFERENCE')">
+                    Reference Material
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="resource-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            id="resourceSearch"
+            type="search"
+            placeholder="Search by resource, book or author">
+
+    </div>
+
+
+
+    <div class="resource-title-row">
+
+        <div>
+
+            <span class="section-label">
+                COLLECTION
+            </span>
+
+            <h2>
+                Available Resources
+            </h2>
+
+        </div>
+
+
+        <span id="resourceCount">
+            0 resources
+        </span>
+
+    </div>
+
+
+    <div id="resourceList"
+         class="resource-list">
+
+        <div class="empty-state">
+            No resources available.
+        </div>
+
+    </div>
+
+
+
+    <!-- BOOK STORE -->
+
+    <div class="section-heading purchase-heading">
+
+        <div>
+
+            <span class="section-label">
+                BOOK STORE
+            </span>
+
+            <h2>
+                Available Books
+            </h2>
+
+            <p class="section-description">
+                Books made available through the library purchase section.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="purchaseList"
+         class="purchase-list">
+
+        <div class="empty-state">
+            No books available for purchase.
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section id="search"
+         class="library-section">
+
+
+    <div class="page-heading">
+
+        <span class="section-label">
+            FIND RESOURCES
+        </span>
+
+        <h1>
+            Search Library
+        </h1>
+
+        <p>
+            Find books, digital resources and academic materials
+            using the library search.
+        </p>
+
+    </div>
+
+
+
+    <div class="search-information">
+
+        <div class="search-info-icon">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Search the Library Collection
+            </strong>
+
+            <p>
+                Search results are retrieved from the library
+                resource database.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="large-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            id="globalSearch"
+            type="search"
+            placeholder="Search by book, resource or author">
+
+    </div>
+
+
+
+    <div class="search-result-heading">
+
+        <div>
+
+            <span class="section-label">
+                RESULTS
+            </span>
+
+            <h2>
+                Search Results
+            </h2>
+
+        </div>
+
+        <span id="searchResultCount">
+            0 results
+        </span>
+
+    </div>
+
+
+    <div id="searchResults"
+         class="resource-list">
+
+        <div class="empty-state search-empty">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <p>
+                Start searching for a resource.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ACCOUNT
+===================================================== -->
+
+<section id="account"
+         class="library-section">
+
+
+    <div class="page-heading">
+
+        <span class="section-label">
+            MY LIBRARY
+        </span>
+
+        <h1>
+            Library Account
+        </h1>
+
+        <p>
+            Review your library account, activity, financial records
+            and borrowing history.
+        </p>
+
+    </div>
+
+
+
+    <!-- ACCOUNT SUMMARY -->
+
+    <div class="account-summary">
+
+        <div class="account-summary-icon">
+
+            <i class="fa-solid fa-id-card"></i>
+
+        </div>
+
+        <div>
+
+            <span>
+                LIBRARY ACCOUNT
+            </span>
+
+            <h2>
+                Account Overview
+            </h2>
+
+            <p>
+                Your library information is retrieved from the
+                CampusConnect backend.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FINANCIAL INFORMATION -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                ACCOUNT FINANCE
+            </span>
+
+            <h2>
+                Fine & Payment Information
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="account-stat-grid">
+
+
+        <div class="account-card fine">
+
+            <div class="account-card-icon">
+
+                <i class="fa-solid fa-file-invoice"></i>
+
+            </div>
+
+            <span>
+                TOTAL APPLIED FINE
+            </span>
+
+            <strong id="totalFine">
+                ₹—
+            </strong>
+
+            <small>
+                Total fine recorded for the account.
+            </small>
+
+        </div>
+
+
+
+        <div class="account-card balance">
+
+            <div class="account-card-icon">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+            <span>
+                BALANCE AMOUNT
+            </span>
+
+            <strong id="balanceAmount">
+                ₹—
+            </strong>
+
+            <small>
+                Current outstanding balance.
+            </small>
+
+        </div>
+
+
+
+        <div class="account-card paid">
+
+            <div class="account-card-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <span>
+                PAID AMOUNT
+            </span>
+
+            <strong id="paidAmount">
+                ₹—
+            </strong>
+
+            <small>
+                Amount recorded as paid.
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LIBRARY STATISTICS -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                ACTIVITY
+            </span>
+
+            <h2>
+                Library Statistics
+            </h2>
+
+            <p class="section-description">
+                Your library activity collected from account records.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+
+        <div class="activity-card dark-blue">
+
+            <div class="activity-card-icon">
+
+                <i class="fa-solid fa-book"></i>
+
+            </div>
+
+            <span>
+                ISSUED
+            </span>
+
+            <strong id="accountIssued">
+                —
+            </strong>
+
+            <p>
+                Resources issued to your account.
+            </p>
+
+        </div>
+
+
+
+        <div class="activity-card dark-teal">
+
+            <div class="activity-card-icon">
+
+                <i class="fa-solid fa-arrows-rotate"></i>
+
+            </div>
+
+            <span>
+                RENEWED
+            </span>
+
+            <strong id="accountRenewed">
+                —
+            </strong>
+
+            <p>
+                Recorded resource renewals.
+            </p>
+
+        </div>
+
+
+
+        <div class="activity-card dark-lavender">
+
+            <div class="activity-card-icon">
+
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+
+            </div>
+
+            <span>
+                RETURNED
+            </span>
+
+            <strong id="accountReturned">
+                —
+            </strong>
+
+            <p>
+                Resources recorded as returned.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RULES -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                INFORMATION
+            </span>
+
+            <h2>
+                Library Policies
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="rules-card">
+
+        <button class="rules-toggle"
+                type="button"
+                onclick="toggleRules()">
+
+            <div class="rules-title">
+
+                <div class="rules-icon">
+
+                    <i class="fa-solid fa-book-open-reader"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Library Rules & Guidelines
+                    </strong>
+
+                    <small>
+                        Important information for library users
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <i id="rulesArrow"
+               class="fa-solid fa-chevron-down">
+            </i>
+
+        </button>
+
+
+        <div id="rulesContent"
+             class="rules-content">
+
+            <div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Follow the issue and return period specified
+                    by the library.
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Renewal depends on resource availability
+                    and applicable library policy.
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Return library resources in appropriate condition.
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Applicable fines should be cleared according
+                    to the library's policy.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HISTORY -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                RECORD
+            </span>
+
+            <h2>
+                Library History
+            </h2>
+
+            <p class="section-description">
+                Previous library activity associated with your account.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="libraryHistory"
+         class="history-list">
+
+        <div class="empty-state">
+            No library history available.
+        </div>
+
+    </div>
+
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="account-help">
+
+        <div class="account-help-icon">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+                About Your Library Account
+            </h3>
+
+            <p>
+                Account information, activity records and resource
+                details are loaded dynamically from the CampusConnect
+                library service.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-navigation">
+
+
+    <button class="nav-button active"
+            data-section="dashboard"
+            type="button"
+            onclick="openSection('dashboard')">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>
+            Home
+        </span>
+
+    </button>
+
+
+
+    <button class="nav-button"
+            data-section="eresources"
+            type="button"
+            onclick="openSection('eresources')">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            E-Resources
+        </span>
+
+    </button>
+
+
+
+    <button class="nav-button"
+            data-section="search"
+            type="button"
+            onclick="openSection('search')">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <span>
+            Search
+        </span>
+
+    </button>
+
+
+
+    <button class="nav-button"
+            data-section="account"
+            type="button"
+            onclick="openSection('account')">
+
+        <i class="fa-solid fa-user"></i>
+
+        <span>
+            Account
+        </span>
+
+    </button>
+
+</nav>
+
+
+
+<script src="library.js"></script>
+
+</body>
+
+</html>

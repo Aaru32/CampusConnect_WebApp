@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Student Statistics</title>
+
+    <!-- Font Awesome 6.5.2 -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="total-students.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="top-header">
+
+        <button
+            class="header-button"
+            id="backButton"
+            title="Go Back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="page-title">
+            <h1>Student Statistics</h1>
+            <span>Student Management</span>
+        </div>
+
+        <button
+            class="header-button refresh-button"
+            id="refreshButton"
+            title="Refresh Data"
+        >
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+    <main class="main-content">
+
+
+        <!-- =================================================
+             STUDENT OVERVIEW
+        ================================================== -->
+        <section class="overview-panel">
+
+            <div class="overview-content">
+
+                <div class="overview-heading">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">STUDENT OVERVIEW</span>
+                        <h2>Student Records</h2>
+                    </div>
+
+                </div>
+
+
+                <p class="overview-description">
+                    Get a structured overview of student enrollment,
+                    academic distribution and recently added records.
+                </p>
+
+
+                <div class="total-area">
+
+                    <span class="data-label">
+                        TOTAL STUDENTS
+                    </span>
+
+                    <div
+                        class="total-number"
+                        id="totalStudents"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="data-status"
+                        id="totalStatus"
+                    >
+                        <i class="fa-solid fa-database"></i>
+                        Awaiting database data
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=85"
+                    alt="College campus"
+                    loading="eager"
+                >
+
+                <div class="image-overlay"></div>
+
+                <div class="image-caption">
+
+                    <i class="fa-solid fa-building-columns"></i>
+
+                    <span>
+                        Government Women's Polytechnic, Patna
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUTION CARDS
+        ================================================== -->
+        <section class="statistics-grid">
+
+
+            <!-- Departments -->
+            <button
+                class="stat-card"
+                data-section="departments"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Departments</span>
+
+                    <strong id="departmentCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View department distribution
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+
+            <!-- Semesters -->
+            <button
+                class="stat-card"
+                data-section="semesters"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Semesters</span>
+
+                    <strong id="semesterCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View semester distribution
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+
+            <!-- Academic Sessions -->
+            <button
+                class="stat-card"
+                data-section="sessions"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Academic Sessions</span>
+
+                    <strong id="sessionCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View session distribution
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+
+            <!-- Enrollment Status -->
+            <button
+                class="stat-card"
+                data-section="enrollment"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Enrollment Status</span>
+
+                    <strong id="enrollmentCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View enrollment status
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUTION DETAILS
+        ================================================== -->
+        <section
+            class="details-panel"
+            id="detailsPanel"
+        >
+
+            <div class="details-header">
+
+                <div>
+
+                    <span class="section-label">
+                        STUDENT DISTRIBUTION
+                    </span>
+
+                    <h2 id="detailsTitle">
+                        Student Distribution
+                    </h2>
+
+                </div>
+
+                <button
+                    class="close-button"
+                    id="closeDetails"
+                    title="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="details-tabs">
+
+                <button
+                    class="details-tab active"
+                    data-tab="departments"
+                >
+                    Departments
+                </button>
+
+                <button
+                    class="details-tab"
+                    data-tab="semesters"
+                >
+                    Semesters
+                </button>
+
+                <button
+                    class="details-tab"
+                    data-tab="sessions"
+                >
+                    Academic Sessions
+                </button>
+
+                <button
+                    class="details-tab"
+                    data-tab="enrollment"
+                >
+                    Enrollment Status
+                </button>
+
+            </div>
+
+
+            <div
+                class="details-body"
+                id="detailsBody"
+            >
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+
+                    <h3>Awaiting database data</h3>
+
+                    <p>
+                        Distribution data will appear here after
+                        the student database is connected.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SEARCH STUDENTS
+        ================================================== -->
+        <section class="search-card">
+
+            <div class="search-heading">
+
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <div>
+
+                    <h2>Find a Student</h2>
+
+                    <p>
+                        Search student records from the database.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="studentSearch"
+                    placeholder="Search by name, roll number or enrollment number"
+                    autocomplete="off"
+                >
+
+                <button
+                    id="searchButton"
+                    title="Search"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <div
+                class="search-results"
+                id="searchResults"
+            >
+
+                <div class="search-empty">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>
+                        Search results will appear here.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RECENTLY ADDED STUDENTS
+        ================================================== -->
+        <section class="records-card">
+
+            <button
+                class="records-toggle"
+                id="recordsToggle"
+            >
+
+                <div class="records-heading">
+
+                    <div class="records-icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Recently Added Students</h2>
+
+                        <p>
+                            View the latest student records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <i
+                    class="fa-solid fa-chevron-down records-arrow"
+                ></i>
+
+            </button>
+
+
+            <div
+                class="records-content"
+                id="recordsContent"
+            >
+
+                <div class="records-empty">
+
+                    <div class="records-empty-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <h3>Awaiting database data</h3>
+
+                    <p>
+                        Recently added student records will appear
+                        here when data is available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+        <section class="quick-actions">
+
+            <div class="quick-header">
+
+                <div>
+
+                    <span class="section-label">
+                        QUICK ACTIONS
+                    </span>
+
+                    <h2>Student Management</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-grid">
+
+                <button
+                    class="action-card"
+                    id="viewStudents"
+                >
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>View All Students</strong>
+
+                        <span>
+                            Open student records
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="addStudent"
+                >
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Add Student</strong>
+
+                        <span>
+                            Create a new student record
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="exportStudents"
+                >
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-file-export"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Export Student Data</strong>
+
+                        <span>
+                            Export database records
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="total-students.js"></script>
+
+</body>
+</html>

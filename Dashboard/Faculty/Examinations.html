@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Examinations | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="examinations.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="exam-header">
+
+        <button
+            type="button"
+            class="back-button"
+            id="backButton"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+
+            <h1>Examinations</h1>
+
+            <p>
+                Manage examinations, duties and evaluation
+            </p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="header-action"
+                id="refreshButton"
+                aria-label="Refresh"
+                title="Refresh"
+            >
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="exam-container">
+
+
+        <!-- =====================================
+             OVERVIEW
+        ====================================== -->
+
+        <section class="overview-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Examination Overview</h2>
+
+                    <p>
+                        Current examination activity
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+                <button
+                    type="button"
+                    class="overview-card"
+                    data-filter="all"
+                >
+
+                    <span class="overview-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </span>
+
+                    <span class="overview-content">
+
+                        <strong id="totalExaminations">
+                            —
+                        </strong>
+
+                        <small>
+                            Total Examinations
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="overview-card"
+                    data-filter="upcoming"
+                >
+
+                    <span class="overview-icon">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </span>
+
+                    <span class="overview-content">
+
+                        <strong id="upcomingExaminations">
+                            —
+                        </strong>
+
+                        <small>
+                            Upcoming
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="overview-card"
+                    data-filter="ongoing"
+                >
+
+                    <span class="overview-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </span>
+
+                    <span class="overview-content">
+
+                        <strong id="ongoingExaminations">
+                            —
+                        </strong>
+
+                        <small>
+                            Ongoing
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="overview-card"
+                    data-filter="completed"
+                >
+
+                    <span class="overview-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </span>
+
+                    <span class="overview-content">
+
+                        <strong id="completedExaminations">
+                            —
+                        </strong>
+
+                        <small>
+                            Completed
+                        </small>
+
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             QUICK ACTIONS
+        ====================================== -->
+
+        <section class="quick-actions-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Examination Management</h2>
+
+                    <p>
+                        Manage examination-related activities
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    data-action="schedule"
+                >
+
+                    <i class="fa-solid fa-calendar-plus"></i>
+
+                    <span>
+
+                        <strong>
+                            Schedule Examination
+                        </strong>
+
+                        <small>
+                            Create or schedule an examination
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    data-action="duties"
+                >
+
+                    <i class="fa-solid fa-user-check"></i>
+
+                    <span>
+
+                        <strong>
+                            Examination Duties
+                        </strong>
+
+                        <small>
+                            View assigned invigilation duties
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    data-action="evaluation"
+                >
+
+                    <i class="fa-solid fa-pen-to-square"></i>
+
+                    <span>
+
+                        <strong>
+                            Marks & Evaluation
+                        </strong>
+
+                        <small>
+                            Enter and manage examination marks
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             UPCOMING EXAMINATIONS
+        ====================================== -->
+
+        <section class="examinations-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Upcoming Examinations</h2>
+
+                    <p>
+                        Examinations involving your assigned classes
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="table-card"
+                id="upcomingExaminationsContainer"
+            >
+
+                <div class="empty-state">
+
+                    <i class="fa-regular fa-calendar-xmark"></i>
+
+                    <h3>
+                        No upcoming examinations
+                    </h3>
+
+                    <p>
+                        Examination data will appear here
+                        when available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             EXAMINATION DUTIES
+        ====================================== -->
+
+        <section class="examinations-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>My Examination Duties</h2>
+
+                    <p>
+                        Your assigned examination responsibilities
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="table-card"
+                id="dutiesContainer"
+            >
+
+                <div class="empty-state">
+
+                    <i class="fa-solid fa-user-check"></i>
+
+                    <h3>
+                        No examination duties
+                    </h3>
+
+                    <p>
+                        Assigned invigilation duties will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             STUDENT EXAMINATION STATUS
+        ====================================== -->
+
+        <section class="examinations-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Student Examination Status</h2>
+
+                    <p>
+                        Monitor examination participation
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-grid">
+
+                <button
+                    type="button"
+                    class="status-card"
+                    data-status="eligible"
+                >
+
+                    <span>
+                        <i class="fa-solid fa-user-check"></i>
+                    </span>
+
+                    <div>
+
+                        <strong id="eligibleStudents">
+                            —
+                        </strong>
+
+                        <small>
+                            Eligible Students
+                        </small>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="status-card"
+                    data-status="appeared"
+                >
+
+                    <span>
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </span>
+
+                    <div>
+
+                        <strong id="appearedStudents">
+                            —
+                        </strong>
+
+                        <small>
+                            Appeared
+                        </small>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="status-card"
+                    data-status="absent"
+                >
+
+                    <span>
+                        <i class="fa-solid fa-user-xmark"></i>
+                    </span>
+
+                    <div>
+
+                        <strong id="absentStudents">
+                            —
+                        </strong>
+
+                        <small>
+                            Absent
+                        </small>
+
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PAST EXAMINATIONS
+        ====================================== -->
+
+        <section class="examinations-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Past Examinations</h2>
+
+                    <p>
+                        Previously conducted examinations
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="filter-bar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="examSearch"
+                        placeholder="Search examinations..."
+                    >
+
+                </div>
+
+
+                <select id="semesterFilter">
+
+                    <option value="">
+                        All Semesters
+                    </option>
+
+                    <option value="1">
+                        Semester 1
+                    </option>
+
+                    <option value="2">
+                        Semester 2
+                    </option>
+
+                    <option value="3">
+                        Semester 3
+                    </option>
+
+                    <option value="4">
+                        Semester 4
+                    </option>
+
+                    <option value="5">
+                        Semester 5
+                    </option>
+
+                    <option value="6">
+                        Semester 6
+                    </option>
+
+                </select>
+
+
+                <select id="statusFilter">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="completed">
+                        Completed
+                    </option>
+
+                    <option value="evaluation-pending">
+                        Evaluation Pending
+                    </option>
+
+                    <option value="evaluation-completed">
+                        Evaluation Completed
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="table-card"
+                id="pastExaminationsContainer"
+            >
+
+                <div class="empty-state">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                    <h3>
+                        No past examinations
+                    </h3>
+
+                    <p>
+                        Completed examination records will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         EXAMINATION DETAILS MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="examModal"
+        hidden
+    >
+
+        <div class="exam-modal">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalContent"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="examinations.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CampusConnect Admin Courses and Subjects Management"
+    >
+
+    <title>Courses & Subjects | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="courses-subjects.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                id="backBtn"
+                class="back-btn"
+                aria-label="Go back"
+                title="Go back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="header-title-area">
+
+                <h1>Courses & Subjects</h1>
+
+                <p>
+                    Manage academic subjects and learning programmes
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                id="refreshBtn"
+                class="header-action-btn"
+                aria-label="Refresh"
+                title="Refresh"
+            >
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+
+
+            <button
+                type="button"
+                id="notificationBtn"
+                class="header-action-btn notification-btn"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    id="notificationDot"
+                    class="notification-dot"
+                    hidden
+                ></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="courses-page">
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <section class="page-introduction">
+
+            <div>
+
+                <span class="eyebrow">
+                    Academic Management
+                </span>
+
+                <h2>
+                    Courses & Subjects
+                </h2>
+
+                <p>
+                    Manage regular academic subjects, online learning
+                    programmes and certification courses.
+                </p>
+
+            </div>
+
+
+            <div class="intro-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="addCourseBtn"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Course
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    id="addSubjectBtn"
+                >
+                    <i class="fa-solid fa-book"></i>
+                    Add Subject
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="summary-grid">
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <span>Total Courses</span>
+                    <strong id="totalCoursesCount">—</strong>
+                    <small>All course records</small>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+                    <span>Academic Subjects</span>
+                    <strong id="academicSubjectsCount">—</strong>
+                    <small>Regular curriculum</small>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-laptop"></i>
+                </div>
+
+                <div>
+                    <span>Online Courses</span>
+                    <strong id="onlineCoursesCount">—</strong>
+                    <small>Online learning</small>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+
+                <div>
+                    <span>Certification Courses</span>
+                    <strong id="certificationCoursesCount">—</strong>
+                    <small>Certificate programmes</small>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             COURSE TYPES
+        ================================================== -->
+
+        <section class="content-card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Browse
+                    </span>
+
+                    <h2>
+                        Course Types
+                    </h2>
+
+                    <p>
+                        Select a course type or provider to view
+                        matching records.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="course-type-grid">
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-type="academic"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            Academic Subjects
+                        </strong>
+
+                        <small>
+                            Regular college curriculum
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-type="online"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-laptop"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            Online Courses
+                        </strong>
+
+                        <small>
+                            Online learning programmes
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-type="certification"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-certificate"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            Certification Courses
+                        </strong>
+
+                        <small>
+                            Certificate-based programmes
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-provider="Cisco"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            Cisco
+                        </strong>
+
+                        <small>
+                            Networking and technology
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-provider="Spoken Tutorial"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            Spoken Tutorial
+                        </strong>
+
+                        <small>
+                            Technology learning
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-provider="IIT Bombay"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            IIT Bombay
+                        </strong>
+
+                        <small>
+                            Online learning programmes
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-provider="SWAYAM"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-globe"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            SWAYAM
+                        </strong>
+
+                        <small>
+                            Online courses and certification
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="course-type-card"
+                    data-type=""
+                    data-provider=""
+                    data-clear="true"
+                >
+
+                    <span class="type-icon">
+                        <i class="fa-solid fa-list"></i>
+                    </span>
+
+                    <span class="type-text">
+
+                        <strong>
+                            All Courses
+                        </strong>
+
+                        <small>
+                            Show complete directory
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DIRECTORY
+        ================================================== -->
+
+        <section
+            class="content-card"
+            id="courseDirectorySection"
+        >
+
+            <div class="directory-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Directory
+                    </span>
+
+                    <h2>
+                        Course Directory
+                    </h2>
+
+                    <p>
+                        Search and manage available courses and subjects.
+                    </p>
+
+                </div>
+
+
+                <div class="view-controls">
+
+                    <button
+                        type="button"
+                        id="gridViewBtn"
+                        class="view-btn active"
+                        title="Grid view"
+                        aria-label="Grid view"
+                    >
+                        <i class="fa-solid fa-grip"></i>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="tableViewBtn"
+                        class="view-btn"
+                        title="Table view"
+                        aria-label="Table view"
+                    >
+                        <i class="fa-solid fa-table-list"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filter-panel">
+
+                <div class="filter-group search-group">
+
+                    <label for="courseSearch">
+                        Search
+                    </label>
+
+                    <div class="search-input">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="courseSearch"
+                            placeholder="Search course, subject or code..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="courseTypeFilter">
+                        Type
+                    </label>
+
+                    <select id="courseTypeFilter">
+
+                        <option value="">
+                            All Types
+                        </option>
+
+                        <option value="academic">
+                            Academic Subject
+                        </option>
+
+                        <option value="online">
+                            Online Course
+                        </option>
+
+                        <option value="certification">
+                            Certification
+                        </option>
+
+                        <option value="other">
+                            Other Programme
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="providerFilter">
+                        Provider
+                    </label>
+
+                    <select id="providerFilter">
+
+                        <option value="">
+                            All Providers
+                        </option>
+
+                        <option value="Cisco">
+                            Cisco
+                        </option>
+
+                        <option value="Spoken Tutorial">
+                            Spoken Tutorial
+                        </option>
+
+                        <option value="IIT Bombay">
+                            IIT Bombay
+                        </option>
+
+                        <option value="SWAYAM">
+                            SWAYAM
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="departmentFilter">
+                        Department
+                    </label>
+
+                    <select id="departmentFilter">
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="semesterFilter">
+                        Semester
+                    </label>
+
+                    <select id="semesterFilter">
+
+                        <option value="">
+                            All Semesters
+                        </option>
+
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="clearFiltersBtn"
+                    class="clear-filter-btn"
+                >
+                    <i class="fa-solid fa-filter-circle-xmark"></i>
+                    Clear
+                </button>
+
+            </div>
+
+
+            <!-- ACTIVE FILTER -->
+
+            <div
+                class="active-filter-bar"
+                id="activeFilterBar"
+                hidden
+            >
+
+                <span>
+                    <i class="fa-solid fa-filter"></i>
+                    Filters are active
+                </span>
+
+                <button
+                    type="button"
+                    id="clearActiveFiltersBtn"
+                >
+                    Clear all
+                </button>
+
+            </div>
+
+
+            <!-- GRID -->
+
+            <div
+                id="courseGridView"
+                class="course-grid"
+            >
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div
+                id="courseTableView"
+                class="course-table-wrapper"
+                hidden
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Course / Subject</th>
+                            <th>Code</th>
+                            <th>Type</th>
+                            <th>Provider</th>
+                            <th>Department</th>
+                            <th>Semester</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="courseTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                class="directory-empty"
+                id="directoryEmpty"
+                hidden
+            >
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <h3 id="emptyTitle">
+                    No courses available
+                </h3>
+
+                <p id="emptyMessage">
+                    Course and subject data will appear here
+                    when it is available.
+                </p>
+
+                <button
+                    type="button"
+                    id="emptyAddCourseBtn"
+                    class="btn btn-primary"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Course
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SELECTED COURSE
+        ================================================== -->
+
+        <section
+            class="content-card selected-course-section"
+            id="selectedCourseSection"
+            hidden
+        >
+
+            <div class="directory-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Selected Course
+                    </span>
+
+                    <h2 id="selectedCourseTitle">
+                        Course Details
+                    </h2>
+
+                    <p id="selectedCourseSubtitle">
+                        Selected course information
+                    </p>
+
+                </div>
+
+
+                <div class="selected-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        id="selectedCourseDetailsBtn"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                        View Details
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="selectedCourseAnalyticsBtn"
+                    >
+                        <i class="fa-solid fa-chart-column"></i>
+                        View Analytics
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="selected-course-card">
+
+                <div class="selected-course-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <div class="selected-course-information">
+
+                    <h3 id="selectedCourseName">—</h3>
+
+                    <p id="selectedCourseCode">—</p>
+
+                    <div class="selected-meta">
+
+                        <span id="selectedCourseType">
+                            —
+                        </span>
+
+                        <span id="selectedCourseProvider">
+                            —
+                        </span>
+
+                        <span id="selectedCourseDepartment">
+                            —
+                        </span>
+
+                        <span id="selectedCourseSemester">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ANALYTICS
+        ================================================== -->
+
+        <section
+            class="content-card analytics-section"
+            id="analyticsSection"
+            hidden
+        >
+
+            <div class="directory-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Course Analytics
+                    </span>
+
+                    <h2 id="analyticsTitle">
+                        Participation Overview
+                    </h2>
+
+                    <p>
+                        Participation and certification data
+                        for the selected course.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    id="closeAnalyticsBtn"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                    Close Analytics
+                </button>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <article class="analytics-card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>
+                        Eligible Students
+                    </span>
+
+                    <strong id="analyticsEligible">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article class="analytics-card">
+
+                    <i class="fa-solid fa-user-check"></i>
+
+                    <span>
+                        Students Attempted
+                    </span>
+
+                    <strong id="analyticsAttempted">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article class="analytics-card">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    <span>
+                        Participation
+                    </span>
+
+                    <strong id="analyticsParticipation">
+                        —
+                    </strong>
+
+                </article>
+
+
+                <article class="analytics-card">
+
+                    <i class="fa-solid fa-award"></i>
+
+                    <span>
+                        Certified
+                    </span>
+
+                    <strong id="analyticsCertified">
+                        —
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <div class="analytics-empty">
+
+                <i class="fa-solid fa-database"></i>
+
+                <p>
+                    Detailed branch-wise and semester-wise analytics
+                    will appear here when backend data is available.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         ADD COURSE MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-backdrop"
+        id="courseModal"
+        hidden
+    >
+
+        <div
+            class="course-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="courseModalTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Course Management
+                    </span>
+
+                    <h2 id="courseModalTitle">
+                        Add Course
+                    </h2>
+
+                    <p>
+                        Enter the course information below.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeCourseModalBtn"
+                    aria-label="Close"
+                    title="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form
+                id="courseForm"
+                novalidate
+            >
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label for="courseName">
+                            Course / Subject Name
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="courseName"
+                            placeholder="Enter course or subject name"
+                            required
+                        >
+
+                        <small
+                            id="courseNameError"
+                            class="form-error"
+                        ></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="courseCode">
+                            Course Code
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="courseCode"
+                            placeholder="e.g. CSE-501"
+                            required
+                        >
+
+                        <small
+                            id="courseCodeError"
+                            class="form-error"
+                        ></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="courseType">
+                            Course Type
+                            <span>*</span>
+                        </label>
+
+                        <select id="courseType" required>
+
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="academic">
+                                Academic Subject
+                            </option>
+
+                            <option value="online">
+                                Online Course
+                            </option>
+
+                            <option value="certification">
+                                Certification Course
+                            </option>
+
+                            <option value="other">
+                                Other Programme
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="courseProvider">
+                            Provider
+                        </label>
+
+                        <select id="courseProvider">
+
+                            <option value="">
+                                College / Internal
+                            </option>
+
+                            <option value="Cisco">
+                                Cisco
+                            </option>
+
+                            <option value="Spoken Tutorial">
+                                Spoken Tutorial
+                            </option>
+
+                            <option value="IIT Bombay">
+                                IIT Bombay
+                            </option>
+
+                            <option value="SWAYAM">
+                                SWAYAM
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="courseSemester">
+                            Semester
+                        </label>
+
+                        <select id="courseSemester">
+
+                            <option value="">
+                                Select semester
+                            </option>
+
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="courseDepartment">
+                            Department
+                        </label>
+
+                        <select id="courseDepartment">
+
+                            <option value="">
+                                Select department
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="courseDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="courseDescription"
+                            rows="4"
+                            placeholder="Enter a short course description..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        id="cancelCourseBtn"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="saveCourseBtn"
+                    >
+                        <i class="fa-solid fa-check"></i>
+                        Save Course
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NOTIFICATION PANEL
+    ====================================================== -->
+
+    <aside
+        class="notification-panel"
+        id="notificationPanel"
+        hidden
+    >
+
+        <div class="notification-panel-header">
+
+            <h3>
+                Notifications
+            </h3>
+
+            <button
+                type="button"
+                id="closeNotificationBtn"
+                aria-label="Close notifications"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div class="notification-panel-body">
+
+            <div class="notification-empty">
+
+                <i class="fa-regular fa-bell-slash"></i>
+
+                <p>
+                    No new notifications
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        id="toastContainer"
+        class="toast-container"
+        aria-live="polite"
+    ></div>
+
+
+    <script
+        src="courses-subjects.js"
+        defer
+    ></script>
+
+</body>
+
+</html>

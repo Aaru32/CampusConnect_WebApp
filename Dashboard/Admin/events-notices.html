@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Notices | CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="events-notices.css">
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <button id="backBtn" class="icon-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <h1>Events & Notices</h1>
+
+    <button id="refreshBtn" class="icon-btn">
+        <i class="fa-solid fa-arrows-rotate"></i>
+    </button>
+
+</header>
+
+<main class="page">
+
+    <section class="intro">
+
+        <div>
+            <span class="eyebrow">Campus Communication</span>
+            <h2>Events & Notices</h2>
+            <p>
+                Manage campus events, announcements and important notices.
+            </p>
+        </div>
+
+        <div class="intro-actions">
+            <button id="addEventBtn" class="primary-btn">
+                <i class="fa-solid fa-calendar-plus"></i>
+                Add Event
+            </button>
+
+            <button id="addNoticeBtn" class="secondary-btn">
+                <i class="fa-solid fa-bullhorn"></i>
+                Create Notice
+            </button>
+        </div>
+
+    </section>
+
+    <section class="switcher">
+
+        <button class="switch-btn active" data-view="events">
+            <i class="fa-solid fa-calendar-days"></i>
+            Events
+        </button>
+
+        <button class="switch-btn" data-view="notices">
+            <i class="fa-solid fa-bell"></i>
+            Notices
+        </button>
+
+    </section>
+
+    <section class="content">
+
+        <div class="toolbar">
+
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="searchInput"
+                       type="search"
+                       placeholder="Search...">
+            </div>
+
+            <select id="statusFilter">
+                <option value="">All Status</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+                <option value="archived">Archived</option>
+            </select>
+
+        </div>
+
+        <div id="recordsGrid" class="records-grid"></div>
+
+        <div id="emptyState" class="empty">
+            <i class="fa-solid fa-calendar-xmark"></i>
+            <h3>No records available</h3>
+            <p>
+                Records will appear here when they are available
+                from the backend.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<div id="eventModal" class="modal" hidden>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+            <h2>Add Event</h2>
+            <button class="close-btn" id="closeEventModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="eventForm">
+
+            <label>
+                Event Title
+                <input id="eventTitle" required>
+            </label>
+
+            <div class="form-grid">
+
+                <label>
+                    Date
+                    <input id="eventDate" type="date" required>
+                </label>
+
+                <label>
+                    Venue
+                    <input id="eventVenue">
+                </label>
+
+            </div>
+
+            <label>
+                Description
+                <textarea id="eventDescription"></textarea>
+            </label>
+
+            <div class="modal-actions">
+                <button type="button"
+                        class="secondary-btn"
+                        id="cancelEventBtn">
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Save Event
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div id="noticeModal" class="modal" hidden>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+            <h2>Create Notice</h2>
+            <button class="close-btn" id="closeNoticeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="noticeForm">
+
+            <label>
+                Notice Title
+                <input id="noticeTitle" required>
+            </label>
+
+            <label>
+                Target Audience
+                <select id="noticeAudience">
+                    <option value="all">All</option>
+                    <option value="students">Students</option>
+                    <option value="faculty">Faculty</option>
+                    <option value="admins">Admins</option>
+                </select>
+            </label>
+
+            <label>
+                Notice Content
+                <textarea id="noticeContent" required></textarea>
+            </label>
+
+            <div class="modal-actions">
+                <button type="button"
+                        class="secondary-btn"
+                        id="cancelNoticeBtn">
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Publish Notice
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="events-notices.js"></script>
+</body>
+</html>

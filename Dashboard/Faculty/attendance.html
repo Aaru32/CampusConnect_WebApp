@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CampusConnect | Faculty Attendance</title>
+
+    <!-- Font Awesome 6.5.2 -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="attendance.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP HEADER
+========================================================= -->
+
+<header class="top-header">
+
+    <button
+        type="button"
+        class="back-btn"
+        id="backBtn"
+        aria-label="Go back"
+        title="Go back"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="header-title">
+        <h1>Attendance</h1>
+        <p>Manage attendance for your assigned classes</p>
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            class="header-icon-btn"
+            id="refreshButton"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-rotate"></i>
+        </button>
+
+        <button
+            type="button"
+            class="header-icon-btn notification-btn"
+            id="notificationButton"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+            <i class="fa-regular fa-bell"></i>
+
+            <span
+                class="notification-count"
+                id="notificationCount"
+                hidden
+            >
+                0
+            </span>
+        </button>
+
+        <div class="header-divider"></div>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+    <!-- =====================================================
+         SUMMARY
+    ====================================================== -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fa-solid fa-chalkboard"></i>
+            </div>
+
+            <div class="summary-content">
+                <span>My Classes</span>
+                <strong id="myClassesCount">—</strong>
+                <small>Assigned classes</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fa-regular fa-calendar-days"></i>
+            </div>
+
+            <div class="summary-content">
+                <span>Today's Classes</span>
+                <strong id="todayClassesCount">—</strong>
+                <small>Scheduled today</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div class="summary-content">
+                <span>Students Assigned</span>
+                <strong id="studentsAssigned">—</strong>
+                <small>Across your classes</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div class="summary-content">
+                <span>Average Attendance</span>
+                <strong id="averageAttendance">—</strong>
+                <small>Your assigned classes</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FILTERS
+    ====================================================== -->
+
+    <section class="filter-card">
+
+        <div class="filter-heading">
+
+            <div>
+                <h2>
+                    <i class="fa-solid fa-filter"></i>
+                    Attendance Classes
+                </h2>
+
+                <p>
+                    Only classes assigned to your faculty account
+                    will appear here.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="filters">
+
+            <div class="filter-field">
+
+                <label for="subjectFilter">
+                    Subject
+                </label>
+
+                <select id="subjectFilter">
+                    <option value="">
+                        All My Subjects
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-field">
+
+                <label for="classFilter">
+                    Class / Semester
+                </label>
+
+                <select id="classFilter">
+                    <option value="">
+                        All My Classes
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-field search-field">
+
+                <label for="studentSearch">
+                    Student
+                </label>
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="studentSearch"
+                        placeholder="Search student..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MY CLASSES
+    ====================================================== -->
+
+    <section class="content-card">
+
+        <div class="card-header">
+
+            <div class="card-title">
+
+                <span class="title-icon">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </span>
+
+                <div>
+                    <h2>My Classes</h2>
+                    <p>
+                        Attendance for your assigned
+                        subjects and classes
+                    </p>
+                </div>
+
+            </div>
+
+            <span
+                class="record-count"
+                id="classRecordCount"
+            >
+                0 classes
+            </span>
+
+        </div>
+
+
+        <div
+            class="classes-container"
+            id="classesContainer"
+        >
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-chalkboard"></i>
+                </div>
+
+                <h3>No classes assigned</h3>
+
+                <p>
+                    Your assigned subjects and classes
+                    will appear here when data is available.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ATTENDANCE HISTORY
+    ====================================================== -->
+
+    <section class="content-card">
+
+        <div class="card-header">
+
+            <div class="card-title">
+
+                <span class="title-icon">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </span>
+
+                <div>
+                    <h2>Attendance History</h2>
+                    <p>
+                        Previous attendance sessions
+                    </p>
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="outline-button"
+                id="viewHistoryButton"
+            >
+                View History
+            </button>
+
+        </div>
+
+
+        <div
+            class="history-container"
+            id="historyContainer"
+        >
+
+            <div class="empty-state compact">
+
+                <div class="empty-icon">
+                    <i class="fa-regular fa-calendar-xmark"></i>
+                </div>
+
+                <h3>No attendance history</h3>
+
+                <p>
+                    Previous attendance records will appear
+                    after attendance has been recorded.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STUDENT ATTENDANCE
+    ====================================================== -->
+
+    <section class="content-card">
+
+        <div class="card-header">
+
+            <div class="card-title">
+
+                <span class="title-icon">
+                    <i class="fa-solid fa-user-check"></i>
+                </span>
+
+                <div>
+                    <h2>Student Attendance</h2>
+                    <p>
+                        Attendance summary for your assigned students
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="student-table-container"
+            id="studentTableContainer"
+        >
+
+            <div class="empty-state compact">
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <h3>No student attendance data</h3>
+
+                <p>
+                    Student attendance will appear here
+                    when records are available.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ATTENDANCE ANALYTICS
+    ====================================================== -->
+
+    <section class="analytics-grid">
+
+        <div class="content-card analytics-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <span class="title-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </span>
+
+                    <div>
+                        <h2>Attendance Analytics</h2>
+                        <p>
+                            Based only on your assigned classes
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="analytics-content"
+                id="analyticsContainer"
+            >
+
+                <div class="analytics-empty">
+
+                    <i class="fa-solid fa-chart-simple"></i>
+
+                    <h3>No analytics available</h3>
+
+                    <p>
+                        Attendance analytics will be generated
+                        from backend attendance records.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="content-card action-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <span class="title-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </span>
+
+                    <div>
+                        <h2>Attendance Actions</h2>
+                        <p>
+                            Frequently used actions
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-list">
+
+                <button
+                    type="button"
+                    class="attendance-action"
+                    data-action="mark"
+                >
+                    <span>
+                        <i class="fa-solid fa-user-check"></i>
+                    </span>
+
+                    <div>
+                        <strong>Mark Attendance</strong>
+                        <small>
+                            Record attendance for a class
+                        </small>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="attendance-action"
+                    data-action="history"
+                >
+                    <span>
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+
+                    <div>
+                        <strong>Attendance History</strong>
+                        <small>
+                            View previous sessions
+                        </small>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="attendance-action"
+                    data-action="students"
+                >
+                    <span>
+                        <i class="fa-solid fa-users"></i>
+                    </span>
+
+                    <div>
+                        <strong>Student Attendance</strong>
+                        <small>
+                            View student-wise records
+                        </small>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     MARK ATTENDANCE MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="attendanceModal"
+    hidden
+>
+
+    <div class="attendance-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="modal-label">
+                    Attendance
+                </span>
+
+                <h2 id="modalClassTitle">
+                    Mark Attendance
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeAttendanceModal"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="modal-form">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="attendanceDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="lectureTopic">
+                        Topic
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lectureTopic"
+                        placeholder="Lecture topic"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="attendance-student-list">
+
+                <div class="attendance-list-header">
+
+                    <strong>
+                        Students
+                    </strong>
+
+                    <div>
+
+                        <button
+                            type="button"
+                            id="markAllPresent"
+                        >
+                            Mark All Present
+                        </button>
+
+                        <button
+                            type="button"
+                            id="clearAttendance"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div id="attendanceStudentList">
+
+                    <div class="empty-state compact">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <h3>No students available</h3>
+
+                        <p>
+                            Students will load from the backend
+                            for the selected class.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="cancel-button"
+                id="cancelAttendance"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="save-button"
+                id="saveAttendance"
+            >
+                <i class="fa-solid fa-check"></i>
+                Save Attendance
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="attendance.js"></script>
+
+</body>
+</html>

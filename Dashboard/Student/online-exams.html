@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Online Exams | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="online-exams.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CAMPUSCONNECT
+         ONLINE EXAMS
+    ====================================================== -->
+
+    <div class="app-shell">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    class="back-button"
+                    id="backButton"
+                    aria-label="Go back"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+
+                <div class="page-heading">
+
+                    <span class="page-title">
+                        Online Exams
+                    </span>
+
+                    <span class="page-subtitle">
+                        Online Examination Centre
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                GLOBAL NOTIFICATION INTEGRATION PLACEHOLDER
+
+                The future CampusConnect global notification
+                system will provide the notification bell here.
+
+                No separate notification system is implemented
+                inside this module.
+            -->
+
+            <div
+                class="global-notification-placeholder"
+                id="globalNotificationPlaceholder"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 EXAM HOME VIEW
+            ================================================== -->
+
+            <section
+                class="exam-view active"
+                id="examHomeView"
+            >
+
+                <div class="intro-section">
+
+                    <div class="intro-icon">
+
+                        <i class="fa-solid fa-laptop-code"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h1>
+                            Online Exams
+                        </h1>
+
+                        <p>
+                            Attempt examinations assigned to you
+                            through CampusConnect.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     EXAM TABS
+                ================================================== -->
+
+                <div class="exam-tabs">
+
+                    <button
+                        type="button"
+                        class="exam-tab active"
+                        data-status="available"
+                    >
+
+                        <i class="fa-solid fa-play"></i>
+
+                        Available
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="exam-tab"
+                        data-status="upcoming"
+                    >
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Upcoming
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="exam-tab"
+                        data-status="completed"
+                    >
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Completed
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     EXAM LIST
+                ================================================== -->
+
+                <div
+                    class="exam-list"
+                    id="examList"
+                >
+
+                    <!-- Dynamic examination cards -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 INSTRUCTIONS VIEW
+            ================================================== -->
+
+            <section
+                class="exam-view"
+                id="instructionsView"
+            >
+
+                <div class="section-header">
+
+                    <button
+                        type="button"
+                        class="small-back-button"
+                        id="instructionsBackButton"
+                        aria-label="Back to examinations"
+                    >
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+
+
+                    <div>
+
+                        <h2 id="instructionExamTitle">
+                            Examination
+                        </h2>
+
+                        <p id="instructionExamSubject">
+                            Examination instructions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="instruction-card">
+
+
+                    <div class="instruction-summary">
+
+
+                        <div class="instruction-stat">
+
+                            <i class="fa-solid fa-list-ol"></i>
+
+                            <span>
+                                Questions
+                            </span>
+
+                            <strong id="instructionQuestionCount">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <div class="instruction-stat">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong id="instructionDuration">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <div class="instruction-stat">
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <span>
+                                Maximum Marks
+                            </span>
+
+                            <strong id="instructionMaximumMarks">
+                                --
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="instructions-content">
+
+                        <h3>
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            Instructions
+
+                        </h3>
+
+
+                        <div id="examInstructions">
+
+                            Examination instructions will be
+                            provided by the examination system.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="confirmation-area">
+
+
+                        <label class="confirmation-checkbox">
+
+                            <input
+                                type="checkbox"
+                                id="instructionConfirmation"
+                            >
+
+                            <span>
+                                I have read and understood the
+                                examination instructions and
+                                I am ready to begin the examination.
+                            </span>
+
+                        </label>
+
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            id="startExamButton"
+                            disabled
+                        >
+
+                            <i class="fa-solid fa-play"></i>
+
+                            Start Examination
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ATTEMPT VIEW
+            ================================================== -->
+
+            <section
+                class="exam-view"
+                id="attemptView"
+            >
+
+                <div class="attempt-header">
+
+                    <div class="attempt-title">
+
+                        <span id="attemptExamTitle">
+                            Examination
+                        </span>
+
+                        <small id="attemptExamSubject">
+                            --
+                        </small>
+
+                    </div>
+
+
+                    <div
+                        class="exam-timer"
+                        id="examTimer"
+                    >
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <span id="timerText">
+                            --:--
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                    ></div>
+
+                </div>
+
+
+                <div class="question-card">
+
+
+                    <div class="question-number">
+
+                        Question
+
+                        <span id="currentQuestionNumber">
+                            --
+                        </span>
+
+                        of
+
+                        <span id="totalQuestionNumber">
+                            --
+                        </span>
+
+                    </div>
+
+
+                    <h2 id="questionText">
+                        Loading question...
+                    </h2>
+
+
+                    <div
+                        class="options-container"
+                        id="optionsContainer"
+                    >
+
+                        <!-- Dynamic options -->
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="review-button"
+                        id="reviewButton"
+                    >
+
+                        <i class="fa-regular fa-bookmark"></i>
+
+                        Mark for Review
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     QUESTION NAVIGATION
+                ================================================== -->
+
+                <div class="question-navigation">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="previousQuestionButton"
+                    >
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Previous
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="nextQuestionButton"
+                    >
+
+                        Next
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     QUESTION PALETTE
+                ================================================== -->
+
+                <div class="palette-card">
+
+                    <div class="palette-heading">
+
+                        <h3>
+                            Question Palette
+                        </h3>
+
+
+                        <button
+                            type="button"
+                            class="palette-toggle"
+                            id="paletteToggle"
+                            aria-label="Toggle question palette"
+                        >
+
+                            <i class="fa-solid fa-chevron-up"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="question-palette"
+                        id="questionPalette"
+                    >
+
+                        <!-- Dynamic question numbers -->
+
+                    </div>
+
+
+                    <div class="palette-legend">
+
+                        <span>
+
+                            <span class="legend-dot answered"></span>
+
+                            Answered
+
+                        </span>
+
+
+                        <span>
+
+                            <span class="legend-dot review"></span>
+
+                            Review
+
+                        </span>
+
+
+                        <span>
+
+                            <span class="legend-dot unanswered"></span>
+
+                            Unanswered
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="submit-section">
+
+                    <button
+                        type="button"
+                        class="submit-button"
+                        id="submitExamButton"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Submit Examination
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RESULT VIEW
+            ================================================== -->
+
+            <section
+                class="exam-view"
+                id="resultView"
+            >
+
+                <div class="result-header">
+
+                    <div class="result-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+
+                    <h1>
+                        Examination Submitted
+                    </h1>
+
+
+                    <p id="resultMessage">
+                        Your examination has been submitted successfully.
+                    </p>
+
+                </div>
+
+
+                <div class="result-score-card">
+
+                    <span class="score-label">
+                        Your Score
+                    </span>
+
+
+                    <div class="score">
+
+                        <strong id="resultScore">
+                            --
+                        </strong>
+
+                        <span id="resultMaximumMarks">
+                            / --
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="result-percentage"
+                        id="resultPercentage"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="result-stat-grid">
+
+
+                    <div class="result-stat">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Correct
+                        </span>
+
+                        <strong id="resultCorrect">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-stat">
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                        <span>
+                            Incorrect
+                        </span>
+
+                        <strong id="resultIncorrect">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-stat">
+
+                        <i class="fa-solid fa-minus"></i>
+
+                        <span>
+                            Unanswered
+                        </span>
+
+                        <strong id="resultUnanswered">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-stat">
+
+                        <i class="fa-solid fa-stopwatch"></i>
+
+                        <span>
+                            Time Taken
+                        </span>
+
+                        <strong id="resultTimeTaken">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="backToExamsButton"
+                    >
+
+                        <i class="fa-solid fa-list"></i>
+
+                        Back to Exams
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         SUBMISSION CONFIRMATION MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="submitModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="submitModalTitle"
+    >
+
+        <div class="modal-card">
+
+            <div class="modal-icon">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+
+            <h2 id="submitModalTitle">
+                Submit Examination?
+            </h2>
+
+
+            <p id="submitModalMessage">
+                Are you sure you want to submit this examination?
+                You will not be able to change your answers afterward.
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelSubmitButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="confirmSubmitButton"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="online-exams.js"></script>
+
+</body>
+
+</html>

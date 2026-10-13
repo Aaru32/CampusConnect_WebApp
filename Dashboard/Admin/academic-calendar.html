@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Calendar | CampusConnect</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="academic-calendar.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         CAMPUSCONNECT
+         ADMIN - ACADEMIC CALENDAR
+    ====================================================== -->
+
+    <!-- Header -->
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                class="back-button"
+                id="backButton"
+                type="button"
+                aria-label="Go back"
+                title="Go Back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="page-heading">
+                <h1>Academic Calendar</h1>
+                <p>Manage and view academic events and important dates</p>
+            </div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <!-- Global Notification Placeholder -->
+            <div id="globalNotificationPlaceholder"></div>
+
+            <button
+                class="header-icon-button"
+                id="refreshButton"
+                type="button"
+                aria-label="Refresh"
+                title="Refresh"
+            >
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+
+            <div class="welcome-content">
+
+                <div class="welcome-icon">
+                    <i class="fa-regular fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <h2 id="welcomeTitle">Academic Calendar</h2>
+                    <p>
+                        Keep track of academic sessions, examinations,
+                        holidays, events and other important dates.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Calendar Controls -->
+        <section class="calendar-toolbar">
+
+            <div class="toolbar-left">
+
+                <button
+                    class="calendar-nav-button"
+                    id="previousMonth"
+                    type="button"
+                    aria-label="Previous month"
+                    title="Previous month"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <h2 id="currentMonth">Academic Calendar</h2>
+
+                <button
+                    class="calendar-nav-button"
+                    id="nextMonth"
+                    type="button"
+                    aria-label="Next month"
+                    title="Next month"
+                >
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+            <div class="toolbar-right">
+
+                <select id="academicSession" class="calendar-select">
+                    <option value="">Select Academic Session</option>
+                </select>
+
+                <button
+                    class="today-button"
+                    id="todayButton"
+                    type="button"
+                >
+                    Today
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Calendar -->
+        <section class="calendar-card">
+
+            <div class="calendar-weekdays">
+
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+
+            </div>
+
+            <div
+                class="calendar-grid"
+                id="calendarGrid"
+            >
+
+                <!--
+                    Calendar dates will be generated dynamically
+                    through JavaScript.
+
+                    No fixed academic events or fake dates are
+                    placed here.
+                -->
+
+            </div>
+
+        </section>
+
+
+        <!-- Event Information -->
+        <section class="events-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Academic Events</h2>
+                    <p>
+                        Important academic dates for the selected
+                        session.
+                    </p>
+                </div>
+
+                <button
+                    class="add-event-button"
+                    id="addEventButton"
+                    type="button"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add Event</span>
+                </button>
+
+            </div>
+
+
+            <!-- Empty State -->
+            <div
+                class="events-empty-state"
+                id="eventsEmptyState"
+            >
+
+                <div class="empty-icon">
+                    <i class="fa-regular fa-calendar-xmark"></i>
+                </div>
+
+                <h3>No academic events available</h3>
+
+                <p>
+                    Academic events will appear here once they are
+                    added to the calendar.
+                </p>
+
+            </div>
+
+
+            <!-- Events List -->
+            <div
+                class="events-list"
+                id="eventsList"
+                hidden
+            >
+                <!-- Dynamic events will be inserted here -->
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         ADD / EDIT EVENT MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="eventModal"
+        hidden
+    >
+
+        <div
+            class="event-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="eventModalTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="eventModalTitle">Add Academic Event</h2>
+                    <p>
+                        Add an important academic date to the calendar.
+                    </p>
+                </div>
+
+                <button
+                    class="modal-close-button"
+                    id="closeEventModal"
+                    type="button"
+                    aria-label="Close"
+                    title="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="eventForm">
+
+                <div class="form-group">
+
+                    <label for="eventTitle">
+                        Event Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="eventTitle"
+                        name="eventTitle"
+                        placeholder="Enter event title"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="eventDate">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            name="eventDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="eventType">
+                            Event Type
+                        </label>
+
+                        <select
+                            id="eventType"
+                            name="eventType"
+                            required
+                        >
+                            <option value="">
+                                Select event type
+                            </option>
+
+                            <option value="academic">
+                                Academic
+                            </option>
+
+                            <option value="examination">
+                                Examination
+                            </option>
+
+                            <option value="holiday">
+                                Holiday
+                            </option>
+
+                            <option value="event">
+                                College Event
+                            </option>
+
+                            <option value="deadline">
+                                Deadline
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="eventDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="eventDescription"
+                        name="eventDescription"
+                        rows="4"
+                        placeholder="Enter event description"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        id="cancelEventButton"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        <i class="fa-solid fa-check"></i>
+                        Save Event
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="academic-calendar.js"></script>
+
+</body>
+
+</html>

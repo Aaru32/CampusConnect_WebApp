@@ -1,0 +1,532 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8"><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Settings | CampusConnect</title>
+
+<link
+    rel="stylesheet"
+    href="settings.css"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+</head><body><!-- =========================================
+     HEADER
+========================================== -->
+
+<header class="settings-header">
+
+    <button
+        type="button"
+        class="back-button"
+        id="backButton"
+        aria-label="Go back"
+        title="Go back"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+
+    <div class="header-title">
+        <h1>Settings</h1>
+        <p>Manage your CampusConnect preferences</p>
+    </div>
+
+
+    <!-- HEADER ACTIONS -->
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            class="header-icon-button"
+            id="refreshButton"
+            aria-label="Refresh"
+            title="Refresh"
+        >
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+
+    </div>
+
+
+    <!--
+        GLOBAL NOTIFICATION INTEGRATION POINT
+
+        Do not create a separate notification bell here.
+        The future global notification system can be
+        integrated into this header.
+    -->
+
+</header>
+
+
+<!-- =========================================
+     MAIN SETTINGS
+========================================== -->
+
+<main class="settings-container">
+
+
+    <!-- ACCOUNT & SECURITY -->
+
+    <section class="settings-section">
+
+        <h2>Account & Security</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="change-password"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Change Password</strong>
+                    <small>Update your account password</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="login-security"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Login & Security</strong>
+                    <small>Manage your account security</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <section class="settings-section">
+
+        <h2>Notifications</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="notification-preferences"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-bell"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Notification Preferences</strong>
+                    <small>Choose the notifications you receive</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="email-notifications"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Email Notifications</strong>
+                    <small>Manage notification emails</small>
+                </span>
+
+                <span class="toggle">
+                    <input
+                        type="checkbox"
+                        id="emailNotifications"
+                    >
+                    <span class="slider"></span>
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="push-notifications"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Push Notifications</strong>
+                    <small>Manage device notifications</small>
+                </span>
+
+                <span class="toggle">
+                    <input
+                        type="checkbox"
+                        id="pushNotifications"
+                    >
+                    <span class="slider"></span>
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRIVACY -->
+
+    <section class="settings-section">
+
+        <h2>Privacy</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="privacy-controls"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-user-shield"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Privacy Controls</strong>
+                    <small>Manage your privacy preferences</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="visibility"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Profile Visibility</strong>
+                    <small>Control what others can see</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPEARANCE -->
+
+    <section class="settings-section">
+
+        <h2>Appearance</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="theme"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Theme</strong>
+                    <small>Choose how CampusConnect looks</small>
+                </span>
+
+                <span
+                    class="setting-value"
+                    id="themeValue"
+                >
+                    System
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="accessibility"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-universal-access"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Accessibility</strong>
+                    <small>Adjust accessibility preferences</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREFERENCES -->
+
+    <section class="settings-section">
+
+        <h2>Preferences</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="academic-preferences"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Academic Preferences</strong>
+                    <small>Manage your learning preferences</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="app-preferences"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-sliders"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>App Preferences</strong>
+                    <small>Customize your CampusConnect experience</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUPPORT -->
+
+    <section class="settings-section">
+
+        <h2>Support</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="help"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-circle-question"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Help & Support</strong>
+                    <small>Get help with CampusConnect</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="report-problem"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Report a Problem</strong>
+                    <small>Tell us about an issue</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="settings-section">
+
+        <h2>About</h2>
+
+        <div class="settings-list">
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="about"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-circle-info"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>About CampusConnect</strong>
+                    <small>Application information</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="setting-row"
+                data-setting="terms"
+            >
+
+                <span class="setting-icon">
+                    <i class="fa-solid fa-file-contract"></i>
+                </span>
+
+                <span class="setting-content">
+                    <strong>Terms & Privacy</strong>
+                    <small>Terms and privacy information</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOGOUT -->
+
+    <section class="account-actions">
+
+        <button
+            type="button"
+            class="logout-button"
+            id="logoutButton"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Log Out</span>
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================
+     SETTINGS MODAL
+========================================== -->
+
+<div
+    class="modal-overlay"
+    id="settingsModal"
+    aria-hidden="true"
+>
+
+    <div class="settings-modal">
+
+        <button
+            type="button"
+            class="modal-close"
+            id="modalClose"
+            aria-label="Close"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<script src="settings.js"></script>
+
+</body>
+</html>

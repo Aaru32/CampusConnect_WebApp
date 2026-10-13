@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Certificates</title>
+
+    <link rel="stylesheet" href="certificate.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="top-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+        <div class="header-title">
+
+            <h1>Certificates</h1>
+
+            <p>
+                Manage your academic achievements
+            </p>
+
+        </div>
+
+        <!-- Global notification integration placeholder -->
+        <div id="globalNotificationPlaceholder"></div>
+
+    </header>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="summary-section">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+
+                <div>
+
+                    <span>Total Certificates</span>
+
+                    <strong id="totalCertificates">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+
+                    <span>My Certificates</span>
+
+                    <strong id="studentCertificates">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <div>
+
+                    <span>College Certificates</span>
+
+                    <strong id="collegeCertificates">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+
+                    <span>This Year</span>
+
+                    <strong id="thisYearCertificates">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECTION SWITCHER
+        ================================================== -->
+
+        <section class="section-switcher">
+
+            <button
+                type="button"
+                class="section-tab active"
+                data-section="student">
+
+                <i class="fa-solid fa-user"></i>
+
+                My Certificates
+
+            </button>
+
+
+            <button
+                type="button"
+                class="section-tab"
+                data-section="college">
+
+                <i class="fa-solid fa-building-columns"></i>
+
+                College Certificates
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STUDENT CERTIFICATES SECTION
+        ================================================== -->
+
+        <section
+            id="studentSection"
+            class="certificate-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        My Certificates
+                    </h2>
+
+                    <p>
+                        Certificates and achievements
+                        you have earned independently.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-certificate-btn"
+                    id="addCertificateBtn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Certificate
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="controls">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="studentSearch"
+                        placeholder="Search certificates...">
+
+                </div>
+
+
+                <div
+                    class="filter-container"
+                    id="studentFilters">
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-filter="all">
+
+                        All
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CERTIFICATE LIST -->
+
+            <div
+                id="studentCertificateList"
+                class="certificate-grid">
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="studentEmptyState"
+                class="empty-state">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-award"></i>
+
+                </div>
+
+                <h3>
+                    No certificates yet
+                </h3>
+
+                <p>
+                    Add certificates that you have
+                    earned independently.
+                </p>
+
+                <button
+                    type="button"
+                    class="empty-action-btn"
+                    id="emptyAddBtn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Certificate
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             COLLEGE CERTIFICATES SECTION
+        ================================================== -->
+
+        <section
+            id="collegeSection"
+            class="certificate-section hidden">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        College Certificates
+                    </h2>
+
+                    <p>
+                        Certificates issued to you
+                        by your college.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="controls">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="collegeSearch"
+                        placeholder="Search college certificates...">
+
+                </div>
+
+
+                <div
+                    class="filter-container"
+                    id="collegeFilters">
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-filter="all">
+
+                        All
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CERTIFICATE LIST -->
+
+            <div
+                id="collegeCertificateList"
+                class="certificate-grid">
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="collegeEmptyState"
+                class="empty-state">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-building-columns"></i>
+
+                </div>
+
+                <h3>
+                    No college certificates yet
+                </h3>
+
+                <p>
+                    Certificates issued to you by
+                    the college will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADD / EDIT CERTIFICATE MODAL
+====================================================== -->
+
+<div
+    id="certificateFormModal"
+    class="modal-overlay">
+
+    <div class="modal-card">
+
+
+        <button
+            type="button"
+            class="modal-close"
+            id="formModalClose"
+            aria-label="Close">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="modal-heading">
+
+            <div class="modal-icon">
+
+                <i class="fa-solid fa-award"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="formModalTitle">
+                    Add Certificate
+                </h2>
+
+                <p>
+                    Store your independent certificate.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <form id="certificateForm">
+
+
+            <!-- CERTIFICATE NAME -->
+
+            <div class="form-group">
+
+                <label for="certificateName">
+                    Certificate Name
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="certificateName"
+                    maxlength="150"
+                    required
+                    placeholder="Enter certificate name">
+
+            </div>
+
+
+
+            <!-- ISSUER -->
+
+            <div class="form-group">
+
+                <label for="issuingOrganization">
+                    Issuing Organization
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="issuingOrganization"
+                    maxlength="150"
+                    required
+                    placeholder="Enter issuing organization">
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label for="certificateCategory">
+                    Category
+                    <span>*</span>
+                </label>
+
+                <select
+                    id="certificateCategory"
+                    required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="Online Course">
+                        Online Course
+                    </option>
+
+                    <option value="Internship">
+                        Internship
+                    </option>
+
+                    <option value="Training">
+                        Training
+                    </option>
+
+                    <option value="Workshop">
+                        Workshop
+                    </option>
+
+                    <option value="Competition">
+                        Competition
+                    </option>
+
+                    <option value="Technical Certification">
+                        Technical Certification
+                    </option>
+
+                    <option value="Achievement">
+                        Achievement
+                    </option>
+
+                    <option value="Participation">
+                        Participation
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ISSUE DATE -->
+
+            <div class="form-group">
+
+                <label for="issueDate">
+                    Issue Date
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="date"
+                    id="issueDate"
+                    required>
+
+            </div>
+
+
+
+            <!-- CERTIFICATE ID -->
+
+            <div class="form-group">
+
+                <label for="certificateId">
+                    Certificate ID
+                    <small>(Optional)</small>
+                </label>
+
+                <input
+                    type="text"
+                    id="certificateId"
+                    maxlength="100"
+                    placeholder="Enter certificate ID">
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="certificateDescription">
+                    Description
+                    <small>(Optional)</small>
+                </label>
+
+                <textarea
+                    id="certificateDescription"
+                    rows="4"
+                    maxlength="500"
+                    placeholder="Add a short description">
+                </textarea>
+
+            </div>
+
+
+
+            <!-- FILE -->
+
+            <div class="form-group">
+
+                <label>
+                    Certificate File
+                    <span>*</span>
+                </label>
+
+                <label
+                    for="certificateFile"
+                    class="file-upload-area">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <strong>
+                        Choose certificate file
+                    </strong>
+
+                    <span>
+                        PDF, JPG, JPEG or PNG
+                    </span>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="certificateFile"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    hidden>
+
+                <div
+                    id="selectedCertificateFile"
+                    class="selected-file hidden">
+
+                    <i class="fa-solid fa-file"></i>
+
+                    <span id="selectedCertificateFileName">
+                        No file selected
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FORM ACTIONS -->
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelFormBtn">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Certificate
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CERTIFICATE DETAILS MODAL
+====================================================== -->
+
+<div
+    id="certificateDetailsModal"
+    class="modal-overlay">
+
+    <div class="modal-card details-modal">
+
+
+        <button
+            type="button"
+            class="modal-close"
+            id="detailsModalClose"
+            aria-label="Close">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="modal-heading">
+
+            <div class="modal-icon">
+
+                <i class="fa-solid fa-certificate"></i>
+
+            </div>
+
+            <div>
+
+                <span
+                    id="detailsSource"
+                    class="source-badge">
+                </span>
+
+                <h2 id="detailsTitle">
+                    Certificate
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="details-grid">
+
+
+            <div class="detail-item">
+
+                <span>
+                    Issuing Organization
+                </span>
+
+                <strong id="detailsIssuer">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <span>
+                    Category
+                </span>
+
+                <strong id="detailsCategory">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <span>
+                    Issue Date
+                </span>
+
+                <strong id="detailsDate">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <span>
+                    Certificate ID
+                </span>
+
+                <strong id="detailsCertificateId">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div
+                class="detail-item full-width">
+
+                <span>
+                    Description
+                </span>
+
+                <p id="detailsDescription">
+                    —
+                </p>
+
+            </div>
+
+
+            <div
+                id="collegeIssuerDetail"
+                class="detail-item full-width hidden">
+
+                <span>
+                    Issued By
+                </span>
+
+                <strong id="detailsIssuedBy">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PREVIEW -->
+
+        <div
+            id="certificatePreview"
+            class="certificate-preview">
+
+            <div class="preview-placeholder">
+
+                <i class="fa-solid fa-file-image"></i>
+
+                <p>
+                    Certificate preview
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div
+            id="studentCertificateActions"
+            class="details-actions">
+
+            <button
+                type="button"
+                class="secondary-action"
+                id="editCertificateBtn">
+
+                <i class="fa-solid fa-pen"></i>
+
+                Edit
+
+            </button>
+
+
+            <button
+                type="button"
+                class="danger-action"
+                id="deleteCertificateBtn">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Delete
+
+            </button>
+
+
+            <button
+                type="button"
+                class="primary-action"
+                id="downloadCertificateBtn">
+
+                <i class="fa-solid fa-download"></i>
+
+                Download
+
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="collegeCertificateActions"
+            class="details-actions hidden">
+
+            <button
+                type="button"
+                class="primary-action full-action"
+                id="collegeDownloadBtn">
+
+                <i class="fa-solid fa-download"></i>
+
+                Download Certificate
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DELETE CONFIRMATION MODAL
+====================================================== -->
+
+<div
+    id="deleteModal"
+    class="modal-overlay">
+
+    <div class="confirmation-card">
+
+        <div class="confirmation-icon">
+
+            <i class="fa-solid fa-trash"></i>
+
+        </div>
+
+        <h2>
+            Delete Certificate?
+        </h2>
+
+        <p>
+            This will remove the certificate from
+            your student-uploaded certificates.
+        </p>
+
+        <div class="confirmation-actions">
+
+            <button
+                type="button"
+                class="cancel-btn"
+                id="cancelDeleteBtn">
+
+                Cancel
+
+            </button>
+
+            <button
+                type="button"
+                class="danger-action"
+                id="confirmDeleteBtn">
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="certificate.js"></script>
+
+</body>
+
+</html>

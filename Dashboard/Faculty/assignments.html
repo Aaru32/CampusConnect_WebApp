@@ -1,0 +1,856 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CampusConnect | Faculty Assignments</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="assignments.css">
+
+</head><body><div class="page-app"><!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="top-header">
+
+    <div class="header-left">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+            title="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+
+            <h1>Assignments</h1>
+
+            <p>
+                Create, manage and evaluate your assignments
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            class="header-icon-btn"
+            id="refreshButton"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-rotate"></i>
+        </button>
+
+
+        <button
+            type="button"
+            class="header-icon-btn notification-btn"
+            id="notificationButton"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span
+                class="notification-count"
+                id="notificationCount"
+                hidden
+            >
+                0
+            </span>
+
+        </button>
+
+        <div id="globalNotificationPlaceholder"></div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================================
+         PAGE INTRO
+    ================================================== -->
+
+    <section class="page-intro">
+
+        <div>
+
+            <span class="intro-label">
+                Faculty Workspace
+            </span>
+
+            <h2>
+                Assignment Management
+            </h2>
+
+            <p>
+                Create assignments for your assigned classes,
+                monitor submissions and evaluate student work.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="primary-btn"
+            id="createAssignmentButton"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Create Assignment
+
+        </button>
+
+    </section>
+
+
+    <!-- =================================================
+         KPI CARDS
+    ================================================== -->
+
+    <section class="stats-grid">
+
+        <button
+            type="button"
+            class="stat-card"
+            data-stat="total"
+        >
+
+            <span class="stat-icon blue">
+                <i class="fa-solid fa-file-lines"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-label">
+                    Total Assignments
+                </span>
+
+                <strong id="totalAssignments">
+                    —
+                </strong>
+
+                <small>
+                    All your assignments
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="stat-card"
+            data-stat="active"
+        >
+
+            <span class="stat-icon green">
+                <i class="fa-solid fa-folder-open"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-label">
+                    Active Assignments
+                </span>
+
+                <strong id="activeAssignments">
+                    —
+                </strong>
+
+                <small>
+                    Currently accepting work
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="stat-card"
+            data-stat="pending"
+        >
+
+            <span class="stat-icon orange">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-label">
+                    Pending Evaluation
+                </span>
+
+                <strong id="pendingEvaluation">
+                    —
+                </strong>
+
+                <small>
+                    Submissions to evaluate
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="stat-card"
+            data-stat="completed"
+        >
+
+            <span class="stat-icon purple">
+                <i class="fa-solid fa-circle-check"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-label">
+                    Completed
+                </span>
+
+                <strong id="completedAssignments">
+                    —
+                </strong>
+
+                <small>
+                    Completed assignments
+                </small>
+
+            </span>
+
+        </button>
+
+    </section>
+
+
+    <!-- =================================================
+         ASSIGNMENTS CARD
+    ================================================== -->
+
+    <section class="content-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>
+                    <i class="fa-solid fa-list-check"></i>
+                    My Assignments
+                </h2>
+
+                <p>
+                    Assignments associated with your assigned
+                    subjects and classes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH / FILTER -->
+
+        <div class="filter-area">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="assignmentSearch"
+                    placeholder="Search assignments..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select
+                id="subjectFilter"
+                aria-label="Filter by subject"
+            >
+                <option value="">
+                    All Subjects
+                </option>
+            </select>
+
+
+            <select
+                id="semesterFilter"
+                aria-label="Filter by semester"
+            >
+                <option value="">
+                    All Semesters
+                </option>
+            </select>
+
+
+            <select
+                id="statusFilter"
+                aria-label="Filter by status"
+            >
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="draft">
+                    Draft
+                </option>
+
+                <option value="published">
+                    Published
+                </option>
+
+                <option value="active">
+                    Active
+                </option>
+
+                <option value="closed">
+                    Closed
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-wrapper">
+
+            <table class="assignment-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Assignment</th>
+                        <th>Subject</th>
+                        <th>Class / Semester</th>
+                        <th>Assigned</th>
+                        <th>Deadline</th>
+                        <th>Submissions</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="assignmentTableBody">
+
+                    <tr>
+
+                        <td colspan="8">
+
+                            <div class="empty-state">
+
+                                <i class="fa-regular fa-folder-open"></i>
+
+                                <h3>
+                                    No assignments available
+                                </h3>
+
+                                <p>
+                                    Assignments created or assigned
+                                    to you will appear here.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     CREATE ASSIGNMENT MODAL
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="assignmentModal"
+    hidden
+>
+
+    <div class="modal-box large">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Create Assignment
+                </h2>
+
+                <p>
+                    Create an assignment for your assigned class.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeAssignmentModal"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="assignmentForm">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label for="assignmentTitle">
+                        Assignment Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assignmentTitle"
+                        name="title"
+                        placeholder="Enter assignment title"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="assignmentSubject">
+                        Subject
+                    </label>
+
+                    <select
+                        id="assignmentSubject"
+                        name="subjectId"
+                        required
+                    >
+
+                        <option value="">
+                            Select Subject
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="assignmentClass">
+                        Class / Section
+                    </label>
+
+                    <select
+                        id="assignmentClass"
+                        name="classId"
+                        required
+                    >
+
+                        <option value="">
+                            Select Class
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="assignmentSemester">
+                        Semester
+                    </label>
+
+                    <select
+                        id="assignmentSemester"
+                        name="semesterId"
+                        required
+                    >
+
+                        <option value="">
+                            Select Semester
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="assignmentType">
+                        Assignment Type
+                    </label>
+
+                    <select
+                        id="assignmentType"
+                        name="type"
+                    >
+
+                        <option value="">
+                            Select Type
+                        </option>
+
+                        <option value="written">
+                            Written
+                        </option>
+
+                        <option value="practical">
+                            Practical
+                        </option>
+
+                        <option value="project">
+                            Project
+                        </option>
+
+                        <option value="presentation">
+                            Presentation
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="maximumMarks">
+                        Maximum Marks
+                    </label>
+
+                    <input
+                        type="number"
+                        id="maximumMarks"
+                        name="maximumMarks"
+                        min="0"
+                        placeholder="Maximum marks"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="issueDate">
+                        Issue Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="issueDate"
+                        name="issueDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="deadline">
+                        Submission Deadline
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="deadline"
+                        name="deadline"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="assignmentDescription">
+                        Instructions / Description
+                    </label>
+
+                    <textarea
+                        id="assignmentDescription"
+                        name="description"
+                        rows="5"
+                        placeholder="Enter assignment instructions..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label class="checkbox-label">
+
+                        <input
+                            type="checkbox"
+                            id="allowLateSubmission"
+                            name="allowLateSubmission"
+                        >
+
+                        <span>
+                            Allow late submissions
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="cancelAssignment"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    Create Assignment
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DETAILS MODAL
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="detailsModal"
+    hidden
+>
+
+    <div class="modal-box large">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="details-label">
+                    Assignment Details
+                </span>
+
+                <h2 id="detailsTitle">
+                    Assignment
+                </h2>
+
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeDetailsModal"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="details-content">
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+
+                    <span>Subject</span>
+                    <strong id="detailsSubject">—</strong>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <span>Class / Semester</span>
+                    <strong id="detailsClass">—</strong>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <span>Assigned Date</span>
+                    <strong id="detailsAssigned">—</strong>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <span>Deadline</span>
+                    <strong id="detailsDeadline">—</strong>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <span>Maximum Marks</span>
+                    <strong id="detailsMarks">—</strong>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <span>Status</span>
+                    <strong id="detailsStatus">—</strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="submission-summary">
+
+                <h3>
+                    Submission Overview
+                </h3>
+
+                <div class="submission-grid">
+
+                    <div>
+                        <span>Total Students</span>
+                        <strong id="detailTotalStudents">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Submitted</span>
+                        <strong id="detailSubmitted">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Not Submitted</span>
+                        <strong id="detailNotSubmitted">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Evaluated</span>
+                        <strong id="detailEvaluated">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Pending Evaluation</span>
+                        <strong id="detailPending">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="description-box">
+
+                <h3>
+                    Instructions
+                </h3>
+
+                <p id="detailsDescription">
+                    No instructions available.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="secondary-btn"
+                id="closeDetailsButton"
+            >
+                Close
+            </button>
+
+            <button
+                type="button"
+                class="primary-btn"
+                id="openSubmissionsButton"
+            >
+                <i class="fa-solid fa-users"></i>
+                View Submissions
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NOTIFICATION TOAST
+====================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+    hidden
+>
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage"></span>
+</div>
+
+</div><script src="assignments.js"></script></body>
+</html>

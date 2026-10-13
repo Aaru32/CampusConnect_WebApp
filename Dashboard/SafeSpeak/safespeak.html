@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#123b70">
+    <title>SafeSpeak | CampusConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="safespeak.css">
+</head>
+<body>
+    <div class="safespeak-page">
+        <header class="page-header">
+            <button type="button" class="back-button" id="backBtn" aria-label="Go back">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="brand-mark"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="header-text">
+                <h1>SafeSpeak</h1>
+                <p>CampusConnect · Student Safety &amp; Grievances</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <nav class="breadcrumb">
+                <span>CampusConnect</span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>SafeSpeak</span>
+            </nav>
+
+            <section class="intro-section">
+                <div>
+                    <span class="eyebrow">YOUR VOICE MATTERS</span>
+                    <h2>A safer campus starts with speaking up.</h2>
+                    <p>Report a concern confidentially. Every concern deserves to be treated seriously and respectfully.</p>
+                </div>
+                <div class="intro-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            </section>
+
+            <section class="privacy-notice">
+                <div class="notice-icon"><i class="fa-solid fa-lock"></i></div>
+                <div>
+                    <h3>Your privacy matters</h3>
+                    <p>Report details are restricted to the person who submitted the report and the authorized Principal. Anonymous reporting is available.</p>
+                </div>
+            </section>
+
+            <div id="pageMessage" class="message-box" role="status" aria-live="polite" hidden></div>
+
+            <section class="content-card" id="reportSection">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">SAFE &amp; CONFIDENTIAL</span>
+                        <h2>Submit a Report</h2>
+                        <p>Provide the details you feel comfortable sharing.</p>
+                    </div>
+                    <span class="heading-icon"><i class="fa-regular fa-file-lines"></i></span>
+                </div>
+
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="category">Category <span class="required">*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">Select issue category</option>
+                            <option value="HARASSMENT">Harassment or bullying</option>
+                            <option value="SAFETY">Safety concern</option>
+                            <option value="MISCONDUCT">Misconduct</option>
+                            <option value="DISCRIMINATION">Discrimination</option>
+                            <option value="FACILITIES">Campus facilities</option>
+                            <option value="ACADEMIC">Academic concern</option>
+                            <option value="OTHER">Other concern</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" maxlength="150"
+                               placeholder="Enter a brief title for your concern" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Describe the issue <span class="required">*</span></label>
+                        <textarea id="description" name="description" rows="6" minlength="10"
+                                  maxlength="5000" placeholder="Explain what happened and include relevant details..."
+                                  required></textarea>
+                        <div class="field-footer">
+                            <span>Share only information relevant to your concern.</span>
+                            <span id="characterCount">0 / 5000</span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="incidentDate">Date of incident <span class="optional">(optional)</span></label>
+                            <input type="date" id="incidentDate" name="incidentDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location <span class="optional">(optional)</span></label>
+                            <input type="text" id="location" name="location" maxlength="200"
+                                   placeholder="Where did it happen?">
+                        </div>
+                    </div>
+
+                    <div class="anonymous-panel">
+                        <div class="anonymous-icon"><i class="fa-solid fa-user-shield"></i></div>
+                        <div class="anonymous-copy">
+                            <label for="anonymous">Submit anonymously</label>
+                            <p>Your identity will not be displayed in the report. Anonymous reporting may limit follow-up communication.</p>
+                        </div>
+                        <label class="switch" aria-label="Submit anonymously">
+                            <input type="checkbox" id="anonymous" name="anonymous">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <p class="form-footnote">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Your report is submitted to the connected CampusConnect service.
+                    </p>
+
+                    <div class="form-actions">
+                        <button type="reset" class="button button-secondary" id="resetBtn">Clear Form</button>
+                        <button type="submit" class="button button-primary" id="submitBtn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Submit Report</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="content-card" id="myReportsSection">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">REPORT HISTORY</span>
+                        <h2>My Reports</h2>
+                        <p>Track the progress of reports you have submitted.</p>
+                    </div>
+                    <span class="heading-icon"><i class="fa-solid fa-list-check"></i></span>
+                </div>
+                <div id="myReportsMessage" class="inline-message" role="status" hidden></div>
+                <div id="myReportsList" class="reports-list">
+                    <div class="empty-state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        <h3>Your reports will appear here</h3>
+                        <p>Report history will load when the service is connected.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-card admin-section" id="adminSection" hidden>
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">AUTHORIZED ACCESS</span>
+                        <h2>Grievance Management</h2>
+                        <p>Review reports and update their resolution status.</p>
+                    </div>
+                    <span class="heading-icon"><i class="fa-solid fa-user-shield"></i></span>
+                </div>
+                <div class="admin-toolbar">
+                    <label for="statusFilter">Filter by status</label>
+                    <select id="statusFilter">
+                        <option value="ALL">All reports</option>
+                        <option value="SUBMITTED">Submitted</option>
+                        <option value="UNDER_REVIEW">Under review</option>
+                        <option value="RESOLVED">Resolved</option>
+                        <option value="CLOSED">Closed</option>
+                    </select>
+                    <button type="button" id="refreshAdminBtn" class="button button-secondary">
+                        <i class="fa-solid fa-rotate"></i> Refresh
+                    </button>
+                </div>
+                <div id="adminReportsMessage" class="inline-message" role="status" hidden></div>
+                <div id="adminReportsList" class="reports-list">
+                    <div class="empty-state">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Grievance reports</h3>
+                        <p>Authorized reports will appear here.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <div><i class="fa-solid fa-lock"></i> SafeSpeak · CampusConnect</div>
+                <p>For immediate danger, contact campus authorities directly.</p>
+            </footer>
+        </main>
+    </div>
+    <script src="safespeak.js"></script>
+</body>
+</html>

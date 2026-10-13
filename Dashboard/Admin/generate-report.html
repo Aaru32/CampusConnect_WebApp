@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Generate Report</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="generate-report.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                class="header-button"
+                id="backButton"
+                title="Go Back"
+                aria-label="Go Back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="page-heading">
+                <h1>Generate Report</h1>
+                <p>Generate administrative reports</p>
+            </div>
+
+        </div>
+
+        <div class="header-right">
+
+            <!-- Global Notification -->
+            <div id="globalNotificationPlaceholder"></div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="report-content">
+
+        <!-- =================================================
+             REPORT TYPE
+        ================================================== -->
+
+        <section class="report-section">
+
+            <div class="section-heading">
+                <div class="section-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+                    <h2>Report Type</h2>
+                    <p>Select the type of report you want to generate.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label for="reportType">
+                    Report Type
+                    <span>*</span>
+                </label>
+
+                <select id="reportType">
+                    <option value="">Select Report Type</option>
+                    <option value="students">Student Report</option>
+                    <option value="faculty">Faculty Report</option>
+                    <option value="attendance">Attendance Report</option>
+                    <option value="academic-performance">
+                        Academic Performance Report
+                    </option>
+                    <option value="examinations">Examination Report</option>
+                    <option value="results">Result Report</option>
+                    <option value="admissions">Admission Report</option>
+                    <option value="fees">Fee Report</option>
+                    <option value="library">Library Report</option>
+                    <option value="hostel">Hostel Report</option>
+                    <option value="events">Event Report</option>
+                    <option value="certificates">Certificate Report</option>
+                    <option value="notices">Notice Report</option>
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
+
+        <section class="report-section" id="filtersSection">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+
+                <div>
+                    <h2>Report Filters</h2>
+                    <p>Choose the information that should be included.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <!-- Academic Session -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="academic-session"
+                >
+                    <label for="academicSession">
+                        Academic Session
+                    </label>
+
+                    <select id="academicSession">
+                        <option value="">All Sessions</option>
+                    </select>
+                </div>
+
+
+                <!-- Department -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="department"
+                >
+                    <label for="department">
+                        Department / Branch
+                    </label>
+
+                    <select id="department">
+                        <option value="">All Departments</option>
+                    </select>
+                </div>
+
+
+                <!-- Semester -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="semester"
+                >
+                    <label for="semester">
+                        Semester
+                    </label>
+
+                    <select id="semester">
+                        <option value="">All Semesters</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                    </select>
+                </div>
+
+
+                <!-- Subject -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="subject"
+                >
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <select id="subject">
+                        <option value="">All Subjects</option>
+                    </select>
+                </div>
+
+
+                <!-- Status -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="status"
+                >
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select id="status">
+                        <option value="">All Statuses</option>
+                    </select>
+                </div>
+
+
+                <!-- Date From -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="date-range"
+                >
+                    <label for="dateFrom">
+                        From Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dateFrom"
+                    >
+                </div>
+
+
+                <!-- Date To -->
+                <div
+                    class="form-group filter-field"
+                    data-filter="date-range"
+                >
+                    <label for="dateTo">
+                        To Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dateTo"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             OUTPUT FORMAT
+        ================================================== -->
+
+        <section class="report-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-file-export"></i>
+                </div>
+
+                <div>
+                    <h2>Output Format</h2>
+                    <p>Choose the format for your generated report.</p>
+                </div>
+
+            </div>
+
+
+            <div class="format-options">
+
+                <label class="format-card">
+
+                    <input
+                        type="radio"
+                        name="format"
+                        value="pdf"
+                        checked
+                    >
+
+                    <span class="format-content">
+                        <i class="fa-solid fa-file-pdf"></i>
+
+                        <span>
+                            <strong>PDF</strong>
+                            <small>Printable report</small>
+                        </span>
+                    </span>
+
+                </label>
+
+
+                <label class="format-card">
+
+                    <input
+                        type="radio"
+                        name="format"
+                        value="excel"
+                    >
+
+                    <span class="format-content">
+                        <i class="fa-solid fa-file-excel"></i>
+
+                        <span>
+                            <strong>Excel</strong>
+                            <small>Spreadsheet format</small>
+                        </span>
+                    </span>
+
+                </label>
+
+
+                <label class="format-card">
+
+                    <input
+                        type="radio"
+                        name="format"
+                        value="csv"
+                    >
+
+                    <span class="format-content">
+                        <i class="fa-solid fa-file-csv"></i>
+
+                        <span>
+                            <strong>CSV</strong>
+                            <small>Data format</small>
+                        </span>
+                    </span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REPORT SUMMARY
+        ================================================== -->
+
+        <section class="report-section summary-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <div>
+                    <h2>Report Summary</h2>
+                    <p>Review your selections before generating.</p>
+                </div>
+
+            </div>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-item">
+                    <span>Report Type</span>
+                    <strong id="summaryReportType">Not selected</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Academic Session</span>
+                    <strong id="summarySession">All Sessions</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Department</span>
+                    <strong id="summaryDepartment">All Departments</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Semester</span>
+                    <strong id="summarySemester">All Semesters</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Date Range</span>
+                    <strong id="summaryDateRange">All Dates</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Format</span>
+                    <strong id="summaryFormat">PDF</strong>
+                </div>
+
+            </div>
+
+
+            <div class="record-count">
+
+                <i class="fa-solid fa-database"></i>
+
+                <div>
+                    <span>Records Found</span>
+                    <strong id="recordCount">—</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <div class="page-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="resetButton"
+            >
+                <i class="fa-solid fa-rotate-left"></i>
+                Reset Filters
+            </button>
+
+            <button
+                type="button"
+                class="preview-button"
+                id="previewButton"
+            >
+                <i class="fa-solid fa-eye"></i>
+                Preview Report
+            </button>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="generateButton"
+            >
+                <i class="fa-solid fa-file-export"></i>
+                Generate Report
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
+
+        <div
+            id="reportMessage"
+            class="report-message"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- =================================================
+             RECENT REPORTS
+        ================================================== -->
+
+        <section class="report-section recent-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+
+                <div>
+                    <h2>Recently Generated Reports</h2>
+                    <p>Your recently generated reports will appear here.</p>
+                </div>
+
+            </div>
+
+
+            <div
+                id="recentReports"
+                class="recent-reports"
+            >
+
+                <div class="empty-state">
+
+                    <i class="fa-solid fa-file-circle-xmark"></i>
+
+                    <h3>No Reports Available</h3>
+
+                    <p>
+                        Recently generated reports will appear here
+                        when report history is available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PREVIEW MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="previewModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="preview-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="previewTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="previewTitle">Report Preview</h2>
+                    <p>Review the selected report parameters.</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closePreview"
+                    aria-label="Close Preview"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div
+                class="modal-body"
+                id="previewContent"
+            ></div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelPreview"
+                >
+                    Close
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="generateFromPreview"
+                >
+                    <i class="fa-solid fa-file-export"></i>
+                    Generate Report
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="generate-report.js"></script>
+
+</body>
+</html>

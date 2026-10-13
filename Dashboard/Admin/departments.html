@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CampusConnect Admin Department Management"
+    >
+
+    <title>Department Management | CampusConnect</title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         DEPARTMENT STYLESHEET
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="departments.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         GLOBAL HEADER
+    ====================================================== -->
+
+    <header class="global-header">
+
+        <div class="header-left">
+
+            <!-- Back -->
+
+            <button
+                type="button"
+                class="back-button"
+                id="backButton"
+                aria-label="Go back"
+                title="Go back"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </button>
+
+
+            <!-- Page Heading -->
+
+            <div class="page-heading">
+
+                <h1>
+                    Department
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <!-- Refresh -->
+
+            <button
+                type="button"
+                class="header-icon-button"
+                id="refreshButton"
+                aria-label="Refresh departments"
+                title="Refresh"
+            >
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+            </button>
+
+
+            <!-- Notifications -->
+
+            <button
+                type="button"
+                class="header-icon-button notification-button"
+                id="notificationButton"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span
+                    class="notification-dot"
+                    id="notificationDot"
+                    hidden
+                ></span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ====================================================== -->
+
+    <main class="department-page">
+
+
+        <!-- =================================================
+             HERO SECTION
+        ================================================== -->
+
+        <section class="department-hero">
+
+            <div class="hero-image-wrapper">
+
+                <!--
+                    Generic campus image.
+                    Replace this local asset with any generic
+                    campus-building image you choose.
+
+                    IMPORTANT:
+                    This must NOT be an image of a specific
+                    college or Government Women's Polytechnic.
+                -->
+
+                <img
+                    src="../../Assets/department-campus.jpg"
+                    alt="Generic college campus building"
+                    class="hero-image"
+                    id="departmentHeroImage"
+                >
+
+            </div>
+
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="hero-content">
+
+                <div class="hero-icon">
+
+                    <i class="fa-solid fa-building-columns"></i>
+
+                </div>
+
+
+                <div class="hero-text">
+
+                    <h1>
+                        Department Management
+                    </h1>
+
+                    <p>
+                        Manage departments, courses, faculty
+                        and academic programs.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+
+        <section class="department-content">
+
+
+            <!-- =================================================
+                 OVERVIEW CARDS
+            ================================================== -->
+
+            <section
+                class="overview-section"
+                aria-labelledby="overviewHeading"
+            >
+
+                <div class="section-heading-row">
+
+                    <div>
+
+                        <h2 id="overviewHeading">
+                            Overview
+                        </h2>
+
+                        <p>
+                            Department management summary
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-grid">
+
+
+                    <!-- Total Departments -->
+
+                    <article class="overview-card">
+
+                        <div class="overview-card-icon blue">
+
+                            <i class="fa-solid fa-building"></i>
+
+                        </div>
+
+                        <div class="overview-card-content">
+
+                            <span>
+                                Total Departments
+                            </span>
+
+                            <strong id="totalDepartments">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Active Departments -->
+
+                    <article class="overview-card">
+
+                        <div class="overview-card-icon green">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <div class="overview-card-content">
+
+                            <span>
+                                Active Departments
+                            </span>
+
+                            <strong id="activeDepartments">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Courses -->
+
+                    <article class="overview-card">
+
+                        <div class="overview-card-icon purple">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                        </div>
+
+                        <div class="overview-card-content">
+
+                            <span>
+                                Total Courses / Programs
+                            </span>
+
+                            <strong id="totalCourses">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Faculty -->
+
+                    <article class="overview-card">
+
+                        <div class="overview-card-icon orange">
+
+                            <i class="fa-solid fa-chalkboard-user"></i>
+
+                        </div>
+
+                        <div class="overview-card-content">
+
+                            <span>
+                                Total Faculty Assigned
+                            </span>
+
+                            <strong id="totalFaculty">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DEPARTMENT MANAGEMENT CARD
+            ================================================== -->
+
+            <section class="department-management-card">
+
+
+                <!-- =================================================
+                     TOOLBAR
+                ================================================== -->
+
+                <div class="department-toolbar">
+
+
+                    <div class="toolbar-title">
+
+                        <h2>
+                            Departments
+                        </h2>
+
+                        <p>
+                            View and manage academic departments
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="addDepartmentButton"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        <span>
+                            Add Department
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SEARCH & FILTERS
+                ================================================== -->
+
+                <div class="department-filters">
+
+
+                    <!-- Search -->
+
+                    <div class="search-field">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="departmentSearch"
+                            placeholder="Search department name or code..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Status -->
+
+                    <div class="filter-field">
+
+                        <label
+                            for="statusFilter"
+                            class="sr-only"
+                        >
+                            Filter by status
+                        </label>
+
+                        <select
+                            id="statusFilter"
+                        >
+
+                            <option value="">
+                                All Status
+                            </option>
+
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Session -->
+
+                    <div class="filter-field">
+
+                        <label
+                            for="sessionFilter"
+                            class="sr-only"
+                        >
+                            Filter by academic session
+                        </label>
+
+                        <select
+                            id="sessionFilter"
+                        >
+
+                            <option value="">
+                                All Sessions
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Program -->
+
+                    <div class="filter-field">
+
+                        <label
+                            for="programFilter"
+                            class="sr-only"
+                        >
+                            Filter by program
+                        </label>
+
+                        <select
+                            id="programFilter"
+                        >
+
+                            <option value="">
+                                All Programs
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Clear -->
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="clearFiltersButton"
+                    >
+
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                        <span>
+                            Clear
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TABLE
+                ================================================== -->
+
+                <div class="department-table-wrapper">
+
+                    <table class="department-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">
+                                    Department
+                                </th>
+
+                                <th scope="col">
+                                    Code
+                                </th>
+
+                                <th scope="col">
+                                    Head of Department
+                                </th>
+
+                                <th scope="col">
+                                    Courses
+                                </th>
+
+                                <th scope="col">
+                                    Faculty
+                                </th>
+
+                                <th scope="col">
+                                    Status
+                                </th>
+
+                                <th
+                                    scope="col"
+                                    class="action-column"
+                                >
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="departmentTableBody"
+                        >
+
+                            <!--
+                                JavaScript will render department
+                                records here.
+
+                                No fake/default department data
+                                is placed in the HTML.
+                            -->
+
+                        </tbody>
+
+                    </table>
+
+
+                    <!-- =================================================
+                         EMPTY STATE
+                    ================================================== -->
+
+                    <div
+                        class="department-empty-state"
+                        id="departmentEmptyState"
+                        hidden
+                    >
+
+                        <div class="empty-state-icon">
+
+                            <i class="fa-solid fa-building"></i>
+
+                        </div>
+
+                        <h3>
+                            No departments available
+                        </h3>
+
+                        <p>
+                            Department data will appear here
+                            once departments are added.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="primary-button empty-state-button"
+                            id="emptyStateAddButton"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Add Department
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SEARCH EMPTY STATE
+                    ================================================== -->
+
+                    <div
+                        class="department-search-empty"
+                        id="departmentSearchEmpty"
+                        hidden
+                    >
+
+                        <div class="empty-state-icon">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                        </div>
+
+                        <h3>
+                            No matching departments
+                        </h3>
+
+                        <p>
+                            Try changing your search or filters.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="searchEmptyClearButton"
+                        >
+
+                            Clear Filters
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TABLE FOOTER
+                ================================================== -->
+
+                <div class="table-footer">
+
+                    <span
+                        id="departmentResultCount"
+                    >
+                        —
+                    </span>
+
+
+                    <div class="pagination">
+
+                        <button
+                            type="button"
+                            class="pagination-button"
+                            id="previousPageButton"
+                            aria-label="Previous page"
+                            disabled
+                        >
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </button>
+
+
+                        <span
+                            class="pagination-current"
+                            id="currentPageNumber"
+                        >
+                            1
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="pagination-button"
+                            id="nextPageButton"
+                            aria-label="Next page"
+                            disabled
+                        >
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         ADD DEPARTMENT MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-backdrop"
+        id="departmentModal"
+        hidden
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="departmentModalTitle"
+        >
+
+
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="departmentModalTitle">
+                        Add Department
+                    </h2>
+
+                    <p>
+                        Enter department information
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-button"
+                    id="closeDepartmentModalButton"
+                    aria-label="Close"
+                    title="Close"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Modal Body -->
+
+            <form
+                id="departmentForm"
+                class="department-form"
+                novalidate
+            >
+
+
+                <!-- Department Name -->
+
+                <div class="form-group">
+
+                    <label for="departmentName">
+                        Department Name
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="departmentName"
+                        name="departmentName"
+                        placeholder="e.g. Computer Science & Engineering"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <small
+                        class="form-error"
+                        id="departmentNameError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- Department Code -->
+
+                <div class="form-group">
+
+                    <label for="departmentCode">
+                        Department Code
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="departmentCode"
+                        name="departmentCode"
+                        placeholder="e.g. CSE"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <small
+                        class="form-error"
+                        id="departmentCodeError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- Description -->
+
+                <div class="form-group full-width">
+
+                    <label for="departmentDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="departmentDescription"
+                        name="departmentDescription"
+                        rows="4"
+                        placeholder="Enter department description..."
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- HOD -->
+
+                <div class="form-group">
+
+                    <label for="departmentHod">
+                        Head of Department
+                        <span>*</span>
+                    </label>
+
+                    <select
+                        id="departmentHod"
+                        name="departmentHod"
+                        required
+                    >
+
+                        <option value="">
+                            Select HOD
+                        </option>
+
+                    </select>
+
+                    <small
+                        class="form-error"
+                        id="departmentHodError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- Programs -->
+
+                <div class="form-group">
+
+                    <label for="departmentPrograms">
+                        Associated Courses / Programs
+                        <span>*</span>
+                    </label>
+
+                    <select
+                        id="departmentPrograms"
+                        name="departmentPrograms"
+                        required
+                    >
+
+                        <option value="">
+                            Select course / program
+                        </option>
+
+                    </select>
+
+                    <small
+                        class="form-error"
+                        id="departmentProgramsError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- Status -->
+
+                <div class="form-group">
+
+                    <label for="departmentStatus">
+                        Status
+                        <span>*</span>
+                    </label>
+
+                    <select
+                        id="departmentStatus"
+                        name="departmentStatus"
+                        required
+                    >
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Form Actions -->
+
+                <div class="modal-form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelDepartmentButton"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="saveDepartmentButton"
+                    >
+
+                        <i class="fa-solid fa-check"></i>
+
+                        <span>
+                            Save Department
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NOTIFICATION PANEL
+    ====================================================== -->
+
+    <div
+        class="notification-panel"
+        id="notificationPanel"
+        hidden
+    >
+
+        <div class="notification-panel-header">
+
+            <h3>
+                Notifications
+            </h3>
+
+            <button
+                type="button"
+                id="closeNotificationPanel"
+                aria-label="Close notifications"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div
+            class="notification-panel-body"
+            id="notificationPanelBody"
+        >
+
+            <div class="notification-empty">
+
+                <i class="fa-regular fa-bell-slash"></i>
+
+                <p>
+                    No new notifications
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        class="toast-container"
+        id="toastContainer"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="departments.js"
+        defer
+    ></script>
+
+</body>
+
+</html>

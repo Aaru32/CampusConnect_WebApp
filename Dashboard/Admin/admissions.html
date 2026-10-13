@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="CampusConnect Admin Admissions Management"
+    >
+
+    <title>Admissions | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="admissions.css">
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <div class="header-left">
+
+        <button
+            type="button"
+            id="backBtn"
+            class="back-btn"
+            aria-label="Go back"
+            title="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <h1>Admissions</h1>
+
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            id="refreshBtn"
+            class="header-btn"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+
+        <button
+            type="button"
+            id="notificationBtn"
+            class="header-btn notification-btn"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+            <i class="fa-regular fa-bell"></i>
+            <span id="notificationDot" hidden></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="admissions-page">
+
+    <!-- OVERVIEW -->
+
+    <section class="overview-section">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-label">Overview</span>
+                <h2>Admission Overview</h2>
+                <p>Monitor applications and admission status.</p>
+            </div>
+
+            <button
+                type="button"
+                id="addAdmissionBtn"
+                class="btn btn-primary"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Add Admission
+            </button>
+        </div>
+
+
+        <div class="overview-grid">
+
+            <button
+                type="button"
+                class="overview-card"
+                data-view="applications"
+            >
+                <span class="overview-icon blue">
+                    <i class="fa-solid fa-file-lines"></i>
+                </span>
+
+                <span class="overview-content">
+                    <small>Total Applications</small>
+                    <strong id="totalApplications">—</strong>
+                    <em>View applications</em>
+                </span>
+
+                <i class="fa-solid fa-chevron-right card-arrow"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="overview-card"
+                data-view="pending"
+            >
+                <span class="overview-icon orange">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                </span>
+
+                <span class="overview-content">
+                    <small>Pending Review</small>
+                    <strong id="pendingApplications">—</strong>
+                    <em>Review pending applications</em>
+                </span>
+
+                <i class="fa-solid fa-chevron-right card-arrow"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="overview-card"
+                data-view="approved"
+            >
+                <span class="overview-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </span>
+
+                <span class="overview-content">
+                    <small>Approved</small>
+                    <strong id="approvedApplications">—</strong>
+                    <em>View approved admissions</em>
+                </span>
+
+                <i class="fa-solid fa-chevron-right card-arrow"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="overview-card"
+                data-view="rejected"
+            >
+                <span class="overview-icon red">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </span>
+
+                <span class="overview-content">
+                    <small>Rejected</small>
+                    <strong id="rejectedApplications">—</strong>
+                    <em>View rejected applications</em>
+                </span>
+
+                <i class="fa-solid fa-chevron-right card-arrow"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMISSION OPERATIONS -->
+
+    <section class="section">
+
+        <div class="section-heading compact">
+
+            <div>
+                <span class="section-label">Admissions</span>
+                <h2>Admission Operations</h2>
+                <p>Open the area you want to manage.</p>
+            </div>
+
+        </div>
+
+
+        <div class="operations-grid">
+
+            <button
+                type="button"
+                class="operation-card"
+                data-view="applications"
+            >
+                <span class="operation-icon blue">
+                    <i class="fa-solid fa-list-check"></i>
+                </span>
+
+                <span>
+                    <strong>Applications</strong>
+                    <small>Search and manage all admission applications.</small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="operation-card"
+                data-view="pending"
+            >
+                <span class="operation-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </span>
+
+                <span>
+                    <strong>Pending Review</strong>
+                    <small>Review applications waiting for action.</small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="operation-card"
+                data-view="approved"
+            >
+                <span class="operation-icon green">
+                    <i class="fa-solid fa-user-check"></i>
+                </span>
+
+                <span>
+                    <strong>Approved Admissions</strong>
+                    <small>View students whose admission is approved.</small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="operation-card"
+                data-view="rejected"
+            >
+                <span class="operation-icon red">
+                    <i class="fa-solid fa-user-xmark"></i>
+                </span>
+
+                <span>
+                    <strong>Rejected Applications</strong>
+                    <small>View applications that were rejected.</small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPLICATION DIRECTORY -->
+
+    <section
+        id="applicationSection"
+        class="section application-section"
+        hidden
+    >
+
+        <div class="section-heading">
+
+            <div>
+                <span
+                    id="applicationLabel"
+                    class="section-label"
+                >
+                    Applications
+                </span>
+
+                <h2 id="applicationTitle">
+                    Admission Applications
+                </h2>
+
+                <p id="applicationDescription">
+                    Search and manage admission records.
+                </p>
+            </div>
+
+            <div class="heading-actions">
+
+                <button
+                    type="button"
+                    id="exportBtn"
+                    class="btn btn-secondary"
+                >
+                    <i class="fa-solid fa-file-export"></i>
+                    Export
+                </button>
+
+                <button
+                    type="button"
+                    id="closeApplicationsBtn"
+                    class="btn btn-secondary"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-panel">
+
+            <div class="search-field">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="applicationSearch"
+                    placeholder="Search name, application ID or course..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select id="sessionFilter">
+                <option value="">All Sessions</option>
+            </select>
+
+
+            <select id="courseFilter">
+                <option value="">All Courses</option>
+            </select>
+
+
+            <select id="statusFilter">
+
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+
+            </select>
+
+
+            <button
+                type="button"
+                id="clearFiltersBtn"
+                class="clear-btn"
+            >
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                Clear
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table class="application-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Applicant</th>
+                        <th>Course</th>
+                        <th>Session</th>
+                        <th>Applied On</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="applicationTableBody"></tbody>
+
+            </table>
+
+
+            <div
+                id="emptyState"
+                class="empty-state"
+                hidden
+            >
+                <div class="empty-icon">
+                    <i class="fa-solid fa-file-circle-xmark"></i>
+                </div>
+
+                <h3>No admission records found</h3>
+
+                <p id="emptyStateText">
+                    There are no admission records matching the current filters.
+                </p>
+
+                <button
+                    type="button"
+                    id="emptyAddBtn"
+                    class="btn btn-primary"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Admission
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMISSION FORM -->
+
+    <section
+        id="formSection"
+        class="section form-section"
+        hidden
+    >
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    Admission Form
+                </span>
+
+                <h2 id="formTitle">
+                    Add Admission
+                </h2>
+
+                <p>
+                    Enter the applicant's admission information.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                id="closeFormBtn"
+                class="btn btn-secondary"
+            >
+                <i class="fa-solid fa-xmark"></i>
+                Close
+            </button>
+
+        </div>
+
+
+        <form id="admissionForm" class="admission-form">
+
+            <input
+                type="hidden"
+                id="editingId"
+            >
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="applicantName">
+                        Applicant Name <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicantName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="applicationId">
+                        Application ID <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicationId"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="course">
+                        Course <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="e.g. Diploma in CSE"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="session">
+                        Academic Session <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="session"
+                        placeholder="e.g. 2026-27"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="appliedDate">
+                        Applied On
+                    </label>
+
+                    <input
+                        type="date"
+                        id="appliedDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="admissionStatus">
+                        Status
+                    </label>
+
+                    <select id="admissionStatus">
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    id="cancelFormBtn"
+                    class="btn btn-secondary"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    <span id="saveButtonText">Save Admission</span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- DETAILS -->
+
+    <section
+        id="detailsSection"
+        class="section details-section"
+        hidden
+    >
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    Admission Details
+                </span>
+
+                <h2 id="detailsName">Applicant</h2>
+
+                <p id="detailsApplicationId">Application ID</p>
+            </div>
+
+            <div class="heading-actions">
+
+                <button
+                    type="button"
+                    id="editAdmissionBtn"
+                    class="btn btn-primary"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    Edit
+                </button>
+
+                <button
+                    type="button"
+                    id="closeDetailsBtn"
+                    class="btn btn-secondary"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="details-card">
+
+            <div class="detail-item">
+                <span>Applicant</span>
+                <strong id="detailApplicant">—</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Application ID</span>
+                <strong id="detailId">—</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Course</span>
+                <strong id="detailCourse">—</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Academic Session</span>
+                <strong id="detailSession">—</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Applied On</span>
+                <strong id="detailDate">—</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Status</span>
+                <strong id="detailStatus">—</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- NOTIFICATION PANEL -->
+
+<div
+    id="notificationPanel"
+    class="notification-panel"
+    hidden
+>
+
+    <div class="notification-header">
+
+        <strong>Notifications</strong>
+
+        <button
+            type="button"
+            id="closeNotificationBtn"
+            aria-label="Close notifications"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <div class="notification-empty">
+
+        <i class="fa-regular fa-bell-slash"></i>
+
+        <p>No new notifications.</p>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite"
+></div>
+
+
+<script src="admissions.js"></script>
+
+</body>
+</html>

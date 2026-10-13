@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="feedback.css">
+</head>
+
+<body>
+
+<div class="feedback-page">
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <button
+                class="back-btn"
+                id="backButton"
+                type="button"
+                aria-label="Go back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>Feedback</h1>
+
+                <p>
+                    Share problems, suggestions and campus experiences
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="feedback-container">
+
+        <!-- INTRODUCTION -->
+
+        <section class="intro-card">
+
+            <div class="intro-icon">
+                <i class="fa-solid fa-comments"></i>
+            </div>
+
+            <div class="intro-content">
+
+                <h2>Campus Feedback</h2>
+
+                <p>
+                    See issues reported by students, support problems
+                    you agree with, and track how the college is responding.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <div>
+
+                    <span
+                        class="stat-value"
+                        id="totalFeedback"
+                    >
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        Published Feedback
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                </div>
+
+                <div>
+
+                    <span
+                        class="stat-value"
+                        id="activeFeedback"
+                    >
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        Active Issues
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <span
+                        class="stat-value"
+                        id="resolvedFeedback"
+                    >
+                        0
+                    </span>
+
+                    <span class="stat-label">
+                        Resolved
+                    </span>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <section
+            class="action-section"
+            id="studentActions"
+        >
+
+            <button
+                class="primary-action"
+                id="openFeedbackButton"
+                type="button"
+            >
+
+                <span class="action-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </span>
+
+                <span class="action-content">
+
+                    <strong>
+                        Report a Problem
+                    </strong>
+
+                    <small>
+                        Share an issue or suggestion
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right action-arrow"></i>
+
+            </button>
+
+
+            <button
+                class="secondary-action"
+                id="myFeedbackButton"
+                type="button"
+            >
+
+                <span class="action-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </span>
+
+                <span class="action-content">
+
+                    <strong>
+                        My Feedback
+                    </strong>
+
+                    <small>
+                        Track the feedback you submitted
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right action-arrow"></i>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             FEEDBACK FORM
+        ================================================== -->
+
+        <section
+            class="form-card"
+            id="feedbackFormSection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Report a Problem</h2>
+
+                    <p>
+                        Your submission may be visible to other students,
+                        faculty and authorized administrators.
+                    </p>
+
+                </div>
+
+                <button
+                    class="close-form"
+                    id="closeFeedbackButton"
+                    type="button"
+                    aria-label="Close form"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="feedbackForm">
+
+                <div class="form-group">
+
+                    <label for="feedbackTitle">
+                        Problem Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="feedbackTitle"
+                        maxlength="150"
+                        placeholder="Enter a clear title for the problem"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="feedbackCategory">
+                        Category
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        <select
+                            id="feedbackCategory"
+                            required
+                        >
+
+                            <option value="">
+                                Loading categories...
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="feedbackDescription">
+                        Describe the Problem
+                    </label>
+
+                    <textarea
+                        id="feedbackDescription"
+                        rows="6"
+                        maxlength="1000"
+                        placeholder="Describe the problem clearly..."
+                        required
+                    ></textarea>
+
+                    <div class="character-count">
+                        <span id="descriptionCount">0</span>/1000
+                    </div>
+
+                </div>
+
+
+                <div class="form-notice">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>
+                        Do not include private information about yourself
+                        or another person in your submission.
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="submit-btn"
+                    type="submit"
+                    id="submitFeedbackButton"
+                >
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Submit Feedback
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
+
+        <section class="feedback-board">
+
+            <div class="board-heading">
+
+                <div>
+
+                    <h2>Campus Issues</h2>
+
+                    <p>
+                        Problems and suggestions shared by the campus community
+                    </p>
+
+                </div>
+
+                <button
+                    class="refresh-btn"
+                    id="refreshButton"
+                    type="button"
+                    aria-label="Refresh feedback"
+                >
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="filter-bar">
+
+                <div class="search-wrapper">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="feedbackSearch"
+                        placeholder="Search problems..."
+                    >
+
+                </div>
+
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Submitted">
+                        Submitted
+                    </option>
+
+                    <option value="Under Review">
+                        Under Review
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Resolved">
+                        Resolved
+                    </option>
+
+                </select>
+
+
+                <select id="sortFilter">
+
+                    <option value="recent">
+                        Most Recent
+                    </option>
+
+                    <option value="popular">
+                        Most Supported
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="feedbackList"
+                class="feedback-list"
+            >
+
+                <div class="loading-state">
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    <span>
+                        Loading feedback...
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MY FEEDBACK
+        ================================================== -->
+
+        <section
+            class="my-feedback-section"
+            id="myFeedbackSection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>My Feedback</h2>
+
+                    <p>
+                        Track the problems and suggestions you submitted
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                id="myFeedbackList"
+                class="feedback-list"
+            ></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+>
+
+    <i
+        class="toast-icon"
+        id="toastIcon"
+    ></i>
+
+    <div>
+
+        <strong id="toastTitle"></strong>
+
+        <span id="toastMessage"></span>
+
+    </div>
+
+</div>
+
+
+<script src="feedback.js"></script>
+
+</body>
+</html>

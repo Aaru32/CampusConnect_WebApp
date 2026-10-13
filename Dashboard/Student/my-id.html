@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My ID | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link
+        rel="stylesheet"
+        href="my-id.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- ================================
+         PAGE HEADER
+    ================================= -->
+
+    <header class="page-header">
+
+        <button
+    class="back-btn"
+    onclick="goBack()">
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+</button>
+
+        <div>
+            <h1>My ID</h1>
+            <p>Digital Identity Card</p>
+        </div>
+
+    </header>
+
+
+    <main class="id-area">
+
+
+        <!-- ================================
+             ACTUAL ID CARD
+        ================================= -->
+
+        <div id="idCard" class="id-card">
+
+
+            <!-- ================================
+                 COLLEGE HEADER
+            ================================= -->
+
+            <div class="college-header">
+
+                <div class="government">
+                    GOVERNMENT
+                </div>
+
+                <div class="college-title">
+                    WOMEN'S POLYTECHNIC, PATNA
+                </div>
+
+                <div class="department">
+                    (DEPARTMENT OF SCIENCE TECHNOLOGY &amp;
+                    TECHNICAL EDUCATION, GOVT. OF BIHAR)
+                </div>
+
+            </div>
+
+
+            <!-- ================================
+                 LOGO | PHOTO | ID
+            ================================= -->
+
+            <div class="identity-top">
+
+
+                <!-- LEFT : COLLEGE LOGO -->
+
+                <div class="logo-section">
+
+                    <img
+                        src="../Assets/college-logo.jpg"
+                        class="fixed-logo"
+                        alt="College Logo">
+
+                </div>
+
+
+                <!-- CENTER : STUDENT PHOTO -->
+
+                <div class="photo-section">
+
+                    <div class="photo-frame">
+
+                        <img
+                            id="studentPhoto"
+                            src="../Assets/default-student.png"
+                            alt="Student Photo">
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT : ID + BLOOD -->
+
+                <div class="id-section">
+
+
+                    <!-- ID No. -->
+
+                    <div class="id-number-title">
+                        ID No. :
+                    </div>
+
+                    <div
+                        id="studentId"
+                        class="id-number">
+                        GWP/01
+                    </div>
+
+
+                    <!-- BLOOD GROUP -->
+
+                   <div class="blood-section">
+
+    <span class="blood-drop">💧</span>
+
+    <span class="blood-colon">:</span>
+
+    <span
+        id="bloodGroup"
+        class="blood-value">
+        
+    </span>
+
+</div>
+                </div>
+
+            </div>
+
+
+            <!-- ================================
+                 STUDENT NAME
+            ================================= -->
+
+            <div
+                id="studentName"
+                class="student-name">
+                —
+            </div>
+
+
+            <!-- ================================
+                 STUDENT DETAILS
+                 EACH DETAIL ON SEPARATE LINE
+            ================================= -->
+
+            <div class="student-details">
+
+
+                <!-- FATHER NAME -->
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        F. Name 
+                    </span>
+
+                    <span
+                        id="fatherName"
+                        class="detail-value">
+                        :
+                    </span>
+
+                </div>
+
+
+                <!-- DOB -->
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        D.O.B. 
+                    </span>
+
+                    <span
+                        id="dob"
+                        class="detail-value">
+                        :
+                    </span>
+
+                </div>
+
+
+                <!-- ROLL NUMBER -->
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Roll NO. 
+                    </span>
+
+                    <span
+                        id="rollNumber"
+                        class="detail-value">
+                        :
+                    </span>
+
+                </div>
+
+
+                <!-- REGISTRATION -->
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Reg.No. 
+                    </span>
+
+                    <span
+                        id="registrationNumber"
+                        class="detail-value">
+                        :
+                    </span>
+
+                </div>
+
+
+                <!-- BRANCH -->
+
+                <div class="detail-row branch-row">
+
+                    <span class="branch-label">
+                        Branch 
+                    </span>
+
+                    <span
+                        id="branch"
+                        class="branch-value">
+                        :
+                    </span>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Address 
+                    </span>
+
+                    <span
+                        id="address"
+                        class="detail-value">
+                        :
+                    </span>
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Mob.No. 
+                    </span>
+
+                    <span
+                        id="mobile"
+                        class="detail-value">
+                        :
+                    </span>
+
+                </div>
+                <!-- ================================
+                     SESSION + PRINCIPAL
+                ================================= -->
+
+                <div class="bottom-row">
+
+
+                    <!-- LEFT : SESSION -->
+
+                    <div class="session-row">
+
+                        <span class="session-label">
+                            Session 
+                        </span>
+
+                        <span
+                            id="session"
+                            class="session-value">
+                            :
+                        </span>
+
+                    </div>
+
+
+                    <!-- RIGHT : SIGNATURE + PRINCIPAL -->
+
+                    <div class="principal-section">
+
+                        <div class="principal-signature">
+
+                            <img
+                                src="../Assets/principal-signature.png"
+                                alt="Principal Signature">
+
+                        </div>
+
+                        <div class="principal-text">
+                            Principal
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================================
+             DOWNLOAD BUTTON
+        ================================= -->
+
+        <button
+            id="downloadBtn"
+            class="download-btn"
+            onclick="downloadID()">
+
+            ↓ &nbsp; Download ID
+
+        </button>
+
+
+    </main>
+
+</div>
+
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+</script>
+
+<script src="my-id.js"></script>
+
+</body>
+
+</html>

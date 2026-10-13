@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CampusConnect - My Doubts"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <title>CampusConnect | My Doubts</title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         MY DOUBTS CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="my-doubts.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         GLOBAL NOTIFICATION PLACEHOLDER
+    ====================================================== -->
+
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                class="back-btn"
+                id="backBtn"
+                aria-label="Go back"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </button>
+
+
+            <div class="header-title">
+
+                <h1>My Doubts</h1>
+
+                <p>
+                    Ask questions and connect with your teachers
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="page-content">
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <section class="intro-section">
+
+            <div class="intro-content">
+
+                <div class="intro-icon">
+
+                    <i class="fa-solid fa-circle-question"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Academic Doubts</h2>
+
+                    <p>
+                        Submit your academic questions to the
+                        appropriate teacher and track their responses.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-btn"
+                id="askDoubtBtn"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+                Ask New Doubt
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATUS SUMMARY
+        ================================================== -->
+
+        <section class="status-grid">
+
+
+            <button
+                type="button"
+                class="status-card active"
+                data-status="all"
+            >
+
+                <span class="status-icon all">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                </span>
+
+                <span class="status-info">
+
+                    <strong id="allCount">0</strong>
+
+                    <small>All Doubts</small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="status-card"
+                data-status="pending"
+            >
+
+                <span class="status-icon pending">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                </span>
+
+                <span class="status-info">
+
+                    <strong id="pendingCount">0</strong>
+
+                    <small>Pending</small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="status-card"
+                data-status="in-progress"
+            >
+
+                <span class="status-icon progress">
+
+                    <i class="fa-solid fa-spinner"></i>
+
+                </span>
+
+                <span class="status-info">
+
+                    <strong id="progressCount">0</strong>
+
+                    <small>In Progress</small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="status-card"
+                data-status="answered"
+            >
+
+                <span class="status-icon answered">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </span>
+
+                <span class="status-info">
+
+                    <strong id="answeredCount">0</strong>
+
+                    <small>Answered</small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="status-card"
+                data-status="resolved"
+            >
+
+                <span class="status-icon resolved">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </span>
+
+                <span class="status-info">
+
+                    <strong id="resolvedCount">0</strong>
+
+                    <small>Resolved</small>
+
+                </span>
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DOUBT LIST SECTION
+        ================================================== -->
+
+        <section class="doubts-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2 id="doubtListTitle">
+                        My Doubts
+                    </h2>
+
+                    <p id="doubtListDescription">
+                        Your submitted academic questions
+                    </p>
+
+                </div>
+
+
+                <div class="list-controls">
+
+                    <label
+                        class="search-box"
+                        for="doubtSearch"
+                    >
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="doubtSearch"
+                            placeholder="Search doubts..."
+                            autocomplete="off"
+                        >
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DOUBTS CONTAINER
+            ================================================== -->
+
+            <div
+                class="doubts-list"
+                id="doubtsList"
+            >
+
+                <!-- Loaded dynamically -->
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         ASK DOUBT MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="doubtModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="doubtModalTitle"
+        >
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="doubtModalTitle">
+                        Ask a New Doubt
+                    </h2>
+
+                    <p>
+                        Send your question to the relevant teacher.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeDoubtModal"
+                    aria-label="Close"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <form
+                id="doubtForm"
+                novalidate
+            >
+
+
+                <!-- =============================================
+                     SUBJECT
+                ============================================== -->
+
+                <div class="form-group">
+
+                    <label for="subjectSelect">
+
+                        Subject
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="subjectSelect"
+                        name="subjectId"
+                        required
+                    >
+
+                        <option value="">
+                            Select Subject
+                        </option>
+
+                    </select>
+
+
+                    <small
+                        class="field-error"
+                        id="subjectError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     TEACHER
+                ============================================== -->
+
+                <div class="form-group">
+
+                    <label for="teacherSelect">
+
+                        Teacher
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="teacherSelect"
+                        name="teacherId"
+                        required
+                        disabled
+                    >
+
+                        <option value="">
+                            Select a subject first
+                        </option>
+
+                    </select>
+
+
+                    <small
+                        class="field-error"
+                        id="teacherError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     QUESTION
+                ============================================== -->
+
+                <div class="form-group">
+
+                    <label for="questionInput">
+
+                        Your Question
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <textarea
+                        id="questionInput"
+                        name="question"
+                        rows="6"
+                        maxlength="2000"
+                        placeholder="Write your academic doubt here..."
+                        required
+                    ></textarea>
+
+
+                    <div class="textarea-footer">
+
+                        <small>
+                            Maximum 2000 characters
+                        </small>
+
+                        <span id="questionCounter">
+                            0 / 2000
+                        </span>
+
+                    </div>
+
+
+                    <small
+                        class="field-error"
+                        id="questionError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     ATTACHMENT
+                ============================================== -->
+
+                <div class="form-group">
+
+                    <label for="attachmentInput">
+
+                        Attachment
+
+                        <span class="optional">
+                            Optional
+                        </span>
+
+                    </label>
+
+
+                    <div class="file-input-wrapper">
+
+                        <input
+                            type="file"
+                            id="attachmentInput"
+                            name="attachment"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                        >
+
+
+                        <label
+                            for="attachmentInput"
+                            class="file-label"
+                        >
+
+                            <i class="fa-solid fa-paperclip"></i>
+
+                            <span id="fileName">
+                                Attach image or PDF
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <small class="file-help">
+
+                        Supported: JPG, JPEG, PNG, PDF
+
+                    </small>
+
+
+                    <small
+                        class="field-error"
+                        id="attachmentError"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     FORM ACTIONS
+                ============================================== -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="cancelDoubtBtn"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="submitDoubtBtn"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Submit Doubt
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DOUBT DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="detailsModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal details-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="detailsTitle"
+        >
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="detailsTitle">
+                        Doubt Details
+                    </h2>
+
+                    <p id="detailsSubtitle">
+                        Academic doubt conversation
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeDetailsModal"
+                    aria-label="Close"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="doubt-details-content"
+                id="doubtDetailsContent"
+            >
+
+                <!-- Loaded dynamically -->
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="my-doubts.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="CampusConnect - Digital campus platform for Government Women's Polytechnic, Patna.">
+
+    <meta name="robots" content="index, follow">
+
+    <title>CampusConnect | Government Women's Polytechnic</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP UTILITY BAR
+========================================================= -->
+
+<div class="top-bar">
+    <div class="container top-bar-inner">
+
+        <div class="top-left">
+            <span>
+                <i class="fa-solid fa-building-columns"></i>
+                Government Women's Polytechnic
+            </span>
+
+            <span>
+                <i class="fa-solid fa-location-dot"></i>
+                Patna, Bihar
+            </span>
+        </div>
+
+        <div class="top-right">
+            <a href="#notices">Notices</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+
+            <button
+                class="top-login-btn"
+                id="topLoginButton"
+                type="button">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =========================================================
+     MAIN HEADER
+========================================================= -->
+
+<header class="main-header" id="mainHeader">
+
+    <div class="container header-inner">
+
+        <a href="#home"
+           class="brand"
+           aria-label="CampusConnect Home">
+
+            <div class="brand-logo">
+                <img
+                    src="../Assets/college-logo.jpg"
+                    alt="Government Women's Polytechnic Logo"
+                    onerror="this.style.display='none'; this.parentElement.classList.add('logo-fallback');"
+                >
+
+                <i class="fa-solid fa-building-columns logo-fallback-icon"></i>
+            </div>
+
+            <div class="brand-text">
+                <strong>CampusConnect</strong>
+                <span>Government Women's Polytechnic</span>
+            </div>
+
+        </a>
+
+
+        <nav class="desktop-nav" id="desktopNav" aria-label="Main navigation">
+
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#academics" class="nav-link">Academics</a>
+            <a href="#notices" class="nav-link">Notices</a>
+            <a href="#news" class="nav-link">News</a>
+            <a href="#events" class="nav-link">Events</a>
+            <a href="#research" class="nav-link">Research</a>
+            <a href="#contact" class="nav-link">Contact</a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <button
+                class="header-icon-btn"
+                id="searchButton"
+                type="button"
+                aria-label="Search CampusConnect">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+            <button
+                class="header-login-btn"
+                id="headerLoginButton"
+                type="button">
+
+                Login
+
+            </button>
+
+            <button
+                class="mobile-menu-btn"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <nav
+        class="mobile-nav"
+        id="mobileNav"
+        aria-label="Mobile navigation">
+
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#academics">Academics</a>
+        <a href="#notices">Notices</a>
+        <a href="#news">News</a>
+        <a href="#events">Events</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+
+        <button id="mobileLoginButton" type="button">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<div
+    class="search-overlay"
+    id="searchOverlay"
+    aria-hidden="true">
+
+    <div class="search-box"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="searchTitle">
+
+        <button
+            class="search-close"
+            id="searchCloseButton"
+            type="button"
+            aria-label="Close search">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="search-heading">
+            <span>CampusConnect Search</span>
+
+            <h2 id="searchTitle">
+                What are you looking for?
+            </h2>
+        </div>
+
+        <div class="search-input-wrapper">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="siteSearchInput"
+                placeholder="Search notices, news, events, academics..."
+                autocomplete="off"
+                maxlength="100"
+            >
+
+        </div>
+
+        <div
+            class="search-results"
+            id="searchResults">
+
+            <p class="search-empty">
+                Start typing to search the campus website.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-slider" id="heroSlider">
+
+        <article class="hero-slide active">
+
+            <img
+                src="../Assets/campus-main.jpg"
+                alt="Campus main building"
+                class="hero-image"
+                onerror="this.style.display='none';"
+            >
+
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+
+                <div class="hero-label">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Welcome to CampusConnect
+                </div>
+
+                <h1>
+                    Connecting
+                    <span>Campus, Learning</span>
+                    & Opportunity
+                </h1>
+
+                <p>
+                    A unified digital campus platform for students,
+                    faculty and institutional services.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-btn"
+                        id="heroLoginButton"
+                        type="button">
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Access CampusConnect
+
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        data-scroll="#about"
+                        type="button">
+
+                        Discover More
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="hero-slide">
+
+            <img
+                src="../Assets/campus-life.jpg"
+                alt="Students on campus"
+                class="hero-image"
+                onerror="this.style.display='none';"
+            >
+
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+
+                <div class="hero-label">
+                    <i class="fa-solid fa-users"></i>
+                    One Connected Campus
+                </div>
+
+                <h1>
+                    Learn.
+                    <span>Collaborate.</span>
+                    Grow.
+                </h1>
+
+                <p>
+                    Bring academic information, campus activities,
+                    communication and student services together.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-btn"
+                        data-scroll="#academics"
+                        type="button">
+
+                        Explore Academics
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        data-scroll="#events"
+                        type="button">
+
+                        Campus Events
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="hero-slide">
+
+            <img
+                src="../Assets/students.jpg"
+                alt="Students learning"
+                class="hero-image"
+                onerror="this.style.display='none';"
+            >
+
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+
+                <div class="hero-label">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    Digital Campus
+                </div>
+
+                <h1>
+                    Everything
+                    <span>Campus</span>
+                    in One Place
+                </h1>
+
+                <p>
+                    Designed to support modern academic and
+                    administrative workflows.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-btn"
+                        data-scroll="#services"
+                        type="button">
+
+                        Explore Services
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <button
+        class="hero-control hero-prev"
+        id="heroPrev"
+        type="button"
+        aria-label="Previous slide">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+    </button>
+
+    <button
+        class="hero-control hero-next"
+        id="heroNext"
+        type="button"
+        aria-label="Next slide">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+
+    <div class="hero-dots" id="heroDots">
+
+        <button
+            class="hero-dot active"
+            data-slide="0"
+            type="button"
+            aria-label="Go to slide 1">
+        </button>
+
+        <button
+            class="hero-dot"
+            data-slide="1"
+            type="button"
+            aria-label="Go to slide 2">
+        </button>
+
+        <button
+            class="hero-dot"
+            data-slide="2"
+            type="button"
+            aria-label="Go to slide 3">
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK ACCESS
+========================================================= -->
+
+<section class="quick-access" aria-label="Quick access">
+
+    <div class="container quick-grid">
+
+        <button
+            class="quick-card"
+            data-scroll="#notices"
+            type="button">
+
+            <span class="quick-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </span>
+
+            <span>
+                <strong>Important Notices</strong>
+                <small>Campus announcements</small>
+            </span>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+
+        <button
+            class="quick-card"
+            data-scroll="#academics"
+            type="button">
+
+            <span class="quick-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </span>
+
+            <span>
+                <strong>Academics</strong>
+                <small>Programs & departments</small>
+            </span>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+
+        <button
+            class="quick-card"
+            data-scroll="#events"
+            type="button">
+
+            <span class="quick-icon">
+                <i class="fa-solid fa-calendar-days"></i>
+            </span>
+
+            <span>
+                <strong>Campus Events</strong>
+                <small>What's happening</small>
+            </span>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+
+        <button
+            class="quick-card"
+            data-scroll="#services"
+            type="button">
+
+            <span class="quick-icon">
+                <i class="fa-solid fa-grid-2"></i>
+            </span>
+
+            <span>
+                <strong>Campus Services</strong>
+                <small>Digital services</small>
+            </span>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section about-section" id="about">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-eyebrow">
+                About CampusConnect
+            </span>
+
+            <h2>
+                A Digital Gateway to Campus Life
+            </h2>
+
+            <p>
+                CampusConnect is designed to bring the academic,
+                administrative and student experience together
+                through one connected platform.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-image">
+
+                <img
+                    src="../Assets/campus-building.jpg"
+                    alt="Government Women's Polytechnic campus"
+                    onerror="this.style.display='none';"
+                >
+
+                <div class="image-caption">
+                    <strong>Government Women's Polytechnic</strong>
+                    <span>Patna, Bihar</span>
+                </div>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <span class="small-label">
+                    OUR DIGITAL CAMPUS
+                </span>
+
+                <h3>
+                    One platform for the complete
+                    campus journey.
+                </h3>
+
+                <p>
+                    CampusConnect provides a structured digital
+                    environment through which students, faculty
+                    and authorized institutional users can access
+                    campus information and services.
+                </p>
+
+                <p>
+                    The platform is designed to evolve with the
+                    institution and connect to institutional
+                    APIs and databases as services become available.
+                </p>
+
+                <button
+                    class="outline-btn"
+                    data-scroll="#services"
+                    type="button">
+
+                    Explore Campus Services
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ACADEMICS
+========================================================= -->
+
+<section class="section academics-section" id="academics">
+
+    <div class="container">
+
+        <div class="section-heading split-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    Academic Environment
+                </span>
+
+                <h2>
+                    Academic Units
+                </h2>
+            </div>
+
+            <p>
+                Explore public academic information through
+                CampusConnect.
+            </p>
+
+        </div>
+
+
+        <div class="academic-grid">
+
+            <button
+                class="academic-card"
+                type="button"
+                data-feature="Departments"
+                data-public-action="departments">
+
+                <div class="academic-card-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <h3>Departments</h3>
+
+                <p>
+                    Explore academic departments and their
+                    associated public information.
+                </p>
+
+                <span>
+                    Explore
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </button>
+
+
+            <button
+                class="academic-card"
+                type="button"
+                data-feature="Courses & Subjects"
+                data-public-action="courses">
+
+                <div class="academic-card-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <h3>Courses & Subjects</h3>
+
+                <p>
+                    Explore public academic course and
+                    subject information.
+                </p>
+
+                <span>
+                    Explore
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </button>
+
+
+            <button
+                class="academic-card"
+                type="button"
+                data-feature="Examinations"
+                data-public-action="examinations">
+
+                <div class="academic-card-icon">
+                    <i class="fa-solid fa-file-pen"></i>
+                </div>
+
+                <h3>Examinations</h3>
+
+                <p>
+                    View publicly available examination
+                    information and announcements.
+                </p>
+
+                <span>
+                    Explore
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </button>
+
+
+            <button
+                class="academic-card"
+                type="button"
+                data-feature="Digital Learning"
+                data-public-action="learning">
+
+                <div class="academic-card-icon">
+                    <i class="fa-solid fa-laptop"></i>
+                </div>
+
+                <h3>Digital Learning</h3>
+
+                <p>
+                    Access public information about digital
+                    learning resources.
+                </p>
+
+                <span>
+                    Explore
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NOTICES
+========================================================= -->
+
+<section class="section notices-section" id="notices">
+
+    <div class="container">
+
+        <div class="section-heading split-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    Stay Updated
+                </span>
+
+                <h2>Important Notices</h2>
+            </div>
+
+            <button
+                class="text-btn"
+                id="viewAllNotices"
+                type="button">
+
+                View All
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="notice-layout">
+
+            <div class="notice-feature">
+
+                <span class="notice-feature-label">
+                    CAMPUSCONNECT
+                </span>
+
+                <h3 id="noticeFeatureTitle">
+                    Institutional announcements
+                    will appear here.
+                </h3>
+
+                <p id="noticeFeatureDescription">
+                    Public notices published by the institution
+                    can be displayed automatically through the
+                    CampusConnect public API.
+                </p>
+
+                <div class="empty-state-small"
+                     id="noticeFeatureStatus">
+
+                    <i class="fa-regular fa-bell-slash"></i>
+
+                    <span>
+                        No active notices available.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="notice-list"
+                 id="noticeList"
+                 aria-live="polite">
+
+                <div class="empty-state">
+                    <i class="fa-regular fa-folder-open"></i>
+
+                    <h3>No notices available</h3>
+
+                    <p>
+                        New public institutional notices will
+                        appear here when published.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEWS
+========================================================= -->
+
+<section class="section news-section" id="news">
+
+    <div class="container">
+
+        <div class="section-heading split-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    CampusConnect Updates
+                </span>
+
+                <h2>Latest News</h2>
+            </div>
+
+            <button
+                class="text-btn"
+                id="viewAllNews"
+                type="button">
+
+                View All
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="news-grid"
+            id="newsGrid"
+            aria-live="polite">
+
+            <div class="empty-state">
+                <i class="fa-regular fa-newspaper"></i>
+
+                <h3>No news available</h3>
+
+                <p>
+                    Published campus news will appear here.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EVENTS
+========================================================= -->
+
+<section class="section events-section" id="events">
+
+    <div class="container">
+
+        <div class="section-heading split-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    Campus Calendar
+                </span>
+
+                <h2>Upcoming Events</h2>
+            </div>
+
+            <button
+                class="text-btn"
+                id="viewAllEvents"
+                type="button">
+
+                View All
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="events-layout">
+
+            <div class="event-calendar-card">
+
+                <div class="calendar-icon">
+                    <i class="fa-regular fa-calendar-days"></i>
+                </div>
+
+                <h3>
+                    Campus Events
+                </h3>
+
+                <p>
+                    Seminars, workshops, cultural activities,
+                    academic events and institutional programs.
+                </p>
+
+                <button
+                    class="outline-btn"
+                    id="calendarButton"
+                    type="button">
+
+                    Open Calendar
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="event-list"
+                id="eventList"
+                aria-live="polite">
+
+                <div class="empty-state">
+                    <i class="fa-regular fa-calendar-xmark"></i>
+
+                    <h3>
+                        No upcoming events
+                    </h3>
+
+                    <p>
+                        Upcoming public campus events will
+                        appear here when published.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RESEARCH
+========================================================= -->
+
+<section class="section research-section" id="research">
+
+    <div class="container research-grid">
+
+        <div class="research-image">
+
+            <img
+                src="../Assets/research-1.jpg"
+                alt="Research and innovation"
+                onerror="this.style.display='none';"
+            >
+
+            <div class="research-image-overlay">
+                <i class="fa-solid fa-lightbulb"></i>
+                Innovation & Learning
+            </div>
+
+        </div>
+
+
+        <div class="research-content">
+
+            <span class="section-eyebrow">
+                Innovation
+            </span>
+
+            <h2>
+                Research, Projects & Innovation
+            </h2>
+
+            <p>
+                A dedicated space for institutional projects,
+                student innovations, technical activities and
+                research-related updates.
+            </p>
+
+            <div
+                class="research-points"
+                id="researchPoints">
+
+                <div>
+                    <i class="fa-solid fa-microscope"></i>
+
+                    <span>
+                        <strong>Projects</strong>
+                        <small>
+                            Academic and technical projects
+                        </small>
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    <span>
+                        <strong>Innovation</strong>
+                        <small>
+                            Student ideas and initiatives
+                        </small>
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-code"></i>
+
+                    <span>
+                        <strong>Technology</strong>
+                        <small>
+                            Technology-focused activities
+                        </small>
+                    </span>
+                </div>
+
+            </div>
+
+            <button
+                class="primary-btn dark-btn"
+                id="researchButton"
+                type="button">
+
+                Explore Innovation
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section class="section services-section" id="services">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-eyebrow">
+                One Connected Platform
+            </span>
+
+            <h2>
+                Campus Services
+            </h2>
+
+            <p>
+                Public visitors can learn about available
+                services. Personal student and faculty data
+                requires authentication.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+            <button
+                class="service-card"
+                data-service="Library"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-book-open"></i>
+                <strong>Library</strong>
+                <span>Library services</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Attendance"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-calendar-check"></i>
+                <strong>Attendance</strong>
+                <span>Attendance information</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Results"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                <strong>Results</strong>
+                <span>Academic results</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Certificates"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-certificate"></i>
+                <strong>Certificates</strong>
+                <span>Certificate services</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Hostel"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-bed"></i>
+                <strong>Hostel</strong>
+                <span>Hostel information</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Fees"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <strong>Fees</strong>
+                <span>Fee services</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Training & Placement"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-briefcase"></i>
+                <strong>Training & Placement</strong>
+                <span>Career opportunities</span>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                data-service="Feedback"
+                data-requires-auth="true"
+                type="button">
+
+                <i class="fa-solid fa-comments"></i>
+                <strong>Feedback</strong>
+                <span>Share your feedback</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY
+========================================================= -->
+
+<section class="section gallery-section" id="gallery">
+
+    <div class="container">
+
+        <div class="section-heading split-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    Campus Life
+                </span>
+
+                <h2>Photo Gallery</h2>
+            </div>
+
+            <button
+                class="text-btn"
+                id="viewGalleryButton"
+                type="button">
+
+                View Gallery
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="gallery-grid"
+            id="galleryGrid">
+
+            <button
+                class="gallery-item large"
+                data-gallery-image="../Assets/gallery-1.jpg"
+                data-gallery-title="Campus Life"
+                type="button">
+
+                <img
+                    src="../Assets/gallery-1.jpg"
+                    alt="Campus life"
+                    onerror="this.style.display='none';"
+                >
+
+                <span>
+                    Campus Life
+                    <i class="fa-solid fa-expand"></i>
+                </span>
+
+            </button>
+
+
+            <button
+                class="gallery-item"
+                data-gallery-image="../Assets/gallery-2.jpg"
+                data-gallery-title="Academic Environment"
+                type="button">
+
+                <img
+                    src="../Assets/gallery-2.jpg"
+                    alt="Academic environment"
+                    onerror="this.style.display='none';"
+                >
+
+                <span>
+                    Academics
+                    <i class="fa-solid fa-expand"></i>
+                </span>
+
+            </button>
+
+
+            <button
+                class="gallery-item"
+                data-gallery-image="../Assets/gallery-3.jpg"
+                data-gallery-title="Student Activities"
+                type="button">
+
+                <img
+                    src="../Assets/gallery-3.jpg"
+                    alt="Student activities"
+                    onerror="this.style.display='none';"
+                >
+
+                <span>
+                    Activities
+                    <i class="fa-solid fa-expand"></i>
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section class="section faq-section" id="faq">
+
+    <div class="container faq-grid">
+
+        <div class="faq-intro">
+
+            <span class="section-eyebrow">
+                Need Help?
+            </span>
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+            <p>
+                Find answers to common questions about
+                CampusConnect and campus services.
+            </p>
+
+            <button
+                class="outline-btn"
+                data-scroll="#contact"
+                type="button">
+
+                Contact Us
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="faq-list"
+            id="faqList">
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false">
+
+                    <span>
+                        What is CampusConnect?
+                    </span>
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        CampusConnect is a digital campus platform
+                        designed to connect students, faculty and
+                        institutional services.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false">
+
+                    <span>
+                        Who can access CampusConnect?
+                    </span>
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Public campus information is available to
+                        visitors. Authorized students, faculty and
+                        administrators can access protected services
+                        after authentication.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false">
+
+                    <span>
+                        Can I access my student services here?
+                    </span>
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Yes. After authentication, available
+                        services depend on the user's role and
+                        permissions assigned by the institution.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false">
+
+                    <span>
+                        Will the information come from the database?
+                    </span>
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Public notices, news, events, academic
+                        information and other supported content can
+                        be supplied by the CampusConnect backend APIs.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="contact-section" id="contact">
+
+    <div class="container contact-inner">
+
+        <div>
+
+            <span class="section-eyebrow light">
+                Government Women's Polytechnic
+            </span>
+
+            <h2>
+                Stay Connected With Your Campus
+            </h2>
+
+            <p>
+                Access CampusConnect to continue to your
+                personalized campus dashboard.
+            </p>
+
+        </div>
+
+
+        <button
+            class="white-btn"
+            id="contactLoginButton"
+            type="button">
+
+            Login to CampusConnect
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <img
+                    src="../Assets/college-logo.jpg"
+                    alt="College Logo"
+                    onerror="this.style.display='none';"
+                >
+
+                <i class="fa-solid fa-building-columns"></i>
+
+            </div>
+
+            <h3>CampusConnect</h3>
+
+            <p>
+                Digital campus platform for
+                Government Women's Polytechnic.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Campus</h4>
+
+            <a href="#about">About</a>
+            <a href="#academics">Academics</a>
+            <a href="#notices">Notices</a>
+            <a href="#events">Events</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Information</h4>
+
+            <a href="#news">News</a>
+            <a href="#research">Innovation</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>CampusConnect</h4>
+
+            <button
+                class="footer-link-btn"
+                id="footerLoginButton"
+                type="button">
+                Login
+            </button>
+
+            <button
+                class="footer-link-btn"
+                id="footerRegisterButton"
+                type="button">
+                Create Account
+            </button>
+
+            <a href="#home">
+                Back to Top
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-inner">
+
+            <span>
+                © <span id="currentYear"></span>
+                CampusConnect. All rights reserved.
+            </span>
+
+            <span>
+                Government Women's Polytechnic
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     GENERAL MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="generalModal"
+    aria-hidden="true">
+
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle">
+
+        <button
+            class="modal-close"
+            data-close-modal
+            type="button"
+            aria-label="Close dialog">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="modal-icon">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <h2 id="modalTitle">
+            Information
+        </h2>
+
+        <div id="modalMessage">
+            Information will appear here.
+        </div>
+
+        <button
+            class="primary-btn modal-action"
+            data-close-modal
+            type="button">
+
+            Close
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     GALLERY MODAL
+========================================================= -->
+
+<div
+    class="gallery-modal"
+    id="galleryModal"
+    aria-hidden="true">
+
+    <div
+        class="gallery-modal-backdrop"
+        data-close-gallery>
+    </div>
+
+    <div
+        class="gallery-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="galleryModalTitle">
+
+        <button
+            class="gallery-modal-close"
+            data-close-gallery
+            type="button"
+            aria-label="Close gallery">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <img
+            id="galleryModalImage"
+            src=""
+            alt=""
+        >
+
+        <h3 id="galleryModalTitle">
+            Campus Gallery
+        </h3>
+
+    </div>
+
+</div>
+
+
+<script src="home.js" defer></script>
+
+</body>
+</html>

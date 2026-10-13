@@ -1,0 +1,822 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Login | CampusConnect</title>
+
+
+<!-- =====================================================
+     FONT AWESOME
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+
+<!-- =====================================================
+     LOGIN CSS
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="login.css"
+>
+
+</head><body><!-- =====================================================
+     LOGIN PAGE
+====================================================== -->
+
+<main class="login-page">
+
+    <div class="login-container">
+
+
+        <!-- =================================================
+             LEFT SECTION
+        ================================================== -->
+
+        <section class="welcome-section">
+
+
+            <!-- BRAND -->
+
+            <div class="brand">
+
+                <div class="brand-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        CampusConnect
+                    </h1>
+
+                    <p>
+                        Government Women Polytechnic, Patna
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- WELCOME CONTENT -->
+
+            <div class="welcome-content">
+
+                <div class="welcome-icon">
+
+                    <i class="fa-solid fa-building-columns"></i>
+
+                </div>
+
+
+                <h2>
+                    Welcome Back!
+                </h2>
+
+
+                <p>
+                    Login to access your CampusConnect account
+                    and manage your academic activities.
+                </p>
+
+
+                <!-- FEATURES -->
+
+                <div class="welcome-features">
+
+
+                    <div>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            Secure Access
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-user-check"></i>
+
+                        <span>
+                            Role Based Login
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-laptop"></i>
+
+                        <span>
+                            Easy to Use
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RIGHT SECTION
+        ================================================== -->
+
+        <section class="login-section">
+
+
+            <!-- LOGIN HEADER -->
+
+            <div class="login-header">
+
+                <h2>
+                    Login to Your Account
+                </h2>
+
+                <p>
+                    Select your role and enter your credentials
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ROLE SELECTION
+            ================================================== -->
+
+            <div class="role-title">
+
+                <span>
+                    Login As
+                </span>
+
+                <span class="required">
+                    *
+                </span>
+
+            </div>
+
+
+            <div class="role-container">
+
+
+                <!-- STUDENT -->
+
+                <button
+                    type="button"
+                    class="role-card active"
+                    data-role="student"
+                >
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Student
+                    </span>
+
+                </button>
+
+
+                <!-- FACULTY -->
+
+                <button
+                    type="button"
+                    class="role-card"
+                    data-role="faculty"
+                >
+
+                    <i class="fa-solid fa-chalkboard-user"></i>
+
+                    <span>
+                        Faculty
+                    </span>
+
+                </button>
+
+
+                <!-- ADMIN -->
+
+                <button
+                    type="button"
+                    class="role-card"
+                    data-role="admin"
+                >
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                    <span>
+                        Admin
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 LOGIN FORM
+            ================================================== -->
+
+            <form
+                id="loginForm"
+                novalidate
+            >
+
+
+                <!-- EMAIL / USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+
+                         Email
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-user"></i>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your email address"
+                            autocomplete="username"
+                        >
+
+                    </div>
+
+
+                    <small
+                        class="error-message"
+                        id="usernameError"
+                    ></small>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+
+                        Password
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                            aria-label="Show password"
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <small
+                        class="error-message"
+                        id="passwordError"
+                    ></small>
+
+                </div>
+
+
+                <!-- =================================================
+                     LOGIN OPTIONS
+                ================================================== -->
+
+                <div class="login-options">
+
+
+                    <!-- REMEMBER ME -->
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <!-- FORGOT PASSWORD -->
+
+                    <a
+                        href="#"
+                        id="forgotPassword"
+                    >
+                        Forgot Password?
+                    </a>
+
+
+                </div>
+
+
+                <!-- LOGIN MESSAGE -->
+
+                <div
+                    class="login-message"
+                    id="loginMessage"
+                ></div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+
+                    <span>
+                        Login
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+            </form>
+
+
+            <!-- =================================================
+                 REGISTER
+            ================================================== -->
+
+            <div class="register-link">
+
+                <span>
+                    Don't have an account?
+                </span>
+
+
+                <a href="register.html">
+                    Create Account
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="login-footer">
+
+                <div class="footer-links">
+
+
+                    <!-- HOME -->
+
+                    <a href="home.html">
+                        Home
+                    </a>
+
+
+                    <span>
+                        |
+                    </span>
+
+
+                    <!-- PRIVACY -->
+
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+
+
+                    <span>
+                        |
+                    </span>
+
+
+                    <!-- TERMS -->
+
+                    <a href="#">
+                        Terms &amp; Conditions
+                    </a>
+
+
+                </div>
+
+
+                <p>
+                    © 2026 CampusConnect. All Rights Reserved.
+                </p>
+
+
+            </footer>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     FORGOT PASSWORD MODAL
+====================================================== -->
+
+<div
+    id="forgotPasswordModal"
+    class="forgot-modal"
+    aria-hidden="true"
+>
+
+
+    <!-- MODAL OVERLAY -->
+
+    <div class="forgot-modal-overlay"></div>
+
+
+    <!-- MODAL CONTENT -->
+
+    <div
+        class="forgot-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="forgotPasswordTitle"
+    >
+
+
+        <!-- =================================================
+             CLOSE BUTTON
+        ================================================== -->
+
+        <button
+            type="button"
+            id="closeForgotPassword"
+            class="forgot-modal-close"
+            aria-label="Close"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <!-- =================================================
+             MODAL HEADER
+        ================================================== -->
+
+        <div class="forgot-modal-header">
+
+
+            <div class="forgot-modal-icon">
+
+                <i class="fa-solid fa-lock"></i>
+
+            </div>
+
+
+            <h3 id="forgotPasswordTitle">
+                Forgot Password?
+            </h3>
+
+
+            <p>
+                Reset your CampusConnect account password.
+            </p>
+
+
+        </div>
+
+
+        <!-- =================================================
+             MODAL MESSAGE
+        ================================================== -->
+
+        <div
+            id="forgotPasswordMessage"
+            class="forgot-password-message"
+        ></div>
+
+
+        <!-- =================================================
+             STEP 1 - VERIFY EMAIL
+        ================================================== -->
+
+        <div
+            id="forgotEmailStep"
+            class="forgot-step"
+        >
+
+
+            <div class="forgot-form-group">
+
+
+                <label for="forgotEmail">
+                    Registered Email Address
+                </label>
+
+
+                <div class="forgot-input-box">
+
+                    <i class="fa-regular fa-envelope"></i>
+
+
+                    <input
+                        type="email"
+                        id="forgotEmail"
+                        placeholder="Enter your registered email"
+                        autocomplete="email"
+                    >
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- VERIFY ACCOUNT -->
+
+            <button
+                type="button"
+                id="verifyForgotEmail"
+                class="forgot-action-button"
+            >
+
+                <span>
+                    Verify Account
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================================
+             STEP 2 - NEW PASSWORD
+        ================================================== -->
+
+        <div
+            id="forgotPasswordStep"
+            class="forgot-step"
+            style="display: none;"
+        >
+
+
+            <!-- VERIFIED ACCOUNT -->
+
+            <div class="forgot-account-info">
+
+
+                <i class="fa-solid fa-circle-check"></i>
+
+
+                <div>
+
+                    <strong>
+                        Account Verified
+                    </strong>
+
+
+                    <span id="verifiedForgotEmail"></span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- NEW PASSWORD -->
+
+            <div class="forgot-form-group">
+
+
+                <label for="newForgotPassword">
+                    New Password
+                </label>
+
+
+                <div class="forgot-input-box">
+
+
+                    <i class="fa-solid fa-lock"></i>
+
+
+                    <input
+                        type="password"
+                        id="newForgotPassword"
+                        placeholder="Enter new password"
+                        autocomplete="new-password"
+                    >
+
+
+                    <button
+                        type="button"
+                        class="forgot-password-toggle"
+                        data-target="newForgotPassword"
+                        aria-label="Show password"
+                    >
+
+                        <i class="fa-regular fa-eye"></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="forgot-form-group">
+
+
+                <label for="confirmForgotPassword">
+                    Confirm New Password
+                </label>
+
+
+                <div class="forgot-input-box">
+
+
+                    <i class="fa-solid fa-lock"></i>
+
+
+                    <input
+                        type="password"
+                        id="confirmForgotPassword"
+                        placeholder="Confirm new password"
+                        autocomplete="new-password"
+                    >
+
+
+                    <button
+                        type="button"
+                        class="forgot-password-toggle"
+                        data-target="confirmForgotPassword"
+                        aria-label="Show password"
+                    >
+
+                        <i class="fa-regular fa-eye"></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RESET PASSWORD -->
+
+            <button
+                type="button"
+                id="resetPasswordButton"
+                class="forgot-action-button"
+            >
+
+                <span>
+                    Reset Password
+                </span>
+
+                <i class="fa-solid fa-check"></i>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================================
+             SUCCESS STEP
+        ================================================== -->
+
+        <div
+            id="forgotSuccessStep"
+            class="forgot-success-step"
+            style="display: none;"
+        >
+
+
+            <!-- SUCCESS ICON -->
+
+            <div class="forgot-success-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+
+            <h4>
+                Password Reset Successful
+            </h4>
+
+
+            <p>
+                Your password has been updated successfully.
+                You can now log in with your new password.
+            </p>
+
+
+            <!-- CONTINUE -->
+
+            <button
+                type="button"
+                id="continueToLogin"
+                class="forgot-action-button"
+            >
+
+                Continue to Login
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================================
+             MODAL FOOTER
+        ================================================== -->
+
+        <div class="forgot-modal-footer">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Your password reset is handled securely
+            within your CampusConnect account.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LOGIN JAVASCRIPT
+====================================================== -->
+
+<script src="login.js"></script>
+
+</body></html>

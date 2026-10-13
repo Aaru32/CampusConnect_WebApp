@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1557a6">
+
+    <title>CampusConnect | Chat</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+
+<div class="chat-app">
+
+    <!-- HEADER -->
+    <header class="chat-header">
+
+        <button
+            class="back-button"
+            id="backButton"
+            type="button"
+            aria-label="Go back"
+            title="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>CampusConnect Chat</h1>
+            <p>College group conversations</p>
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="chat-main">
+
+        <!-- GROUP LIST -->
+        <section
+            class="groups-panel"
+            aria-label="Chat groups"
+        >
+
+            <div class="panel-heading">
+                <h2>Groups</h2>
+
+                <button
+                    class="icon-button"
+                    id="searchToggle"
+                    type="button"
+                    aria-label="Search groups and messages"
+                    title="Search"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+
+            <!-- SEARCH -->
+            <form
+                class="search-box"
+                id="searchForm"
+                hidden
+            >
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search messages..."
+                    aria-label="Search messages"
+                >
+
+                <button
+                    type="submit"
+                    aria-label="Submit search"
+                    title="Search"
+                >
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+
+            <!-- SEARCH RESULTS -->
+            <div
+                id="searchResults"
+                class="search-results"
+                hidden
+            ></div>
+
+
+            <!-- GROUP LIST -->
+            <div
+                class="group-list"
+                id="groupList"
+            >
+
+                <div
+                    class="empty-state"
+                    id="groupsEmptyState"
+                >
+                    <i class="fa-solid fa-people-group"></i>
+
+                    <h3>No groups available</h3>
+
+                    <p>
+                        Groups will appear here when they are
+                        available to your account.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONVERSATION -->
+        <section
+            class="conversation-panel"
+            aria-label="Group conversation"
+        >
+
+            <!-- EMPTY CONVERSATION -->
+            <div
+                class="conversation-empty"
+                id="conversationEmpty"
+            >
+
+                <div class="empty-chat-icon">
+                    <i class="fa-solid fa-comment"></i>
+                </div>
+
+                <h2>CampusConnect Chat</h2>
+
+                <p>
+                    Select a group to view its conversation.
+                </p>
+
+            </div>
+
+
+            <!-- ACTIVE CONVERSATION -->
+            <div
+                class="conversation-content"
+                id="conversationContent"
+                hidden
+            >
+
+                <!-- CONVERSATION HEADER -->
+                <header class="conversation-header">
+
+                    <button
+                        class="icon-button mobile-back-button"
+                        id="groupsBackButton"
+                        type="button"
+                        aria-label="Back to groups"
+                        title="Back to groups"
+                    >
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+
+                    <div class="conversation-group-icon">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+
+                    <div class="conversation-group-info">
+                        <h2 id="groupTitle">Group</h2>
+
+                        <p id="groupDescription">
+                            Group conversation
+                        </p>
+                    </div>
+
+                </header>
+
+
+                <!-- MESSAGES -->
+                <div
+                    class="messages-area"
+                    id="messagesArea"
+                    aria-live="polite"
+                    aria-label="Messages"
+                >
+
+                    <div class="empty-state">
+                        <i class="fa-regular fa-comment"></i>
+
+                        <h3>No messages to display</h3>
+
+                        <p>
+                            Messages will appear here when
+                            they are loaded from the server.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- REPLY PREVIEW -->
+                <div
+                    class="reply-preview"
+                    id="replyPreview"
+                    hidden
+                >
+
+                    <div class="reply-preview-content">
+                        <strong>Replying to</strong>
+                        <p id="replyText"></p>
+                    </div>
+
+                    <button
+                        class="icon-button"
+                        id="cancelReplyButton"
+                        type="button"
+                        aria-label="Cancel reply"
+                        title="Cancel reply"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- ATTACHMENT PREVIEW -->
+                <div
+                    class="attachment-preview"
+                    id="attachmentPreview"
+                    hidden
+                >
+
+                    <div class="attachment-info">
+                        <i class="fa-solid fa-paperclip"></i>
+                        <span id="attachmentName"></span>
+                    </div>
+
+                    <button
+                        class="icon-button"
+                        id="removeAttachmentButton"
+                        type="button"
+                        aria-label="Remove attachment"
+                        title="Remove attachment"
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- MESSAGE COMPOSER -->
+                <form
+                    class="message-composer"
+                    id="messageForm"
+                >
+
+                    <input
+                        type="file"
+                        id="attachmentInput"
+                        hidden
+                        accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt"
+                    >
+
+                    <button
+                        class="icon-button attachment-button"
+                        id="attachmentButton"
+                        type="button"
+                        aria-label="Attach a file"
+                        title="Attach a file"
+                    >
+                        <i class="fa-solid fa-paperclip"></i>
+                    </button>
+
+                    <textarea
+                        id="messageInput"
+                        rows="1"
+                        placeholder="Write a message..."
+                        aria-label="Message"
+                        maxlength="5000"
+                    ></textarea>
+
+                    <button
+                        class="send-button"
+                        id="sendButton"
+                        type="submit"
+                        aria-label="Send message"
+                        title="Send message"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+
+                </form>
+
+                <p class="composer-note">
+                    Messages are available to members of this group.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- CHAT JAVASCRIPT -->
+<script src="chat.js"></script>
+
+</body>
+</html>

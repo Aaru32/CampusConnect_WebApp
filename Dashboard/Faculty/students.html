@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Students | CampusConnect</title>
+
+<link
+    rel="stylesheet"
+    href="students.css"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+</head><body><!-- =========================================
+     HEADER
+========================================== -->
+
+<header class="students-header">
+
+    <div class="header-left">
+
+        <button
+            type="button"
+            class="back-button"
+            id="backButton"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+
+            <h1>Students</h1>
+
+            <p>
+                View and manage students assigned to your classes
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="refresh-button"
+        id="refreshButton"
+        aria-label="Refresh students"
+        title="Refresh"
+    >
+        <i class="fa-solid fa-rotate-right"></i>
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================== -->
+
+<main class="students-container">
+
+
+    <!-- =====================================
+         OVERVIEW
+    ====================================== -->
+
+    <section class="overview-section">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Student Overview</h2>
+
+                <p>
+                    Current student information from your assigned classes
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="overview-grid">
+
+
+            <!-- ASSIGNED STUDENTS -->
+
+            <button
+                type="button"
+                class="overview-card"
+                data-stat="assignedStudents"
+            >
+
+                <span class="overview-icon">
+                    <i class="fa-solid fa-users"></i>
+                </span>
+
+                <span class="overview-content">
+
+                    <small>Assigned Students</small>
+
+                    <strong id="assignedStudents">
+                        —
+                    </strong>
+
+                </span>
+
+            </button>
+
+
+            <!-- ACTIVE CLASSES -->
+
+            <button
+                type="button"
+                class="overview-card"
+                data-stat="activeClasses"
+            >
+
+                <span class="overview-icon">
+                    <i class="fa-solid fa-chalkboard"></i>
+                </span>
+
+                <span class="overview-content">
+
+                    <small>Active Classes</small>
+
+                    <strong id="activeClasses">
+                        —
+                    </strong>
+
+                </span>
+
+            </button>
+
+
+            <!-- ATTENTION -->
+
+            <button
+                type="button"
+                class="overview-card"
+                data-stat="attention"
+            >
+
+                <span class="overview-icon">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                </span>
+
+                <span class="overview-content">
+
+                    <small>Requiring Attention</small>
+
+                    <strong id="studentsAttention">
+                        —
+                    </strong>
+
+                </span>
+
+            </button>
+
+
+            <!-- ATTENDANCE -->
+
+            <button
+                type="button"
+                class="overview-card"
+                data-stat="attendance"
+            >
+
+                <span class="overview-icon">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </span>
+
+                <span class="overview-content">
+
+                    <small>Average Attendance</small>
+
+                    <strong id="averageAttendance">
+                        —
+                    </strong>
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         STUDENT DIRECTORY
+    ====================================== -->
+
+    <section class="students-section">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Student Directory</h2>
+
+                <p>
+                    Students assigned to your classes
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH + FILTERS -->
+
+        <div class="filter-panel">
+
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="studentSearch"
+                    placeholder="Search by student name or enrollment number..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="filter-control">
+
+                <label for="branchFilter">
+                    Branch
+                </label>
+
+                <select id="branchFilter">
+
+                    <option value="">
+                        All Branches
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-control">
+
+                <label for="semesterFilter">
+                    Semester
+                </label>
+
+                <select id="semesterFilter">
+
+                    <option value="">
+                        All Semesters
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-control">
+
+                <label for="sectionFilter">
+                    Section
+                </label>
+
+                <select id="sectionFilter">
+
+                    <option value="">
+                        All Sections
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-control">
+
+                <label for="attendanceFilter">
+                    Attendance
+                </label>
+
+                <select id="attendanceFilter">
+
+                    <option value="">
+                        All Attendance
+                    </option>
+
+                    <option value="good">
+                        Good
+                    </option>
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="clear-filters"
+                id="clearFilters"
+            >
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                Clear
+            </button>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-wrapper">
+
+            <div
+                class="table-empty-state"
+                id="tableEmptyState"
+            >
+
+                <i class="fa-solid fa-user-group"></i>
+
+                <h3>No students available</h3>
+
+                <p>
+                    Students assigned to your classes
+                    will appear here when data is available.
+                </p>
+
+            </div>
+
+
+            <table
+                class="students-table"
+                id="studentsTable"
+                hidden
+            >
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student</th>
+
+                        <th>Enrollment No.</th>
+
+                        <th>Semester</th>
+
+                        <th>Class</th>
+
+                        <th>Attendance</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentsTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- RESULT COUNT -->
+
+        <div
+            class="result-information"
+            id="resultInformation"
+            hidden
+        >
+            Showing
+            <strong id="resultCount">0</strong>
+            students
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     STUDENT DETAILS MODAL
+========================================== -->
+
+<div
+    class="modal-overlay"
+    id="studentModal"
+    aria-hidden="true"
+>
+
+    <div class="student-modal">
+
+
+        <button
+            type="button"
+            class="modal-close"
+            id="modalClose"
+            aria-label="Close"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <div id="studentDetailsContent">
+
+            <div class="modal-loading">
+
+                <i class="fa-solid fa-user"></i>
+
+                <p>Loading student information...</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="students.js"></script>
+
+</body></html>

@@ -1,0 +1,638 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5f7fb;
+    color: #1d2939;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.settings-header {
+    width: 100%;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 18px 24px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.back-button {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    background: #eef4fb;
+
+    color: #1557a6;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+
+.back-button:hover {
+    background: #dfeaf7;
+}
+
+
+.header-title h1 {
+    font-size: 23px;
+    font-weight: 700;
+}
+
+
+.header-title p {
+    margin-top: 4px;
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.settings-container {
+    width: min(900px, 94%);
+
+    margin: 28px auto 50px;
+}
+
+
+/* =========================================
+   SETTINGS SECTION
+========================================= */
+
+.settings-section {
+    margin-bottom: 28px;
+}
+
+
+.settings-section h2 {
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    color: #667085;
+
+    margin: 0 0 9px 12px;
+}
+
+
+.settings-list {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SETTING ROW
+========================================= */
+
+.setting-row {
+    width: 100%;
+
+    min-height: 72px;
+
+    padding: 13px 17px;
+
+    background: #ffffff;
+
+    border: none;
+
+    border-bottom: 1px solid #edf0f4;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    gap: 14px;
+
+    cursor: pointer;
+
+    color: inherit;
+
+    transition:
+        background 0.2s,
+        padding-left 0.2s;
+}
+
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+
+.setting-row:hover {
+    background: #f8fafc;
+
+    padding-left: 21px;
+}
+
+
+.setting-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #eef4fb;
+
+    color: #1557a6;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+}
+
+
+.setting-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.setting-content strong {
+    display: block;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #1d2939;
+}
+
+
+.setting-content small {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #667085;
+
+    line-height: 1.4;
+}
+
+
+.arrow {
+    color: #98a2b3;
+
+    font-size: 12px;
+
+    flex-shrink: 0;
+}
+
+
+.setting-value {
+    font-size: 13px;
+
+    color: #667085;
+
+    margin-left: auto;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   TOGGLE
+========================================= */
+
+.toggle {
+    position: relative;
+
+    width: 42px;
+    height: 23px;
+
+    flex-shrink: 0;
+}
+
+
+.toggle input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    background: #d0d5dd;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    left: 3px;
+    top: 3px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+
+.toggle input:checked + .slider {
+    background: #1557a6;
+}
+
+
+.toggle input:checked + .slider::before {
+    transform: translateX(19px);
+}
+
+
+/* =========================================
+   ACCOUNT ACTIONS
+========================================= */
+
+.account-actions {
+    margin-top: 12px;
+}
+
+
+.logout-button {
+    width: 100%;
+
+    min-height: 58px;
+
+    border: 1px solid #f0caca;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #c62828;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    transition: 0.2s;
+}
+
+
+.logout-button:hover {
+    background: #fff7f7;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.48);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 500;
+}
+
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+.settings-modal {
+    width: min(500px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    position: relative;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+
+.modal-close {
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    background: #f2f4f7;
+
+    color: #475467;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal-close:hover {
+    background: #e4e7ec;
+}
+
+
+.modal-title {
+    padding-right: 35px;
+
+    font-size: 20px;
+
+    color: #1557a6;
+
+    margin-bottom: 8px;
+}
+
+
+.modal-description {
+    color: #667085;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 22px;
+}
+
+
+.modal-note {
+    background: #f8fafc;
+
+    border: 1px solid #e4e7ec;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: #475467;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode {
+    background: #101828;
+
+    color: #f2f4f7;
+}
+
+
+body.dark-mode .settings-header,
+body.dark-mode .settings-list,
+body.dark-mode .setting-row,
+body.dark-mode .settings-modal,
+body.dark-mode .logout-button {
+    background: #1d2939;
+}
+
+
+body.dark-mode .settings-header,
+body.dark-mode .settings-list {
+    border-color: #344054;
+}
+
+
+body.dark-mode .setting-row {
+    border-bottom-color: #344054;
+}
+
+
+body.dark-mode .setting-row:hover {
+    background: #243244;
+}
+
+
+body.dark-mode .setting-content strong,
+body.dark-mode .header-title h1 {
+    color: #f2f4f7;
+}
+
+
+body.dark-mode .header-title p,
+body.dark-mode .setting-content small,
+body.dark-mode .settings-section h2,
+body.dark-mode .setting-value {
+    color: #98a2b3;
+}
+
+
+body.dark-mode .setting-icon {
+    background: #243b53;
+
+    color: #8db9e8;
+}
+
+
+body.dark-mode .back-button {
+    background: #243b53;
+
+    color: #8db9e8;
+}
+
+
+body.dark-mode .modal-note {
+    background: #243244;
+
+    border-color: #344054;
+
+    color: #d0d5dd;
+}
+
+
+body.dark-mode .logout-button {
+    border-color: #7a2e2e;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .settings-header {
+        padding: 15px 16px;
+    }
+
+
+    .header-title h1 {
+        font-size: 20px;
+    }
+
+
+    .header-title p {
+        font-size: 12px;
+    }
+
+
+    .settings-container {
+        width: 94%;
+
+        margin-top: 20px;
+    }
+
+
+    .settings-section {
+        margin-bottom: 23px;
+    }
+
+
+    .setting-row {
+        min-height: 68px;
+
+        padding: 12px;
+    }
+
+
+    .setting-row:hover {
+        padding-left: 15px;
+    }
+
+
+    .setting-icon {
+        width: 37px;
+        height: 37px;
+
+        font-size: 15px;
+    }
+
+
+    .setting-content strong {
+        font-size: 14px;
+    }
+
+
+    .setting-content small {
+        font-size: 11px;
+    }
+
+
+    .setting-value {
+        display: none;
+    }
+
+
+    .settings-modal {
+        padding: 23px;
+
+        border-radius: 14px;
+    }
+}

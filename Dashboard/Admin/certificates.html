@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates | CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="certificates.css">
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <button id="backBtn" class="icon-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <h1>Certificates</h1>
+
+    <button id="refreshBtn" class="icon-btn">
+        <i class="fa-solid fa-arrows-rotate"></i>
+    </button>
+
+</header>
+
+<main class="page">
+
+    <section class="intro">
+
+        <div>
+            <span class="eyebrow">Student Documents</span>
+            <h2>Certificate Management</h2>
+            <p>
+                Issue, verify and manage student certificates.
+            </p>
+        </div>
+
+        <button id="issueCertificateBtn" class="primary-btn">
+            <i class="fa-solid fa-certificate"></i>
+            Issue Certificate
+        </button>
+
+    </section>
+
+    <section class="actions">
+
+        <button class="action-card" data-view="issued">
+            <span class="icon blue">
+                <i class="fa-solid fa-file-circle-check"></i>
+            </span>
+            <span>
+                <strong>Issued Certificates</strong>
+                <small>View certificates issued to students</small>
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <button class="action-card" data-view="verification">
+            <span class="icon green">
+                <i class="fa-solid fa-shield-check"></i>
+            </span>
+            <span>
+                <strong>Verification</strong>
+                <small>Verify certificate records</small>
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <button class="action-card" data-view="pending">
+            <span class="icon orange">
+                <i class="fa-solid fa-clock"></i>
+            </span>
+            <span>
+                <strong>Pending Requests</strong>
+                <small>Review certificate requests</small>
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+    </section>
+
+    <section id="recordsSection" class="records" hidden>
+
+        <div class="records-head">
+
+            <div>
+                <span id="viewLabel" class="eyebrow">Certificates</span>
+                <h2 id="viewTitle">Certificate Records</h2>
+                <p id="viewDescription"></p>
+            </div>
+
+            <button id="closeRecordsBtn" class="secondary-btn">
+                <i class="fa-solid fa-xmark"></i>
+                Close
+            </button>
+
+        </div>
+
+        <div class="toolbar">
+
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="searchInput"
+                       type="search"
+                       placeholder="Search certificate or student...">
+            </div>
+
+            <button id="exportBtn" class="secondary-btn">
+                <i class="fa-solid fa-download"></i>
+                Export
+            </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Certificate ID</th>
+                        <th>Student</th>
+                        <th>Certificate Type</th>
+                        <th>Issue Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody"></tbody>
+            </table>
+
+            <div id="emptyState" class="empty">
+                <i class="fa-solid fa-certificate"></i>
+                <h3>No certificate records</h3>
+                <p>
+                    Certificate records will appear after backend data
+                    becomes available.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div id="certificateModal" class="modal" hidden>
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+            <h2>Issue Certificate</h2>
+
+            <button id="closeCertificateModal" class="close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="certificateForm">
+
+            <label>
+                Student ID
+                <input id="studentId" required>
+            </label>
+
+            <label>
+                Certificate Type
+                <select id="certificateType" required>
+                    <option value="">Select type</option>
+                    <option value="Bonafide">Bonafide</option>
+                    <option value="Character">Character Certificate</option>
+                    <option value="Transfer">Transfer Certificate</option>
+                    <option value="Course Completion">Course Completion</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
+
+            <label>
+                Remarks
+                <textarea id="remarks"></textarea>
+            </label>
+
+            <div class="modal-actions">
+
+                <button type="button"
+                        id="cancelCertificateBtn"
+                        class="secondary-btn">
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Issue Certificate
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="certificates.js"></script>
+</body>
+</html>

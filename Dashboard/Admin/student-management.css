@@ -1,0 +1,814 @@
+/* =========================================================
+   CAMPUSCONNECT
+   ADMIN STUDENT MANAGEMENT
+========================================================= */
+
+:root {
+    --primary: #0757c9;
+    --primary-dark: #062e69;
+    --primary-light: #edf5ff;
+
+    --white: #ffffff;
+    --background: #f5f8fc;
+
+    --text: #172b4d;
+    --text-light: #68778d;
+    --border: #e3eaf3;
+
+    --success: #18864b;
+    --shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.student-page {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 28px;
+
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+
+    box-shadow: 0 2px 10px rgba(20, 55, 95, 0.05);
+}
+
+
+.header-title {
+    margin-left: 16px;
+}
+
+
+.header-title h1 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+.header-title span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+
+.header-actions {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+
+.header-button {
+    width: 40px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.12s ease;
+}
+
+
+.header-button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+
+.header-button:active {
+    transform: scale(0.94);
+}
+
+
+.header-button i {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-container {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 0 28px;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition:
+        max-height 0.25s ease,
+        padding 0.25s ease;
+}
+
+
+.search-container.open {
+    max-height: 100px;
+    padding-top: 14px;
+    padding-bottom: 4px;
+}
+
+
+.search-box {
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(20, 55, 95, 0.05);
+}
+
+
+.search-box > i {
+    margin-right: 11px;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+
+.search-box input {
+    flex: 1;
+
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    font-size: 14px;
+    color: var(--text);
+}
+
+
+.search-box input::placeholder {
+    color: #9aa7b7;
+}
+
+
+.clear-search {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: var(--text-light);
+
+    cursor: pointer;
+}
+
+
+.clear-search:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
+
+.filter-panel {
+    max-width: 1000px;
+
+    margin: 14px auto 0;
+
+    padding: 20px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+
+    display: none;
+}
+
+
+.filter-panel.open {
+    display: block;
+}
+
+
+.filter-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.filter-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.filter-header p {
+    margin-top: 4px;
+
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+
+.close-filter {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--text-light);
+
+    cursor: pointer;
+}
+
+
+.close-filter:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+
+.filter-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+.filter-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+
+.filter-field select {
+    width: 100%;
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    outline: none;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+.filter-field select:focus {
+    border-color: var(--primary);
+}
+
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.primary-button,
+.secondary-button {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        transform 0.12s ease;
+}
+
+
+.primary-button {
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--white);
+}
+
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+
+.secondary-button {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text);
+}
+
+
+.secondary-button:hover {
+    background: var(--background);
+}
+
+
+.primary-button:active,
+.secondary-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.students-content {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 28px 28px 50px;
+}
+
+
+.list-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.list-top h2 {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.list-top p {
+    margin-top: 4px;
+
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+
+.active-filter-badge {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STUDENT LIST
+========================================================= */
+
+.student-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+.letter-group {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+.letter-heading {
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    background: #f8fbff;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+.student-row {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 16px;
+
+    border-bottom: 1px solid var(--border);
+
+    background: var(--white);
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        padding 0.18s ease;
+}
+
+
+.student-row:last-child {
+    border-bottom: none;
+}
+
+
+.student-row:hover {
+    background: #f8fbff;
+    padding-left: 19px;
+}
+
+
+.student-row:active {
+    background: var(--primary-light);
+}
+
+
+.student-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #edf3fa;
+}
+
+
+.student-info {
+    min-width: 0;
+    flex: 1;
+
+    margin-left: 13px;
+}
+
+
+.student-name {
+    overflow: hidden;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: var(--text);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.student-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 5px;
+}
+
+
+.student-meta span {
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+
+.student-meta .separator {
+    color: #b2bdca;
+}
+
+
+.student-arrow {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 8px;
+
+    color: #8a99aa;
+
+    transition:
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+
+.student-row:hover .student-arrow {
+    color: var(--primary);
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   STATES
+========================================================= */
+
+.state-container {
+    min-height: 260px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.state-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 21px;
+}
+
+
+.state-container h3 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+.state-container p {
+    max-width: 430px;
+
+    margin-top: 7px;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: var(--text-light);
+}
+
+
+.loading-spinner {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    animation: rotate 1s linear infinite;
+}
+
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .filter-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .page-header {
+        padding: 0 14px;
+    }
+
+
+    .header-title {
+        margin-left: 10px;
+    }
+
+
+    .header-title h1 {
+        font-size: 18px;
+    }
+
+
+    .header-actions {
+        gap: 2px;
+    }
+
+
+    .header-button {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .search-container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+
+    .filter-panel {
+        margin-left: 14px;
+        margin-right: 14px;
+
+        padding: 16px;
+    }
+
+
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .students-content {
+        padding:
+            22px 14px 40px;
+    }
+
+
+    .list-top {
+        align-items: flex-start;
+    }
+
+
+    .active-filter-badge {
+        margin-left: 10px;
+    }
+
+
+    .student-row {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+    .student-row:hover {
+        padding-left: 14px;
+    }
+
+}

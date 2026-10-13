@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Admin Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         APP
+    ====================================================== -->
+
+    <div class="admin-app">
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="brand-logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div class="brand-text">
+                    <h1>CampusConnect</h1>
+                    <p>Government Women's Polytechnic, Patna</p>
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="sidebar-navigation">
+
+                <div class="navigation-section">
+
+                    <p class="navigation-title">MAIN</p>
+
+                    <button class="nav-item active" data-page="dashboard">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    
+                    <button class="nav-item" data-page="chat" type="button">
+    <i class="fa-solid fa-comment"></i>
+    <span>Chat</span>
+</button>
+
+<button class="nav-item" data-page="safespeak" type="button">
+    <i class="fa-solid fa-lock"></i>
+    <span>SafeSpeak</span>
+</button>
+
+                </div>
+
+
+                <div class="navigation-section">
+
+                    <p class="navigation-title">ACADEMIC</p>
+
+                    <button class="nav-item" data-page="students">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <span>Student Management</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="faculty">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <span>Faculty Management</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="departments">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>Departments</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="courses">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Courses & Subjects</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="academics">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Academic Management</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="attendance">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Attendance</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="examinations">
+                        <i class="fa-solid fa-file-pen"></i>
+                        <span>Examinations</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="results">
+                        <i class="fa-solid fa-square-poll-vertical"></i>
+                        <span>Results</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="navigation-section">
+
+                    <p class="navigation-title">ADMINISTRATION</p>
+
+                    <button class="nav-item" data-page="admissions">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Admissions</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="fees">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <span>Fees</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                   </button>
+
+                    <button class="nav-item" data-page="library">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Library</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="hostel">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Hostel</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="events">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Events & Notices</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="certificates">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>Certificates</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="feedback">
+                        <i class="fa-solid fa-comment-dots"></i>
+                        <span>Feedback</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="navigation-section">
+
+                    <p class="navigation-title">SYSTEM</p>
+
+                    <button class="nav-item" data-page="reports">
+                        <i class="fa-solid fa-chart-column"></i>
+                        <span>Reports & Analytics</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                    <button class="nav-item" data-page="settings">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>System Settings</span>
+                        <i class="fa-solid fa-chevron-right nav-arrow"></i>
+                    </button>
+
+                </div>
+
+            </nav>
+
+
+            <!-- <Sidebar></Sidebar> Footer -->
+
+            <div class="sidebar-footer">
+
+                <div class="footer-brand-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <div>
+                    <strong>CampusConnect</strong>
+                    <small>Learn&nbsp; • &nbsp;Grow&nbsp; • &nbsp;Succeed</small>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN AREA
+        ================================================== -->
+
+        <main class="main-content">
+
+            <!-- =================================================
+                 TOP HEADER
+            ================================================== -->
+
+            <header class="top-header">
+
+                <button class="mobile-menu-button" id="mobileMenuButton">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+
+                <div class="search-container">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="globalSearch"
+                        placeholder="Search students, faculty, departments, courses..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="header-actions">
+
+                    <!-- Global notification integration hook -->
+                    <div id="globalNotificationPlaceholder"></div>
+
+                    <button
+                        class="header-icon-button"
+                        aria-label="Notifications"
+                        id="notificationButton"
+                    >
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+
+
+                    <div class="header-divider"></div>
+
+
+                    <button class="admin-profile" id="adminProfileButton">
+
+    <div class="admin-avatar">
+        <i class="fa-solid fa-user-shield"></i>
+    </div>
+    
+    <div class="admin-profile-text">
+        <strong>Administrator</strong>
+        <span>Admin</span>
+    </div>
+    
+    <i class="fa-solid fa-chevron-down profile-arrow"></i>
+    
+</button>
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 DASHBOARD CONTENT
+            ================================================== -->
+
+            <section class="dashboard-content">
+                <!-- Page Heading -->
+
+<div class="page-heading">
+
+    <div>
+        <h2>
+            Welcome, <span id="adminName">Admin</span>!
+        </h2>
+
+        <p class="institution-name">
+            Government Women's Polytechnic, Patna
+        </p>
+    </div>
+
+    <div class="date-panel">
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <div>
+            <span id="currentDate">Loading date...</span>
+            <strong id="currentTime">--:--</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+                <!-- =================================================
+                     KPI CARDS
+                ================================================== -->
+
+                <section class="statistics-grid">
+
+                    <article class="stat-card" id="totalStudentsCard">
+
+                        <div class="stat-icon students-icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+
+                        <div class="stat-information">
+
+                            <span>Total Students</span>
+
+                            <strong
+                                class="dynamic-number"
+                                id="totalStudents"
+                            >—</strong>
+
+                            <small class="empty-stat-message">
+                                Awaiting database data
+                            </small>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+                    </article>
+
+
+                    <article class="stat-card" id="totalFacultyCard" role="button" tabindex="0">
+
+                        <div class="stat-icon faculty-icon">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+
+                        <div class="stat-information">
+
+                            <span>Total Faculty</span>
+
+                            <strong
+                                class="dynamic-number"
+                                id="totalFaculty"
+                            >—</strong>
+
+                            <small class="empty-stat-message">
+                                Awaiting database data
+                            </small>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon courses-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <div class="stat-information">
+
+                            <span>Active Courses</span>
+
+                            <strong
+                                class="dynamic-number"
+                                id="activeCourses"
+                            >—</strong>
+
+                            <small class="empty-stat-message">
+                                Awaiting database data
+                            </small>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon departments-icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+
+                        <div class="stat-information">
+
+                            <span>Departments</span>
+
+                            <strong
+                                class="dynamic-number"
+                                id="totalDepartments"
+                            >—</strong>
+
+                            <small class="empty-stat-message">
+                                Awaiting database data
+                            </small>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     MAIN DASHBOARD GRID
+                ================================================== -->
+
+                <section class="dashboard-grid">
+
+
+                    <!-- ATTENDANCE -->
+
+                    <article class="dashboard-card attendance-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Attendance Overview</h3>
+                                    <span>Attendance data from the system</span>
+                                </div>
+
+                            </div>
+
+
+                            <select
+                                id="attendancePeriod"
+                                class="card-select"
+                            >
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="semester">Semester</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="chart-container">
+
+                            <canvas id="attendanceChart"></canvas>
+
+                            <div
+                                class="chart-empty-state"
+                                id="attendanceEmptyState"
+                            >
+                                <i class="fa-solid fa-chart-column"></i>
+                                <strong>No attendance data</strong>
+                                <span>
+                                    Attendance statistics will appear here
+                                    after database data is available.
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ACADEMIC PERFORMANCE -->
+
+                    <article class="dashboard-card performance-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Academic Performance</h3>
+                                    <span>Academic result distribution</span>
+                                </div>
+
+                            </div>
+
+
+                            <select
+                                id="performancePeriod"
+                                class="card-select"
+                            >
+                                <option value="current">
+                                    Current Semester
+                                </option>
+
+                                <option value="previous">
+                                    Previous Semester
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="performance-content">
+
+                            <div class="donut-container">
+
+                                <div class="donut-placeholder">
+
+                                    <i class="fa-solid fa-chart-pie"></i>
+
+                                    <span>No data</span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="performance-legend">
+
+                                <div class="legend-empty">
+                                    Academic performance data will appear
+                                    here when available.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- RECENT NOTICES -->
+
+                    <article class="dashboard-card notices-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-bullhorn"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Recent Notices</h3>
+                                    <span>Latest college announcements</span>
+                                </div>
+
+                            </div>
+
+
+                            <button class="view-all-button" data-page="events">
+                                View All
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="dynamic-list"
+                            id="recentNotices"
+                        >
+
+                            <div class="list-empty-state">
+
+                                <i class="fa-regular fa-file-lines"></i>
+
+                                <strong>No notices available</strong>
+
+                                <span>
+                                    Published notices will appear here.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- RECENT ADMISSIONS -->
+
+                    <article class="dashboard-card admissions-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Recent Admissions</h3>
+                                    <span>Latest admission activity</span>
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="view-all-button"
+                                data-page="admissions"
+                            >
+                                View All
+                            </button>
+
+                        </div>
+
+
+                        <div class="table-container">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Course</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody id="recentAdmissions">
+
+                                    <tr class="table-empty-row">
+
+                                        <td colspan="4">
+
+                                            <div class="table-empty-state">
+
+                                                <i class="fa-solid fa-users"></i>
+
+                                                <span>
+                                                    No admission records available
+                                                </span>
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- RECENT ACTIVITIES -->
+
+                    <article class="dashboard-card activities-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Recent Activities</h3>
+                                    <span>Latest system activity</span>
+                                </div>
+
+                            </div>
+
+
+                            <button class="view-all-button">
+                                View All
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="activity-list"
+                            id="recentActivities"
+                        >
+
+                            <div class="list-empty-state">
+
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                                <strong>No recent activity</strong>
+
+                                <span>
+                                    System activity will appear here.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- UPCOMING EVENTS -->
+
+                    <article class="dashboard-card events-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Upcoming Events</h3>
+                                    <span>Scheduled college events</span>
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="view-all-button"
+                                data-page="events"
+                            >
+                                View All
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="event-list"
+                            id="upcomingEvents"
+                        >
+
+                            <div class="list-empty-state">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                <strong>No upcoming events</strong>
+
+                                <span>
+                                    Scheduled events will appear here.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- DEPARTMENT DISTRIBUTION -->
+
+                    <article class="dashboard-card department-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Department-wise Student Distribution</h3>
+                                    <span>Students by department</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="department-chart-container">
+
+                            <canvas id="departmentChart"></canvas>
+
+                            <div
+                                class="chart-empty-state"
+                                id="departmentEmptyState"
+                            >
+
+                                <i class="fa-solid fa-chart-column"></i>
+
+                                <strong>No department data</strong>
+
+                                <span>
+                                    Department statistics will appear here.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- QUICK STATS -->
+
+                    <article class="dashboard-card quick-stats-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-chart-simple"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Quick Stats</h3>
+                                    <span>System-wide indicators</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-stats-grid">
+
+                            <div class="quick-stat">
+
+                                <strong id="attendanceRate">—</strong>
+
+                                <span>Attendance Rate</span>
+
+                                <small>Awaiting data</small>
+
+                            </div>
+
+
+                            <div class="quick-stat">
+
+                                <strong id="passRate">—</strong>
+
+                                <span>Result Pass Rate</span>
+
+                                <small>Awaiting data</small>
+
+                            </div>
+
+
+                            <div class="quick-stat">
+
+                                <strong id="newAdmissions">—</strong>
+
+                                <span>New Admissions</span>
+
+                                <small>Awaiting data</small>
+
+                            </div>
+
+
+                            <div class="quick-stat">
+
+                                <strong id="pendingApprovals">—</strong>
+
+                                <span>Pending Approvals</span>
+
+                                <small>Awaiting data</small>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- QUICK ACTIONS -->
+
+                    <article class="dashboard-card quick-actions-card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+
+                                <div>
+                                    <h3>Quick Actions</h3>
+                                    <span>Common administration tasks</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-actions-grid">
+                            <button
+    class="quick-action"
+    onclick="window.location.href='add-student.html'"
+>
+    <i class="fa-solid fa-user-plus"></i>
+    <span>Add Student</span>
+</button>
+                            <button
+                                class="quick-action"
+                                onclick="window.location.href='add-faculty.html'"
+                                <i class="fa-solid fa-user-tie"></i>
+                                <span>Add Faculty</span>
+                            </button>
+
+
+                            <button
+                                class="quick-action"
+                                onclick="window.location.href='create-notice.html'"
+                                <i class="fa-solid fa-file-circle-plus"></i>
+                                <span>Create Notice</span>
+                            </button>
+
+
+                            <button
+                                class="quick-action"
+                                onclick="window.location.href='academic-calendar.html'"
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <span>Academic Calendar</span>
+                            </button>
+
+
+                            <button
+                                class="quick-action"
+                                onclick="window.location.href='generate-report.html'"
+                                <i class="fa-solid fa-chart-column"></i>
+                                <span>Generate Report</span>
+                            </button>
+
+
+                            <button
+                                class="quick-action"
+                                onclick="window.location.href='view-attendance.html'"
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>View Attendance</span>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <footer class="dashboard-footer">
+
+                    <span>
+                        CampusConnect Admin Portal
+                    </span>
+
+                    <span>
+                        Government Women's Polytechnic, Patna
+                    </span>
+
+                </footer>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         MOBILE SIDEBAR OVERLAY
+    ====================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <script src="admin-dashboard.js"></script>
+
+</body>
+</html>

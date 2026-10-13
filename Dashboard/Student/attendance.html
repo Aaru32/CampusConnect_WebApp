@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance | CampusConnect</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="attendance.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="top-header">
+
+        <button class="back-btn" onclick="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+
+        <div class="header-title">
+
+            <div class="header-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <div>
+                <h1>Attendance</h1>
+                <span>Academic Attendance</span>
+            </div>
+
+        </div>
+
+
+        <button class="notification-btn"
+            onclick="openNotifications()">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span id="notificationBadge"
+                class="notification-badge">
+                0
+            </span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="attendance-container">
+
+
+        <!-- ================= OVERVIEW ================= -->
+
+        <section class="overview-card">
+
+
+            <div class="overview-content">
+
+                <span class="overview-label">
+                    ATTENDANCE OVERVIEW
+                </span>
+
+                <h2>
+                    Current Semester
+                </h2>
+
+                <p>
+                    Track your overall academic attendance
+                    and subject-wise performance.
+                </p>
+
+
+                <div class="attendance-message"
+                    id="attendanceMessage">
+
+                    Attendance data will appear here
+                    once available.
+
+                </div>
+
+            </div>
+
+
+
+            <div class="attendance-circle">
+
+                <svg viewBox="0 0 150 150">
+
+                    <circle
+                        class="circle-track"
+                        cx="75"
+                        cy="75"
+                        r="58">
+                    </circle>
+
+                    <circle
+                        class="circle-value"
+                        id="circleValue"
+                        cx="75"
+                        cy="75"
+                        r="58">
+                    </circle>
+
+                </svg>
+
+
+                <div class="circle-text">
+
+                    <strong id="overallPercentage">
+                        --%
+                    </strong>
+
+                    <span>
+                        Overall
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= QUICK STATS ================= -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>
+                        Present
+                    </span>
+
+                    <strong id="presentCount">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-xmark"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>
+                        Absent
+                    </span>
+
+                    <strong id="absentCount">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <span>
+                        Total Classes
+                    </span>
+
+                    <strong id="totalClasses">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= SUBJECT SECTION ================= -->
+
+        <section class="content-card">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-small-title">
+                        ACADEMIC RECORD
+                    </span>
+
+                    <h2>
+                        Subject-wise Attendance
+                    </h2>
+
+                </div>
+
+
+                <div class="section-header-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="subjectAttendance"
+                class="subject-list">
+
+                <!-- Subjects loaded using JavaScript -->
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= INSIGHT ================= -->
+
+        <section class="insight-card">
+
+
+            <div class="insight-icon">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    ATTENDANCE INSIGHT
+                </span>
+
+                <p id="attendanceInsight">
+
+                    Your attendance insights will
+                    appear here when attendance data
+                    is available.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <section class="content-card history-card">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-small-title">
+                        RECENT RECORDS
+                    </span>
+
+                    <h2>
+                        Attendance History
+                    </h2>
+
+                </div>
+
+
+                <div class="section-header-icon">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="attendanceHistory"
+                class="history-list">
+
+                <!-- History loaded using JavaScript -->
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= BOTTOM NAV ================= -->
+
+    <nav class="bottom-nav">
+
+
+        <button onclick="goHome()">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </button>
+
+
+
+        <button onclick="openModules()">
+
+            <i class="fa-solid fa-grip"></i>
+
+            <span>
+                Modules
+            </span>
+
+        </button>
+
+
+
+        <button onclick="openProfile()">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>
+                Profile
+            </span>
+
+        </button>
+
+
+    </nav>
+
+
+
+    <script src="attendance.js"></script>
+
+</body>
+
+</html>

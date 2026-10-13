@@ -1,0 +1,825 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    ><title>CampusConnect | Faculty Profile</title>
+
+<!-- Font Awesome 6.5.2 -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="profile.css">
+
+</head><body><div class="profile-page"><!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="profile-header">
+
+    <div class="header-left">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+            title="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+
+            <h1>My Profile</h1>
+
+            <p>
+                Faculty information and academic details
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            class="header-action-btn"
+            id="refreshButton"
+            title="Refresh"
+            aria-label="Refresh profile"
+        >
+            <i class="fa-solid fa-rotate"></i>
+        </button>
+
+
+        <button
+            type="button"
+            class="header-action-btn notification-btn"
+            id="notificationButton"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span
+                class="notification-count"
+                id="notificationCount"
+                hidden
+            >
+                0
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="profile-main">
+
+
+    <!-- =================================================
+         PROFILE HERO
+    ================================================== -->
+
+    <section class="profile-hero">
+
+        <div class="profile-photo-area">
+
+            <div class="photo-wrapper">
+
+                <img
+                    id="profilePhoto"
+                    src="../../Assets/profile.png"
+                    alt="Faculty profile photo"
+                >
+
+                <label
+                    for="photoInput"
+                    class="edit-photo-btn"
+                    title="Change profile photo"
+                    aria-label="Change profile photo"
+                >
+                    <i class="fa-solid fa-pencil"></i>
+                </label>
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/jpeg,image/png,image/webp"
+                    hidden
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-identity">
+
+            <span class="profile-role">
+                Faculty
+            </span>
+
+            <h2 id="profileName">
+                Faculty
+            </h2>
+
+            <p id="profileDesignation">
+                Designation will appear here
+            </p>
+
+            <div class="identity-meta">
+
+                <span>
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span id="profileDepartment">
+                        Department
+                    </span>
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-id-card"></i>
+                    <span id="employeeId">
+                        Employee ID
+                    </span>
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PERSONAL INFORMATION
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-regular fa-user"></i>
+            </div>
+
+            <div>
+                <h2>Personal Information</h2>
+                <p>
+                    Personal and contact information
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="details-grid">
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    First Name
+                </span>
+
+                <strong id="firstName">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Last Name
+                </span>
+
+                <strong id="lastName">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Date of Birth
+                </span>
+
+                <strong id="dateOfBirth">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Gender
+                </span>
+
+                <strong id="gender">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Mobile Number
+                </span>
+
+                <strong id="mobileNumber">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Email ID
+                </span>
+
+                <strong id="emailId">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Alternate Contact
+                </span>
+
+                <strong id="alternateContact">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Blood Group
+                </span>
+
+                <strong id="bloodGroup">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PROFESSIONAL INFORMATION
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+
+            <div>
+                <h2>Professional Information</h2>
+                <p>
+                    Faculty employment and institutional details
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="details-grid">
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Employee ID
+                </span>
+
+                <strong id="professionalEmployeeId">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Designation
+                </span>
+
+                <strong id="designation">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Department
+                </span>
+
+                <strong id="professionalDepartment">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Faculty Type
+                </span>
+
+                <strong id="facultyType">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Joining Date
+                </span>
+
+                <strong id="joiningDate">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Employment Status
+                </span>
+
+                <strong id="employmentStatus">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Office / Room
+                </span>
+
+                <strong id="officeRoom">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span class="detail-label">
+                    Institution
+                </span>
+
+                <strong id="institution">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ACADEMIC QUALIFICATIONS
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div>
+                <h2>Academic Qualifications</h2>
+                <p>
+                    Educational background and qualifications
+                </p>
+            </div>
+
+        </div>
+
+
+        <div
+            class="qualification-list"
+            id="qualificationList"
+        >
+
+            <div class="empty-section">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <h3>
+                    No qualification data available
+                </h3>
+
+                <p>
+                    Qualification details will appear
+                    when they are available from the backend.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SUBJECTS & TEACHING
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div>
+                <h2>Teaching Information</h2>
+                <p>
+                    Subjects and academic responsibilities assigned to this faculty member
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="teaching-grid">
+
+            <div class="teaching-card">
+
+                <div class="teaching-card-header">
+
+                    <div class="teaching-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+                        <span>Assigned Subjects</span>
+                        <strong id="subjectCount">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="teaching-list"
+                    id="subjectsList"
+                >
+
+                    <div class="empty-section compact">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                        <p>
+                            No subjects assigned.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="teaching-card">
+
+                <div class="teaching-card-header">
+
+                    <div class="teaching-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                        <span>Assigned Classes</span>
+                        <strong id="classCount">—</strong>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="teaching-list"
+                    id="classesList"
+                >
+
+                    <div class="empty-section compact">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <p>
+                            No classes assigned.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         TEACHING SCHEDULE
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-regular fa-calendar-days"></i>
+            </div>
+
+            <div>
+                <h2>Teaching Schedule</h2>
+                <p>
+                    Schedule assigned specifically to this faculty member
+                </p>
+            </div>
+
+        </div>
+
+
+        <div
+            class="schedule-container"
+            id="scheduleContainer"
+        >
+
+            <div class="empty-section">
+
+                <i class="fa-regular fa-calendar-xmark"></i>
+
+                <h3>
+                    No schedule available
+                </h3>
+
+                <p>
+                    Your teaching schedule will appear
+                    when timetable data is available.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FACULTY STATISTICS
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-solid fa-chart-column"></i>
+            </div>
+
+            <div>
+                <h2>My Academic Overview</h2>
+                <p>
+                    Faculty-specific academic statistics
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="faculty-kpi-grid">
+
+            <div class="faculty-kpi">
+
+                <div class="kpi-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <span>
+                    Assigned Students
+                </span>
+
+                <strong id="kpiStudents">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="faculty-kpi">
+
+                <div class="kpi-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <span>
+                    Subjects
+                </span>
+
+                <strong id="kpiSubjects">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="faculty-kpi">
+
+                <div class="kpi-icon">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </div>
+
+                <span>
+                    Classes This Week
+                </span>
+
+                <strong id="kpiClasses">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="faculty-kpi">
+
+                <div class="kpi-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <span>
+                    Pending Assignments
+                </span>
+
+                <strong id="kpiAssignments">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ADDRESS
+    ================================================== -->
+
+    <section class="profile-section">
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <div>
+                <h2>Address</h2>
+                <p>
+                    Residential and contact address
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="address-card">
+
+            <div class="address-icon">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <div>
+
+                <span id="addressLine1">—</span>
+
+                <span id="addressLine2">—</span>
+
+                <span id="cityState">—</span>
+
+                <span id="pincode">—</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     PHOTO CHANGE CONFIRMATION
+====================================================== -->
+
+<div
+    class="photo-modal"
+    id="photoModal"
+    hidden
+>
+
+    <div class="photo-modal-card">
+
+        <div class="photo-modal-icon">
+            <i class="fa-solid fa-image"></i>
+        </div>
+
+        <h2>Change Profile Photo</h2>
+
+        <p>
+            Do you want to use this image as your faculty profile photo?
+        </p>
+
+        <div class="photo-modal-preview">
+
+            <img
+                id="photoPreview"
+                src=""
+                alt="Selected profile photo"
+            >
+
+        </div>
+
+        <div class="photo-modal-actions">
+
+            <button
+                type="button"
+                class="cancel-photo"
+                id="cancelPhoto"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="save-photo"
+                id="savePhoto"
+            >
+                Use Photo
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div><script src="profile.js"></script></body>
+</html>

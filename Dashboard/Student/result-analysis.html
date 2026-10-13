@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Result Analysis | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="result-analysis.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CAMPUSCONNECT
+         RESULT ANALYSIS
+    ====================================================== -->
+
+    <div class="app-shell">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    class="back-button"
+                    id="backButton"
+                    aria-label="Go back"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <div class="page-heading">
+
+                    <span class="page-title">
+                        Result Analysis
+                    </span>
+
+                    <span class="page-subtitle">
+                        Academic Performance Analysis
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                GLOBAL NOTIFICATION INTEGRATION PLACEHOLDER
+
+                The future CampusConnect global notification
+                system will provide the notification bell here.
+
+                No separate notification system is implemented
+                inside this module.
+            -->
+
+            <div
+                class="global-notification-placeholder"
+                id="globalNotificationPlaceholder"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- =================================================
+             MAIN
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <section class="intro-section">
+
+                <div class="intro-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Result Analysis
+                    </h1>
+
+                    <p>
+                        Analyse your academic performance from
+                        completed online examinations.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 OVERVIEW
+            ================================================== -->
+
+            <section class="overview-grid">
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+
+                        <i class="fa-solid fa-file-circle-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Exams Completed
+                        </span>
+
+                        <strong id="completedExamCount">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+
+                        <i class="fa-solid fa-percent"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Average Percentage
+                        </span>
+
+                        <strong id="averagePercentage">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Best Percentage
+                        </span>
+
+                        <strong id="bestPercentage">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+
+                        <i class="fa-solid fa-chart-column"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Questions
+                        </span>
+
+                        <strong id="totalQuestions">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 PERFORMANCE SUMMARY
+            ================================================== -->
+
+            <section class="analysis-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Performance Summary
+                        </h2>
+
+                        <p>
+                            Your overall examination performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="performance-summary"
+                    id="performanceSummary"
+                >
+
+                    <!-- Dynamic content -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PERFORMANCE TREND
+            ================================================== -->
+
+            <section class="analysis-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Performance Trend
+                        </h2>
+
+                        <p>
+                            Percentage obtained across completed
+                            examinations
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="trend-container"
+                    id="trendContainer"
+                >
+
+                    <!-- Dynamic trend -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SUBJECT ANALYSIS
+            ================================================== -->
+
+            <section class="analysis-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Subject-wise Analysis
+                        </h2>
+
+                        <p>
+                            Performance based on examination subjects
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="subject-analysis"
+                    id="subjectAnalysis"
+                >
+
+                    <!-- Dynamic subject analysis -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXAM RESULTS
+            ================================================== -->
+
+            <section class="analysis-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Examination Results
+                        </h2>
+
+                        <p>
+                            Detailed performance from completed exams
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="exam-results-container"
+                    id="examResultsContainer"
+                >
+
+                    <!-- Dynamic exam results -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EMPTY / LOADING STATE
+            ================================================== -->
+
+            <section
+                class="page-state"
+                id="pageState"
+            >
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="result-analysis.js"></script>
+
+</body>
+
+</html>

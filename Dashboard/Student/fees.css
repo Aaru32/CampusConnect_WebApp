@@ -1,0 +1,1233 @@
+/* =====================================================
+   CAMPUSCONNECT
+   FEES
+===================================================== */
+
+:root {
+
+    --primary: #1557a6;
+    --primary-dark: #0e4382;
+    --primary-light: #eaf2fb;
+
+    --white: #ffffff;
+
+    --background: #f5f8fc;
+
+    --text: #172b4d;
+    --text-light: #68778d;
+
+    --border: #dfe6ef;
+
+    --success: #218739;
+    --success-light: #e9f7ed;
+
+    --warning: #d88900;
+    --warning-light: #fff5df;
+
+    --danger: #c73535;
+    --danger-light: #fdecec;
+
+    --shadow:
+        0 6px 20px rgba(21, 87, 166, 0.08);
+
+    --radius: 14px;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        var(--background);
+
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app-shell {
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.top-header {
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.back-button {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.back-button:hover {
+
+    background: var(--primary);
+
+    color: var(--white);
+}
+
+
+.page-heading {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.page-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.page-subtitle {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   GLOBAL NOTIFICATION PLACEHOLDER
+===================================================== */
+
+.global-notification-placeholder {
+
+    min-width: 42px;
+
+    min-height: 42px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main-content {
+
+    width: min(1100px, 100%);
+
+    margin: 0 auto;
+
+    padding: 28px 22px 50px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 26px;
+}
+
+
+.intro-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 15px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.intro-section h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+}
+
+
+.intro-section p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+.summary-card {
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.summary-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.summary-card span {
+
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+.summary-card strong {
+
+    display: block;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   SECTION HEADING
+===================================================== */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+}
+
+
+.section-heading h2 {
+
+    font-size: 18px;
+
+    margin-bottom: 4px;
+}
+
+
+.section-heading p {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services-section {
+
+    margin-bottom: 28px;
+}
+
+
+.service-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+
+.service-card {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr auto;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 17px;
+
+    text-align: left;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s ease;
+}
+
+
+.service-card:hover {
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px);
+}
+
+
+.service-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+.service-card h3 {
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+
+.service-card p {
+
+    color: var(--text-light);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.service-arrow {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   CONTENT SECTIONS
+===================================================== */
+
+.content-section {
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    padding: 20px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.data-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 600px;
+}
+
+
+.data-table th {
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    padding: 12px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.data-table td {
+
+    padding: 13px 12px;
+
+    font-size: 11px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    color: var(--text);
+}
+
+
+.data-table tr:last-child td {
+
+    border-bottom: none;
+}
+
+
+.amount-cell {
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.status {
+
+    display: inline-flex;
+
+    padding: 5px 8px;
+
+    border-radius: 15px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.status-paid {
+
+    color: var(--success);
+
+    background: var(--success-light);
+}
+
+
+.status-pending {
+
+    color: var(--warning);
+
+    background: var(--warning-light);
+}
+
+
+.status-overdue {
+
+    color: var(--danger);
+
+    background: var(--danger-light);
+}
+
+
+/* =====================================================
+   RECEIPTS / DUES / SCHOLARSHIPS
+===================================================== */
+
+.receipt-list,
+.due-list,
+.scholarship-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.list-item {
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: #fbfcfe;
+}
+
+
+.list-item-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 8px;
+}
+
+
+.list-item-title {
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.list-item-meta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    color: var(--text-light);
+
+    font-size: 10px;
+}
+
+
+.list-item-description {
+
+    margin-top: 8px;
+
+    color: var(--text-light);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.outline-button {
+
+    border: 1px solid var(--primary);
+
+    background: var(--white);
+
+    color: var(--primary);
+
+    border-radius: 7px;
+
+    padding: 7px 10px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+.payment-section {
+
+    margin-bottom: 0;
+}
+
+
+.payment-card {
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #fbfcfe;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.payment-information {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.payment-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+.payment-information h3 {
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+
+.payment-information strong {
+
+    display: block;
+
+    font-size: 20px;
+
+    margin-bottom: 6px;
+}
+
+
+.payment-information p {
+
+    color: var(--text-light);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    max-width: 500px;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary-button,
+.secondary-button {
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 14px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    transition: 0.2s ease;
+}
+
+
+.primary-button {
+
+    background: var(--primary);
+
+    color: var(--white);
+}
+
+
+.primary-button:hover {
+
+    background: var(--primary-dark);
+}
+
+
+.secondary-button {
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    border: 1px dashed var(--border);
+
+    border-radius: 11px;
+}
+
+
+.empty-state-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    margin: 0 auto 12px;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.empty-state h3 {
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+
+.empty-state p {
+
+    color: var(--text-light);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(13, 35, 62, 0.45);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 18px;
+
+    z-index: 500;
+}
+
+
+.modal.active {
+
+    display: flex;
+}
+
+
+.modal-content {
+
+    width:
+        min(500px, 100%);
+
+    background:
+        var(--white);
+
+    border-radius:
+        14px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    padding:
+        20px;
+}
+
+
+.modal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-header h2 {
+
+    font-size: 17px;
+}
+
+
+.modal-close {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    cursor: pointer;
+}
+
+
+.modal-message {
+
+    text-align: center;
+
+    padding: 15px 10px;
+}
+
+
+.modal-message-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    margin: 0 auto 12px;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.modal-message h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 8px;
+}
+
+
+.modal-message p {
+
+    color: var(--text-light);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .summary-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .service-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .payment-card {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .payment-card .primary-button {
+
+        width:
+            100%;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .top-header {
+
+        height:
+            64px;
+
+        padding:
+            0 15px;
+
+    }
+
+
+    .main-content {
+
+        padding:
+            20px 14px 40px;
+
+    }
+
+
+    .intro-section {
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .intro-icon {
+
+        width:
+            48px;
+
+        height:
+            48px;
+
+        font-size:
+            20px;
+
+    }
+
+
+    .intro-section h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .intro-section p {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .summary-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .content-section {
+
+        padding:
+            16px;
+
+    }
+
+
+    .section-heading {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .modal-actions {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .secondary-button {
+
+        width:
+            100%;
+
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .page-subtitle {
+
+        display:
+            none;
+
+    }
+
+
+    .payment-information {
+
+        align-items:
+            flex-start;
+
+    }
+
+}

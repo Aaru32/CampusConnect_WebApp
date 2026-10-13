@@ -1,0 +1,1340 @@
+/* =========================================================
+   CAMPUSCONNECT
+   ADMIN - ACADEMIC CALENDAR
+========================================================= */
+
+:root {
+    --primary: #0757c9;
+    --primary-dark: #062e69;
+    --primary-light: #edf5ff;
+
+    --white: #ffffff;
+    --background: #f5f8fc;
+
+    --text: #172b4d;
+    --text-light: #68778d;
+
+    --border: #e3eaf3;
+
+    --success: #2e7d32;
+    --warning: #ed8b00;
+    --danger: #c62828;
+
+    --shadow: 0 2px 10px rgba(23, 43, 77, 0.07);
+    --shadow-hover: 0 5px 18px rgba(23, 43, 77, 0.11);
+
+    --radius: 10px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-y: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 72px;
+    width: 100%;
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+
+    box-shadow: 0 1px 5px rgba(23, 43, 77, 0.04);
+}
+
+
+/* ---------------------------------------------------------
+   HEADER LEFT
+--------------------------------------------------------- */
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+
+/* ---------------------------------------------------------
+   BACK BUTTON
+--------------------------------------------------------- */
+
+.back-button {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.back-button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.back-button:active {
+    transform: scale(0.94);
+}
+
+
+/* ---------------------------------------------------------
+   PAGE HEADING
+--------------------------------------------------------- */
+
+.page-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.page-heading h1 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+}
+
+.page-heading p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+
+/* ---------------------------------------------------------
+   HEADER ACTIONS
+--------------------------------------------------------- */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-icon-button {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text-light);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.header-icon-button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.header-icon-button:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+    padding: 28px;
+}
+
+
+/* =========================================================
+   WELCOME BANNER
+========================================================= */
+
+.welcome-banner {
+    width: 100%;
+
+    margin-bottom: 24px;
+    padding: 22px 24px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.welcome-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.welcome-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.welcome-content h2 {
+    margin-bottom: 5px;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.welcome-content p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   CALENDAR TOOLBAR
+========================================================= */
+
+.calendar-toolbar {
+    min-height: 70px;
+
+    padding: 14px 18px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* ---------------------------------------------------------
+   TOOLBAR LEFT
+--------------------------------------------------------- */
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toolbar-left h2 {
+    min-width: 180px;
+
+    text-align: center;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+
+/* ---------------------------------------------------------
+   CALENDAR NAVIGATION
+--------------------------------------------------------- */
+
+.calendar-nav-button {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--text-light);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.calendar-nav-button:hover {
+    background: var(--primary-light);
+    border-color: #c9dcf7;
+    color: var(--primary);
+}
+
+.calendar-nav-button:active {
+    transform: scale(0.94);
+}
+
+
+/* ---------------------------------------------------------
+   TOOLBAR RIGHT
+--------------------------------------------------------- */
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.calendar-select {
+    min-width: 190px;
+    height: 38px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--text);
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.calendar-select:hover {
+    border-color: #b9cbe2;
+}
+
+.calendar-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(7, 87, 201, 0.08);
+    outline: none;
+}
+
+
+/* =========================================================
+   TODAY BUTTON
+========================================================= */
+
+.today-button {
+    height: 38px;
+
+    padding: 0 16px;
+
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.today-button:hover {
+    background: var(--primary-light);
+}
+
+.today-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   CALENDAR CARD
+========================================================= */
+
+.calendar-card {
+    width: 100%;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   WEEKDAYS
+========================================================= */
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    background: var(--primary-light);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.calendar-weekdays div {
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary-dark);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CALENDAR GRID
+========================================================= */
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
+/* =========================================================
+   CALENDAR DAY
+========================================================= */
+
+.calendar-day {
+    position: relative;
+
+    min-height: 112px;
+
+    padding: 10px;
+
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    background: var(--white);
+
+    transition:
+        background 0.2s ease;
+}
+
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar-day:hover {
+    background: #fbfdff;
+}
+
+
+/* ---------------------------------------------------------
+   OTHER MONTH
+--------------------------------------------------------- */
+
+.calendar-day.other-month {
+    background: #fafbfd;
+}
+
+.calendar-day.other-month .day-number {
+    color: #aeb9c8;
+}
+
+
+/* ---------------------------------------------------------
+   DAY NUMBER
+--------------------------------------------------------- */
+
+.day-number {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   TODAY
+--------------------------------------------------------- */
+
+.calendar-day.today .day-number {
+    background: var(--primary);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   DAY EVENTS
+========================================================= */
+
+.day-events {
+    margin-top: 7px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calendar-event {
+    width: 100%;
+
+    padding: 5px 7px;
+
+    border-left: 3px solid var(--primary);
+    border-radius: 4px;
+
+    background: var(--primary-light);
+
+    color: var(--primary-dark);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.calendar-event:hover {
+    background: #dfeeff;
+    transform: translateX(1px);
+}
+
+
+/* =========================================================
+   EVENTS SECTION
+========================================================= */
+
+.events-section {
+    width: 100%;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    padding: 24px;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADER
+--------------------------------------------------------- */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin-bottom: 5px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.section-header p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   ADD EVENT BUTTON
+========================================================= */
+
+.add-event-button {
+    min-height: 40px;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-event-button:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 4px 10px rgba(7, 87, 201, 0.18);
+}
+
+.add-event-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.events-empty-state {
+    min-height: 220px;
+
+    padding: 30px;
+
+    border: 1px dashed #cdd8e6;
+    border-radius: 9px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #fcfdff;
+}
+
+.empty-icon {
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 14px;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.events-empty-state h3 {
+    margin-bottom: 6px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.events-empty-state p {
+    max-width: 430px;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================================
+   EVENTS LIST
+========================================================= */
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-list-item {
+    min-height: 70px;
+
+    padding: 14px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+
+    transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.event-list-item:hover {
+    border-color: #c9d9ec;
+    box-shadow: var(--shadow-hover);
+}
+
+.event-list-info {
+    min-width: 0;
+}
+
+.event-list-title {
+    margin-bottom: 4px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.event-list-description {
+    font-size: 12px;
+    line-height: 1.4;
+
+    color: var(--text-light);
+}
+
+.event-list-meta {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.event-date {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.event-type {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(6, 46, 105, 0.35);
+
+    overflow-y: auto;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   EVENT MODAL
+========================================================= */
+
+.event-modal {
+    width: 100%;
+    max-width: 560px;
+
+    background: var(--white);
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: 0 15px 45px rgba(6, 46, 105, 0.18);
+
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   MODAL HEADER
+--------------------------------------------------------- */
+
+.modal-header {
+    padding: 20px 22px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    margin-bottom: 4px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.modal-header p {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.modal-close-button {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text-light);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.modal-close-button:hover {
+    background: #f3f5f8;
+    color: var(--danger);
+}
+
+.modal-close-button:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+#eventForm {
+    padding: 22px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--text);
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+    height: 40px;
+    padding: 0 12px;
+}
+
+.form-group textarea {
+    min-height: 95px;
+
+    padding: 10px 12px;
+
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9aa8b9;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #bdcce0;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(7, 87, 201, 0.08);
+}
+
+
+/* =========================================================
+   FORM ROW
+========================================================= */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+    padding-top: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+.cancel-button,
+.save-button {
+    min-height: 40px;
+
+    padding: 0 16px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.cancel-button {
+    border: 1px solid var(--border);
+
+    background: var(--white);
+    color: var(--text-light);
+}
+
+.cancel-button:hover {
+    background: #f5f7fa;
+    color: var(--text);
+}
+
+.cancel-button:active,
+.save-button:active {
+    transform: scale(0.96);
+}
+
+.save-button {
+    border: 1px solid var(--primary);
+
+    background: var(--primary);
+    color: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.save-button:hover {
+    background: var(--primary-dark);
+}
+
+
+/* =========================================================
+   RESPONSIVE - LAPTOP / TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .calendar-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .toolbar-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .calendar-day {
+        min-height: 100px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .page-header {
+        height: auto;
+        min-height: 72px;
+
+        padding: 14px 18px;
+
+        align-items: flex-start;
+    }
+
+    .page-heading h1 {
+        font-size: 18px;
+    }
+
+    .page-heading p {
+        display: none;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .welcome-banner {
+        padding: 18px;
+    }
+
+    .calendar-toolbar {
+        padding: 14px;
+    }
+
+    .toolbar-left {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .toolbar-left h2 {
+        min-width: 150px;
+        font-size: 16px;
+    }
+
+    .toolbar-right {
+        justify-content: stretch;
+        flex-direction: column;
+    }
+
+    .calendar-select,
+    .today-button {
+        width: 100%;
+    }
+
+    .calendar-day {
+        min-height: 88px;
+        padding: 7px;
+    }
+
+    .calendar-event {
+        font-size: 10px;
+        padding: 4px 5px;
+    }
+
+    .events-section {
+        padding: 18px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .add-event-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .page-header {
+        padding: 12px 14px;
+    }
+
+    .header-left {
+        gap: 9px;
+    }
+
+    .page-heading h1 {
+        font-size: 16px;
+    }
+
+    .main-content {
+        padding: 14px;
+    }
+
+    .welcome-content {
+        align-items: flex-start;
+    }
+
+    .welcome-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .welcome-content h2 {
+        font-size: 16px;
+    }
+
+    .calendar-toolbar {
+        gap: 14px;
+    }
+
+    .toolbar-left {
+        gap: 6px;
+    }
+
+    .toolbar-left h2 {
+        min-width: 125px;
+        font-size: 14px;
+    }
+
+    .calendar-nav-button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .calendar-weekdays div {
+        min-height: 36px;
+        font-size: 10px;
+    }
+
+    .calendar-day {
+        min-height: 72px;
+        padding: 5px;
+    }
+
+    .day-number {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+
+    .day-events {
+        margin-top: 4px;
+    }
+
+    .calendar-event {
+        border-left-width: 2px;
+        padding: 3px 4px;
+        font-size: 8px;
+    }
+
+    .event-list-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .event-list-meta {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .event-modal {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-header,
+    #eventForm {
+        padding: 18px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}

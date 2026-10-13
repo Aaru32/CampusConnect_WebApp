@@ -1,0 +1,724 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CampusConnect Academic Management">
+    <title>Academic Management | CampusConnect</title><link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="academics.css">
+
+</head><body><!-- =========================
+     GLOBAL HEADER
+========================== -->
+<header class="page-header">
+
+    <div class="header-left">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+            title="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>Academic Management</h1>
+            <p>Manage academic sessions, calendar and operations</p>
+        </div>
+
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            type="button"
+            class="header-btn"
+            id="refreshBtn"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+
+        <button
+            type="button"
+            class="header-btn notification-btn"
+            id="notificationBtn"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+            <i class="fa-regular fa-bell"></i>
+            <span id="notificationDot" hidden></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================== -->
+<main class="academic-page">
+
+    <!-- INTRO -->
+    <section class="page-introduction">
+
+        <div class="intro-content">
+
+            <span class="eyebrow">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Academic Administration
+            </span>
+
+            <h2>Academic Management</h2>
+
+            <p>
+                Manage academic sessions, important academic dates,
+                examinations, operations and institutional reports
+                from one place.
+            </p>
+
+        </div>
+
+        <div class="intro-actions">
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                id="addSessionBtn"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Add Session
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OVERVIEW
+    ========================== -->
+    <section class="section">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-label">Overview</span>
+                <h2>Academic Overview</h2>
+                <p>Current academic management information.</p>
+            </div>
+        </div>
+
+        <div class="overview-grid">
+
+            <article class="overview-card">
+                <div class="overview-icon blue">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <span>Current Session</span>
+                    <strong id="currentSession">—</strong>
+                    <small id="currentSessionStatus">
+                        No session selected
+                    </small>
+                </div>
+            </article>
+
+
+            <article class="overview-card">
+                <div class="overview-icon green">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <div>
+                    <span>Academic Sessions</span>
+                    <strong id="totalSessions">—</strong>
+                    <small>Configured sessions</small>
+                </div>
+            </article>
+
+
+            <article class="overview-card">
+                <div class="overview-icon purple">
+                    <i class="fa-solid fa-calendar-week"></i>
+                </div>
+
+                <div>
+                    <span>Academic Calendar</span>
+                    <strong id="calendarStatus">—</strong>
+                    <small>Calendar management</small>
+                </div>
+            </article>
+
+
+            <article class="overview-card">
+                <div class="overview-icon orange">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+                    <span>Reports</span>
+                    <strong id="reportStatus">—</strong>
+                    <small>Academic reporting</small>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ACADEMIC OPERATIONS
+    ========================== -->
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">Operations</span>
+                <h2>Academic Operations</h2>
+                <p>
+                    Open the academic areas that require regular
+                    administrative management.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="operations-grid">
+
+            <!-- Calendar -->
+            <button
+                type="button"
+                class="operation-card"
+                id="calendarCard"
+            >
+
+                <span class="operation-icon blue">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </span>
+
+                <span class="operation-content">
+                    <strong>Academic Calendar</strong>
+                    <small>
+                        Manage academic dates, holidays,
+                        semester schedules and important events.
+                    </small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right operation-arrow"></i>
+
+            </button>
+
+
+            <!-- Reports -->
+            <button
+                type="button"
+                class="operation-card"
+                id="reportsCard"
+            >
+
+                <span class="operation-icon purple">
+                    <i class="fa-solid fa-chart-column"></i>
+                </span>
+
+                <span class="operation-content">
+                    <strong>Academic Reports</strong>
+                    <small>
+                        View and generate academic reports
+                        and institutional summaries.
+                    </small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right operation-arrow"></i>
+
+            </button>
+
+
+            <!-- Session -->
+            <button
+                type="button"
+                class="operation-card"
+                id="sessionManagementCard"
+            >
+
+                <span class="operation-icon green">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                </span>
+
+                <span class="operation-content">
+                    <strong>Session Management</strong>
+                    <small>
+                        Create, view and manage academic sessions.
+                    </small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right operation-arrow"></i>
+
+            </button>
+
+
+            <!-- Academic Structure -->
+            <button
+                type="button"
+                class="operation-card"
+                id="academicStructureCard"
+            >
+
+                <span class="operation-icon orange">
+                    <i class="fa-solid fa-sitemap"></i>
+                </span>
+
+                <span class="operation-content">
+                    <strong>Academic Structure</strong>
+                    <small>
+                        Review departments, programmes,
+                        semesters and academic organisation.
+                    </small>
+                </span>
+
+                <i class="fa-solid fa-arrow-right operation-arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SESSION MANAGEMENT
+    ========================== -->
+    <section
+        class="section session-section"
+        id="sessionSection"
+    >
+
+        <div class="section-heading session-heading">
+
+            <div>
+                <span class="section-label">Sessions</span>
+                <h2>Academic Sessions</h2>
+                <p>
+                    Manage the academic sessions configured
+                    for the institution.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                id="sessionAddButton"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Add Session
+            </button>
+
+        </div>
+
+
+        <!-- Search -->
+        <div class="session-toolbar">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="sessionSearch"
+                    placeholder="Search session..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select id="sessionStatusFilter">
+
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="completed">Completed</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Session table -->
+        <div class="table-container">
+
+            <table class="session-table">
+
+                <thead>
+                    <tr>
+                        <th>Academic Session</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Current</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="sessionTableBody"></tbody>
+
+            </table>
+
+
+            <div
+                class="table-empty"
+                id="sessionEmptyState"
+                hidden
+            >
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                </div>
+
+                <h3>No academic sessions</h3>
+
+                <p>
+                    No sessions are currently available.
+                    Add a session to begin managing academic periods.
+                </p>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="emptyAddSessionBtn"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Session
+                </button>
+
+            </div>
+
+
+            <div
+                class="table-search-empty"
+                id="sessionSearchEmpty"
+                hidden
+            >
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <h3>No matching sessions</h3>
+
+                <p>
+                    Try changing the search text or status filter.
+                </p>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="clearSessionSearchBtn"
+                >
+                    Clear Filters
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUICK ACCESS
+    ========================== -->
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">Quick Access</span>
+                <h2>Academic Resources</h2>
+                <p>Open frequently used academic management pages.</p>
+            </div>
+
+        </div>
+
+
+        <div class="resource-grid">
+
+            <button
+                type="button"
+                class="resource-card"
+                id="calendarResourceBtn"
+            >
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Academic Calendar</span>
+                <small>Open calendar</small>
+            </button>
+
+
+            <button
+                type="button"
+                class="resource-card"
+                id="reportsResourceBtn"
+            >
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports</span>
+                <small>Open academic reports</small>
+            </button>
+
+
+            <button
+                type="button"
+                class="resource-card"
+                id="dashboardResourceBtn"
+            >
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Admin Dashboard</span>
+                <small>Return to dashboard</small>
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     ADD / EDIT SESSION MODAL
+========================== -->
+<div
+    class="modal-backdrop"
+    id="sessionModal"
+    hidden
+>
+
+    <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sessionModalTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+                <span class="section-label">Academic Session</span>
+                <h2 id="sessionModalTitle">Add Session</h2>
+                <p>
+                    Enter the academic session details.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeSessionModalBtn"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="sessionForm">
+
+            <input
+                type="hidden"
+                id="editingSessionId"
+            >
+
+
+            <div class="form-grid">
+
+                <div class="form-group full-width">
+
+                    <label for="sessionName">
+                        Academic Session <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sessionName"
+                        placeholder="e.g. 2026-27"
+                        required
+                    >
+
+                    <small
+                        class="form-error"
+                        id="sessionNameError"
+                    ></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sessionStartDate">
+                        Start Date <span>*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="sessionStartDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sessionEndDate">
+                        End Date <span>*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="sessionEndDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sessionStatus">
+                        Status <span>*</span>
+                    </label>
+
+                    <select id="sessionStatus" required>
+
+                        <option value="upcoming">
+                            Upcoming
+                        </option>
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group checkbox-group">
+
+                    <label class="checkbox-label">
+
+                        <input
+                            type="checkbox"
+                            id="sessionCurrent"
+                        >
+
+                        <span>
+                            Set as current academic session
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelSessionBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="saveSessionBtn"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    Save Session
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NOTIFICATION PANEL
+========================== -->
+<aside
+    class="notification-panel"
+    id="notificationPanel"
+    hidden
+>
+
+    <div class="notification-header">
+
+        <h3>Notifications</h3>
+
+        <button
+            type="button"
+            id="closeNotificationBtn"
+            aria-label="Close notifications"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <div class="notification-body">
+
+        <div class="notification-empty">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <h4>No new notifications</h4>
+
+            <p>
+                New academic notifications will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     TOAST
+========================== -->
+<div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite"
+></div>
+
+
+<script src="academics.js" defer></script>
+
+</body>
+</html>

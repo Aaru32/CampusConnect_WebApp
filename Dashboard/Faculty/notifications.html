@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CampusConnect - Notifications</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="notifications.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="notification-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1>Notifications</h1>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <!-- Refresh -->
+            <button
+                type="button"
+                class="header-circle-btn"
+                id="refreshButton"
+                aria-label="Refresh notifications"
+                title="Refresh"
+            >
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+            </button>
+
+
+            <!-- Notification -->
+            <button
+                type="button"
+                class="header-circle-btn notification-header-btn"
+                id="notificationButton"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="notification-count"
+                    id="notificationCount"
+                    hidden
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <section class="page-intro">
+
+            <div>
+
+                <span class="intro-label">
+                    FACULTY COMMUNICATION
+                </span>
+
+                <h2>Notification Center</h2>
+
+                <p>
+                    View notifications relevant to your faculty account
+                    and communicate with your authorized audience.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="create-notification-btn"
+                id="createNotificationButton"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>Create Notification</span>
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FILTER BAR
+        ================================================== -->
+
+        <section class="filter-section">
+
+            <div class="filter-tabs">
+
+                <button
+                    type="button"
+                    class="filter-tab active"
+                    data-filter="all"
+                >
+                    All
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="unread"
+                >
+                    Unread
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="academic"
+                >
+                    Academic
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="classes"
+                >
+                    Classes
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="assignments"
+                >
+                    Assignments
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="examinations"
+                >
+                    Examinations
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="attendance"
+                >
+                    Attendance
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-tab"
+                    data-filter="events"
+                >
+                    Events
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="mark-all-btn"
+                id="markAllReadButton"
+            >
+
+                <i class="fa-solid fa-check-double"></i>
+
+                Mark all as read
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NOTIFICATION LIST
+        ================================================== -->
+
+        <section class="notifications-card">
+
+            <div class="notifications-card-header">
+
+                <div>
+
+                    <h3>Notifications</h3>
+
+                    <span id="notificationSummary">
+                        Loading notifications...
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="notifications-list"
+                id="notificationsList"
+            >
+
+                <!-- Backend notifications rendered here -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CREATE NOTIFICATION MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="createNotificationModal"
+        hidden
+    >
+
+        <div
+            class="notification-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="createNotificationTitle"
+        >
+
+
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-label">
+                        FACULTY COMMUNICATION
+                    </span>
+
+                    <h2 id="createNotificationTitle">
+                        Create Notification
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-btn"
+                    id="closeCreateModal"
+                    aria-label="Close"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Modal Body -->
+
+            <form
+                id="createNotificationForm"
+                class="notification-form"
+            >
+
+
+                <!-- Title -->
+
+                <div class="form-group">
+
+                    <label for="notificationTitle">
+                        Notification Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="notificationTitle"
+                        name="title"
+                        maxlength="150"
+                        placeholder="Enter notification title"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Message -->
+
+                <div class="form-group">
+
+                    <label for="notificationMessage">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="notificationMessage"
+                        name="message"
+                        rows="5"
+                        maxlength="2000"
+                        placeholder="Write your notification..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- Category -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="notificationCategory">
+                            Category
+                        </label>
+
+                        <select
+                            id="notificationCategory"
+                            name="category"
+                            required
+                        >
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="academic">
+                                Academic
+                            </option>
+
+                            <option value="classes">
+                                Classes
+                            </option>
+
+                            <option value="assignments">
+                                Assignments
+                            </option>
+
+                            <option value="examinations">
+                                Examinations
+                            </option>
+
+                            <option value="attendance">
+                                Attendance
+                            </option>
+
+                            <option value="events">
+                                Events
+                            </option>
+
+                            <option value="general">
+                                General
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="notificationPriority">
+                            Priority
+                        </label>
+
+                        <select
+                            id="notificationPriority"
+                            name="priority"
+                        >
+
+                            <option value="normal">
+                                Normal
+                            </option>
+
+                            <option value="important">
+                                Important
+                            </option>
+
+                            <option value="urgent">
+                                Urgent
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Target Type -->
+
+                <div class="form-group">
+
+                    <label for="targetType">
+                        Target Audience
+                    </label>
+
+                    <select
+                        id="targetType"
+                        name="targetType"
+                        required
+                    >
+
+                        <option value="">
+                            Select target audience
+                        </option>
+
+                        <!--
+                            These options should ultimately be
+                            filtered/validated by backend permissions.
+                        -->
+
+                        <option value="assigned_students">
+                            My Assigned Students
+                        </option>
+
+                        <option value="class_students">
+                            Students in My Class
+                        </option>
+
+                        <option value="subject_students">
+                            Students of My Subject
+                        </option>
+
+                        <option value="department_faculty">
+                            Faculty in My Department
+                        </option>
+
+                        <option value="department_students">
+                            Students in My Department
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Target Selection -->
+
+                <div
+                    class="target-selection"
+                    id="targetSelection"
+                    hidden
+                >
+
+                    <div class="form-group">
+
+                        <label for="targetDepartment">
+                            Department
+                        </label>
+
+                        <select
+                            id="targetDepartment"
+                            name="departmentId"
+                        >
+
+                            <option value="">
+                                Loading departments...
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="targetSemester">
+                            Semester
+                        </label>
+
+                        <select
+                            id="targetSemester"
+                            name="semesterId"
+                        >
+
+                            <option value="">
+                                Select semester
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="targetClass">
+                            Class / Section
+                        </label>
+
+                        <select
+                            id="targetClass"
+                            name="classId"
+                        >
+
+                            <option value="">
+                                Select class
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="targetSubject">
+                            Subject
+                        </label>
+
+                        <select
+                            id="targetSubject"
+                            name="subjectId"
+                        >
+
+                            <option value="">
+                                Select subject
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Scheduling -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="deliveryType">
+                            Delivery
+                        </label>
+
+                        <select
+                            id="deliveryType"
+                            name="deliveryType"
+                        >
+
+                            <option value="immediate">
+                                Send immediately
+                            </option>
+
+                            <option value="scheduled">
+                                Schedule notification
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        class="form-group"
+                        id="scheduleGroup"
+                        hidden
+                    >
+
+                        <label for="scheduledAt">
+                            Schedule Time
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="scheduledAt"
+                            name="scheduledAt"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Form Message -->
+
+                <div
+                    class="form-message"
+                    id="formMessage"
+                    role="status"
+                ></div>
+
+
+
+                <!-- Actions -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelCreateNotification"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="publish-btn"
+                        id="publishNotificationButton"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Publish Notification
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NOTIFICATION DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="notificationDetailsModal"
+        hidden
+    >
+
+        <div
+            class="details-modal"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span
+                        class="modal-label"
+                        id="detailCategory"
+                    >
+                        NOTIFICATION
+                    </span>
+
+                    <h2 id="detailTitle">
+                        Notification
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-btn"
+                    id="closeDetailsModal"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="details-body">
+
+                <div class="detail-meta">
+
+                    <span id="detailTime">
+                        —
+                    </span>
+
+                    <span
+                        class="detail-priority"
+                        id="detailPriority"
+                    >
+                        Normal
+                    </span>
+
+                </div>
+
+
+                <p
+                    class="detail-message"
+                    id="detailMessage"
+                >
+                    —
+                </p>
+
+
+                <div class="detail-target">
+
+                    <span>
+                        <i class="fa-solid fa-users"></i>
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Target Audience
+                        </small>
+
+                        <strong id="detailAudience">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Global notification placeholder -->
+
+    <div
+        id="globalNotificationPlaceholder"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="notifications.js"></script>
+
+</div>
+
+</body>
+
+</html>

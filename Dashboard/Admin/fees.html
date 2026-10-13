@@ -1,0 +1,611 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="CampusConnect Admin Fee Management">
+
+<title>Fees | CampusConnect</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="fees.css">
+
+</head><body><header class="page-header"><div class="header-left">
+    <button
+        type="button"
+        class="back-btn"
+        id="backBtn"
+        title="Go back"
+        aria-label="Go back"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+</div>
+
+<div class="header-title">
+    <h1>Fees</h1>
+</div>
+
+<div class="header-actions">
+
+    <button
+        type="button"
+        class="header-btn"
+        id="refreshBtn"
+        title="Refresh"
+        aria-label="Refresh"
+    >
+        <i class="fa-solid fa-rotate-right"></i>
+    </button>
+
+    <button
+        type="button"
+        class="header-btn notification-btn"
+        id="notificationBtn"
+        title="Notifications"
+        aria-label="Notifications"
+    >
+        <i class="fa-regular fa-bell"></i>
+        <span id="notificationDot" hidden></span>
+    </button>
+
+</div>
+
+</header><main class="fees-page"><!-- =====================================================
+     OVERVIEW
+====================================================== -->
+
+<section class="intro-section">
+
+    <div>
+        <span class="section-label">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            Finance
+        </span>
+
+        <h2>Fee Management</h2>
+
+        <p>
+            Manage fee collection, outstanding dues,
+            transactions and financial reports.
+        </p>
+    </div>
+
+    <button
+        type="button"
+        class="btn btn-primary"
+        id="recordPaymentBtn"
+    >
+        <i class="fa-solid fa-plus"></i>
+        Record Payment
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     KPI
+====================================================== -->
+
+<section class="kpi-grid">
+
+    <button class="kpi-card" id="totalCollectedCard">
+        <span class="kpi-icon blue">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+        </span>
+
+        <span class="kpi-content">
+            <small>Total Collected</small>
+            <strong id="totalCollected">—</strong>
+            <em>View collection</em>
+        </span>
+    </button>
+
+
+    <button class="kpi-card" id="outstandingCard">
+        <span class="kpi-icon orange">
+            <i class="fa-solid fa-clock"></i>
+        </span>
+
+        <span class="kpi-content">
+            <small>Outstanding Dues</small>
+            <strong id="outstandingAmount">—</strong>
+            <em>View dues</em>
+        </span>
+    </button>
+
+
+    <button class="kpi-card" id="transactionCard">
+        <span class="kpi-icon purple">
+            <i class="fa-solid fa-receipt"></i>
+        </span>
+
+        <span class="kpi-content">
+            <small>Transactions</small>
+            <strong id="transactionCount">—</strong>
+            <em>View transactions</em>
+        </span>
+    </button>
+
+
+    <button class="kpi-card" id="pendingCard">
+        <span class="kpi-icon green">
+            <i class="fa-solid fa-circle-check"></i>
+        </span>
+
+        <span class="kpi-content">
+            <small>Pending Payments</small>
+            <strong id="pendingPayments">—</strong>
+            <em>View pending</em>
+        </span>
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     FEE OPERATIONS
+====================================================== -->
+
+<section class="section">
+
+    <div class="section-heading">
+        <div>
+            <span class="section-label">Management</span>
+            <h2>Fee Operations</h2>
+            <p>Open a financial management area.</p>
+        </div>
+    </div>
+
+
+    <div class="operation-grid">
+
+        <button
+            type="button"
+            class="operation-card"
+            data-view="collection"
+        >
+            <span class="operation-icon blue">
+                <i class="fa-solid fa-chart-column"></i>
+            </span>
+
+            <span class="operation-content">
+                <strong>Collection Reports</strong>
+                <small>
+                    Analyse collected fees by date, session,
+                    fee type and payment mode.
+                </small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+
+        <button
+            type="button"
+            class="operation-card"
+            data-view="dues"
+        >
+            <span class="operation-icon orange">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+            </span>
+
+            <span class="operation-content">
+                <strong>Outstanding Dues</strong>
+                <small>
+                    Find students with pending or partially
+                    paid fees.
+                </small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+
+        <button
+            type="button"
+            class="operation-card"
+            data-view="transactions"
+        >
+            <span class="operation-icon purple">
+                <i class="fa-solid fa-list-check"></i>
+            </span>
+
+            <span class="operation-content">
+                <strong>Transaction Reports</strong>
+                <small>
+                    Search and review individual fee
+                    transactions.
+                </small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+
+        <button
+            type="button"
+            class="operation-card"
+            data-view="pending"
+        >
+            <span class="operation-icon green">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </span>
+
+            <span class="operation-content">
+                <strong>Pending Payments</strong>
+                <small>
+                    Review payments that require verification
+                    or completion.
+                </small>
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REPORT AREA
+====================================================== -->
+
+<section
+    class="report-section"
+    id="reportSection"
+    hidden
+>
+
+    <div class="report-header">
+
+        <div>
+            <span class="section-label" id="reportLabel">
+                Report
+            </span>
+
+            <h2 id="reportTitle">
+                Report
+            </h2>
+
+            <p id="reportDescription">
+                Financial report details.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-secondary"
+            id="closeReportBtn"
+        >
+            <i class="fa-solid fa-arrow-up"></i>
+            Back to Fees
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         REPORT FILTERS
+    ================================================== -->
+
+    <div class="filter-card">
+
+        <div class="filter-field search-field">
+
+            <label for="reportSearch">Search</label>
+
+            <div class="input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="reportSearch"
+                    placeholder="Search student, transaction or fee type..."
+                >
+            </div>
+
+        </div>
+
+
+        <div class="filter-field">
+
+            <label for="sessionFilter">Session</label>
+
+            <select id="sessionFilter">
+                <option value="">All Sessions</option>
+            </select>
+
+        </div>
+
+
+        <div class="filter-field">
+
+            <label for="feeTypeFilter">Fee Type</label>
+
+            <select id="feeTypeFilter">
+                <option value="">All Fee Types</option>
+            </select>
+
+        </div>
+
+
+        <div class="filter-field">
+
+            <label for="statusFilter">Status</label>
+
+            <select id="statusFilter">
+                <option value="">All Status</option>
+                <option value="paid">Paid</option>
+                <option value="pending">Pending</option>
+                <option value="partial">Partial</option>
+                <option value="failed">Failed</option>
+            </select>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn btn-secondary filter-clear"
+            id="clearFiltersBtn"
+        >
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+            Clear
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         REPORT SUMMARY
+    ================================================== -->
+
+    <div class="report-summary">
+
+        <article>
+            <span>Records</span>
+            <strong id="reportRecordCount">—</strong>
+        </article>
+
+        <article>
+            <span>Collected</span>
+            <strong id="reportCollected">—</strong>
+        </article>
+
+        <article>
+            <span>Outstanding</span>
+            <strong id="reportOutstanding">—</strong>
+        </article>
+
+    </div>
+
+
+    <!-- =================================================
+         REPORT TABLE
+    ================================================== -->
+
+    <div class="table-card">
+
+        <div class="table-top">
+
+            <h3 id="tableTitle">
+                Financial Records
+            </h3>
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                id="exportBtn"
+            >
+                <i class="fa-solid fa-download"></i>
+                Export
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead id="reportTableHead"></thead>
+
+                <tbody id="reportTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <div
+            class="empty-state"
+            id="reportEmptyState"
+            hidden
+        >
+            <div class="empty-icon">
+                <i class="fa-solid fa-database"></i>
+            </div>
+
+            <h3>No records available</h3>
+
+            <p>
+                Financial data will appear here when the
+                backend provides records matching the selected
+                filters.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+</main><!-- =========================================================
+     PAYMENT MODAL
+========================================================== --><div
+    class="modal-backdrop"
+    id="paymentModal"
+    hidden
+><div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="paymentModalTitle"
+>
+
+    <div class="modal-header">
+
+        <div>
+            <h2 id="paymentModalTitle">Record Payment</h2>
+            <p>Enter payment information.</p>
+        </div>
+
+        <button
+            type="button"
+            class="modal-close"
+            id="closePaymentModal"
+            aria-label="Close"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <form id="paymentForm">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label for="studentId">
+                    Student ID
+                </label>
+
+                <input
+                    id="studentId"
+                    type="text"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="paymentAmount">
+                    Amount
+                </label>
+
+                <input
+                    id="paymentAmount"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="paymentFeeType">
+                    Fee Type
+                </label>
+
+                <select id="paymentFeeType" required>
+                    <option value="">Select fee type</option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="paymentMode">
+                    Payment Mode
+                </label>
+
+                <select id="paymentMode" required>
+                    <option value="">Select mode</option>
+                    <option value="online">Online</option>
+                    <option value="cash">Cash</option>
+                    <option value="bank">Bank Transfer</option>
+                    <option value="other">Other</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                id="cancelPaymentBtn"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                <i class="fa-solid fa-check"></i>
+                Save Payment
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div><!-- =========================================================
+     NOTIFICATION PANEL
+========================================================== --><div
+    class="notification-panel"
+    id="notificationPanel"
+    hidden
+><div class="notification-header">
+
+    <h3>Notifications</h3>
+
+    <button
+        type="button"
+        id="closeNotificationBtn"
+        aria-label="Close notifications"
+    >
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+</div>
+
+<div class="notification-body">
+
+    <div class="notification-empty">
+
+        <i class="fa-regular fa-bell-slash"></i>
+
+        <h4>No new notifications</h4>
+
+        <p>
+            New fee-related notifications will appear here.
+        </p>
+
+    </div>
+
+</div>
+
+</div><div
+    class="toast-container"
+    id="toastContainer"
+    aria-live="polite"
+></div><script src="fees.js"></script></body>
+</html>

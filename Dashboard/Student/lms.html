@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>LMS | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="lms.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <header class="lms-header">
+
+        <button
+            type="button"
+            class="back-button"
+            id="backButton"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+
+        <div class="brand-area">
+
+            <div class="brand-mark">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div>
+
+                <h1>LMS</h1>
+
+                <p>
+                    Your learning space
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!--
+            GLOBAL NOTIFICATION INTEGRATION POINT
+
+            Do not create a separate notification
+            bell here.
+
+            The future CampusConnect global
+            notification system can integrate
+            with this header.
+        -->
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN LMS WORKSPACE
+    ========================================== -->
+
+    <main class="lms-workspace">
+
+
+        <!-- =====================================
+             HERO / SEARCH AREA
+        ====================================== -->
+
+        <section class="learning-hero">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    LEARNING MANAGEMENT SYSTEM
+                </span>
+
+                <h2>
+                    Learn. Explore. Grow.
+                </h2>
+
+                <p>
+                    Your academic resources, courses
+                    and learning activity in one place.
+                </p>
+
+
+                <div class="lms-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="lmsSearch"
+                        placeholder="Search your learning resources..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="searchButton"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="orbit orbit-one"></div>
+
+                <div class="orbit orbit-two"></div>
+
+                <div class="hero-cap">
+
+                    <i class="fa-solid fa-book-open-reader"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             LEARNING SNAPSHOT
+        ====================================== -->
+
+        <section class="snapshot-area">
+
+            <div class="snapshot-main">
+
+                <div class="section-eyebrow">
+                    YOUR LEARNING
+                </div>
+
+                <h2>
+                    Continue where you left off
+                </h2>
+
+                <p>
+                    Your recent learning activity will
+                    appear here automatically.
+                </p>
+
+
+                <div
+                    class="dynamic-learning-card"
+                    id="continueLearning"
+                >
+
+                    <!--
+                        Backend data will appear here.
+
+                        No course, subject or progress
+                        is hardcoded.
+                    -->
+
+                    <div class="dynamic-icon">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Learning activity
+                        </strong>
+
+                        <span>
+                            Your recently accessed
+                            learning content will appear here.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-panel">
+
+                <div class="progress-top">
+
+                    <span>
+                        LEARNING PROGRESS
+                    </span>
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <div class="progress-circle">
+
+                    <div class="progress-inner">
+
+                        <strong id="progressValue">
+                            --
+                        </strong>
+
+                        <span>
+                            progress
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Progress will be calculated from
+                    your actual learning activity.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             RESOURCE HUB
+        ====================================== -->
+
+        <section class="resource-hub">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        RESOURCE HUB
+                    </span>
+
+                    <h2>
+                        Explore your learning material
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Resource Types -->
+
+            <div class="resource-types">
+
+                <button
+                    type="button"
+                    class="resource-type active"
+                    data-type="all"
+                >
+
+                    <span class="resource-type-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </span>
+
+                    <span>
+                        <strong>All Resources</strong>
+                        <small>Everything available</small>
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="resource-type"
+                    data-type="notes"
+                >
+
+                    <span class="resource-type-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </span>
+
+                    <span>
+                        <strong>Notes</strong>
+                        <small>Study notes</small>
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="resource-type"
+                    data-type="documents"
+                >
+
+                    <span class="resource-type-icon">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </span>
+
+                    <span>
+                        <strong>Documents</strong>
+                        <small>Academic files</small>
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="resource-type"
+                    data-type="presentations"
+                >
+
+                    <span class="resource-type-icon">
+                        <i class="fa-solid fa-display"></i>
+                    </span>
+
+                    <span>
+                        <strong>Presentations</strong>
+                        <small>PPT resources</small>
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="resource-type"
+                    data-type="videos"
+                >
+
+                    <span class="resource-type-icon">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </span>
+
+                    <span>
+                        <strong>Videos</strong>
+                        <small>Learning videos</small>
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Dynamic Resource Shelf -->
+
+            <div class="resource-shelf">
+
+                <div class="shelf-heading">
+
+                    <div>
+
+                        <span>
+                            AVAILABLE MATERIAL
+                        </span>
+
+                        <h3 id="resourceShelfTitle">
+                            All Resources
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="view-button"
+                        id="viewAllButton"
+                    >
+                        View all
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="resource-grid"
+                    id="resourceGrid"
+                >
+
+                    <!--
+                        Dynamic backend resources will
+                        be rendered here.
+
+                        No fixed resources are included.
+                    -->
+
+                    <div class="resource-empty">
+
+                        <div class="empty-symbol">
+
+                            <i class="fa-solid fa-books"></i>
+
+                        </div>
+
+                        <h3>
+                            Your resources will appear here
+                        </h3>
+
+                        <p>
+                            Study material published by
+                            authorized faculty or administrators
+                            will be available in this space.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             COURSES / SUBJECTS
+        ====================================== -->
+
+        <section class="courses-area">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        YOUR COURSES
+                    </span>
+
+                    <h2>
+                        Explore courses
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="course-strip"
+                id="courseStrip"
+            >
+
+                <!--
+                    Courses/subjects will be loaded
+                    from the backend.
+
+                    No semester or subject is
+                    hardcoded here.
+                -->
+
+                <div class="course-empty">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    <div>
+
+                        <strong>
+                            Courses will appear here
+                        </strong>
+
+                        <span>
+                            Your enrolled academic courses
+                            will be loaded automatically.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             RECENTLY VIEWED
+        ====================================== -->
+
+        <section class="recent-area">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        ACTIVITY
+                    </span>
+
+                    <h2>
+                        Recently viewed
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="recent-list"
+                id="recentList"
+            >
+
+                <div class="recent-empty">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    <span>
+                        Your recently viewed resources
+                        will appear here.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SAVED RESOURCES
+        ====================================== -->
+
+        <section class="saved-area">
+
+            <div class="saved-content">
+
+                <div class="saved-icon">
+
+                    <i class="fa-solid fa-bookmark"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        SAVED FOR LATER
+                    </span>
+
+                    <h2>
+                        Your saved resources
+                    </h2>
+
+                    <p>
+                        Resources you save while studying
+                        will be collected here for quick access.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="savedButton"
+                    class="saved-button"
+                >
+                    Open
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         RESOURCE DETAILS MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="resourceModal"
+        aria-hidden="true"
+    >
+
+        <div class="resource-modal">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div
+                id="modalContent"
+                class="modal-content"
+            >
+
+                <!-- Dynamic content -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="lms.js"></script>
+
+</body>
+
+</html>

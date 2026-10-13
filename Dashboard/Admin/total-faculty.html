@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Total Faculty</title>
+
+    <!-- Font Awesome 6.5.2 -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="total-faculty.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="top-header">
+
+        <button
+            class="header-button"
+            id="backButton"
+            title="Go Back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="page-title">
+            <h1>Total Faculty</h1>
+            <span>Faculty Management</span>
+        </div>
+
+        <button
+            class="header-button refresh-button"
+            id="refreshButton"
+            title="Refresh Data"
+        >
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         GLOBAL NOTIFICATIONS
+    ====================================================== -->
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+    <main class="main-content">
+
+
+        <!-- =================================================
+             FACULTY OVERVIEW
+        ================================================== -->
+        <section class="overview-panel">
+
+            <div class="overview-content">
+
+                <div class="overview-heading">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">FACULTY OVERVIEW</span>
+                        <h2>Faculty Records</h2>
+                    </div>
+
+                </div>
+
+
+                <p class="overview-description">
+                    Get a structured overview of faculty distribution,
+                    employment status and recently added records.
+                </p>
+
+
+                <div class="total-area">
+
+                    <span class="data-label">
+                        TOTAL FACULTY
+                    </span>
+
+                    <div
+                        class="total-number"
+                        id="totalFaculty"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="data-status"
+                        id="totalStatus"
+                    >
+                        <i class="fa-solid fa-database"></i>
+                        Awaiting database data
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=85"
+                    alt="Faculty teaching in a college classroom"
+                    loading="eager"
+                >
+
+                <div class="image-overlay"></div>
+
+                <div class="image-caption">
+
+                    <i class="fa-solid fa-building-columns"></i>
+
+                    <span>
+                        Government Women's Polytechnic, Patna
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUTION CARDS
+        ================================================== -->
+        <section class="statistics-grid">
+
+
+            <!-- Departments -->
+            <button
+                class="stat-card"
+                data-section="departments"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Departments</span>
+
+                    <strong id="departmentCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View department distribution
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+
+            <!-- Designations -->
+            <button
+                class="stat-card"
+                data-section="designations"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-id-badge"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Designations</span>
+
+                    <strong id="designationCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View designation distribution
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+
+            <!-- Employment Status -->
+            <button
+                class="stat-card"
+                data-section="employment"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Employment Status</span>
+
+                    <strong id="employmentCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View employment status
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+
+            <!-- Academic Sessions -->
+            <button
+                class="stat-card"
+                data-section="sessions"
+            >
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div class="stat-information">
+
+                    <span>Academic Sessions</span>
+
+                    <strong id="sessionCount">
+                        —
+                    </strong>
+
+                    <small>
+                        View session distribution
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right stat-arrow"></i>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             DISTRIBUTION DETAILS
+        ================================================== -->
+        <section
+            class="details-panel"
+            id="detailsPanel"
+        >
+
+            <div class="details-header">
+
+                <div>
+
+                    <span class="section-label">
+                        FACULTY DISTRIBUTION
+                    </span>
+
+                    <h2 id="detailsTitle">
+                        Faculty Distribution
+                    </h2>
+
+                </div>
+
+                <button
+                    class="close-button"
+                    id="closeDetails"
+                    title="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="details-tabs">
+
+                <button
+                    class="details-tab active"
+                    data-tab="departments"
+                >
+                    Departments
+                </button>
+
+                <button
+                    class="details-tab"
+                    data-tab="designations"
+                >
+                    Designations
+                </button>
+
+                <button
+                    class="details-tab"
+                    data-tab="employment"
+                >
+                    Employment Status
+                </button>
+
+                <button
+                    class="details-tab"
+                    data-tab="sessions"
+                >
+                    Academic Sessions
+                </button>
+
+            </div>
+
+
+            <div
+                class="details-body"
+                id="detailsBody"
+            >
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+
+                    <h3>
+                        Awaiting database data
+                    </h3>
+
+                    <p>
+                        Distribution data will appear here after
+                        the faculty database is connected.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SEARCH FACULTY
+        ================================================== -->
+        <section class="search-card">
+
+            <div class="search-heading">
+
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <div>
+
+                    <h2>Find a Faculty Member</h2>
+
+                    <p>
+                        Search faculty records from the database.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="facultySearch"
+                    placeholder="Search by name, employee ID or email"
+                    autocomplete="off"
+                >
+
+                <button
+                    id="searchButton"
+                    title="Search"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <div
+                class="search-results"
+                id="searchResults"
+            >
+
+                <div class="search-empty">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>
+                        Search results will appear here.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RECENTLY ADDED FACULTY
+        ================================================== -->
+        <section class="records-card">
+
+            <button
+                class="records-toggle"
+                id="recordsToggle"
+            >
+
+                <div class="records-heading">
+
+                    <div class="records-icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Recently Added Faculty</h2>
+
+                        <p>
+                            View the latest faculty records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <i
+                    class="fa-solid fa-chevron-down records-arrow"
+                ></i>
+
+            </button>
+
+
+            <div
+                class="records-content"
+                id="recordsContent"
+            >
+
+                <div class="records-empty">
+
+                    <div class="records-empty-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <h3>
+                        Awaiting database data
+                    </h3>
+
+                    <p>
+                        Recently added faculty records will appear
+                        here when data is available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+        <section class="quick-actions">
+
+            <div class="quick-header">
+
+                <div>
+
+                    <span class="section-label">
+                        QUICK ACTIONS
+                    </span>
+
+                    <h2>Faculty Management</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-grid">
+
+                <button
+                    class="action-card"
+                    id="viewFaculty"
+                >
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>View All Faculty</strong>
+
+                        <span>
+                            Open faculty records
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="addFaculty"
+                >
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Add Faculty</strong>
+
+                        <span>
+                            Create a new faculty record
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="exportFaculty"
+                >
+
+                    <div class="action-icon">
+                        <i class="fa-solid fa-file-export"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Export Faculty Data</strong>
+
+                        <span>
+                            Export database records
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="total-faculty.js"></script>
+
+</body>
+</html>

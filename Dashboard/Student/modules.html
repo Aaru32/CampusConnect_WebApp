@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Modules</title>
+
+
+    <!-- ================= FONT AWESOME ================= -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- ================= MODULES CSS ================= -->
+
+    <link rel="stylesheet"
+          href="modules.css">
+
+
+
+</head>
+
+
+<body>
+
+
+<!-- ================= COMMON STUDENT HEADER ================= -->
+
+<header class="student-header">
+
+    <div class="student-greeting">
+
+        <h2>
+            Hi <span id="headerStudentName">Student</span>!
+        </h2>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= MODULES APP ================= -->
+
+<div class="modules-app">
+
+
+    <!-- ================= INTRODUCTION ================= -->
+
+    <section class="modules-intro">
+
+        <span>
+            CAMPUSCONNECT
+        </span>
+
+        <h2>
+            College Management Modules
+        </h2>
+
+        <p>
+            Access academic and student services
+            from one place.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= MODULES ================= -->
+
+    <main class="all-modules"
+          id="allModules">
+
+        <!--
+            Modules will be generated
+            dynamically by modules.js
+        -->
+
+    </main>
+
+
+
+    <!-- ================= BOTTOM NAVIGATION ================= -->
+
+    <nav class="bottom-nav">
+
+
+        <!-- HOME -->
+
+        <button class="nav-item"
+                id="homeNav"
+                type="button">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </button>
+
+
+
+        <!-- MODULES -->
+
+        <button class="nav-item active"
+                id="modulesNav"
+                type="button">
+
+            <i class="fa-solid fa-grip"></i>
+
+            <span>
+                Modules
+            </span>
+
+        </button>
+        
+        
+
+
+
+
+
+        <!-- PROFILE -->
+
+        <button class="nav-item"
+                id="profileNav"
+                type="button">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>
+                Profile
+            </span>
+
+        </button>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- ================= MODULES JAVASCRIPT ================= -->
+
+<script src="modules.js"></script>
+
+
+</body>
+
+</html>

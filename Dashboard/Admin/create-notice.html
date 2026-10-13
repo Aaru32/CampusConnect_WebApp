@@ -1,0 +1,857 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    ><title>CampusConnect | Create Notice</title>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="create-notice.css">
+
+</head><body><div class="notice-page"><!-- HEADER -->
+<header class="page-header">
+
+    <button
+        type="button"
+        class="header-button"
+        id="backButton"
+        title="Back"
+        aria-label="Back"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="header-title">
+        <h1>Create Notice</h1>
+        <span>Publish an official campus notice</span>
+    </div>
+
+</header>
+
+
+<!-- GLOBAL NOTIFICATION PLACEHOLDER -->
+<div id="globalNotificationPlaceholder"></div>
+
+
+<!-- CONTENT -->
+<main class="notice-content">
+
+    <form id="noticeForm" novalidate>
+
+
+        <!-- =================================================
+             NOTICE INFORMATION
+        ================================================== -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+                    <h2>Notice Information</h2>
+                    <p>Enter the basic details of the notice.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-field full-width">
+
+                    <label for="noticeTitle">
+                        Notice Title
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="noticeTitle"
+                        name="noticeTitle"
+                        placeholder="Enter notice title"
+                        maxlength="200"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="noticeType">
+                        Notice Type
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="noticeType"
+                        name="noticeType"
+                        required
+                    >
+                        <option value="">
+                            Select notice type
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="referenceNumber">
+                        Reference Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="referenceNumber"
+                        name="referenceNumber"
+                        placeholder="e.g. GWP/2026/EXAM/001"
+                        maxlength="100"
+                    >
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="noticeDate">
+                        Notice Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="noticeDate"
+                        name="noticeDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-field full-width">
+
+                    <label for="noticeContent">
+                        Notice Content
+                        <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="noticeContent"
+                        name="noticeContent"
+                        rows="9"
+                        placeholder="Write the complete notice content here..."
+                        maxlength="10000"
+                        required
+                    ></textarea>
+
+                    <div class="field-helper">
+                        <span>
+                            Write the official information that recipients need to know.
+                        </span>
+
+                        <span id="contentCounter">
+                            0 / 10000
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             AUDIENCE
+        ================================================== -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div>
+                    <h2>Audience</h2>
+                    <p>Choose who should receive this notice.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-field full-width">
+
+                    <label for="audience">
+                        Audience
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="audience"
+                        name="audience"
+                        required
+                    >
+
+                        <option value="">
+                            Select audience
+                        </option>
+
+                        <option value="everyone">
+                            Everyone
+                        </option>
+
+                        <option value="students">
+                            Students
+                        </option>
+
+                        <option value="faculty">
+                            Faculty
+                        </option>
+
+                        <option value="admins">
+                            All Admins
+                        </option>
+
+                        <option value="students_faculty">
+                            Students &amp; Faculty
+                        </option>
+
+                        <option value="students_admins">
+                            Students &amp; Admins
+                        </option>
+
+                        <option value="faculty_admins">
+                            Faculty &amp; Admins
+                        </option>
+
+                        <option value="students_faculty_admins">
+                            Students, Faculty &amp; Admins
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STUDENT TARGETING -->
+
+                <div
+                    class="targeting-panel full-width"
+                    id="studentTargeting"
+                    hidden
+                >
+
+                    <div class="targeting-heading">
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                        <div>
+                            <h3>Student Targeting</h3>
+                            <p>
+                                Optionally narrow the notice to specific student groups.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-grid nested-grid">
+
+                        <div class="form-field">
+
+                            <label for="studentDepartment">
+                                Department / Branch
+                            </label>
+
+                            <select
+                                id="studentDepartment"
+                                name="studentDepartment"
+                            >
+                                <option value="">
+                                    All Departments / Branches
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="studentSemester">
+                                Semester
+                            </label>
+
+                            <select
+                                id="studentSemester"
+                                name="studentSemester"
+                            >
+                                <option value="">
+                                    All Semesters
+                                </option>
+
+                                <option value="1">
+                                    Semester 1
+                                </option>
+
+                                <option value="2">
+                                    Semester 2
+                                </option>
+
+                                <option value="3">
+                                    Semester 3
+                                </option>
+
+                                <option value="4">
+                                    Semester 4
+                                </option>
+
+                                <option value="5">
+                                    Semester 5
+                                </option>
+
+                                <option value="6">
+                                    Semester 6
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="studentSession">
+                                Academic Session
+                            </label>
+
+                            <select
+                                id="studentSession"
+                                name="studentSession"
+                            >
+                                <option value="">
+                                    All Sessions
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PUBLISHING
+        ================================================== -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <h2>Publishing</h2>
+                    <p>Control when the notice becomes visible.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-field full-width">
+
+                    <label>
+                        Publication
+                        <span class="required">*</span>
+                    </label>
+
+
+                    <div class="radio-group">
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="publicationMode"
+                                value="now"
+                                checked
+                            >
+
+                            <span class="radio-content">
+
+                                <strong>Publish Now</strong>
+
+                                <small>
+                                    Make the notice available immediately.
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="publicationMode"
+                                value="schedule"
+                            >
+
+                            <span class="radio-content">
+
+                                <strong>Schedule for Later</strong>
+
+                                <small>
+                                    Publish the notice at a selected date and time.
+                                </small>
+
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="form-field"
+                    id="scheduledDateField"
+                    hidden
+                >
+
+                    <label for="publishDate">
+                        Publish Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="publishDate"
+                        name="publishDate"
+                    >
+
+                </div>
+
+
+                <div
+                    class="form-field"
+                    id="scheduledTimeField"
+                    hidden
+                >
+
+                    <label for="publishTime">
+                        Publish Time
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="time"
+                        id="publishTime"
+                        name="publishTime"
+                    >
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="expiryDate">
+                        Expiry Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="expiryDate"
+                        name="expiryDate"
+                    >
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>
+                        Pin Notice
+                    </label>
+
+                    <label class="switch-field">
+
+                        <input
+                            type="checkbox"
+                            id="isPinned"
+                            name="isPinned"
+                        >
+
+                        <span class="switch"></span>
+
+                        <span>
+                            Keep this notice at the top
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ATTACHMENT
+        ================================================== -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-paperclip"></i>
+                </div>
+
+                <div>
+                    <h2>Attachment</h2>
+                    <p>Attach an official document if required.</p>
+                </div>
+
+            </div>
+
+
+            <div class="file-upload">
+
+                <input
+                    type="file"
+                    id="noticeAttachment"
+                    name="noticeAttachment"
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                >
+
+                <label
+                    for="noticeAttachment"
+                    class="file-upload-label"
+                >
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <strong>
+                        Choose an attachment
+                    </strong>
+
+                    <span>
+                        PDF, DOC, DOCX, JPG or PNG
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <div
+                class="selected-file"
+                id="selectedFile"
+                hidden
+            >
+
+                <div class="file-icon">
+                    <i class="fa-solid fa-file"></i>
+                </div>
+
+                <div class="file-info">
+
+                    <strong id="fileName">
+                        —
+                    </strong>
+
+                    <span id="fileSize">
+                        —
+                    </span>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="removeFile"
+                    class="remove-file"
+                    title="Remove attachment"
+                    aria-label="Remove attachment"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTICE SETTINGS
+        ================================================== -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+
+                <div>
+                    <h2>Notice Settings</h2>
+                    <p>Set the importance and interaction options.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-field">
+
+                    <label for="priority">
+                        Priority
+                    </label>
+
+                    <select
+                        id="priority"
+                        name="priority"
+                    >
+
+                        <option value="normal">
+                            Normal
+                        </option>
+
+                        <option value="important">
+                            Important
+                        </option>
+
+                        <option value="urgent">
+                            Urgent
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>
+                        Acknowledgement
+                    </label>
+
+                    <label class="switch-field">
+
+                        <input
+                            type="checkbox"
+                            id="requiresAcknowledgement"
+                            name="requiresAcknowledgement"
+                        >
+
+                        <span class="switch"></span>
+
+                        <span>
+                            Require recipients to acknowledge
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>
+                        Comments
+                    </label>
+
+                    <label class="switch-field">
+
+                        <input
+                            type="checkbox"
+                            id="allowComments"
+                            name="allowComments"
+                        >
+
+                        <span class="switch"></span>
+
+                        <span>
+                            Allow comments on this notice
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FORM MESSAGE
+        ================================================== -->
+
+        <div
+            class="form-message"
+            id="formMessage"
+            role="alert"
+            hidden
+        ></div>
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <div class="form-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="cancelButton"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="previewButton"
+            >
+                <i class="fa-solid fa-eye"></i>
+                Preview
+            </button>
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="draftButton"
+            >
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Draft
+            </button>
+
+            <button
+                type="submit"
+                class="primary-button"
+                id="publishButton"
+            >
+                <i class="fa-solid fa-paper-plane"></i>
+                Publish Notice
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+
+
+<!-- =====================================================
+     PREVIEW MODAL
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="previewModal"
+    hidden
+>
+
+    <div
+        class="preview-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="previewTitle"
+    >
+
+        <div class="preview-header">
+
+            <div>
+                <span class="preview-label">
+                    Notice Preview
+                </span>
+
+                <h2 id="previewTitle">
+                    Notice
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="close-modal"
+                id="closePreview"
+                title="Close preview"
+                aria-label="Close preview"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="preview-body">
+
+            <div class="preview-meta">
+
+                <span id="previewType">
+                    General
+                </span>
+
+                <span id="previewDate">
+                    —
+                </span>
+
+                <span id="previewPriority">
+                    Normal
+                </span>
+
+            </div>
+
+
+            <div
+                class="preview-content"
+                id="previewContent"
+            ></div>
+
+
+            <div
+                class="preview-attachment"
+                id="previewAttachment"
+                hidden
+            >
+                <i class="fa-solid fa-paperclip"></i>
+                <span id="previewFileName">Attachment</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="create-notice.js"></script></body>
+</html>

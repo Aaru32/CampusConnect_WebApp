@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Training & Placement | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link
+        rel="stylesheet"
+        href="training-placement.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="page-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backButton"
+            aria-label="Go back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1>Training & Placement</h1>
+
+            <p>
+                Training, career opportunities and placement support
+            </p>
+
+        </div>
+
+
+        <!--
+            GLOBAL NOTIFICATION PLACEHOLDER
+
+            The future global CampusConnect notification
+            system will be integrated here.
+
+            No separate notification system is implemented
+            inside this module.
+        -->
+
+        <div
+            class="global-notification-placeholder"
+            id="globalNotificationPlaceholder">
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="main-container">
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                    Career & Placement
+
+                </span>
+
+
+                <h2>
+                    Build your skills. Prepare for your career.
+                </h2>
+
+
+                <p>
+                    Discover training programs, placement drives,
+                    career events and opportunities provided through
+                    CampusConnect.
+                </p>
+
+            </div>
+
+
+            <div class="hero-icon">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+             ================================================= -->
+
+        <section class="quick-actions">
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="drivesSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Placement Drives
+                    </strong>
+
+                    <small>
+                        Explore opportunities
+                    </small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="trainingSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-chalkboard-user"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Training
+                    </strong>
+
+                    <small>
+                        Develop career skills
+                    </small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="applicationsSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        My Applications
+                    </strong>
+
+                    <small>
+                        Track applications
+                    </small>
+
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="eventsSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Career Events
+                    </strong>
+
+                    <small>
+                        Workshops and sessions
+                    </small>
+
+                </span>
+
+            </button>
+
+
+        </section>
+
+
+        <!-- =================================================
+             PLACEMENT OVERVIEW
+             ================================================= -->
+
+        <section class="content-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        OVERVIEW
+                    </span>
+
+                    <h2>
+                        My Placement Overview
+                    </h2>
+
+                    <p>
+                        Your placement-related information will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="overviewLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading placement overview...
+                </p>
+
+            </div>
+
+
+            <div
+                class="overview-grid"
+                id="overviewGrid">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="overviewEmptyState">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <h3>
+                    Placement information unavailable
+                </h3>
+
+                <p>
+                    Your placement overview will appear here
+                    when data is available.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PLACEMENT DRIVES
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="drivesSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        OPPORTUNITIES
+                    </span>
+
+                    <h2>
+                        Placement Drives
+                    </h2>
+
+                    <p>
+                        Explore placement opportunities for which
+                        you may be eligible.
+                    </p>
+
+                </div>
+
+
+                <span
+                    class="result-count"
+                    id="driveResultCount">
+
+                    0 drives
+
+                </span>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="driveSearch"
+                    placeholder="Search companies, roles or skills..."
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filter-row">
+
+
+                <select id="driveDepartmentFilter">
+
+                    <option value="">
+                        All Departments
+                    </option>
+
+                </select>
+
+
+                <select id="driveLocationFilter">
+
+                    <option value="">
+                        All Locations
+                    </option>
+
+                </select>
+
+
+                <select id="driveTypeFilter">
+
+                    <option value="">
+                        All Job Types
+                    </option>
+
+                </select>
+
+
+                <select id="driveEligibilityFilter">
+
+                    <option value="">
+                        All Drives
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="driveLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading placement drives...
+                </p>
+
+            </div>
+
+
+            <div
+                class="drive-grid"
+                id="driveGrid">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="driveEmptyState">
+
+                <i class="fa-solid fa-briefcase"></i>
+
+                <h3>
+                    No placement drives available
+                </h3>
+
+                <p>
+                    Available placement opportunities will
+                    appear here.
+                </p>
+
+            </div>
+
+
+            <div
+                class="error-state hidden"
+                id="driveErrorState">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <h3>
+                    Unable to load placement drives
+                </h3>
+
+                <p>
+                    Please try again later.
+                </p>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="retryDrivesButton">
+
+                    Try Again
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TRAINING
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="trainingSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        SKILL DEVELOPMENT
+                    </span>
+
+                    <h2>
+                        Training Programs
+                    </h2>
+
+                    <p>
+                        Improve your technical and professional
+                        skills through available training programs.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="trainingLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading training programs...
+                </p>
+
+            </div>
+
+
+            <div
+                class="training-grid"
+                id="trainingGrid">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="trainingEmptyState">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+                <h3>
+                    No training programs available
+                </h3>
+
+                <p>
+                    Training programs will appear here when
+                    they are published.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MY APPLICATIONS
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="applicationsSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        APPLICATIONS
+                    </span>
+
+                    <h2>
+                        My Applications
+                    </h2>
+
+                    <p>
+                        Track the placement opportunities you
+                        have applied for.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="applicationLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading applications...
+                </p>
+
+            </div>
+
+
+            <div
+                class="application-list"
+                id="applicationList">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="applicationEmptyState">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                <h3>
+                    No applications
+                </h3>
+
+                <p>
+                    Your placement applications will appear
+                    here after you apply to a drive.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CAREER EVENTS
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="eventsSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        EVENTS
+                    </span>
+
+                    <h2>
+                        Career Events
+                    </h2>
+
+                    <p>
+                        Stay informed about workshops, talks,
+                        mock interviews and other career events.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="eventLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading career events...
+                </p>
+
+            </div>
+
+
+            <div
+                class="event-grid"
+                id="eventGrid">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="eventEmptyState">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <h3>
+                    No upcoming events
+                </h3>
+
+                <p>
+                    Upcoming career events will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PLACEMENT PREPARATION
+             ================================================= -->
+
+        <section class="content-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        PREPARATION
+                    </span>
+
+                    <h2>
+                        Placement Preparation
+                    </h2>
+
+                    <p>
+                        Resources and preparation activities
+                        provided by the institution.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="preparationLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading preparation resources...
+                </p>
+
+            </div>
+
+
+            <div
+                class="preparation-grid"
+                id="preparationGrid">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="preparationEmptyState">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <h3>
+                    No preparation resources available
+                </h3>
+
+                <p>
+                    Placement preparation resources will
+                    appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DOCUMENTS
+             ================================================= -->
+
+        <section class="content-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        DOCUMENTS
+                    </span>
+
+                    <h2>
+                        Placement Documents
+                    </h2>
+
+                    <p>
+                        Manage documents required for placement
+                        activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="loading-state"
+                id="documentLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading documents...
+                </p>
+
+            </div>
+
+
+            <div
+                class="document-grid"
+                id="documentGrid">
+            </div>
+
+
+            <div
+                class="empty-state hidden"
+                id="documentEmptyState">
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                <h3>
+                    No placement documents
+                </h3>
+
+                <p>
+                    Your placement-related documents will
+                    appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay hidden"
+        id="modalOverlay">
+
+
+        <div class="modal">
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div id="modalContent"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="training-placement.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1137 @@
+/* =========================================================
+   CAMPUSCONNECT PROFILE
+   RESPONSIVE STUDENT PROFILE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1557a6;
+    --primary-dark: #104987;
+    --primary-light: #edf4fc;
+
+    --background: #ffffff;
+    --surface: #ffffff;
+
+    --text-dark: #172f50;
+    --text-main: #1d3655;
+    --text-muted: #7d8999;
+
+    --border: #dce4ed;
+
+    --bottom-nav-height: 65px;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--background);
+
+    color: var(--text-dark);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   PROFILE APP
+========================================================= */
+
+.profile-app {
+    width: 100%;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    background: var(--background);
+
+    padding-bottom:
+        calc(var(--bottom-nav-height) + 30px);
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.top-header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 50;
+
+    width: 100%;
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 24px;
+
+    background: var(--surface);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn {
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back-btn:hover {
+    background: var(--primary);
+
+    color: #ffffff;
+}
+
+.back-btn:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   HEADER CONTENT
+========================================================= */
+
+.header-title {
+    flex: 1;
+
+    min-width: 0;
+
+    max-width: 1400px;
+}
+
+.header-title h1 {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    color: var(--text-dark);
+
+    line-height: 1.2;
+}
+
+.header-title p {
+    margin-top: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   GLOBAL NOTIFICATION
+========================================================= */
+
+#globalNotificationPlaceholder {
+    width: 42px;
+
+    min-width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   PROFILE PHOTO SECTION
+========================================================= */
+
+.profile-photo-section {
+    width: calc(100% - 48px);
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 32px 20px 28px;
+
+    background: var(--surface);
+}
+
+
+/* =========================================================
+   PHOTO WRAPPER
+========================================================= */
+
+.photo-wrapper {
+    position: relative;
+
+    width: 115px;
+
+    height: 115px;
+}
+
+.photo-wrapper img {
+    width: 115px;
+
+    height: 115px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 4px solid #e7f0fa;
+
+    display: block;
+}
+
+
+/* =========================================================
+   EDIT PHOTO BUTTON
+========================================================= */
+
+.edit-photo {
+    position: absolute;
+
+    right: -2px;
+
+    bottom: 3px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    border: 3px solid #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.edit-photo:hover {
+    background: var(--primary-dark);
+}
+
+.edit-photo:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================================
+   PROFILE NAME
+========================================================= */
+
+.profile-photo-section h2 {
+    margin-top: 13px;
+
+    font-size: 20px;
+
+    color: var(--text-dark);
+
+    text-align: center;
+}
+
+.student-role {
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    color: var(--text-muted);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   PROFILE DETAILS CONTENT
+========================================================= */
+
+.profile-content {
+    width: calc(100% - 48px);
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 8px 0 30px;
+}
+
+
+/* =========================================================
+   DETAILS TITLE
+========================================================= */
+
+.details-title {
+    margin-bottom: 16px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: var(--text-dark);
+}
+
+
+/* =========================================================
+   DETAILS LIST
+========================================================= */
+
+.details-list {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   DETAIL ROW
+========================================================= */
+
+.detail-row {
+    width: 100%;
+
+    min-height: 64px;
+
+    padding: 14px 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 18px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.detail-row:hover {
+    border-color: #c9d8e9;
+
+    box-shadow:
+        0 4px 12px rgba(25, 55, 90, 0.05);
+}
+
+
+/* =========================================================
+   DETAIL LABEL
+========================================================= */
+
+.detail-label {
+    font-size: 12px;
+
+    color: #78879a;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   DETAIL VALUE
+========================================================= */
+
+.detail-row strong {
+    max-width: 65%;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-align: right;
+
+    line-height: 1.4;
+
+    color: var(--text-main);
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
+.bottom-nav {
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    transform: none;
+
+    width: 100%;
+
+    max-width: none;
+
+    height: var(--bottom-nav-height);
+
+    padding: 0 20px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border-top: 1px solid #e3e8ef;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 -4px 15px rgba(25, 55, 90, 0.06);
+}
+
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.nav-item {
+    width: 120px;
+
+    height: 52px;
+
+    border: none;
+
+    background: transparent;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #7d8999;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-item:hover {
+    background: #f1f6fd;
+
+    color: var(--primary);
+}
+
+.nav-item:active {
+    transform: scale(0.95);
+}
+
+.nav-item i {
+    font-size: 19px;
+}
+
+.nav-item span {
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.nav-item.active {
+    color: var(--primary);
+
+    background: #edf4fd;
+}
+
+
+/* =========================================================
+   PHOTO EDITOR
+========================================================= */
+
+.photo-editor {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: none;
+
+    flex-direction: column;
+
+    background: #000000;
+}
+
+.photo-editor.open {
+    display: flex;
+}
+
+
+/* =========================================================
+   EDITOR HEADER
+========================================================= */
+
+.editor-header {
+    height: 62px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 16px;
+
+    background: #000000;
+
+    color: #ffffff;
+}
+
+.editor-header h2 {
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.editor-header button {
+    border: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+#doneCrop {
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CROP AREA
+========================================================= */
+
+.crop-area {
+    position: relative;
+
+    flex: 1;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #000000;
+
+    touch-action: none;
+}
+
+#cropCanvas {
+    position: absolute;
+
+    display: block;
+
+    touch-action: none;
+}
+
+
+/* =========================================================
+   CROP GRID
+========================================================= */
+
+.crop-grid {
+    position: absolute;
+
+    width: min(86vw, 390px);
+
+    aspect-ratio: 1 / 1;
+
+    pointer-events: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 0 0 9999px rgba(0, 0, 0, 0.52);
+}
+
+
+/* =========================================================
+   CROP GRID LINES
+========================================================= */
+
+.crop-grid::before,
+.crop-grid::after {
+    content: "";
+
+    position: absolute;
+
+    pointer-events: none;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.crop-grid::before {
+    left: 33.333%;
+
+    top: 0;
+
+    width: 1px;
+
+    height: 100%;
+
+    box-shadow:
+        calc(min(86vw, 390px) * 0.333333)
+        0
+        0
+        rgba(255, 255, 255, 0.35);
+}
+
+.crop-grid::after {
+    top: 33.333%;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 1px;
+
+    box-shadow:
+        0
+        calc(min(86vw, 390px) * 0.333333)
+        0
+        rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   CROP POINTS
+========================================================= */
+
+.crop-point {
+    position: absolute;
+
+    width: 14px;
+
+    height: 14px;
+
+    padding: 0;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+.crop-point.top-left {
+    left: 0;
+    top: 0;
+}
+
+.crop-point.top {
+    left: 50%;
+    top: 0;
+}
+
+.crop-point.top-right {
+    left: 100%;
+    top: 0;
+}
+
+.crop-point.left {
+    left: 0;
+    top: 50%;
+}
+
+.crop-point.center {
+    left: 50%;
+    top: 50%;
+
+    width: 10px;
+
+    height: 10px;
+}
+
+.crop-point.right {
+    left: 100%;
+    top: 50%;
+}
+
+.crop-point.bottom-left {
+    left: 0;
+    top: 100%;
+}
+
+.crop-point.bottom {
+    left: 50%;
+    top: 100%;
+}
+
+.crop-point.bottom-right {
+    left: 100%;
+    top: 100%;
+}
+
+
+/* =========================================================
+   EDITOR TOOLS
+========================================================= */
+
+.editor-tools {
+    height: 72px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #000000;
+}
+
+.editor-tools button {
+    min-width: 75px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.editor-tools i {
+    font-size: 21px;
+}
+
+.crop-help {
+    padding: 0 15px 15px;
+
+    background: #000000;
+
+    color: #aaaaaa;
+
+    text-align: center;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1200px) {
+
+    .top-header {
+        padding-left: 40px;
+
+        padding-right: 40px;
+    }
+
+
+    .profile-photo-section {
+
+        padding-top: 38px;
+
+        padding-bottom: 32px;
+    }
+
+
+    .photo-wrapper,
+    .photo-wrapper img {
+
+        width: 125px;
+
+        height: 125px;
+    }
+
+
+    .profile-photo-section h2 {
+
+        font-size: 22px;
+    }
+
+
+    .details-list {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+
+    .detail-row {
+
+        min-height: 68px;
+
+        padding: 15px 18px;
+    }
+
+
+    .detail-label {
+
+        font-size: 13px;
+    }
+
+
+    .detail-row strong {
+
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .top-header {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+
+    .profile-photo-section {
+
+        width: calc(100% - 40px);
+    }
+
+
+    .profile-content {
+
+        width: calc(100% - 40px);
+    }
+
+
+    .details-list {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 13px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .top-header {
+
+        padding-left: 16px;
+
+        padding-right: 16px;
+
+        min-height: 64px;
+    }
+
+
+    .profile-photo-section {
+
+        width: 100%;
+
+        padding:
+            25px
+            20px
+            22px;
+    }
+
+
+    .profile-content {
+
+        width: 100%;
+
+        padding:
+            5px
+            15px
+            20px;
+    }
+
+
+    .profile-photo-section h2 {
+
+        font-size: 18px;
+    }
+
+
+    .student-role {
+
+        font-size: 10px;
+    }
+
+
+    .details-list {
+
+        grid-template-columns: 1fr;
+
+        gap: 11px;
+    }
+
+
+    .detail-row {
+
+        min-height: 55px;
+
+        padding:
+            12px
+            15px;
+    }
+
+
+    .detail-label {
+
+        font-size: 11px;
+    }
+
+
+    .detail-row strong {
+
+        max-width: 58%;
+
+        font-size: 11px;
+    }
+
+
+    .bottom-nav {
+
+        height: 65px;
+
+        padding: 0 10px;
+
+        gap: 0;
+
+        justify-content: space-around;
+    }
+
+
+    .nav-item {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+}
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .top-header {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .profile-photo-section {
+
+        padding-top: 22px;
+    }
+
+
+    .profile-content {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .detail-row {
+
+        min-height: 53px;
+
+        padding-left: 13px;
+
+        padding-right: 13px;
+    }
+
+
+    .detail-label {
+
+        font-size: 10px;
+    }
+
+
+    .detail-row strong {
+
+        font-size: 10px;
+    }
+
+
+    .nav-item {
+
+        min-width: 0;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible {
+
+    outline: 3px solid rgba(21, 87, 166, 0.25);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation: none !important;
+
+        transition: none !important;
+
+        scroll-behavior: auto !important;
+    }
+}

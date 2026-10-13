@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CampusConnect - Courses</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="courses.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>Courses</h1>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="header-icon-btn"
+                id="refreshButton"
+                aria-label="Refresh"
+                title="Refresh"
+            >
+                <i class="fa-solid fa-rotate"></i>
+            </button>
+
+            <button
+                type="button"
+                class="header-icon-btn notification-btn"
+                id="notificationButton"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="notification-count"
+                    id="notificationCount"
+                    hidden
+                >
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- Page introduction -->
+
+        <section class="page-intro">
+
+            <div>
+                <span class="intro-label">
+                    FACULTY ACADEMIC AREA
+                </span>
+
+                <h2>My Courses</h2>
+
+                <p>
+                    View the courses, subjects, classes and academic
+                    responsibilities assigned to you.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TOOLBAR
+        ================================================== -->
+
+        <section class="toolbar">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="courseSearch"
+                    placeholder="Search course, subject or class..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="toolbar-actions">
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    id="filterButton"
+                    aria-expanded="false"
+                >
+                    <i class="fa-solid fa-filter"></i>
+                    <span>Filter</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FILTER PANEL
+             HIDDEN BY DEFAULT
+        ================================================== -->
+
+        <section
+            class="filter-panel"
+            id="filterPanel"
+            hidden
+        >
+
+            <div class="filter-header">
+
+                <div>
+                    <h3>Filter Courses</h3>
+
+                    <p>
+                        Narrow the courses assigned to you.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="filter-close"
+                    id="closeFilterButton"
+                    aria-label="Close filter"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="filter-grid">
+
+                <div class="filter-field">
+
+                    <label for="departmentFilter">
+                        Department
+                    </label>
+
+                    <select id="departmentFilter">
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="semesterFilter">
+                        Semester
+                    </label>
+
+                    <select id="semesterFilter">
+
+                        <option value="">
+                            All Semesters
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="sessionFilter">
+                        Academic Session
+                    </label>
+
+                    <select id="sessionFilter">
+
+                        <option value="">
+                            All Sessions
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="courseTypeFilter">
+                        Course Type
+                    </label>
+
+                    <select id="courseTypeFilter">
+
+                        <option value="">
+                            All Types
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="filter-actions">
+
+                <button
+                    type="button"
+                    class="reset-filter-btn"
+                    id="resetFilterButton"
+                >
+                    Reset
+                </button>
+
+                <button
+                    type="button"
+                    class="apply-filter-btn"
+                    id="applyFilterButton"
+                >
+                    <i class="fa-solid fa-check"></i>
+                    Apply Filters
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="summary-row">
+
+            <div class="summary-text">
+
+                <strong id="courseResultCount">
+                    0
+                </strong>
+
+                <span>
+                    assigned courses
+                </span>
+
+            </div>
+
+            <div
+                class="active-filter-status"
+                id="activeFilterStatus"
+                hidden
+            >
+                <i class="fa-solid fa-filter"></i>
+                <span>Filters applied</span>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COURSE CONTENT
+        ================================================== -->
+
+        <section
+            class="course-grid"
+            id="courseGrid"
+        >
+
+            <!-- Dynamic API content -->
+
+        </section>
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================== -->
+
+        <section
+            class="empty-state"
+            id="emptyState"
+            hidden
+        >
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+            <h3 id="emptyTitle">
+                No courses available
+            </h3>
+
+            <p id="emptyMessage">
+                Courses assigned to this faculty member will
+                appear here when academic data is available.
+            </p>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="courses.js"></script>
+
+</body>
+</html>

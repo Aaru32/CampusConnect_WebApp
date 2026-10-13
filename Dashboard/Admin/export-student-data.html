@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CampusConnect | Export Student Data</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="export-student-data.css">
+</head>
+
+<body>
+
+<div class="export-page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <button
+            type="button"
+            class="header-button"
+            id="backButton"
+            title="Back"
+            aria-label="Back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>Export Student Data</h1>
+            <span>Secure student records export</span>
+        </div>
+
+        <button
+            type="button"
+            class="header-button"
+            id="refreshButton"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+
+    </header>
+
+
+    <!-- GLOBAL NOTIFICATION PLACEHOLDER -->
+
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="export-content">
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <section class="intro-card">
+
+            <div class="intro-icon">
+                <i class="fa-solid fa-file-export"></i>
+            </div>
+
+            <div class="intro-content">
+
+                <h2>Export Student Records</h2>
+
+                <p>
+                    Choose which student records you want to export,
+                    select the required information, and generate a
+                    protected file.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             EXPORT SCOPE
+        ================================================== -->
+
+        <section class="export-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div>
+                    <h2>Export Scope</h2>
+
+                    <p>
+                        Choose which students should be included.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="scope-options">
+
+
+                <!-- ALL -->
+
+                <label class="scope-option">
+
+                    <input
+                        type="radio"
+                        name="exportScope"
+                        value="all"
+                        checked
+                    >
+
+                    <span class="scope-radio"></span>
+
+                    <span class="scope-text">
+
+                        <strong>All Students</strong>
+
+                        <small>
+                            Export all available student records
+                            from the database.
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+                <!-- FILTERED -->
+
+                <label class="scope-option">
+
+                    <input
+                        type="radio"
+                        name="exportScope"
+                        value="filtered"
+                    >
+
+                    <span class="scope-radio"></span>
+
+                    <span class="scope-text">
+
+                        <strong>Filtered Students</strong>
+
+                        <small>
+                            Export students matching the filters
+                            selected below.
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+                <!-- SELECTED -->
+
+                <label class="scope-option">
+
+                    <input
+                        type="radio"
+                        name="exportScope"
+                        value="selected"
+                    >
+
+                    <span class="scope-radio"></span>
+
+                    <span class="scope-text">
+
+                        <strong>Selected Students</strong>
+
+                        <small>
+                            Manually choose specific students
+                            from the database.
+                        </small>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTERED STUDENTS
+            ================================================== -->
+
+            <div
+                class="conditional-panel"
+                id="filterSection"
+                hidden
+            >
+
+                <div class="conditional-heading">
+
+                    <div>
+                        <h3>Filter Students</h3>
+
+                        <p>
+                            Only matching student records will
+                            be included in the export.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="small-button"
+                        id="clearExportFilters"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+
+                <div class="filter-grid">
+
+                    <div class="form-group">
+
+                        <label for="departmentFilter">
+                            Department
+                        </label>
+
+                        <select id="departmentFilter">
+
+                            <option value="">
+                                All Departments
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="branchFilter">
+                            Branch
+                        </label>
+
+                        <select id="branchFilter">
+
+                            <option value="">
+                                All Branches
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="semesterFilter">
+                            Semester
+                        </label>
+
+                        <select id="semesterFilter">
+
+                            <option value="">
+                                All Semesters
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sessionFilter">
+                            Academic Session
+                        </label>
+
+                        <select id="sessionFilter">
+
+                            <option value="">
+                                All Sessions
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="statusFilter">
+                            Enrollment Status
+                        </label>
+
+                        <select id="statusFilter">
+
+                            <option value="">
+                                All Status
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SELECTED STUDENTS
+            ================================================== -->
+
+            <div
+                class="conditional-panel"
+                id="selectedStudentsSection"
+                hidden
+            >
+
+                <div class="selected-summary">
+
+                    <div>
+
+                        <h3>Selected Students</h3>
+
+                        <p id="selectedStudentsSummary">
+                            0 students selected
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="selectStudentsButton"
+                    >
+                        <i class="fa-solid fa-user-plus"></i>
+                        Select Students
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="selected-preview"
+                    id="selectedPreview"
+                    hidden
+                >
+
+                    <div class="selected-preview-header">
+
+                        <span>
+                            Students included in this export
+                        </span>
+
+                        <button
+                            type="button"
+                            class="text-button"
+                            id="clearSelectedStudents"
+                        >
+                            Clear Selection
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="selected-preview-list"
+                        id="selectedPreviewList"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INFORMATION TO EXPORT
+        ================================================== -->
+
+        <section class="export-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+
+                <div>
+                    <h2>Information to Export</h2>
+
+                    <p>
+                        Select the categories of student information
+                        required in the file.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="checkbox-grid">
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="academic"
+                        checked
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Academic Information</strong>
+                        <small>
+                            Department, branch, roll number,
+                            registration, semester and session.
+                        </small>
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="personal"
+                        checked
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Personal Information</strong>
+                        <small>
+                            Name, date of birth and other
+                            permitted personal information.
+                        </small>
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="contact"
+                        checked
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Contact & Address</strong>
+                        <small>
+                            Email, mobile, temporary and
+                            permanent address.
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="guardian"
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Parent / Guardian</strong>
+                        <small>
+                            Guardian details and contact
+                            information.
+                        </small>
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="background"
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Academic Background</strong>
+                        <small>
+                            Previous qualification,
+                            institution and results.
+                        </small>
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="hostel"
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Hostel Information</strong>
+                        <small>
+                            Accommodation, hostel, room,
+                            block and seat information.
+                        </small>
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox-option">
+
+                    <input
+                        type="checkbox"
+                        name="exportFields"
+                        value="campus"
+                    >
+
+                    <span class="custom-checkbox">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Campus Information</strong>
+                        <small>
+                            College ID, library ID and
+                            LMS account ID.
+                        </small>
+                    </span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FILE FORMAT
+        ================================================== -->
+
+        <section class="export-card">
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-file"></i>
+                </div>
+
+                <div>
+                    <h2>File Format</h2>
+
+                    <p>
+                        Choose the format for the generated export.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="format-options">
+
+                <label class="format-option">
+
+                    <input
+                        type="radio"
+                        name="fileFormat"
+                        value="xlsx"
+                        checked
+                    >
+
+                    <span class="format-icon">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </span>
+
+                    <span>
+                        <strong>Excel</strong>
+                        <small>.xlsx</small>
+                    </span>
+
+                </label>
+
+
+                <label class="format-option">
+
+                    <input
+                        type="radio"
+                        name="fileFormat"
+                        value="pdf"
+                    >
+
+                    <span class="format-icon">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </span>
+
+                    <span>
+                        <strong>PDF</strong>
+                        <small>Protected PDF</small>
+                    </span>
+
+                </label>
+
+
+                <label class="format-option">
+
+                    <input
+                        type="radio"
+                        name="fileFormat"
+                        value="csv"
+                    >
+
+                    <span class="format-icon">
+                        <i class="fa-solid fa-file-csv"></i>
+                    </span>
+
+                    <span>
+                        <strong>CSV</strong>
+                        <small>Protected ZIP</small>
+                    </span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECURITY
+        ================================================== -->
+
+        <section class="security-card">
+
+            <div class="security-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div>
+
+                <h2>Secure Export</h2>
+
+                <p>
+                    Every export will receive a unique password
+                    generated by the CampusConnect backend.
+                    The password should be kept separately from
+                    the exported file.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
+
+        <div
+            class="form-message"
+            id="formMessage"
+            role="alert"
+            hidden
+        ></div>
+
+
+        <!-- =================================================
+             ACTION
+        ================================================== -->
+
+        <div class="export-action">
+
+            <button
+                type="button"
+                class="generate-button"
+                id="generateExport"
+            >
+                <i class="fa-solid fa-lock"></i>
+                Generate Secure Export
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     STUDENT SELECTION MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="studentModal"
+    hidden
+>
+
+    <div
+        class="student-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="studentModalTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="studentModalTitle">
+                    Select Students
+                </h2>
+
+                <p id="modalStudentCount">
+                    0 students selected
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="header-button"
+                id="closeStudentModal"
+                title="Close"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="modal-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="modalStudentSearch"
+                placeholder="Search by name, roll no. or registration no."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="modal-toolbar">
+
+            <button
+                type="button"
+                class="text-button"
+                id="selectAllStudents"
+            >
+                Select All
+            </button>
+
+            <button
+                type="button"
+                class="text-button"
+                id="clearAllStudents"
+            >
+                Clear All
+            </button>
+
+        </div>
+
+
+        <div
+            class="student-selection-list"
+            id="studentSelectionList"
+        >
+
+            <div class="modal-state">
+
+                <i class="fa-solid fa-database"></i>
+
+                <h3>
+                    Student database is not connected
+                </h3>
+
+                <p>
+                    Student records will appear here after
+                    the Admin Student API is connected.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <span id="modalSelectedCount">
+                0 selected
+            </span>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelStudentSelection"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="confirmStudentSelection"
+                >
+                    Confirm Selection
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="export-student-data.js"></script>
+
+</body>
+</html>

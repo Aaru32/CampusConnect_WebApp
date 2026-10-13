@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Planning | CampusConnect</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Academic Planning CSS -->
+    <link rel="stylesheet"
+        href="academic-planning.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <button class="back-btn"
+                onclick="goBack()">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </button>
+
+
+            <div class="header-title">
+
+                <h1 id="pageTitle">
+                    Academic Planning
+                </h1>
+
+                <p id="pageSubtitle">
+                    Plan and manage your academic activities
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Notification -->
+
+        <button class="notification-btn"
+            onclick="openNotifications()">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span id="notificationBadge"
+                class="notification-badge">
+                0
+            </span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN APPLICATION
+    ====================================================== -->
+
+    <main class="academic-container">
+
+
+        <!-- =================================================
+             HOME VIEW
+        ================================================== -->
+
+        <section id="homeView"
+            class="academic-view active-view">
+
+
+            <!-- Welcome -->
+
+            <div class="welcome-card">
+
+                <div class="welcome-content">
+
+                    <span class="section-label">
+                        ACADEMIC PLANNING
+                    </span>
+
+                    <h2>
+                        Stay organized.
+                        Stay on track.
+                    </h2>
+
+                    <p>
+                        Manage your classes, courses,
+                        assignments, exams and academic
+                        activities from one place.
+                    </p>
+
+                </div>
+
+
+                <div class="welcome-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Today's Class -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        TODAY
+                    </span>
+
+                    <h2>
+                        Today's Class
+                    </h2>
+
+                </div>
+
+
+                <span id="todayDate"
+                    class="date-text">
+                </span>
+
+            </div>
+
+
+            <div id="todayClass"
+                class="today-class-card">
+
+                <div class="loading-state">
+
+                    Loading today's schedule...
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Academic Summary -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        OVERVIEW
+                    </span>
+
+                    <h2>
+                        Academic Summary
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-grid">
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Courses
+                        </span>
+
+                        <strong id="courseCount">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-file-pen"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Assignments
+                        </span>
+
+                        <strong id="assignmentCount">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Upcoming Exams
+                        </span>
+
+                        <strong id="examCount">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Progress
+                        </span>
+
+                        <strong id="progressValue">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Quick Access -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        QUICK ACCESS
+                    </span>
+
+                    <h2>
+                        Academic Tools
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+
+                <button class="quick-card"
+                    onclick="showAcademicTool('timetable')">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Timetable
+                    </span>
+
+                </button>
+
+
+                <button class="quick-card"
+                    onclick="showAcademicTool('assignments')">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Assignments
+                    </span>
+
+                </button>
+
+
+                <button class="quick-card"
+                    onclick="showAcademicTool('exams')">
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                    <span>
+                        Exams
+                    </span>
+
+                </button>
+
+
+                <button class="quick-card"
+                    onclick="showAcademicTool('planner')">
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                    <span>
+                        Study Planner
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Academic Progress -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        PROGRESS
+                    </span>
+
+                    <h2>
+                        Semester Progress
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-card">
+
+
+                <div class="progress-top">
+
+                    <span>
+                        Overall Academic Progress
+                    </span>
+
+                    <strong id="overallProgress">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div id="progressBar"
+                        class="progress-fill">
+                    </div>
+
+                </div>
+
+
+                <p id="progressMessage">
+                    Progress information will be
+                    updated from the academic system.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             COURSES VIEW
+        ================================================== -->
+
+        <section id="coursesView"
+            class="academic-view">
+
+
+            <div class="view-header">
+
+                <div>
+
+                    <span class="section-label">
+                        ACADEMIC COURSES
+                    </span>
+
+                    <h2>
+                        My Courses
+                    </h2>
+
+                    <p>
+                        Subjects assigned to your
+                        current semester.
+                    </p>
+
+                </div>
+
+
+                <div class="view-header-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Course Search -->
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="search"
+                    id="courseSearch"
+                    placeholder="Search courses..."
+                    oninput="searchCourses()">
+
+            </div>
+
+
+
+            <!-- Course List -->
+
+            <div id="courseList"
+                class="course-list">
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             LEAVE REQUEST VIEW
+        ================================================== -->
+
+        <section id="leaveView"
+            class="academic-view">
+
+
+            <div class="view-header">
+
+                <div>
+
+                    <span class="section-label">
+                        ATTENDANCE & LEAVE
+                    </span>
+
+                    <h2>
+                        Leave Request
+                    </h2>
+
+                    <p>
+                        Apply for leave and track
+                        your request status.
+                    </p>
+
+                </div>
+
+
+                <div class="view-header-icon">
+
+                    <i class="fa-solid fa-file-signature"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Apply Leave -->
+
+            <div class="leave-action-card">
+
+                <div>
+
+                    <span class="section-label">
+                        NEW REQUEST
+                    </span>
+
+                    <h3>
+                        Need academic leave?
+                    </h3>
+
+                    <p>
+                        Submit a leave request to
+                        the concerned faculty.
+                    </p>
+
+                </div>
+
+
+                <button class="primary-btn"
+                    onclick="openLeaveModal()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Apply for Leave
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Leave Statistics -->
+
+            <div class="leave-stats">
+
+
+                <div class="leave-stat">
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <strong id="pendingLeaves">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="leave-stat">
+
+                    <span>
+                        Approved
+                    </span>
+
+                    <strong id="approvedLeaves">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="leave-stat">
+
+                    <span>
+                        Rejected
+                    </span>
+
+                    <strong id="rejectedLeaves">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Leave History -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        REQUEST HISTORY
+                    </span>
+
+                    <h2>
+                        My Leave Requests
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div id="leaveList"
+                class="leave-list">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             INTERNAL ACADEMIC TOOL AREA
+        ================================================== -->
+
+        <section id="toolView"
+            class="academic-view">
+
+
+            <div class="view-header">
+
+                <div>
+
+                    <span class="section-label"
+                        id="toolLabel">
+                        ACADEMIC TOOL
+                    </span>
+
+                    <h2 id="toolTitle">
+                        Academic Tool
+                    </h2>
+
+                </div>
+
+
+                <button class="secondary-btn"
+                    onclick="returnToHome()">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Back
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Timetable -->
+
+            <div id="timetableTool"
+                class="tool-content">
+
+
+                <div class="day-tabs"
+                    id="dayTabs">
+                </div>
+
+
+                <div id="timetableList"
+                    class="timetable-list">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Assignments -->
+
+            <div id="assignmentsTool"
+                class="tool-content">
+
+
+                <div class="tool-filter">
+
+                    <button class="filter-btn active"
+                        onclick="filterAssignments('all', this)">
+                        All
+                    </button>
+
+                    <button class="filter-btn"
+                        onclick="filterAssignments('pending', this)">
+                        Pending
+                    </button>
+
+                    <button class="filter-btn"
+                        onclick="filterAssignments('submitted', this)">
+                        Submitted
+                    </button>
+
+                </div>
+
+
+                <div id="assignmentList"
+                    class="assignment-list">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Exams -->
+
+            <div id="examsTool"
+                class="tool-content">
+
+
+                <div id="examList"
+                    class="exam-list">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Study Planner -->
+
+            <div id="plannerTool"
+                class="tool-content">
+
+
+                <div class="planner-header">
+
+                    <div>
+
+                        <h3>
+                            Study Planner
+                        </h3>
+
+                        <p>
+                            Plan your personal
+                            academic tasks.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-btn"
+                        onclick="addStudyTask()">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Task
+
+                    </button>
+
+                </div>
+
+
+                <div id="studyTaskList"
+                    class="study-list">
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         LEAVE MODAL
+    ====================================================== -->
+
+    <div id="leaveModal"
+        class="modal">
+
+        <div class="modal-box">
+
+
+            <button class="modal-close"
+                onclick="closeLeaveModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <h2>
+                Apply for Leave
+            </h2>
+
+
+            <form id="leaveForm">
+
+
+                <label>
+                    From Date
+                </label>
+
+                <input type="date"
+                    id="leaveFrom"
+                    required>
+
+
+                <label>
+                    To Date
+                </label>
+
+                <input type="date"
+                    id="leaveTo"
+                    required>
+
+
+                <label>
+                    Reason
+                </label>
+
+                <textarea
+                    id="leaveReason"
+                    rows="4"
+                    placeholder="Enter reason for leave..."
+                    required></textarea>
+
+
+                <button type="submit"
+                    class="submit-btn">
+
+                    Submit Request
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BOTTOM NAVIGATION
+    ====================================================== -->
+
+    <nav class="academic-bottom-nav">
+
+
+        <button class="bottom-nav-item active"
+            data-view="home"
+            onclick="switchAcademicView('home')">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </button>
+
+
+        <button class="bottom-nav-item"
+            data-view="courses"
+            onclick="switchAcademicView('courses')">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Courses
+            </span>
+
+        </button>
+
+
+        <button class="bottom-nav-item"
+            data-view="leave"
+            onclick="switchAcademicView('leave')">
+
+            <i class="fa-solid fa-file-signature"></i>
+
+            <span>
+                Leave Request
+            </span>
+
+        </button>
+
+
+    </nav>
+
+
+
+    <script src="academic-planning.js"></script>
+
+</body>
+
+</html>

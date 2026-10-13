@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Notices</title>
+
+    <link rel="stylesheet"
+          href="notice.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="notice-header">
+
+    <div class="header-left">
+
+        <!-- ACTUAL PREVIOUS WEBPAGE -->
+
+        <button
+            class="back-btn"
+            id="noticePageBackButton"
+            type="button">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div class="header-icon">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+        </div>
+
+
+        <div class="header-title">
+
+            <h1>
+                Notices
+            </h1>
+
+            <p>
+                CampusConnect
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- GLOBAL NOTIFICATION BELL -->
+
+    <div class="notification-wrapper">
+
+        <button
+            class="notification-btn"
+            onclick="toggleNotifications()"
+            aria-label="Notifications">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span
+                id="notificationBadge"
+                class="notification-badge">
+
+                0
+
+            </span>
+
+        </button>
+
+
+        <!-- NOTIFICATION PANEL -->
+
+        <div
+            id="notificationPanel"
+            class="notification-panel">
+
+
+            <div class="notification-panel-header">
+
+                <div>
+
+                    <h3>
+                        Notifications
+                    </h3>
+
+                    <span id="notificationCountText">
+
+                        No unread notifications
+
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="markAllNotificationsRead()">
+
+                    Mark all as read
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="notificationList"
+                class="notification-list">
+
+            </div>
+
+
+            <div
+                id="emptyNotifications"
+                class="empty-notifications">
+
+                <i class="fa-regular fa-bell-slash"></i>
+
+                <p>
+                    No new notifications
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="notice-container">
+
+
+    <!-- INTRO -->
+
+    <section class="notice-intro">
+
+        <div>
+
+            <span class="intro-label">
+                CAMPUS ANNOUNCEMENTS
+            </span>
+
+            <h2>
+                Stay Updated
+            </h2>
+
+            <p>
+                Important announcements, academic updates,
+                events and other college notifications.
+            </p>
+
+        </div>
+
+
+        <div class="announcement-icon">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search notices..."
+                oninput="searchNotices()">
+
+
+            <button
+                id="clearSearch"
+                type="button"
+                onclick="clearSearch()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FILTERS -->
+
+    <section class="filter-section">
+
+        <button
+            class="filter-btn active"
+            onclick="filterNotices('all', this)">
+
+            All
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            onclick="filterNotices('academic', this)">
+
+            <i class="fa-solid fa-book"></i>
+
+            Academic
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            onclick="filterNotices('examination', this)">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+            Examination
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            onclick="filterNotices('events', this)">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            Events
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            onclick="filterNotices('general', this)">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            General
+
+        </button>
+
+    </section>
+
+
+
+    <!-- NOTICE SECTION -->
+
+    <section
+        id="noticeSection"
+        class="notice-section">
+
+
+        <div class="section-title">
+
+            <div>
+
+                <h2>
+                    Latest Notices
+                </h2>
+
+                <p id="resultText">
+                    Showing all notices
+                </p>
+
+            </div>
+
+
+            <button
+                class="mark-all-btn"
+                onclick="markAllRead()">
+
+                <i class="fa-solid fa-check-double"></i>
+
+                Mark all as read
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="noticeList"
+            class="notice-list">
+
+        </div>
+
+
+        <div
+            id="noResults"
+            class="no-results hidden">
+
+            <div class="no-results-icon">
+
+                <i class="fa-regular fa-folder-open"></i>
+
+            </div>
+
+
+            <h3>
+                No notices found
+            </h3>
+
+
+            <p>
+                Try changing your search or category filter.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FULL NOTICE DETAILS
+    ================================================== -->
+
+    <section
+        id="noticeDetails"
+        class="notice-details hidden">
+
+
+        <!-- BACK TO NOTICE LIST -->
+
+        <button
+            class="back-notices-btn"
+            id="backToNoticesButton"
+            type="button">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Notices
+
+        </button>
+
+
+        <article class="details-card">
+
+
+            <div class="details-top">
+
+
+                <div
+                    id="detailsIcon"
+                    class="details-icon">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                </div>
+
+
+                <div class="details-heading">
+
+
+                    <div class="details-badges">
+
+                        <span
+                            id="detailsCategory"
+                            class="category-badge">
+
+                            General
+
+                        </span>
+
+
+                        <span
+                            id="detailsPriority"
+                            class="priority-badge">
+
+                            Normal
+
+                        </span>
+
+                    </div>
+
+
+                    <h2 id="detailsTitle"></h2>
+
+
+                    <div class="details-meta">
+
+                        <span>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            <span id="detailsDate"></span>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            <span id="detailsTime"></span>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="details-divider"></div>
+
+
+            <div class="details-body">
+
+                <h3>
+                    Notice
+                </h3>
+
+                <p id="detailsDescription"></p>
+
+            </div>
+
+
+            <div class="details-footer">
+
+                <span>
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    Issued by:
+
+                    <strong id="detailsIssuer"></strong>
+
+                </span>
+
+
+                <span id="readStatus"></span>
+
+            </div>
+
+        </article>
+
+    </section>
+
+</main>
+
+
+
+<script src="notice.js"></script>
+
+</body>
+
+</html>

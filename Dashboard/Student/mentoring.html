@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Mentoring | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link
+        rel="stylesheet"
+        href="mentoring.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="page-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backButton"
+            aria-label="Go back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1>Mentoring</h1>
+
+            <p>
+                Guidance, support and academic growth
+            </p>
+
+        </div>
+
+
+        <!--
+            GLOBAL NOTIFICATION PLACEHOLDER
+
+            The future global CampusConnect notification
+            system will be integrated here.
+
+            No separate notification system is implemented
+            inside this module.
+        -->
+
+        <div
+            class="global-notification-placeholder"
+            id="globalNotificationPlaceholder">
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="main-container">
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+
+                    <i class="fa-solid fa-compass"></i>
+
+                    Student Mentoring
+
+                </span>
+
+
+                <h2>
+                    Get guidance for your academic journey.
+                </h2>
+
+
+                <p>
+                    Connect with mentors, discuss your academic
+                    goals, request guidance and keep track of
+                    your mentoring activities.
+                </p>
+
+            </div>
+
+
+            <div class="hero-icon">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+             ================================================= -->
+
+        <section class="quick-actions">
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="mentorSearchSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Find a Mentor
+                    </strong>
+
+                    <small>
+                        Explore available mentors
+                    </small>
+
+                </span>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="requestSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-handshake"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Request Mentoring
+                    </strong>
+
+                    <small>
+                        Ask for guidance
+                    </small>
+
+                </span>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="appointmentsSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Appointments
+                    </strong>
+
+                    <small>
+                        Manage mentoring sessions
+                    </small>
+
+                </span>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="quick-action"
+                data-target="progressSection">
+
+                <span class="quick-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        My Progress
+                    </strong>
+
+                    <small>
+                        Track mentoring activity
+                    </small>
+
+                </span>
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             MENTOR SEARCH
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="mentorSearchSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        EXPLORE
+                    </span>
+
+                    <h2>
+                        Find a Mentor
+                    </h2>
+
+                    <p>
+                        Find mentors according to your academic
+                        requirements.
+                    </p>
+
+                </div>
+
+
+                <span
+                    class="result-count"
+                    id="mentorResultCount">
+
+                    0 mentors
+
+                </span>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+
+                <input
+                    type="search"
+                    id="mentorSearch"
+                    placeholder="Search mentors, subjects or expertise..."
+                    autocomplete="off">
+
+            </div>
+
+
+
+            <!-- FILTERS -->
+
+            <div class="filter-row">
+
+
+                <select id="mentorSubjectFilter">
+
+                    <option value="">
+                        All Subjects
+                    </option>
+
+                </select>
+
+
+
+                <select id="mentorDepartmentFilter">
+
+                    <option value="">
+                        All Departments
+                    </option>
+
+                </select>
+
+
+
+                <select id="mentorAvailabilityFilter">
+
+                    <option value="">
+                        Any Availability
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <!-- LOADING -->
+
+            <div
+                class="loading-state"
+                id="mentorLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading mentors...
+                </p>
+
+            </div>
+
+
+
+            <!-- MENTORS -->
+
+            <div
+                class="mentor-grid"
+                id="mentorGrid">
+            </div>
+
+
+
+            <!-- EMPTY -->
+
+            <div
+                class="empty-state hidden"
+                id="mentorEmptyState">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+                <h3>
+                    No mentors available
+                </h3>
+
+                <p>
+                    No mentors matching your search were found.
+                </p>
+
+            </div>
+
+
+
+            <!-- ERROR -->
+
+            <div
+                class="error-state hidden"
+                id="mentorErrorState">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <h3>
+                    Unable to load mentors
+                </h3>
+
+                <p>
+                    Please try again later.
+                </p>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="retryMentorsButton">
+
+                    Try Again
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MY MENTOR
+             ================================================= -->
+
+        <section class="content-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        MY MENTOR
+                    </span>
+
+                    <h2>
+                        Current Mentoring Relationship
+                    </h2>
+
+                    <p>
+                        Information about your assigned or
+                        accepted mentor will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="loading-state"
+                id="currentMentorLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading mentoring information...
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="current-mentor-container"
+                id="currentMentorContainer">
+            </div>
+
+
+
+            <div
+                class="empty-state hidden"
+                id="currentMentorEmptyState">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+                <h3>
+                    No active mentor
+                </h3>
+
+                <p>
+                    Your active mentoring relationship will
+                    appear here when available.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             REQUEST MENTORING
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="requestSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        GUIDANCE
+                    </span>
+
+                    <h2>
+                        Request Mentoring
+                    </h2>
+
+                    <p>
+                        Submit a mentoring request according
+                        to your academic needs.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="outline-btn"
+                    id="newRequestButton">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    New Request
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="loading-state"
+                id="requestLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading your requests...
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="request-list"
+                id="requestList">
+            </div>
+
+
+
+            <div
+                class="empty-state hidden"
+                id="requestEmptyState">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                <h3>
+                    No mentoring requests
+                </h3>
+
+                <p>
+                    Your mentoring requests will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             APPOINTMENTS
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="appointmentsSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        SCHEDULE
+                    </span>
+
+                    <h2>
+                        Mentoring Appointments
+                    </h2>
+
+                    <p>
+                        View and manage your mentoring sessions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="loading-state"
+                id="appointmentLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading appointments...
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="appointment-list"
+                id="appointmentList">
+            </div>
+
+
+
+            <div
+                class="empty-state hidden"
+                id="appointmentEmptyState">
+
+                <i class="fa-regular fa-calendar"></i>
+
+                <h3>
+                    No appointments
+                </h3>
+
+                <p>
+                    Your mentoring appointments will appear
+                    here when scheduled.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESOURCES
+             ================================================= -->
+
+        <section class="content-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        LEARNING SUPPORT
+                    </span>
+
+                    <h2>
+                        Mentor Resources
+                    </h2>
+
+                    <p>
+                        Resources shared by your mentor will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="loading-state"
+                id="resourceLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading resources...
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="resource-grid"
+                id="resourceGrid">
+            </div>
+
+
+
+            <div
+                class="empty-state hidden"
+                id="resourceEmptyState">
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                <h3>
+                    No resources available
+                </h3>
+
+                <p>
+                    Resources shared by your mentor will appear
+                    here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PROGRESS
+             ================================================= -->
+
+        <section
+            class="content-section"
+            id="progressSection">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        PROGRESS
+                    </span>
+
+                    <h2>
+                        My Mentoring Progress
+                    </h2>
+
+                    <p>
+                        Track your mentoring activity and goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="loading-state"
+                id="progressLoading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading progress...
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="progress-grid"
+                id="progressGrid">
+            </div>
+
+
+
+            <div
+                class="empty-state hidden"
+                id="progressEmptyState">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h3>
+                    Progress unavailable
+                </h3>
+
+                <p>
+                    Your mentoring progress will appear here
+                    when data is available.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MODAL
+         ===================================================== -->
+
+    <div
+        class="modal-overlay hidden"
+        id="modalOverlay">
+
+
+        <div class="modal">
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div id="modalContent"></div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="mentoring.js"></script>
+
+</body>
+
+</html>

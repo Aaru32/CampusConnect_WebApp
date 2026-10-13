@@ -1,0 +1,607 @@
+/* ==========================================
+   CAMPUSCONNECT - MY ID
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f5f7;
+    color: #222;
+}
+
+
+/* ==========================================
+   PAGE HEADER
+========================================== */
+
+.page-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+.page-header h1 {
+    font-size: 21px;
+    color: #1557a6;
+}
+
+.page-header p {
+    margin-top: 3px;
+    font-size: 11px;
+    color: #777;
+}
+
+.back-btn {
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #edf2f6;
+
+    color: #1557a6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    padding: 0;
+
+}
+
+
+.back-btn i {
+
+    font-size: 18px;
+
+}
+/* ==========================================
+   ID AREA
+========================================== */
+
+.id-area {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 10px;
+}
+
+
+/* ==========================================
+   ID CARD
+========================================== */
+
+.id-card {
+    position: relative;
+
+    width: 390px;
+    max-width: 100%;
+
+    height: auto;
+    min-height: 0;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 5px solid #fff7dc;
+
+    border-radius: 2px;
+
+    box-shadow:
+        0 7px 22px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================
+   COLLEGE HEADER
+========================================== */
+
+.college-header {
+    text-align: center;
+    padding: 13px 12px 7px;
+}
+
+.government {
+    font-size: 17px;
+    font-weight: 700;
+    color: #7d1b3d;
+    line-height: 1.1;
+}
+
+.college-title {
+    margin-top: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #7d1b3d;
+    line-height: 1.15;
+}
+
+.department {
+    max-width: 340px;
+    margin: 6px auto 0;
+
+    font-size: 7.5px;
+    line-height: 1.3;
+
+    font-weight: 600;
+
+    color: #2d813d;
+}
+
+
+/* ==========================================
+   LOGO | PHOTO | ID
+========================================== */
+
+.identity-top {
+    display: grid;
+
+    grid-template-columns: 1fr 1.4fr 1fr;
+
+    align-items: center;
+
+    padding: 10px 12px 3px;
+}
+
+
+/* ==========================================
+   COLLEGE LOGO
+========================================== */
+
+.logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fixed-logo {
+    width: 62px;
+    height: 62px;
+
+    object-fit: contain;
+}
+
+
+/* ==========================================
+   STUDENT PHOTO
+========================================== */
+
+.photo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-frame {
+    width: 105px;
+    height: 130px;
+
+    padding: 3px;
+
+    background: #ffffff;
+
+    /* Thin golden frame */
+    border: 2px solid #d9b64b;
+}
+
+.photo-frame img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ==========================================
+   ID SECTION
+========================================== */
+
+.id-section {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.id-number-title {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    color: #1557a6;
+}
+
+.id-number {
+    margin-top: 2px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #111111;
+}
+
+
+/* ==========================================
+   BLOOD GROUP
+========================================== */
+
+/* ==========================================
+   BLOOD GROUP
+========================================== */
+
+.blood-section {
+
+    margin-top: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+}
+
+
+/* 💧 RED BLOOD DROP */
+
+.blood-drop {
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    filter:
+        grayscale(1)
+        brightness(0)
+        invert(27%)
+        sepia(85%)
+        saturate(3500%)
+        hue-rotate(350deg)
+        brightness(90%)
+        contrast(105%);
+}
+
+
+/* COLON */
+
+.blood-colon {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #c62828;
+}
+
+
+/* BLOOD GROUP */
+
+.blood-value {
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #c62828;
+}
+
+
+/* ==========================================
+   STUDENT NAME
+========================================== */
+
+.student-name {
+    margin-top: 5px;
+
+    padding: 0 10px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    color: #c62828;
+
+    text-transform: uppercase;
+
+    line-height: 1.2;
+}
+
+
+/* ==========================================
+   STUDENT DETAILS
+========================================== */
+
+.student-details {
+    padding: 12px 38px 3px;
+}
+
+
+/* Every detail on separate line */
+
+.detail-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    width: 100%;
+
+    margin-bottom: 6px;
+
+    font-size: 10.5px;
+
+    line-height: 1.35;
+}
+
+.detail-label {
+    min-width: 85px;
+
+    flex-shrink: 0;
+
+    color: #1557a6;
+
+    font-weight: 700;
+}
+
+.detail-value {
+    color: #1557a6;
+
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================
+   BRANCH
+========================================== */
+
+.branch-row {
+    margin-top: 2px;
+}
+
+.branch-label {
+    min-width: 85px;
+
+    flex-shrink: 0;
+
+    color: #b21b76;
+
+    font-weight: 700;
+}
+
+.branch-value {
+    color: #b21b76;
+
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================
+   SESSION + PRINCIPAL
+========================================== */
+
+.bottom-row {
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+    margin-top: 2px;
+    margin-bottom: 0;
+
+}
+
+
+/* ==========================================
+   SESSION - LEFT
+========================================== */
+
+.session-row {
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 2px;
+}
+
+.session-label {
+    min-width: 85px;
+
+    flex-shrink: 0;
+
+    color: #7d1b3d;
+
+    font-size: 10.5px;
+
+    font-weight: 700;
+}
+
+.session-value {
+    color: #7d1b3d;
+
+    font-size: 10.5px;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   PRINCIPAL - RIGHT
+========================================== */
+
+.principal-section {
+    width: 82px;
+
+    flex-shrink: 0;
+
+    text-align: center;
+
+    margin-left: 10px;
+}
+
+
+/* Signature above Principal */
+
+.principal-signature {
+    width: 82px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+}
+
+.principal-signature img {
+    display: block;
+
+    max-width: 76px;
+
+    max-height: 27px;
+
+    object-fit: contain;
+}
+
+
+/* Principal text */
+
+.principal-text {
+    margin-top: 2px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    color: #c62828;
+}
+
+
+/* ==========================================
+   DOWNLOAD BUTTON
+========================================== */
+
+.download-btn {
+    margin-top: 20px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #1557a6;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.download-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 410px) {
+
+    .id-area {
+        padding: 20px 6px;
+    }
+
+    .identity-top {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .fixed-logo {
+        width: 55px;
+        height: 55px;
+    }
+
+    .photo-frame {
+        width: 96px;
+        height: 120px;
+    }
+
+    .student-details {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .government {
+        font-size: 15px;
+    }
+
+    .college-title {
+        font-size: 12px;
+    }
+
+    .department {
+        font-size: 7px;
+    }
+
+    .student-name {
+        font-size: 15px;
+    }
+
+    .detail-row {
+        font-size: 10px;
+    }
+
+    .session-label,
+    .session-value {
+        font-size: 10px;
+    }
+
+    .principal-section {
+        width: 76px;
+    }
+
+    .principal-signature {
+        width: 76px;
+    }
+}

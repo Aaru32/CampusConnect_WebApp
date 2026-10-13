@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="CampusConnect Faculty Student Doubts">
+
+    <title>CampusConnect | Student Doubts</title>
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- Faculty Doubts CSS -->
+    <link rel="stylesheet"
+          href="faculty-doubts.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         PAGE HEADER
+    ================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                class="back-btn"
+                id="backBtn"
+                aria-label="Go back">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </button>
+
+
+            <div class="page-title">
+
+                <h1>Student Doubts</h1>
+
+                <p>
+                    View and answer doubts submitted by your students
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="refresh-btn"
+            id="refreshBtn"
+            aria-label="Refresh doubts">
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            <span>Refresh</span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =================================================
+         GLOBAL NOTIFICATION PLACEHOLDER
+    ================================================== -->
+
+    <div id="globalNotificationPlaceholder"></div>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="doubts-page">
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+
+                    <i class="fa-solid fa-circle-question"></i>
+
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Total Doubts
+                    </span>
+
+                    <strong id="totalDoubts">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon pending">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Pending
+                    </span>
+
+                    <strong id="pendingDoubts">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon answered">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Answered
+                    </span>
+
+                    <strong id="answeredDoubts">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FILTER BAR
+        ================================================== -->
+
+        <section class="filter-section">
+
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="doubtSearch"
+                    placeholder="Search student or doubt..."
+                    autocomplete="off">
+
+            </div>
+
+
+
+            <div class="filter-control">
+
+                <label for="subjectFilter">
+                    Subject
+                </label>
+
+                <select id="subjectFilter">
+
+                    <option value="all">
+                        All Subjects
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filter-control">
+
+                <label for="statusFilter">
+                    Status
+                </label>
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="answered">
+                        Answered
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             DOUBTS CONTENT
+        ================================================== -->
+
+        <section class="doubts-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Student Doubts
+                    </h2>
+
+                    <p id="resultCount">
+                        No doubts available
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <div
+                class="empty-state"
+                id="emptyState">
+
+                <div class="empty-icon">
+
+                    <i class="fa-regular fa-circle-question"></i>
+
+                </div>
+
+                <h3>
+                    No Student Doubts
+                </h3>
+
+                <p>
+                    Doubts submitted by your students will
+                    appear here.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DOUBTS LIST
+            ================================================== -->
+
+            <div
+                class="doubts-list"
+                id="doubtsList">
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         DOUBT DETAILS MODAL
+    ================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="doubtModal"
+        aria-hidden="true">
+
+
+        <div
+            class="doubt-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalDoubtTitle">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-label">
+                        Student Doubt
+                    </span>
+
+                    <h2 id="modalDoubtTitle">
+                        Doubt Details
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeModal"
+                    aria-label="Close">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <div class="modal-body">
+
+
+                <!-- Student Information -->
+
+                <div class="student-info-grid">
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Student
+                        </span>
+
+                        <strong id="modalStudentName">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Subject
+                        </span>
+
+                        <strong id="modalSubject">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Semester
+                        </span>
+
+                        <strong id="modalSemester">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Submitted
+                        </span>
+
+                        <strong id="modalDate">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Doubt -->
+
+                <div class="question-box">
+
+                    <span>
+                        Student's Question
+                    </span>
+
+                    <p id="modalQuestion">
+                        —
+                    </p>
+
+                </div>
+
+
+
+                <!-- Existing Answer -->
+
+                <div
+                    class="existing-answer"
+                    id="existingAnswer">
+
+                    <span>
+                        Your Answer
+                    </span>
+
+                    <p id="modalAnswer">
+                        —
+                    </p>
+
+                </div>
+
+
+
+                <!-- Answer Form -->
+
+                <div class="answer-section">
+
+                    <label for="answerInput">
+                        Answer
+                    </label>
+
+                    <textarea
+                        id="answerInput"
+                        rows="6"
+                        maxlength="5000"
+                        placeholder="Write your answer to the student..."></textarea>
+
+                    <small>
+                        Your answer will be visible to the student
+                        in their My Doubts section.
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="cancelModal">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="submitAnswerBtn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Submit Answer
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script src="faculty-doubts.js"></script>
+
+</body>
+
+</html>

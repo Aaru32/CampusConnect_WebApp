@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Assignments</title>
+
+    <link rel="stylesheet"
+        href="assignment.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- HEADER -->
+        <header class="top-header">
+
+            <button class="back-btn"
+                id="backBtn"
+                aria-label="Go back">
+
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="header-title">
+                <h1>Assignments</h1>
+                <p>Manage your academic submissions</p>
+            </div>
+
+            <!-- Global notification integration placeholder -->
+            <div id="globalNotificationPlaceholder"></div>
+
+        </header>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- SUMMARY -->
+            <section class="summary-section">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Total</span>
+                        <strong id="totalAssignments">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Pending</span>
+                        <strong id="pendingAssignments">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+
+                    <div>
+                        <span>Submitted</span>
+                        <strong id="submittedAssignments">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+
+                    <div>
+                        <span>Graded</span>
+                        <strong id="gradedAssignments">0</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SEARCH + FILTER -->
+            <section class="controls-section">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search assignments...">
+
+                </div>
+
+
+                <div class="filter-container">
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all">
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="pending">
+                        Pending
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="submitted">
+                        Submitted
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="late">
+                        Late
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="graded">
+                        Graded
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ASSIGNMENT LIST -->
+            <section class="assignment-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Your Assignments</h2>
+                        <p id="resultText">
+                            No assignments available
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="assignmentList"
+                    class="assignment-list">
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div
+                    id="emptyState"
+                    class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                    </div>
+
+                    <h3>No assignments available</h3>
+
+                    <p>
+                        Assignments created by your faculty
+                        will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ASSIGNMENT DETAILS MODAL -->
+    <div
+        id="assignmentModal"
+        class="modal-overlay">
+
+        <div class="assignment-modal">
+
+            <button
+                class="modal-close"
+                id="closeModal"
+                aria-label="Close">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div class="modal-header">
+
+                <div class="modal-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+
+                    <span
+                        id="modalSubject"
+                        class="modal-subject">
+                    </span>
+
+                    <h2 id="modalTitle">
+                        Assignment
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="details-grid">
+
+                <div class="detail-item">
+
+                    <span>Faculty</span>
+
+                    <strong id="modalFaculty">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>Assigned</span>
+
+                    <strong id="modalAssignedDate">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item deadline-item">
+
+                    <span>Deadline</span>
+
+                    <strong id="modalDeadline">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>Maximum Marks</span>
+
+                    <strong id="modalMaxMarks">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-status-row">
+
+                <span>Current Status</span>
+
+                <span
+                    id="modalStatus"
+                    class="status-badge">
+                </span>
+
+            </div>
+
+
+            <div class="description-section">
+
+                <h3>Instructions</h3>
+
+                <p id="modalDescription">
+                    —
+                </p>
+
+            </div>
+
+
+            <!-- SUBMISSION AREA -->
+            <div
+                id="submissionSection"
+                class="submission-section">
+
+                <h3>Submit Assignment</h3>
+
+                <p class="submission-note">
+                    Upload your assignment file before
+                    the faculty-defined deadline.
+                </p>
+
+
+                <label
+                    for="assignmentFile"
+                    class="upload-area">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <strong>
+                        Select assignment file
+                    </strong>
+
+                    <span>
+                        PDF, DOC, DOCX, PPT, PPTX, ZIP and
+                        other supported formats
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="file"
+                    id="assignmentFile"
+                    hidden>
+
+
+                <div
+                    id="selectedFile"
+                    class="selected-file">
+
+                    <i class="fa-solid fa-file"></i>
+
+                    <span id="selectedFileName">
+                        No file selected
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="submitAssignmentBtn"
+                    class="submit-btn"
+                    disabled>
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Submit Assignment
+
+                </button>
+
+            </div>
+
+
+            <!-- SUBMISSION INFO -->
+            <div
+                id="submissionInfo"
+                class="submission-info hidden">
+
+                <h3>Submission</h3>
+
+                <div class="submission-file">
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                    <div>
+
+                        <strong id="submittedFileName">
+                            —
+                        </strong>
+
+                        <span id="submittedDate">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT -->
+            <div
+                id="resultSection"
+                class="result-section hidden">
+
+                <h3>Evaluation</h3>
+
+                <div class="result-card">
+
+                    <div>
+
+                        <span>Marks</span>
+
+                        <strong id="modalMarks">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Faculty Feedback</span>
+
+                        <p id="modalFeedback">
+                            —
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="assignment.js"></script>
+
+</body>
+
+</html>

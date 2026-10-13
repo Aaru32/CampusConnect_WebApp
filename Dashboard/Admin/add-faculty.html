@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Add Faculty</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="add-faculty.css">
+</head>
+
+<body>
+
+<div class="add-faculty-page">
+
+    <!-- HEADER -->
+    <header class="page-header">
+
+        <button
+            type="button"
+            class="header-button"
+            id="backButton"
+            title="Back"
+            aria-label="Back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>Add Faculty</h1>
+            <span>Create a new faculty record</span>
+        </div>
+
+        <button
+            type="button"
+            class="header-button"
+            id="refreshButton"
+            title="Refresh"
+            aria-label="Refresh"
+        >
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+
+    </header>
+
+
+    <!-- GLOBAL NOTIFICATION PLACEHOLDER -->
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <!-- CONTENT -->
+    <main class="form-container">
+
+        <form id="facultyForm" novalidate>
+
+            <!-- PERSONAL INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Basic information about the faculty member</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field full-width photo-field">
+
+                        <label>Profile Photo</label>
+
+                        <div class="photo-upload">
+
+                            <div
+                                class="photo-preview"
+                                id="photoPreview"
+                            >
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+                            <div>
+
+                                <input
+                                    type="file"
+                                    id="profilePhoto"
+                                    name="profilePhoto"
+                                    accept="image/*"
+                                >
+
+                                <small>
+                                    JPG, PNG or WEBP
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="fullName">
+                            Full Name <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="dateOfBirth">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="mobileNumber">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobileNumber"
+                            name="mobileNumber"
+                            placeholder="Enter mobile number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="personalEmail">
+                            Personal Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="personalEmail"
+                            name="personalEmail"
+                            placeholder="Enter personal email"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="bloodGroup">
+                            Blood Group
+                        </label>
+
+                        <select
+                            id="bloodGroup"
+                            name="bloodGroup"
+                        >
+                            <option value="">
+                                Select blood group
+                            </option>
+
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROFESSIONAL INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <div>
+                        <h2>Professional Information</h2>
+                        <p>Official college employment details</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+
+                        <label for="employeeId">
+                            Employee ID <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="employeeId"
+                            name="employeeId"
+                            placeholder="Enter employee ID"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="department">
+                            Department <span>*</span>
+                        </label>
+
+                        <select
+                            id="department"
+                            name="department"
+                            required
+                        >
+                            <option value="">
+                                Select department
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="designation">
+                            Designation <span>*</span>
+                        </label>
+
+                        <select
+                            id="designation"
+                            name="designation"
+                            required
+                        >
+                            <option value="">
+                                Select designation
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="employmentType">
+                            Employment Type
+                        </label>
+
+                        <select
+                            id="employmentType"
+                            name="employmentType"
+                        >
+                            <option value="">
+                                Select employment type
+                            </option>
+
+                            <option value="Permanent">
+                                Permanent
+                            </option>
+
+                            <option value="Contract">
+                                Contract
+                            </option>
+
+                            <option value="Guest">
+                                Guest
+                            </option>
+
+                            <option value="Visiting">
+                                Visiting
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="joiningDate">
+                            Joining Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="joiningDate"
+                            name="joiningDate"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="facultyStatus">
+                            Employment Status
+                        </label>
+
+                        <select
+                            id="facultyStatus"
+                            name="facultyStatus"
+                        >
+                            <option value="">
+                                Select status
+                            </option>
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Inactive">
+                                Inactive
+                            </option>
+
+                            <option value="On Leave">
+                                On Leave
+                            </option>
+
+                            <option value="Retired">
+                                Retired
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="academicSession">
+                            Academic Session
+                        </label>
+
+                        <select
+                            id="academicSession"
+                            name="academicSession"
+                        >
+                            <option value="">
+                                Select session
+                            </option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACADEMIC QUALIFICATIONS -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <h2>Academic Qualifications</h2>
+                        <p>Educational qualifications and specialization</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+
+                        <label for="highestQualification">
+                            Highest Qualification
+                        </label>
+
+                        <input
+                            type="text"
+                            id="highestQualification"
+                            name="highestQualification"
+                            placeholder="e.g. M.Tech, Ph.D."
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="specialization">
+                            Specialization
+                        </label>
+
+                        <input
+                            type="text"
+                            id="specialization"
+                            name="specialization"
+                            placeholder="Enter area of specialization"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="qualificationInstitution">
+                            Qualification Institution
+                        </label>
+
+                        <input
+                            type="text"
+                            id="qualificationInstitution"
+                            name="qualificationInstitution"
+                            placeholder="Enter institution name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="qualificationYear">
+                            Passing Year
+                        </label>
+
+                        <input
+                            type="number"
+                            id="qualificationYear"
+                            name="qualificationYear"
+                            placeholder="Enter passing year"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="professionalExperience">
+                            Professional Experience
+                        </label>
+
+                        <input
+                            type="text"
+                            id="professionalExperience"
+                            name="professionalExperience"
+                            placeholder="e.g. 5 years"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="researchArea">
+                            Research Area
+                        </label>
+
+                        <input
+                            type="text"
+                            id="researchArea"
+                            name="researchArea"
+                            placeholder="Enter research area"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTACT INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-address-book"></i>
+                    </div>
+
+                    <div>
+                        <h2>Contact Information</h2>
+                        <p>Official and emergency contact details</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+
+                        <label for="officialEmail">
+                            Official Email <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="officialEmail"
+                            name="officialEmail"
+                            placeholder="Enter official email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="alternateMobile">
+                            Alternate Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="alternateMobile"
+                            name="alternateMobile"
+                            placeholder="Enter alternate number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="emergencyContactName">
+                            Emergency Contact Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="emergencyContactName"
+                            name="emergencyContactName"
+                            placeholder="Enter contact name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="emergencyContactNumber">
+                            Emergency Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="emergencyContactNumber"
+                            name="emergencyContactNumber"
+                            placeholder="Enter contact number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="emergencyRelationship">
+                            Relationship
+                        </label>
+
+                        <input
+                            type="text"
+                            id="emergencyRelationship"
+                            name="emergencyRelationship"
+                            placeholder="e.g. Parent, Spouse, Guardian"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ADDRESS INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <div>
+                        <h2>Address Information</h2>
+                        <p>Faculty residential information</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field full-width">
+
+                        <label for="currentAddress">
+                            Current Address
+                        </label>
+
+                        <textarea
+                            id="currentAddress"
+                            name="currentAddress"
+                            placeholder="Enter current address"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-field full-width">
+
+                        <label for="permanentAddress">
+                            Permanent Address
+                        </label>
+
+                        <textarea
+                            id="permanentAddress"
+                            name="permanentAddress"
+                            placeholder="Enter permanent address"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="city">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter city"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="state">
+                            State
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            name="state"
+                            placeholder="Enter state"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="pinCode">
+                            PIN Code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="pinCode"
+                            name="pinCode"
+                            placeholder="Enter PIN code"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CAMPUS INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+
+                    <div>
+                        <h2>Campus Information</h2>
+                        <p>College service and teaching identifiers</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+
+                        <label for="facultyCode">
+                            Faculty Code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="facultyCode"
+                            name="facultyCode"
+                            placeholder="Enter faculty code"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="officeRoom">
+                            Office / Room Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="officeRoom"
+                            name="officeRoom"
+                            placeholder="Enter office or room number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="lmsId">
+                            LMS Account ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lmsId"
+                            name="lmsId"
+                            placeholder="Enter LMS account ID"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="libraryId">
+                            Library ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="libraryId"
+                            name="libraryId"
+                            placeholder="Enter library ID"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACCOUNT INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
+
+                    <div>
+                        <h2>Account Information</h2>
+                        <p>Faculty portal account details</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+
+                        <label for="loginId">
+                            Faculty Login ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="loginId"
+                            name="loginId"
+                            placeholder="Enter login ID"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="accountStatus">
+                            Account Status
+                        </label>
+
+                        <select
+                            id="accountStatus"
+                            name="accountStatus"
+                        >
+                            <option value="">
+                                Select status
+                            </option>
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Inactive">
+                                Inactive
+                            </option>
+
+                            <option value="Locked">
+                                Locked
+                            </option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ADDITIONAL INFORMATION -->
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+
+                    <div>
+                        <h2>Additional Information</h2>
+                        <p>Optional information entered by the administrator</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-field full-width">
+
+                        <label for="additionalInformation">
+                            Additional Information
+                        </label>
+
+                        <textarea
+                            id="additionalInformation"
+                            name="additionalInformation"
+                            placeholder="Enter any additional information"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FORM ACTIONS -->
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelButton"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveFacultyButton"
+                >
+                    <i class="fa-solid fa-user-plus"></i>
+                    Add Faculty
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</div>
+
+
+<script src="add-faculty.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Faculty Dashboard</title>
+
+    <!-- Font Awesome 6.5.2 -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="faculty-dashboard.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP HEADER
+========================================================= -->
+
+<header class="top-header">
+
+    <div class="header-left">
+
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="header-logo">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>CampusConnect</span>
+        </div>
+
+    </div>
+
+
+    <div class="header-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="globalSearch"
+            placeholder="Search students, courses, subjects..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         DATE / TIME PANEL
+    ====================================================== -->
+
+    <div class="date-panel">
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <div>
+
+            <span id="currentDate">
+                Loading date...
+            </span>
+
+            <strong id="currentTime">
+                --:--:--
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <!-- Refresh -->
+        <button
+            class="header-icon-btn"
+            id="refreshButton"
+            title="Refresh"
+            aria-label="Refresh page"
+        >
+            <i class="fa-solid fa-rotate"></i>
+        </button>
+
+
+        <!-- Global Notifications -->
+        <button
+            class="header-icon-btn notification-btn"
+            id="notificationButton"
+            title="Notifications"
+            aria-label="Notifications"
+        >
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span
+                class="notification-count"
+                id="notificationCount"
+                hidden
+            >
+                0
+            </span>
+
+        </button>
+
+
+        <div class="header-divider"></div>
+
+
+        <!-- Faculty Profile -->
+        <button
+            class="faculty-profile"
+            id="facultyProfileButton"
+            aria-label="Faculty profile"
+        >
+
+            <div class="profile-avatar">
+
+                <img
+                    id="headerProfileImage"
+                    src="../../Assets/profile.png"
+                    alt="Faculty profile"
+                >
+
+            </div>
+
+            <div class="profile-text">
+
+                <strong id="headerFacultyName">
+                    Faculty
+                </strong>
+
+                <span>
+                    Faculty
+                </span>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-down profile-arrow"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-institution">
+
+        <div class="institution-icon">
+            <i class="fa-solid fa-building-columns"></i>
+        </div>
+
+        <div>
+            <strong>Government Women's</strong>
+            <span>Polytechnic, Patna</span>
+        </div>
+
+    </div>
+
+
+   <nav class="sidebar-nav">
+
+    <a href="faculty-dashboard.html"
+       class="nav-item active"
+       data-page="dashboard">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="Room-Status">
+        <i class="fa-solid fa-door-open"></i>
+        <span>Classroom Status</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="students">
+        <i class="fa-solid fa-users"></i>
+        <span>Students</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="Doubts">
+        <i class="fa-solid fa-circle-question"></i>
+        <span>Doubt Desk</span>
+    </a>
+
+    <a href="../Chat/chat.html?source=faculty"
+       class="nav-item"
+       data-page="chat">
+        <i class="fa-solid fa-comment"></i>
+        <span>Chat</span>
+    </a>
+
+    <!-- SafeSpeak -->
+    <a href="../SafeSpeak/safespeak.html?source=faculty"
+       class="nav-item"
+       data-page="safespeak">
+        <i class="fa-solid fa-lock"></i>
+        <span>SafeSpeak</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="attendance">
+        <i class="fa-regular fa-calendar-check"></i>
+        <span>Attendance</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="courses">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Courses / Subjects</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="assignments">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Assignments</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="examinations">
+        <i class="fa-solid fa-clipboard-list"></i>
+        <span>Examinations</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="results">
+        <i class="fa-solid fa-square-poll-vertical"></i>
+        <span>Results</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="events">
+        <i class="fa-regular fa-calendar"></i>
+        <span>Events</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="profile">
+        <i class="fa-regular fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+    <a href="#"
+       class="nav-item"
+       data-page="settings">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </a>
+
+</nav>
+
+    <!-- Sidebar Bottom -->
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-college">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+            <span>
+                Government Women's<br>
+                Polytechnic, Patna
+            </span>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            id="logoutButton"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     OVERLAY
+========================================================= -->
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+    <!-- =====================================================
+         WELCOME BANNER
+    ====================================================== -->
+
+    <section class="welcome-banner">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">
+                Faculty Dashboard
+            </span>
+
+            <h1>
+                Welcome, <span id="welcomeFacultyName">Faculty</span>!
+            </h1>
+
+            <p>
+                Here's a quick overview of your classes, students and activities.
+            </p>
+
+        </div>
+
+
+        <div class="welcome-illustration">
+
+            <i class="fa-solid fa-book-open"></i>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QUICK ACTIONS
+    ====================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <h2>
+                <i class="fa-solid fa-bolt"></i>
+                Quick Actions
+            </h2>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+            <button
+                class="quick-action attendance-action"
+                data-action="attendance"
+            >
+
+                <span class="quick-icon">
+                    <i class="fa-solid fa-users"></i>
+                </span>
+
+                <span class="quick-text">
+                    <strong>Mark Attendance</strong>
+                    <small>Record class attendance</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+            <button
+                class="quick-action assignment-action"
+                data-action="assignment"
+            >
+
+                <span class="quick-icon">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                </span>
+
+                <span class="quick-text">
+                    <strong>Add Assignment</strong>
+                    <small>Create a new assignment</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+            <button
+                class="quick-action marks-action"
+                data-action="marks"
+            >
+
+                <span class="quick-icon">
+                    <i class="fa-solid fa-file-pen"></i>
+                </span>
+
+                <span class="quick-text">
+                    <strong>Enter Marks</strong>
+                    <small>Update student marks</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+            <button
+                class="quick-action notice-action"
+                data-action="notice"
+            >
+
+                <span class="quick-icon">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </span>
+
+                <span class="quick-text">
+                    <strong>Create Notice</strong>
+                    <small>Notify students or faculty</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN GRID
+    ====================================================== -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- TODAY'S CLASSES -->
+
+        <section class="dashboard-card classes-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <span class="card-title-icon">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </span>
+
+                    <h2>Today's Classes</h2>
+
+                </div>
+
+                <button
+                    class="view-all-btn"
+                    data-page="classes"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="todayClassesContainer"
+            >
+
+                <div class="empty-state">
+
+                    <i class="fa-regular fa-calendar-xmark"></i>
+
+                    <h3>No classes available</h3>
+
+                    <p>
+                        Your timetable will appear here when class data is available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MY SUBJECTS -->
+
+        <section class="dashboard-card subjects-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <span class="card-title-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </span>
+
+                    <h2>My Subjects</h2>
+
+                </div>
+
+                <button
+                    class="view-all-btn"
+                    data-page="courses"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                class="subjects-list"
+                id="subjectsContainer"
+            >
+
+                <div class="empty-state small">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    <h3>No subjects assigned</h3>
+
+                    <p>
+                        Assigned subjects will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATISTICS
+    ====================================================== -->
+
+    <section class="statistics-grid">
+
+        <button
+            class="stat-card students-stat"
+            data-stat="students"
+        >
+
+            <span class="stat-icon">
+                <i class="fa-solid fa-users"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-title">
+                    Assigned Students
+                </span>
+
+                <strong id="assignedStudents">
+                    —
+                </strong>
+
+                <small>
+                    Waiting for database data
+                </small>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+        <button
+            class="stat-card attendance-stat"
+            data-stat="attendance"
+        >
+
+            <span class="stat-icon">
+                <i class="fa-regular fa-calendar-check"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-title">
+                    Attendance Overview
+                </span>
+
+                <strong id="attendanceOverview">
+                    —
+                </strong>
+
+                <small>
+                    Waiting for database data
+                </small>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+        <button
+            class="stat-card assignments-stat"
+            data-stat="assignments"
+        >
+
+            <span class="stat-icon">
+                <i class="fa-solid fa-file-lines"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-title">
+                    Pending Assignments
+                </span>
+
+                <strong id="pendingAssignments">
+                    —
+                </strong>
+
+                <small>
+                    Waiting for database data
+                </small>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+        <button
+            class="stat-card exams-stat"
+            data-stat="exams"
+        >
+
+            <span class="stat-icon">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </span>
+
+            <span class="stat-content">
+
+                <span class="stat-title">
+                    Upcoming Exams
+                </span>
+
+                <strong id="upcomingExams">
+                    —
+                </strong>
+
+                <small>
+                    Waiting for database data
+                </small>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         LOWER GRID
+    ====================================================== -->
+
+    <div class="lower-grid">
+
+
+        <!-- UPCOMING -->
+
+        <section class="dashboard-card upcoming-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <span class="card-title-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </span>
+
+                    <h2>Upcoming</h2>
+
+                </div>
+
+                <button
+                    class="view-all-btn"
+                    data-page="upcoming"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div class="upcoming-tabs">
+
+                <button
+                    class="upcoming-tab active"
+                    data-tab="classes"
+                >
+                    Classes
+                </button>
+
+                <button
+                    class="upcoming-tab"
+                    data-tab="exams"
+                >
+                    Exams
+                </button>
+
+                <button
+                    class="upcoming-tab"
+                    data-tab="assignments"
+                >
+                    Assignments
+                </button>
+
+                <button
+                    class="upcoming-tab"
+                    data-tab="events"
+                >
+                    Events
+                </button>
+
+            </div>
+
+
+            <div
+                class="upcoming-content"
+                id="upcomingContainer"
+            >
+
+                <div class="empty-state small">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    <h3>No upcoming items</h3>
+
+                    <p>
+                        Upcoming academic activities will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT NOTIFICATIONS -->
+
+        <section class="dashboard-card notifications-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <span class="card-title-icon">
+                        <i class="fa-regular fa-bell"></i>
+                    </span>
+
+                    <h2>Recent Notifications</h2>
+
+                </div>
+
+                <button
+                    class="view-all-btn"
+                    data-page="notifications"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                class="notifications-list"
+                id="recentNotificationsContainer"
+            >
+
+                <div class="empty-state small">
+
+                    <i class="fa-regular fa-bell-slash"></i>
+
+                    <h3>No notifications</h3>
+
+                    <p>
+                        New notifications will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     LOGOUT MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="logoutModal"
+    hidden
+>
+
+    <div class="logout-modal">
+
+        <div class="modal-icon">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+
+        <h2>Logout?</h2>
+
+        <p>
+            Are you sure you want to logout from CampusConnect?
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="modal-cancel"
+                id="cancelLogout"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-confirm"
+                id="confirmLogout"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="faculty-dashboard.js"></script>
+
+</body>
+</html>

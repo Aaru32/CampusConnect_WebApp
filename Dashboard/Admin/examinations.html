@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Examinations | CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="examinations.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="top-header">
+
+        <div class="header-left">
+            <button class="back-btn"
+                    id="backButton"
+                    title="Go Back"
+                    aria-label="Go Back">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="page-heading">
+                <h1>Examinations</h1>
+                <p>Manage examinations, schedules and examination workflow</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+
+            <button class="header-icon-btn"
+                    id="refreshButton"
+                    title="Refresh"
+                    aria-label="Refresh">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+
+            <button class="header-icon-btn notification-btn"
+                    id="notificationButton"
+                    title="Notifications"
+                    aria-label="Notifications">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="page-container">
+
+        <!-- ================= OVERVIEW ================= -->
+        <section class="overview-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Examination Overview</h2>
+                    <p>Current examination information from the system</p>
+                </div>
+            </div>
+
+            <div class="overview-grid">
+
+                <article class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </div>
+
+                    <div>
+                        <span>Upcoming</span>
+                        <strong id="upcomingCount">—</strong>
+                    </div>
+                </article>
+
+                <article class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-spinner"></i>
+                    </div>
+
+                    <div>
+                        <span>Ongoing</span>
+                        <strong id="ongoingCount">—</strong>
+                    </div>
+                </article>
+
+                <article class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Completed</span>
+                        <strong id="completedCount">—</strong>
+                    </div>
+                </article>
+
+                <article class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fa-solid fa-file-circle-question"></i>
+                    </div>
+
+                    <div>
+                        <span>Pending Results</span>
+                        <strong id="pendingResultsCount">—</strong>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAIN PANEL ================= -->
+        <section class="main-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Examination Schedule</h2>
+                    <p>Search and manage scheduled examinations</p>
+                </div>
+
+                <button class="primary-btn"
+                        id="createExaminationButton">
+                    <i class="fa-solid fa-plus"></i>
+                    Create Examination
+                </button>
+
+            </div>
+
+
+            <!-- ================= FILTERS ================= -->
+            <div class="filters">
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="search"
+                           id="examinationSearch"
+                           placeholder="Search examination...">
+                </div>
+
+
+                <select id="sessionFilter">
+                    <option value="">All Sessions</option>
+                </select>
+
+
+                <select id="semesterFilter">
+                    <option value="">All Semesters</option>
+                </select>
+
+
+                <select id="branchFilter">
+                    <option value="">All Branches</option>
+                </select>
+
+
+                <select id="examTypeFilter">
+                    <option value="">All Types</option>
+                </select>
+
+
+                <select id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+            </div>
+
+
+            <!-- ================= TABLE ================= -->
+            <div class="table-wrapper">
+
+                <table class="examination-table">
+
+                    <thead>
+                        <tr>
+                            <th>Examination</th>
+                            <th>Type</th>
+                            <th>Semester</th>
+                            <th>Branch</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="examinationTableBody">
+                        <!-- Database/API data will appear here -->
+                    </tbody>
+
+                </table>
+
+
+                <!-- EMPTY STATE -->
+                <div class="empty-state"
+                     id="emptyState">
+
+                    <div class="empty-icon">
+                        <i class="fa-regular fa-calendar-xmark"></i>
+                    </div>
+
+                    <h3>No examinations available</h3>
+
+                    <p>
+                        Examination records will appear here once they are
+                        available in CampusConnect.
+                    </p>
+
+                    <button class="secondary-btn"
+                            id="emptyCreateButton">
+                        <i class="fa-solid fa-plus"></i>
+                        Create Examination
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EXAMINATION DETAILS ================= -->
+        <section class="details-section hidden"
+                 id="detailsSection">
+
+            <div class="details-header">
+
+                <div>
+                    <button class="details-back-btn"
+                            id="closeDetailsButton">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Examinations
+                    </button>
+
+                    <h2 id="detailsTitle">
+                        Examination Details
+                    </h2>
+
+                    <p id="detailsSubtitle">
+                        Examination information
+                    </p>
+                </div>
+
+                <button class="primary-btn"
+                        id="editDetailsButton">
+                    <i class="fa-solid fa-pen"></i>
+                    Edit Examination
+                </button>
+
+            </div>
+
+
+            <!-- DETAILS SUMMARY -->
+            <div class="details-summary">
+
+                <div class="detail-info">
+                    <span>Examination</span>
+                    <strong id="detailExamName">—</strong>
+                </div>
+
+                <div class="detail-info">
+                    <span>Academic Session</span>
+                    <strong id="detailSession">—</strong>
+                </div>
+
+                <div class="detail-info">
+                    <span>Semester</span>
+                    <strong id="detailSemester">—</strong>
+                </div>
+
+                <div class="detail-info">
+                    <span>Department</span>
+                    <strong id="detailBranch">—</strong>
+                </div>
+
+                <div class="detail-info">
+                    <span>Exam Type</span>
+                    <strong id="detailType">—</strong>
+                </div>
+
+                <div class="detail-info">
+                    <span>Status</span>
+                    <strong id="detailStatus">—</strong>
+                </div>
+
+            </div>
+
+
+            <!-- ================= DETAIL TABS ================= -->
+            <div class="detail-tabs">
+
+                <button class="detail-tab active"
+                        data-tab="overview">
+                    Overview
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="schedule">
+                    Schedule
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="students">
+                    Students
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="subjects">
+                    Subjects
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="rooms">
+                    Rooms
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="attendance">
+                    Attendance
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="results">
+                    Results
+                </button>
+
+                <button class="detail-tab"
+                        data-tab="documents">
+                    Documents
+                </button>
+
+            </div>
+
+
+            <!-- ================= TAB CONTENT ================= -->
+            <div class="detail-content">
+
+                <!-- Overview -->
+                <div class="tab-panel active"
+                     id="tab-overview">
+
+                    <div class="content-card">
+
+                        <h3>Examination Information</h3>
+
+                        <div class="information-grid">
+
+                            <div>
+                                <span>Start Date</span>
+                                <strong id="detailStartDate">—</strong>
+                            </div>
+
+                            <div>
+                                <span>End Date</span>
+                                <strong id="detailEndDate">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Registration Deadline</span>
+                                <strong id="detailDeadline">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Instructions</span>
+                                <strong id="detailInstructions">—</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Schedule -->
+                <div class="tab-panel"
+                     id="tab-schedule">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Examination Schedule</h3>
+                                <p>Subject-wise examination timetable</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageScheduleButton">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Manage Schedule
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-regular fa-calendar"></i>
+                            <h4>No schedule available</h4>
+                            <p>
+                                Subject schedules will appear after they
+                                are added to this examination.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Students -->
+                <div class="tab-panel"
+                     id="tab-students">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Examination Students</h3>
+                                <p>Students registered or eligible for this examination</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageStudentsButton">
+                                <i class="fa-solid fa-users"></i>
+                                Manage Students
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            <h4>No student records available</h4>
+                            <p>
+                                Student examination records will appear
+                                after the backend provides them.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Subjects -->
+                <div class="tab-panel"
+                     id="tab-subjects">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Examination Subjects</h3>
+                                <p>Subjects included in this examination</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageSubjectsButton">
+                                <i class="fa-solid fa-book"></i>
+                                Manage Subjects
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-solid fa-book-open"></i>
+                            <h4>No subjects available</h4>
+                            <p>
+                                Examination subjects will appear here
+                                when configured.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Rooms -->
+                <div class="tab-panel"
+                     id="tab-rooms">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Examination Rooms</h3>
+                                <p>Room and seating assignment</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageRoomsButton">
+                                <i class="fa-solid fa-door-open"></i>
+                                Manage Rooms
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-solid fa-building"></i>
+                            <h4>No rooms assigned</h4>
+                            <p>
+                                Examination room assignments will appear
+                                here.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Attendance -->
+                <div class="tab-panel"
+                     id="tab-attendance">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Examination Attendance</h3>
+                                <p>Attendance status for examination sessions</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageAttendanceButton">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                                View Attendance
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-solid fa-clipboard-user"></i>
+                            <h4>No attendance data available</h4>
+                            <p>
+                                Examination attendance will appear after
+                                it is recorded.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Results -->
+                <div class="tab-panel"
+                     id="tab-results">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Result Status</h3>
+                                <p>Result processing information</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageResultsButton">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                                View Results
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                            <h4>No result information available</h4>
+                            <p>
+                                Result processing status will appear here.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Documents -->
+                <div class="tab-panel"
+                     id="tab-documents">
+
+                    <div class="content-card">
+
+                        <div class="content-card-header">
+                            <div>
+                                <h3>Examination Documents</h3>
+                                <p>Question papers, instructions and related files</p>
+                            </div>
+
+                            <button class="secondary-btn"
+                                    id="manageDocumentsButton">
+                                <i class="fa-solid fa-folder-open"></i>
+                                Manage Documents
+                            </button>
+                        </div>
+
+                        <div class="sub-empty-state">
+                            <i class="fa-regular fa-folder-open"></i>
+                            <h4>No documents available</h4>
+                            <p>
+                                Examination documents will appear here
+                                after they are uploaded.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= CREATE / EDIT MODAL ================= -->
+    <div class="modal-overlay hidden"
+         id="examinationModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="modalTitle">Create Examination</h2>
+                    <p id="modalSubtitle">
+                        Add examination information
+                    </p>
+                </div>
+
+                <button class="modal-close"
+                        id="closeModalButton"
+                        aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="examinationForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label for="examName">
+                            Examination Name
+                        </label>
+
+                        <input type="text"
+                               id="examName"
+                               required
+                               placeholder="Enter examination name">
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="academicSession">
+                            Academic Session
+                        </label>
+
+                        <input type="text"
+                               id="academicSession"
+                               placeholder="e.g. 2026-27">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="examSemester">
+                            Semester
+                        </label>
+
+                        <select id="examSemester">
+
+                            <option value="">
+                                Select Semester
+                            </option>
+
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="examBranch">
+                            Department / Branch
+                        </label>
+
+                        <input type="text"
+                               id="examBranch"
+                               placeholder="Enter department">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="examType">
+                            Examination Type
+                        </label>
+
+                        <select id="examType">
+
+                            <option value="">
+                                Select Type
+                            </option>
+
+                            <option value="internal">
+                                Internal
+                            </option>
+
+                            <option value="mid-semester">
+                                Mid-Semester
+                            </option>
+
+                            <option value="end-semester">
+                                End-Semester
+                            </option>
+
+                            <option value="practical">
+                                Practical
+                            </option>
+
+                            <option value="supplementary">
+                                Supplementary
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="startDate">
+                            Start Date
+                        </label>
+
+                        <input type="date"
+                               id="startDate">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="endDate">
+                            End Date
+                        </label>
+
+                        <input type="date"
+                               id="endDate">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registrationDeadline">
+                            Registration Deadline
+                        </label>
+
+                        <input type="date"
+                               id="registrationDeadline">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="examStatus">
+                            Status
+                        </label>
+
+                        <select id="examStatus">
+
+                            <option value="upcoming">
+                                Upcoming
+                            </option>
+
+                            <option value="ongoing">
+                                Ongoing
+                            </option>
+
+                            <option value="completed">
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="instructions">
+                            Instructions
+                        </label>
+
+                        <textarea id="instructions"
+                                  rows="4"
+                                  placeholder="Enter examination instructions"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="cancel-btn"
+                            id="cancelModalButton">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                            class="primary-btn">
+                        <i class="fa-solid fa-check"></i>
+                        <span id="submitButtonText">
+                            Create Examination
+                        </span>
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= GLOBAL NOTIFICATION ================= -->
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <script src="examinations.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,889 @@
+/* =========================================================
+   CAMPUSCONNECT GLOBAL NOTIFICATION SYSTEM
+   notification.css
+
+   Shared by:
+   Student + Faculty + Admin + All Modules
+
+   IMPORTANT:
+   This file styles the single global notification component.
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.cc-notification-root {
+    position: relative;
+    z-index: 9999;
+    font-family: Arial, "Inter", sans-serif;
+}
+
+
+/* =========================================================
+   GLOBAL BELL
+========================================================= */
+
+.cc-notification-bell {
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.15s ease;
+}
+
+.cc-notification-bell:hover {
+    background: #eff6ff;
+    color: #0757c9;
+}
+
+.cc-notification-bell:active {
+    transform: scale(0.94);
+}
+
+.cc-notification-bell:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.cc-notification-badge {
+    position: absolute;
+
+    top: 2px;
+    right: 1px;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+
+    pointer-events: none;
+}
+
+.cc-notification-badge[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   PANEL
+========================================================= */
+
+.cc-notification-panel {
+    position: fixed;
+
+    top: 72px;
+    right: 20px;
+
+    width: min(410px, calc(100vw - 30px));
+    max-height: calc(100vh - 95px);
+
+    display: none;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 18px 50px rgba(15, 23, 42, 0.18);
+
+    animation: ccNotificationOpen 0.18s ease;
+}
+
+.cc-notification-panel.open {
+    display: flex;
+}
+
+@keyframes ccNotificationOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   PANEL HEADER
+========================================================= */
+
+.cc-notification-header {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 16px 18px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    background: #ffffff;
+}
+
+.cc-notification-header-left {
+    min-width: 0;
+}
+
+.cc-notification-title {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cc-notification-summary {
+    margin: 3px 0 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+.cc-notification-header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.cc-notification-header-button {
+    border: none;
+    border-radius: 7px;
+
+    background: transparent;
+
+    padding: 7px 8px;
+
+    color: #2563eb;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.cc-notification-header-button:hover {
+    background: #eff6ff;
+}
+
+.cc-notification-header-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cc-notification-close {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.cc-notification-close:hover {
+    background: #f1f5f9;
+    color: #172033;
+}
+
+
+/* =========================================================
+   NOTIFICATION LIST
+========================================================= */
+
+.cc-notification-list {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+}
+
+.cc-notification-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cc-notification-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #cbd5e1;
+}
+
+
+/* =========================================================
+   NOTIFICATION ITEM
+========================================================= */
+
+.cc-notification-item {
+    position: relative;
+
+    padding: 15px 18px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    background: #ffffff;
+
+    transition: background 0.15s ease;
+}
+
+.cc-notification-item:hover {
+    background: #f8fafc;
+}
+
+.cc-notification-item.unread {
+    background: #f8fbff;
+}
+
+.cc-notification-item.unread::before {
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    top: 21px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   ITEM TOP
+========================================================= */
+
+.cc-notification-item-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding-left: 2px;
+}
+
+.cc-notification-item-title {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.cc-notification-time {
+    flex-shrink: 0;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.cc-notification-message {
+    margin: 7px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   CATEGORY / SENDER
+========================================================= */
+
+.cc-notification-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 9px;
+}
+
+.cc-notification-category {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 3px 7px;
+
+    border-radius: 5px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.cc-notification-sender {
+    color: #2563eb;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.cc-notification-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 12px;
+}
+
+.cc-notification-action {
+    border: 1px solid #dbeafe;
+    border-radius: 7px;
+
+    background: #eff6ff;
+
+    padding: 7px 11px;
+
+    color: #1d4ed8;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.cc-notification-action:hover {
+    border-color: #93c5fd;
+    background: #dbeafe;
+}
+
+.cc-notification-action:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.cc-notification-empty {
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+.cc-notification-empty-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+    color: #94a3b8;
+
+    font-size: 20px;
+}
+
+.cc-notification-empty-title {
+    margin: 0;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cc-notification-empty-text {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.cc-notification-loading {
+    padding: 32px 20px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.cc-notification-error {
+    padding: 30px 20px;
+
+    text-align: center;
+}
+
+.cc-notification-error-icon {
+    width: 45px;
+    height: 45px;
+
+    margin: 0 auto 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+.cc-notification-error-title {
+    margin: 0;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cc-notification-error-text {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CREATE NOTIFICATION
+========================================================= */
+
+.cc-create-notification {
+    flex-shrink: 0;
+
+    border-top: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+
+    padding: 16px 18px;
+}
+
+.cc-create-notification[hidden] {
+    display: none;
+}
+
+.cc-create-notification-title {
+    margin: 0 0 13px;
+
+    color: #172033;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.cc-notification-form-group {
+    margin-bottom: 12px;
+}
+
+.cc-notification-form-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #475569;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.cc-notification-input,
+.cc-notification-textarea,
+.cc-notification-select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    padding: 10px 11px;
+
+    color: #172033;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.cc-notification-input:focus,
+.cc-notification-textarea:focus,
+.cc-notification-select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.cc-notification-textarea {
+    min-height: 80px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   TARGET CHECKBOXES
+========================================================= */
+
+.cc-notification-targets {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 7px;
+}
+
+.cc-notification-target {
+    position: relative;
+}
+
+.cc-notification-target input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.cc-notification-target label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 36px;
+
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+.cc-notification-target label:hover {
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+.cc-notification-target input:checked + label {
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+}
+
+.cc-notification-target input:focus-visible + label {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   SEND BUTTON
+========================================================= */
+
+.cc-notification-send {
+    width: 100%;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #0757c9;
+
+    padding: 10px 14px;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+.cc-notification-send:hover {
+    background: #0647a5;
+}
+
+.cc-notification-send:active {
+    transform: scale(0.99);
+}
+
+.cc-notification-send:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+.cc-notification-form-message {
+    min-height: 17px;
+
+    margin-top: 7px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+.cc-notification-form-message.success {
+    color: #15803d;
+}
+
+.cc-notification-form-message.error {
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   FRONTEND BACKEND STATUS
+========================================================= */
+
+.cc-notification-backend-status {
+    margin: 0 0 12px;
+
+    padding: 8px 10px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 7px;
+
+    background: #eff6ff;
+
+    color: #1e40af;
+
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.cc-notification-root button,
+.cc-notification-root input,
+.cc-notification-root textarea,
+.cc-notification-root select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .cc-notification-panel {
+        top: 65px;
+        right: 10px;
+
+        width: calc(100vw - 20px);
+
+        max-height: calc(100vh - 80px);
+
+        border-radius: 14px;
+    }
+
+    .cc-notification-header {
+        padding: 14px;
+    }
+
+    .cc-notification-list {
+        max-height: 50vh;
+    }
+
+    .cc-notification-item {
+        padding: 14px;
+    }
+
+    .cc-notification-targets {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cc-notification-target label {
+        min-height: 38px;
+    }
+
+    .cc-notification-header-button {
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .cc-notification-panel {
+        right: 7px;
+
+        width: calc(100vw - 14px);
+    }
+
+    .cc-notification-targets {
+        grid-template-columns: 1fr;
+    }
+
+    .cc-notification-item-top {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .cc-notification-time {
+        align-self: flex-start;
+    }
+}

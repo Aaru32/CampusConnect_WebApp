@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - My Classes</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="classes.css">
+</head>
+
+<body>
+
+<div class="classes-page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <h1 class="page-title">My Classes</h1>
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="header-btn"
+                id="refreshBtn"
+                aria-label="Refresh"
+                title="Refresh"
+            >
+                <i class="fa-solid fa-rotate"></i>
+            </button>
+
+            <button
+                type="button"
+                class="header-btn notification-btn"
+                id="notificationBtn"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="notification-badge"
+                    id="notificationBadge"
+                    hidden
+                >
+                    0
+                </span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+       <!-- =================================================
+             KPI SECTION
+        ================================================== -->
+
+        <section class="kpi-grid">
+
+            <button
+                type="button"
+                class="kpi-card"
+                data-kpi="today"
+            >
+
+                <div class="kpi-icon blue">
+                    <i class="fa-solid fa-calendar-day"></i>
+                </div>
+
+                <div class="kpi-content">
+
+                    <span>Today's Classes</span>
+
+                    <strong id="todayClassesCount">
+                        —
+                    </strong>
+
+                    <small>
+                        Scheduled for today
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="kpi-card"
+                data-kpi="subjects"
+            >
+
+                <div class="kpi-icon purple">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div class="kpi-content">
+
+                    <span>Subjects</span>
+
+                    <strong id="subjectCount">
+                        —
+                    </strong>
+
+                    <small>
+                        Currently assigned
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="kpi-card"
+                data-kpi="students"
+            >
+
+                <div class="kpi-icon green">
+                    <i class="fa-solid fa-user-group"></i>
+                </div>
+
+                <div class="kpi-content">
+
+                    <span>Students</span>
+
+                    <strong id="studentCount">
+                        —
+                    </strong>
+
+                    <small>
+                        Across assigned classes
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="kpi-card"
+                data-kpi="weekly"
+            >
+
+                <div class="kpi-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div class="kpi-content">
+
+                    <span>Weekly Classes</span>
+
+                    <strong id="weeklyClassesCount">
+                        —
+                    </strong>
+
+                    <small>
+                        This academic week
+                    </small>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right kpi-arrow"></i>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             TODAY'S SCHEDULE
+        ================================================== -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Today's Schedule
+                    </h2>
+
+                    <p>
+                        Your classes scheduled for today
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="outline-btn"
+                    id="fullScheduleBtn"
+                >
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Full Schedule
+                </button>
+
+            </div>
+
+
+            <div
+                class="schedule-container"
+                id="todaySchedule"
+            >
+
+                <!-- Dynamic data -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WEEKLY SCHEDULE
+        ================================================== -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-calendar-week"></i>
+                        Weekly Schedule
+                    </h2>
+
+                    <p>
+                        Classes assigned throughout the week
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="weekly-table-wrapper">
+
+                <table class="weekly-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Subject</th>
+                            <th>Class / Semester</th>
+                            <th>Room</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="weeklyScheduleBody">
+
+                        <!-- Dynamic data -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ASSIGNED SUBJECTS
+        ================================================== -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-book"></i>
+                        My Assigned Subjects
+                    </h2>
+
+                    <p>
+                        Subjects currently assigned to you
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="subjects-grid"
+                id="subjectsGrid"
+            >
+
+                <!-- Dynamic data -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CLASS DETAILS
+        ================================================== -->
+
+        <section
+            class="content-card"
+            id="classDetailsSection"
+            hidden
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-circle-info"></i>
+                        Class Details
+                    </h2>
+
+                    <p>
+                        Information for the selected class
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="close-details"
+                    id="closeDetailsBtn"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div
+                class="class-details"
+                id="classDetails"
+            >
+
+                <!-- Dynamic data -->
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="classes.js"></script>
+
+</body>
+</html>

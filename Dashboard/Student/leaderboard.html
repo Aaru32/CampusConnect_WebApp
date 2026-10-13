@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Leaderboard | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="leaderboard.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CAMPUSCONNECT
+         LEADERBOARD
+    ====================================================== -->
+
+    <div class="app-shell">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    class="back-button"
+                    id="backButton"
+                    aria-label="Go back"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <div class="page-heading">
+
+                    <span class="page-title">
+                        Leaderboard
+                    </span>
+
+                    <span class="page-subtitle">
+                        Academic Performance Rankings
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                GLOBAL NOTIFICATION INTEGRATION PLACEHOLDER
+
+                The future CampusConnect global notification
+                system will provide the shared notification
+                bell and notification behavior here.
+
+                No separate notification system is implemented
+                inside this module.
+            -->
+
+            <div
+                class="global-notification-placeholder"
+                id="globalNotificationPlaceholder"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <section class="intro-section">
+
+                <div class="intro-icon">
+
+                    <i class="fa-solid fa-ranking-star"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Leaderboard
+                    </h1>
+
+                    <p>
+                        View rankings generated from completed
+                        online examination results.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TABS
+            ================================================== -->
+
+            <div
+                class="leaderboard-tabs"
+                role="tablist"
+            >
+
+                <button
+                    type="button"
+                    class="leaderboard-tab active"
+                    data-type="overall"
+                    role="tab"
+                    aria-selected="true"
+                >
+
+                    <i class="fa-solid fa-trophy"></i>
+
+                    Overall
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="leaderboard-tab"
+                    data-type="exam"
+                    role="tab"
+                    aria-selected="false"
+                >
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                    Exam-wise
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 EXAM SELECTOR
+            ================================================== -->
+
+            <section
+                class="exam-selector-section"
+                id="examSelectorSection"
+                hidden
+            >
+
+                <label for="examSelector">
+                    Select Examination
+                </label>
+
+
+                <select
+                    id="examSelector"
+                    class="exam-selector"
+                >
+
+                    <option value="">
+                        Select an examination
+                    </option>
+
+                </select>
+
+            </section>
+
+
+            <!-- =================================================
+                 CURRENT STUDENT SUMMARY
+            ================================================== -->
+
+            <section
+                class="my-ranking-card"
+                id="myRankingCard"
+            >
+
+                <div class="my-ranking-icon">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                </div>
+
+
+                <div class="my-ranking-content">
+
+                    <span class="my-ranking-label">
+                        Your Current Rank
+                    </span>
+
+                    <strong id="myRank">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="my-ranking-details">
+
+                    <span>
+                        Score
+                    </span>
+
+                    <strong id="myScore">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="my-ranking-details">
+
+                    <span>
+                        Percentage
+                    </span>
+
+                    <strong id="myPercentage">
+                        --
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section class="leaderboard-stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Participants
+                        </span>
+
+                        <strong id="participantCount">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Your Score
+                        </span>
+
+                        <strong id="studentScore">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-percent"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Your Percentage
+                        </span>
+
+                        <strong id="studentPercentage">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RANKING SECTION
+            ================================================== -->
+
+            <section class="ranking-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Rankings
+                        </h2>
+
+                        <p id="rankingSubtitle">
+                            Overall academic ranking
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="ranking-container"
+                    id="rankingContainer"
+                >
+
+                    <!--
+                        Dynamic leaderboard content will be
+                        inserted here from backend data.
+                    -->
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="leaderboard.js"></script>
+
+</body>
+
+</html>

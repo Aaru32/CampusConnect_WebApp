@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect | Faculty</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="faculty-management.css">
+</head>
+
+<body>
+
+<div class="faculty-page">
+
+    <!-- HEADER -->
+    <header class="page-header">
+
+        <button
+            type="button"
+            class="header-button"
+            id="backButton"
+            title="Back"
+            aria-label="Back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>Faculty</h1>
+            <span id="facultyCount">— Faculty</span>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="header-button"
+                id="searchButton"
+                title="Search faculty"
+                aria-label="Search faculty"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <button
+                type="button"
+                class="header-button"
+                id="filterButton"
+                title="Filter faculty"
+                aria-label="Filter faculty"
+            >
+                <i class="fa-solid fa-sliders"></i>
+            </button>
+
+            <button
+                type="button"
+                class="header-button"
+                id="refreshButton"
+                title="Refresh"
+                aria-label="Refresh"
+            >
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- SEARCH -->
+    <div
+        class="search-container"
+        id="searchContainer"
+    >
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="facultySearch"
+                placeholder="Search by name, employee ID or designation"
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="clearSearch"
+                class="clear-search"
+                title="Clear search"
+                aria-label="Clear search"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTER PANEL -->
+    <section
+        class="filter-panel"
+        id="filterPanel"
+    >
+
+        <div class="filter-header">
+
+            <div>
+                <h2>Filter Faculty</h2>
+                <p>Choose one or more filters</p>
+            </div>
+
+            <button
+                type="button"
+                id="closeFilter"
+                class="close-filter"
+                aria-label="Close filters"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="filter-grid">
+
+            <div class="filter-field">
+
+                <label for="departmentFilter">
+                    Department
+                </label>
+
+                <select id="departmentFilter">
+                    <option value="">
+                        All Departments
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-field">
+
+                <label for="designationFilter">
+                    Designation
+                </label>
+
+                <select id="designationFilter">
+                    <option value="">
+                        All Designations
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-field">
+
+                <label for="sessionFilter">
+                    Academic Session
+                </label>
+
+                <select id="sessionFilter">
+                    <option value="">
+                        All Sessions
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-field">
+
+                <label for="employmentStatusFilter">
+                    Employment Status
+                </label>
+
+                <select id="employmentStatusFilter">
+                    <option value="">
+                        All Status
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-field">
+
+                <label for="employmentTypeFilter">
+                    Employment Type
+                </label>
+
+                <select id="employmentTypeFilter">
+                    <option value="">
+                        All Types
+                    </option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="clearFilters"
+            >
+                Clear
+            </button>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="applyFilters"
+            >
+                Apply Filters
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- GLOBAL NOTIFICATION PLACEHOLDER -->
+    <div id="globalNotificationPlaceholder"></div>
+
+
+    <!-- CONTENT -->
+    <main class="faculty-content">
+
+        <div class="list-top">
+
+            <div>
+
+                <h2>All Faculty</h2>
+
+                <p id="listDescription">
+                    Faculty are arranged alphabetically by name.
+                </p>
+
+            </div>
+
+            <span
+                class="active-filter-badge"
+                id="activeFilterBadge"
+            >
+                0 filters
+            </span>
+
+        </div>
+
+
+        <!-- LOADING -->
+        <div
+            class="state-container"
+            id="loadingState"
+            hidden
+        >
+
+            <div class="loading-spinner">
+
+                <i class="fa-solid fa-arrows-rotate"></i>
+
+            </div>
+
+            <h3>Loading faculty</h3>
+
+            <p>
+                Please wait while faculty records are retrieved.
+            </p>
+
+        </div>
+
+
+        <!-- EMPTY -->
+        <div
+            class="state-container"
+            id="emptyState"
+            hidden
+        >
+
+            <div class="state-icon">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+            </div>
+
+            <h3 id="emptyTitle">
+                No faculty records available
+            </h3>
+
+            <p id="emptyMessage">
+                Faculty records will appear here when they are available
+                from the database.
+            </p>
+
+        </div>
+
+
+        <!-- FACULTY -->
+        <div
+            class="faculty-list"
+            id="facultyList"
+        ></div>
+
+    </main>
+
+</div>
+
+
+<script src="faculty-management.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Library | CampusConnect Administration</title>
+
+<!-- CampusConnect Library CSS -->
+<link rel="stylesheet" href="library.css">
+
+<!-- Font Awesome 6.5.2 -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head><body><div class="admin-layout"><!-- =====================================================
+     MAIN AREA
+====================================================== -->
+<main class="admin-main">
+
+    <!-- =================================================
+         GLOBAL ADMIN HEADER
+    ================================================== -->
+    <header class="admin-header">
+        <h2 class="header-page-title">Library</h2>
+
+        <div class="header-left">
+
+            <!-- BACK BUTTON -->
+            <button class="icon-button"
+                    id="backButton"
+                    title="Back"
+                    aria-label="Go Back">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </button>
+
+
+            <!-- REFRESH BUTTON -->
+            <button class="icon-button"
+                    id="refreshButton"
+                    title="Refresh"
+                    aria-label="Refresh Page">
+
+                <i class="fa-solid fa-arrows-rotate"></i>
+
+            </button>
+
+            <!-- GLOBAL SEARCH -->
+            <div class="header-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="globalSearch"
+                    placeholder="Search..."
+                    autocomplete="off">
+
+            </div>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <!-- NOTIFICATIONS -->
+            <button class="header-icon-button"
+                    id="notificationButton"
+                    title="Notifications"
+                    aria-label="Notifications">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="notification-count"
+                      id="notificationCount">
+                    0
+                </span>
+
+            </button>
+
+
+            <!-- ADMIN PROFILE -->
+            <button class="admin-profile-button"
+                    id="adminProfileButton">
+
+                <div class="admin-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div class="admin-profile-text">
+
+                    <strong id="adminProfileName">
+                        Admin
+                    </strong>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         PAGE CONTENT
+    ================================================== -->
+    <section class="library-page">
+
+        <!-- Global notification placeholder -->
+        <div id="globalNotificationPlaceholder"></div>
+
+
+        <!-- =================================================
+             WORKSPACE HEADER
+        ================================================== -->
+        <div class="workspace-header">
+
+            <div class="workspace-heading">
+
+                <div class="breadcrumb">
+
+                    <span>Dashboard</span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <span>Library</span>
+
+                </div>
+
+
+                <div class="heading-content">
+
+                    <div>
+
+                        <span class="section-label">
+                            LIBRARY MANAGEMENT
+                        </span>
+
+                        <h1>
+                            Library
+                        </h1>
+
+                        <p>
+                            Manage books, circulation, members and
+                            library records from one workspace.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button class="primary-button"
+                    id="addBookButton">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Book
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             LIBRARY VISUAL STRIP
+        ================================================== -->
+        <div class="library-visual">
+
+            <img
+                src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1400&q=80"
+                alt="Library interior">
+
+            <div class="visual-overlay">
+
+                <div>
+
+                    <span>
+                        Government Women's Polytechnic, Patna
+                    </span>
+
+                    <strong>
+                        Central Library
+                    </strong>
+
+                </div>
+
+
+                <div class="visual-status">
+
+                    <span class="status-dot"></span>
+
+                    Library Management
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TABS
+        ================================================== -->
+        <div class="library-tabs">
+
+            <button class="library-tab active"
+                    data-tab="overview">
+
+                Overview
+
+            </button>
+
+
+            <button class="library-tab"
+                    data-tab="books">
+
+                Books
+
+            </button>
+
+
+            <button class="library-tab"
+                    data-tab="issue">
+
+                Issue & Return
+
+            </button>
+
+
+            <button class="library-tab"
+                    data-tab="members">
+
+                Members
+
+            </button>
+
+
+            <button class="library-tab"
+                    data-tab="more">
+
+                More
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             OVERVIEW
+        ================================================== -->
+        <div class="tab-content active"
+             id="overviewTab">
+
+            <!-- KEY STATISTICS -->
+            <div class="library-stat-grid">
+
+                <button class="library-stat-card"
+                        id="totalBooksCard">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-book"></i>
+
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <span>
+                            Total Books
+                        </span>
+
+                        <strong id="totalBooks">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-arrow-up-right-from-square stat-arrow"></i>
+
+                </button>
+
+
+                <button class="library-stat-card"
+                        id="availableBooksCard">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <span>
+                            Available Books
+                        </span>
+
+                        <strong id="availableBooks">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-arrow-up-right-from-square stat-arrow"></i>
+
+                </button>
+
+
+                <button class="library-stat-card"
+                        id="issuedBooksCard">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                    </div>
+
+
+                    <div class="stat-info">
+
+                        <span>
+                            Currently Issued
+                        </span>
+
+                        <strong id="issuedBooks">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-arrow-up-right-from-square stat-arrow"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- MAIN BOOK CATALOG WORKSPACE -->
+            <div class="library-workspace">
+
+                <section class="workspace-panel catalog-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Book Catalog
+                            </h2>
+
+                            <p>
+                                Search and manage the library inventory.
+                            </p>
+
+                        </div>
+
+
+                        <button class="secondary-button"
+                                id="viewAllBooksButton">
+
+                            View All
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- CATALOG CONTROLS -->
+                    <div class="catalog-controls">
+
+                        <div class="catalog-search">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="search"
+                                id="bookSearch"
+                                placeholder="Search by title, author or ISBN...">
+
+                        </div>
+
+
+                        <select id="categoryFilter"
+                                class="filter-select">
+
+                            <option value="">
+                                All Categories
+                            </option>
+
+                        </select>
+
+
+                        <select id="availabilityFilter"
+                                class="filter-select">
+
+                            <option value="">
+                                All Status
+                            </option>
+
+                            <option value="available">
+                                Available
+                            </option>
+
+                            <option value="issued">
+                                Issued
+                            </option>
+
+                            <option value="unavailable">
+                                Unavailable
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- BOOK TABLE -->
+                    <div class="table-container">
+
+                        <table class="library-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Book</th>
+
+                                    <th>ISBN</th>
+
+                                    <th>Category</th>
+
+                                    <th>Copies</th>
+
+                                    <th>Status</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="booksTableBody">
+
+                                <tr class="table-empty-row">
+
+                                    <td colspan="6">
+
+                                        <div class="table-empty">
+
+                                            <div class="empty-image">
+
+                                                <img
+                                                    src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=600&q=80"
+                                                    alt="Books">
+
+                                            </div>
+
+
+                                            <h3>
+                                                No library records available
+                                            </h3>
+
+
+                                            <p>
+                                                Books will appear here when
+                                                library data is available.
+                                            </p>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <!-- TABLE FOOTER -->
+                    <div class="table-footer">
+
+                        <span id="catalogSummary">
+                            No records to display
+                        </span>
+
+
+                        <div class="pagination">
+
+                            <button
+                                id="previousPage"
+                                class="pagination-button"
+                                disabled>
+
+                                <i class="fa-solid fa-chevron-left"></i>
+
+                            </button>
+
+
+                            <span id="currentPage">
+                                1
+                            </span>
+
+
+                            <button
+                                id="nextPage"
+                                class="pagination-button"
+                                disabled>
+
+                                <i class="fa-solid fa-chevron-right"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- RECENT ACTIVITY -->
+            <section class="workspace-panel activity-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Library Activity
+                        </h2>
+
+                        <p>
+                            Latest issue, return and inventory activity.
+                        </p>
+
+                    </div>
+
+
+                    <button class="secondary-button"
+                            id="viewActivityButton">
+
+                        View Activity
+
+                    </button>
+
+                </div>
+
+
+                <div class="activity-list"
+                     id="activityList">
+
+                    <div class="activity-empty">
+
+                        <i class="fa-regular fa-clock"></i>
+
+                        <div>
+
+                            <strong>
+                                No recent activity
+                            </strong>
+
+                            <span>
+                                Activity will appear when library
+                                transactions are recorded.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             BOOKS TAB
+        ================================================== -->
+        <div class="tab-content"
+             id="booksTab">
+
+            <section class="workspace-panel full-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Book Management
+                        </h2>
+
+                        <p>
+                            Add, update, search and manage library books.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button"
+                            id="addBookButtonSecondary">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Book
+
+                    </button>
+
+                </div>
+
+
+                <div class="large-empty-state">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <h3>
+                        Book management is ready for database records
+                    </h3>
+
+                    <p>
+                        Connect the library API to display and manage
+                        actual books.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             ISSUE & RETURN TAB
+        ================================================== -->
+        <div class="tab-content"
+             id="issueTab">
+
+            <section class="workspace-panel full-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Issue & Return
+                        </h2>
+
+                        <p>
+                            Manage book circulation and due dates.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="workflow-grid">
+
+                    <button class="workflow-card"
+                            data-action="issue">
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                        <strong>
+                            Issue Book
+                        </strong>
+
+                        <span>
+                            Assign a book to a student or authorized member.
+                        </span>
+
+                    </button>
+
+
+                    <button class="workflow-card"
+                            data-action="return">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        <strong>
+                            Return Book
+                        </strong>
+
+                        <span>
+                            Record a returned library item.
+                        </span>
+
+                    </button>
+
+
+                    <button class="workflow-card"
+                            data-action="overdue">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <strong>
+                            Overdue Records
+                        </strong>
+
+                        <span>
+                            Review books that have crossed their due date.
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             MEMBERS TAB
+        ================================================== -->
+        <div class="tab-content"
+             id="membersTab">
+
+            <section class="workspace-panel full-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Library Members
+                        </h2>
+
+                        <p>
+                            Students, faculty and other authorized members.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="large-empty-state">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h3>
+                        No member records available
+                    </h3>
+
+                    <p>
+                        Member information will be loaded from the
+                        database.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             MORE TAB
+        ================================================== -->
+        <div class="tab-content"
+             id="moreTab">
+
+            <section class="workspace-panel full-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Library Management
+                        </h2>
+
+                        <p>
+                            Additional library administration tools.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="management-grid">
+
+                    <button class="management-card">
+
+                        <i class="fa-solid fa-tags"></i>
+
+                        <strong>
+                            Categories
+                        </strong>
+
+                        <span>
+                            Manage book categories and subjects.
+                        </span>
+
+                    </button>
+
+
+                    <button class="management-card">
+
+                        <i class="fa-solid fa-chart-column"></i>
+
+                        <strong>
+                            Reports
+                        </strong>
+
+                        <span>
+                            Generate library usage and inventory reports.
+                        </span>
+
+                    </button>
+
+
+                    <button class="management-card">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        <strong>
+                            Library Settings
+                        </strong>
+
+                        <span>
+                            Configure borrowing and circulation rules.
+                        </span>
+
+                    </button>
+
+
+                    <button class="management-card">
+
+                        <i class="fa-solid fa-boxes-stacked"></i>
+
+                        <strong>
+                            Inventory
+                        </strong>
+
+                        <span>
+                            Track lost, damaged and archived books.
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+</main>
+
+</div><!-- =========================================================
+     MODAL
+========================================================== --><div class="modal-overlay"
+     id="libraryModal"><div class="library-modal">
+
+    <button class="modal-close"
+            id="modalCloseButton"
+            aria-label="Close">
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+
+    <div class="modal-icon">
+
+        <i class="fa-solid fa-book"></i>
+
+    </div>
+
+
+    <h2 id="modalTitle">
+        Library Action
+    </h2>
+
+
+    <p id="modalDescription">
+        Library operation.
+    </p>
+
+
+    <div id="modalBody"></div>
+
+</div>
+
+</div><!-- =========================================================
+     CAMPUSCONNECT LIBRARY JAVASCRIPT
+========================================================== --><script src="library.js"></script></body>
+</html>

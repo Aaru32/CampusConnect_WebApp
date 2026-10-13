@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Faculty Events</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="events.css">
+</head>
+
+<body>
+
+<div class="events-page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Go back"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="header-title">
+            <h1>Events</h1>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="header-btn"
+                id="refreshButton"
+                aria-label="Refresh"
+                title="Refresh"
+            >
+                <i class="fa-solid fa-rotate"></i>
+            </button>
+
+            <button
+                type="button"
+                class="header-btn notification-btn"
+                id="notificationButton"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    id="notificationCount"
+                    class="notification-count"
+                    hidden
+                >
+                    0
+                </span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- Page Introduction -->
+
+        <section class="page-introduction">
+
+            <div>
+
+                <span class="eyebrow">
+                    FACULTY EVENTS
+                </span>
+
+                <h2>Events & Activities</h2>
+
+                <p>
+                    View events assigned to you, departmental activities,
+                    academic events and other campus activities relevant
+                    to your faculty role.
+                </p>
+
+            </div>
+
+            <div class="introduction-icon">
+                <i class="fa-regular fa-calendar-days"></i>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FILTER BAR
+        ================================================== -->
+
+        <section class="filter-section">
+
+            <div class="filter-header">
+
+                <div class="filter-title">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    <strong>Find Events</strong>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="clearFilters"
+                    class="clear-filter-btn"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div class="filter-grid">
+
+                <div class="filter-field search-field">
+
+                    <label for="eventSearch">
+                        Search
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="eventSearch"
+                            placeholder="Search events..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="eventType">
+                        Event Type
+                    </label>
+
+                    <select id="eventType">
+
+                        <option value="">
+                            All Types
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="eventStatus">
+                        Status
+                    </label>
+
+                    <select id="eventStatus">
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="upcoming">
+                            Upcoming
+                        </option>
+
+                        <option value="ongoing">
+                            Ongoing
+                        </option>
+
+                        <option value="completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="eventMonth">
+                        Month
+                    </label>
+
+                    <select id="eventMonth">
+
+                        <option value="">
+                            All Months
+                        </option>
+
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="event-summary">
+
+            <div class="summary-item">
+
+                <div class="summary-icon blue">
+                    <i class="fa-regular fa-calendar"></i>
+                </div>
+
+                <div>
+                    <span>Total Events</span>
+                    <strong id="totalEvents">—</strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-icon green">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <div>
+                    <span>Upcoming</span>
+                    <strong id="upcomingEvents">—</strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-icon purple">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div>
+                    <span>Assigned to Me</span>
+                    <strong id="assignedEvents">—</strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-icon orange">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <div>
+                    <span>Department Events</span>
+                    <strong id="departmentEvents">—</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             EVENTS SECTION
+        ================================================== -->
+
+        <section class="events-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>My Events</h2>
+
+                    <p>
+                        Events relevant to your faculty account
+                    </p>
+
+                </div>
+
+                <span
+                    id="resultCount"
+                    class="result-count"
+                >
+                    0 events
+                </span>
+
+            </div>
+
+
+            <div
+                id="eventsContainer"
+                class="events-grid"
+            >
+
+                <!-- API DATA WILL APPEAR HERE -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         EVENT DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="eventDetailsModal"
+        hidden
+    >
+
+        <div
+            class="event-details-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="eventDetailsTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-eyebrow">
+                        EVENT DETAILS
+                    </span>
+
+                    <h2 id="eventDetailsTitle">
+                        Event
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeEventDetails"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="details-status-row">
+
+                    <span
+                        id="detailsStatus"
+                        class="status-badge"
+                    >
+                        —
+                    </span>
+
+                    <span
+                        id="detailsType"
+                        class="type-badge"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="event-detail-grid">
+
+                    <div class="detail-box">
+
+                        <span>
+                            <i class="fa-regular fa-calendar"></i>
+                            Date
+                        </span>
+
+                        <strong id="detailsDate">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            Time
+                        </span>
+
+                        <strong id="detailsTime">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Venue
+                        </span>
+
+                        <strong id="detailsVenue">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>
+                            <i class="fa-solid fa-building"></i>
+                            Department
+                        </span>
+
+                        <strong id="detailsDepartment">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>
+                            <i class="fa-solid fa-user-tie"></i>
+                            Organizer
+                        </span>
+
+                        <strong id="detailsOrganizer">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span>
+                            <i class="fa-solid fa-user-check"></i>
+                            Your Role
+                        </span>
+
+                        <strong id="detailsFacultyRole">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="details-section">
+
+                    <h3>
+                        Description
+                    </h3>
+
+                    <p id="detailsDescription">
+                        —
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="details-section"
+                    id="audienceSection"
+                >
+
+                    <h3>
+                        Target Audience
+                    </h3>
+
+                    <p id="detailsAudience">
+                        —
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="details-section"
+                    id="instructionsSection"
+                >
+
+                    <h3>
+                        Important Instructions
+                    </h3>
+
+                    <p id="detailsInstructions">
+                        —
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="details-section"
+                    id="contactSection"
+                >
+
+                    <h3>
+                        Contact
+                    </h3>
+
+                    <p id="detailsContact">
+                        —
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="details-section"
+                    id="attachmentSection"
+                    hidden
+                >
+
+                    <h3>
+                        Documents
+                    </h3>
+
+                    <div id="detailsAttachments"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="modalCloseButton"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GLOBAL NOTIFICATION
+    ====================================================== -->
+
+    <div
+        id="globalNotificationPlaceholder"
+        class="global-notification"
+        hidden
+    ></div>
+
+
+</div>
+
+<script src="events.js"></script>
+
+</body>
+</html>

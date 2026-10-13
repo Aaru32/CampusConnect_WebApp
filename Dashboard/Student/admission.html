@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CampusConnect Admission Management"
+    >
+
+    <title>CampusConnect - Admission</title>
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Admission CSS -->
+
+    <link
+        rel="stylesheet"
+        href="admission.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<header class="page-header">
+
+    <div class="header-left">
+
+        <button
+            type="button"
+            class="back-button"
+            id="backButton"
+            aria-label="Go back"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1>Admission</h1>
+
+            <p>CampusConnect</p>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="admission-container">
+
+
+    <!-- =================================================
+         PAGE INTRODUCTION
+    ================================================== -->
+
+    <section class="page-intro">
+
+        <p class="section-label">
+            STUDENT PORTAL
+        </p>
+
+        <h2>
+            Admission Overview
+        </h2>
+
+        <p>
+            Manage your admission application,
+            documents, fees and admission status
+            from one place.
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         GLOBAL LOADING STATE
+    ================================================== -->
+
+    <div
+        id="pageLoading"
+        class="loading-state"
+    >
+
+        <div class="loading-spinner"></div>
+
+        <p>
+            Loading admission information...
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         GLOBAL ERROR STATE
+    ================================================== -->
+
+    <div
+        id="pageError"
+        class="error-state hidden"
+    >
+
+        <div class="state-icon">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <h3>
+            Unable to load admission information
+        </h3>
+
+        <p id="pageErrorMessage">
+            Please try again.
+        </p>
+
+        <button
+            type="button"
+            id="retryButton"
+            class="primary-button"
+        >
+            Try Again
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ADMISSION CONTENT
+    ================================================== -->
+
+    <div
+        id="admissionContent"
+        class="hidden"
+    >
+
+
+        <!-- =============================================
+             APPLICATION STATUS
+        ============================================== -->
+
+        <section class="status-card">
+
+            <div class="status-header">
+
+                <div class="status-icon">
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                </div>
+
+
+                <div class="status-information">
+
+                    <p>
+                        APPLICATION STATUS
+                    </p>
+
+                    <h3 id="applicationStatus">
+                        —
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-section">
+
+                <div class="progress-heading">
+
+                    <span>
+                        Application Progress
+                    </span>
+
+                    <strong id="applicationProgress">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        id="progressFill"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             BASIC INFORMATION
+        ============================================== -->
+
+        <section class="information-grid">
+
+
+            <article class="information-card">
+
+                <div class="information-icon">
+
+                    <i class="fa-solid fa-hashtag"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Application No.
+                    </span>
+
+                    <strong id="applicationNumber">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="information-card">
+
+                <div class="information-icon">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Academic Session
+                    </span>
+
+                    <strong id="academicSession">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="information-card">
+
+                <div class="information-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Program
+                    </span>
+
+                    <strong id="program">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="information-card">
+
+                <div class="information-icon">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Semester
+                    </span>
+
+                    <strong id="semester">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =============================================
+             ADMISSION SERVICES
+        ============================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        MANAGE
+                    </p>
+
+                    <h2>
+                        Admission Services
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="service-grid">
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="application"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-file-pen"></i>
+
+                    </div>
+
+
+                    <div class="service-text">
+
+                        <h3>
+                            Application
+                        </h3>
+
+                        <p>
+                            View your admission application
+                            information.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="documents"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-folder-open"></i>
+
+                    </div>
+
+
+                    <div class="service-text">
+
+                        <h3>
+                            Documents
+                        </h3>
+
+                        <p>
+                            View submitted and verified
+                            admission documents.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="fees"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </div>
+
+
+                    <div class="service-text">
+
+                        <h3>
+                            Admission Fee
+                        </h3>
+
+                        <p>
+                            View fee details and payment
+                            information.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="status"
+                >
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+
+                    <div class="service-text">
+
+                        <h3>
+                            Admission Status
+                        </h3>
+
+                        <p>
+                            Track your complete admission
+                            progress.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             APPLICATION DETAILS
+        ============================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        APPLICATION
+                    </p>
+
+                    <h2>
+                        Application Details
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="applicationDetails"
+                class="details-card"
+            >
+
+                <div class="empty-state">
+
+                    <div class="state-icon">
+
+                        <i class="fa-solid fa-file-circle-question"></i>
+
+                    </div>
+
+                    <h3>
+                        No application information
+                    </h3>
+
+                    <p>
+                        Application information will appear
+                        here when available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             DOCUMENT VERIFICATION
+        ============================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        DOCUMENTS
+                    </p>
+
+                    <h2>
+                        Document Verification
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="viewDocumentsButton"
+                    class="text-button"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                id="documentsContainer"
+                class="verification-card"
+            >
+
+                <div class="empty-state">
+
+                    <div class="state-icon">
+
+                        <i class="fa-solid fa-folder-open"></i>
+
+                    </div>
+
+                    <h3>
+                        No documents available
+                    </h3>
+
+                    <p>
+                        Document information will appear
+                        here when available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             FEE INFORMATION
+        ============================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        PAYMENT
+                    </p>
+
+                    <h2>
+                        Admission Fee
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="feeContainer"
+                class="fee-card"
+            >
+
+                <div class="empty-state">
+
+                    <div class="state-icon">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </div>
+
+                    <h3>
+                        No fee information
+                    </h3>
+
+                    <p>
+                        Admission fee information will appear
+                        here when available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             IMPORTANT DATES
+        ============================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        SCHEDULE
+                    </p>
+
+                    <h2>
+                        Important Dates
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="datesContainer"
+                class="dates-container"
+            >
+
+                <div class="empty-state">
+
+                    <div class="state-icon">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                    </div>
+
+                    <h3>
+                        No important dates
+                    </h3>
+
+                    <p>
+                        Admission dates will appear here
+                        when published.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =============================================
+             ADMISSION NOTICES
+        ============================================== -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        INFORMATION
+                    </p>
+
+                    <h2>
+                        Admission Notices
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="noticesContainer"
+                class="notices-container"
+            >
+
+                <div class="empty-state">
+
+                    <div class="state-icon">
+
+                        <i class="fa-solid fa-bullhorn"></i>
+
+                    </div>
+
+                    <h3>
+                        No admission notices
+                    </h3>
+
+                    <p>
+                        Admission notices will appear here
+                        when published.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     SERVICE MODAL
+===================================================== -->
+
+<div
+    id="serviceModal"
+    class="modal-overlay hidden"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <button
+            type="button"
+            id="modalClose"
+            class="modal-close"
+            aria-label="Close"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="modal-icon">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+        </div>
+
+
+        <h2 id="modalTitle">
+            Admission
+        </h2>
+
+
+        <p id="modalMessage">
+            Information will be available here.
+        </p>
+
+
+        <button
+            type="button"
+            id="modalOk"
+            class="primary-button"
+        >
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="admission.js"></script>
+
+</body>
+
+</html>

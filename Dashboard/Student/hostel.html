@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Hostel | CampusConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="hostel.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CAMPUSCONNECT
+         HOSTEL MODULE
+    ====================================================== -->
+
+    <div class="app-shell">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    class="back-button"
+                    id="backButton"
+                    aria-label="Go back"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+
+                <div class="page-heading">
+
+                    <span class="page-title">
+                        Hostel
+                    </span>
+
+                    <span class="page-subtitle">
+                        Accommodation & Hostel Services
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                GLOBAL NOTIFICATION INTEGRATION PLACEHOLDER
+
+                The future CampusConnect global notification
+                system will provide the notification bell here.
+
+                No separate notification system is implemented
+                inside this module.
+            -->
+
+            <div
+                class="global-notification-placeholder"
+                id="globalNotificationPlaceholder"
+                aria-hidden="true"
+            ></div>
+
+        </header>
+
+
+        <!-- =================================================
+             MAIN
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <section class="intro-section">
+
+                <div class="intro-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Hostel
+                    </h1>
+
+                    <p>
+                        Manage your accommodation and hostel services.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 HOSTEL OVERVIEW
+            ================================================== -->
+
+            <section class="overview-card">
+
+                <div class="overview-header">
+
+                    <div class="overview-title">
+
+                        <div class="section-icon">
+
+                            <i class="fa-solid fa-house"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Hostel Overview
+                            </h2>
+
+                            <span>
+                                Current accommodation details
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <span
+                        class="status-badge"
+                        id="hostelStatus"
+                    >
+                        --
+                    </span>
+
+                </div>
+
+
+                <div class="overview-grid">
+
+                    <div class="overview-item">
+
+                        <span>
+                            Hostel
+                        </span>
+
+                        <strong id="hostelName">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="overview-item">
+
+                        <span>
+                            Block
+                        </span>
+
+                        <strong id="hostelBlock">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="overview-item">
+
+                        <span>
+                            Room
+                        </span>
+
+                        <strong id="roomNumber">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="overview-item">
+
+                        <span>
+                            Bed / Seat
+                        </span>
+
+                        <strong id="bedNumber">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 QUICK SERVICES
+            ================================================== -->
+
+            <section class="services-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Hostel Services
+                        </h2>
+
+                        <p>
+                            Access your hostel-related services.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="service-grid">
+
+
+                    <!-- ROOM -->
+
+                    <button
+                        type="button"
+                        class="service-card"
+                        data-section="room"
+                    >
+
+                        <div class="service-icon">
+
+                            <i class="fa-solid fa-door-open"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Room & Allotment
+                            </h3>
+
+                            <p>
+                                View room and allotment details.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                    </button>
+
+
+                    <!-- LEAVE -->
+
+                    <button
+                        type="button"
+                        class="service-card"
+                        data-section="leave"
+                    >
+
+                        <div class="service-icon">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Leave / Outing
+                            </h3>
+
+                            <p>
+                                Submit and track requests.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                    </button>
+
+
+                    <!-- IN OUT -->
+
+                    <button
+                        type="button"
+                        class="service-card"
+                        data-section="attendance"
+                    >
+
+                        <div class="service-icon">
+
+                            <i class="fa-solid fa-right-left"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                In / Out Record
+                            </h3>
+
+                            <p>
+                                View hostel entry and exit records.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                    </button>
+
+
+                    <!-- COMPLAINT -->
+
+                    <button
+                        type="button"
+                        class="service-card"
+                        data-section="complaints"
+                    >
+
+                        <div class="service-icon">
+
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Maintenance
+                            </h3>
+
+                            <p>
+                                Report and track hostel issues.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                    </button>
+
+
+                    <!-- MESS -->
+
+                    <button
+                        type="button"
+                        class="service-card"
+                        data-section="mess"
+                    >
+
+                        <div class="service-icon">
+
+                            <i class="fa-solid fa-utensils"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Mess
+                            </h3>
+
+                            <p>
+                                View mess information and menu.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                    </button>
+
+
+                    <!-- NOTICES -->
+
+                    <button
+                        type="button"
+                        class="service-card"
+                        data-section="notices"
+                    >
+
+                        <div class="service-icon">
+
+                            <i class="fa-solid fa-bullhorn"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Hostel Notices
+                            </h3>
+
+                            <p>
+                                View hostel announcements.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-right service-arrow"></i>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ROOM SECTION
+            ================================================== -->
+
+            <section
+                class="content-section"
+                id="roomSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Room & Allotment
+                        </h2>
+
+                        <p>
+                            Your current room allocation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="details-grid"
+                    id="roomDetails"
+                >
+
+                    <!-- Dynamic data -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LEAVE SECTION
+            ================================================== -->
+
+            <section
+                class="content-section"
+                id="leaveSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Leave / Outing Requests
+                        </h2>
+
+                        <p>
+                            Track your hostel leave and outing requests.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="newLeaveButton"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        New Request
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="request-list"
+                    id="leaveRequests"
+                >
+
+                    <!-- Dynamic data -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 IN / OUT SECTION
+            ================================================== -->
+
+            <section
+                class="content-section"
+                id="attendanceSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            In / Out Record
+                        </h2>
+
+                        <p>
+                            Hostel entry and exit records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="record-list"
+                    id="attendanceRecords"
+                >
+
+                    <!-- Dynamic data -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 COMPLAINT SECTION
+            ================================================== -->
+
+            <section
+                class="content-section"
+                id="complaintsSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Maintenance & Complaints
+                        </h2>
+
+                        <p>
+                            Report and track hostel maintenance issues.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="newComplaintButton"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        New Complaint
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="request-list"
+                    id="complaintList"
+                >
+
+                    <!-- Dynamic data -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MESS SECTION
+            ================================================== -->
+
+            <section
+                class="content-section"
+                id="messSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Mess
+                        </h2>
+
+                        <p>
+                            Hostel mess information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="mess-grid"
+                    id="messInformation"
+                >
+
+                    <!-- Dynamic data -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 NOTICE SECTION
+            ================================================== -->
+
+            <section
+                class="content-section"
+                id="noticesSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Hostel Notices
+                        </h2>
+
+                        <p>
+                            Important hostel announcements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="notice-list"
+                    id="hostelNotices"
+                >
+
+                    <!-- Dynamic data -->
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         LEAVE REQUEST MODAL
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="leaveModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    New Leave / Outing Request
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal="leaveModal"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="leaveForm">
+
+                <div class="form-group">
+
+                    <label for="leaveType">
+                        Request Type
+                    </label>
+
+                    <select
+                        id="leaveType"
+                        required
+                    >
+
+                        <option value="">
+                            Select type
+                        </option>
+
+                        <option value="leave">
+                            Leave
+                        </option>
+
+                        <option value="outing">
+                            Outing
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="leaveFrom">
+                            From
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="leaveFrom"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="leaveTo">
+                            To
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="leaveTo"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="leaveReason">
+                        Reason
+                    </label>
+
+                    <textarea
+                        id="leaveReason"
+                        rows="4"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        data-close-modal="leaveModal"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Submit Request
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         COMPLAINT MODAL
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="complaintModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    New Maintenance Complaint
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal="complaintModal"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="complaintForm">
+
+                <div class="form-group">
+
+                    <label for="complaintCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="complaintCategory"
+                        required
+                    >
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="electrical">
+                            Electrical
+                        </option>
+
+                        <option value="water">
+                            Water
+                        </option>
+
+                        <option value="furniture">
+                            Furniture
+                        </option>
+
+                        <option value="cleaning">
+                            Cleaning
+                        </option>
+
+                        <option value="room">
+                            Room Issue
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="complaintDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="complaintDescription"
+                        rows="5"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        data-close-modal="complaintModal"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Submit Complaint
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="hostel.js"></script>
+
+</body>
+
+</html>

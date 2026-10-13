@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CampusConnect Admin Results Management"
+    >
+
+    <title>Results | CampusConnect</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Results CSS -->
+    <link
+        rel="stylesheet"
+        href="results.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         GLOBAL HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                class="back-btn"
+                id="backBtn"
+                aria-label="Go back"
+                title="Go back"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+
+            <div class="header-title">
+
+                <h1>Results</h1>
+
+                <p>
+                    Manage examination results and academic performance
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="header-btn"
+                id="refreshBtn"
+                title="Refresh results"
+                aria-label="Refresh results"
+            >
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="header-btn notification-btn"
+                id="notificationBtn"
+                title="Notifications"
+                aria-label="Notifications"
+            >
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    id="notificationDot"
+                    class="notification-dot"
+                    hidden
+                ></span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="results-page">
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <section class="page-intro">
+
+            <div>
+
+                <span class="section-label">
+                    ACADEMIC RECORDS
+                </span>
+
+                <h2>
+                    Results &amp; Academic Performance
+                </h2>
+
+                <p>
+                    View, manage and analyse student examination
+                    results across academic sessions and semesters.
+                </p>
+
+            </div>
+
+
+            <div class="intro-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="exportBtn"
+                >
+                    <i class="fa-solid fa-file-export"></i>
+                    Export
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="addResultBtn"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Result
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             OVERVIEW
+        ================================================== -->
+
+        <section class="overview-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        OVERVIEW
+                    </span>
+
+                    <h2>
+                        Result Summary
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon blue">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Published Results
+                        </span>
+
+                        <strong id="publishedResults">
+                            —
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon orange">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pending Results
+                        </span>
+
+                        <strong id="pendingResults">
+                            —
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon purple">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Students With Results
+                        </span>
+
+                        <strong id="studentsWithResults">
+                            —
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="overview-card">
+
+                    <div class="overview-icon green">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Examinations
+                        </span>
+
+                        <strong id="examinationsCount">
+                            —
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXAMINATION FILTERS
+        ================================================== -->
+
+        <section class="filter-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        RESULT FILTERS
+                    </span>
+
+                    <h2>
+                        Select Examination
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="filter-grid">
+
+
+                <div class="field">
+
+                    <label for="sessionFilter">
+                        Academic Session
+                    </label>
+
+                    <select id="sessionFilter">
+
+                        <option value="">
+                            All Sessions
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="semesterFilter">
+                        Semester
+                    </label>
+
+                    <select id="semesterFilter">
+
+                        <option value="">
+                            All Semesters
+                        </option>
+
+                        <option value="1">
+                            Semester 1
+                        </option>
+
+                        <option value="2">
+                            Semester 2
+                        </option>
+
+                        <option value="3">
+                            Semester 3
+                        </option>
+
+                        <option value="4">
+                            Semester 4
+                        </option>
+
+                        <option value="5">
+                            Semester 5
+                        </option>
+
+                        <option value="6">
+                            Semester 6
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="examFilter">
+                        Examination
+                    </label>
+
+                    <select id="examFilter">
+
+                        <option value="">
+                            All Examinations
+                        </option>
+
+                        <option value="mid-semester">
+                            Mid-Semester
+                        </option>
+
+                        <option value="end-semester">
+                            End-Semester
+                        </option>
+
+                        <option value="supplementary">
+                            Supplementary
+                        </option>
+
+                        <option value="backlog">
+                            Backlog
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="departmentFilter">
+                        Department
+                    </label>
+
+                    <select id="departmentFilter">
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="statusFilter">
+                        Result Status
+                    </label>
+
+                    <select id="statusFilter">
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="draft">
+                            Draft
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="published">
+                            Published
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="clear-filter-btn"
+                    id="clearFiltersBtn"
+                >
+                    <i class="fa-solid fa-filter-circle-xmark"></i>
+                    Clear
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESULT RECORDS
+        ================================================== -->
+
+        <section class="records-section">
+
+            <div class="section-heading records-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        RESULT RECORDS
+                    </span>
+
+                    <h2>
+                        Student Results
+                    </h2>
+
+                    <p id="resultRecordDescription">
+                        Examination result records will appear here.
+                    </p>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="resultSearch"
+                        placeholder="Search student or roll number..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="results-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Student
+                            </th>
+
+                            <th>
+                                Roll No.
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Semester
+                            </th>
+
+                            <th>
+                                Examination
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="resultsTableBody">
+
+                        <!-- Backend result records appear here -->
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- Empty State -->
+
+                <div
+                    class="empty-state"
+                    id="resultsEmptyState"
+                >
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-file-circle-exclamation"></i>
+
+                    </div>
+
+                    <h3>
+                        No result records available
+                    </h3>
+
+                    <p>
+                        Results will appear here when examination
+                        result data is available.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="emptyAddResultBtn"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Result
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-footer">
+
+                <span id="resultCount">
+                    No records
+                </span>
+
+
+                <div class="pagination">
+
+                    <button
+                        type="button"
+                        id="previousPageBtn"
+                        class="pagination-btn"
+                        disabled
+                    >
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+
+                    <span id="pageNumber">
+                        1
+                    </span>
+
+
+                    <button
+                        type="button"
+                        id="nextPageBtn"
+                        class="pagination-btn"
+                        disabled
+                    >
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESULT ANALYTICS
+        ================================================== -->
+
+        <section class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        PERFORMANCE
+                    </span>
+
+                    <h2>
+                        Result Analytics
+                    </h2>
+
+                    <p>
+                        Academic performance indicators based on
+                        available result data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+
+                <article class="analytics-card">
+
+                    <div class="analytics-card-header">
+
+                        <div>
+
+                            <span>
+                                Overall Pass Rate
+                            </span>
+
+                            <strong id="passRate">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="analytics-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-fill"
+                            id="passRateProgress"
+                            style="width:0%"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="analytics-card">
+
+                    <div class="analytics-card-header">
+
+                        <div>
+
+                            <span>
+                                Average Performance
+                            </span>
+
+                            <strong id="averagePerformance">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="analytics-icon">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-empty">
+
+                        <i class="fa-solid fa-database"></i>
+
+                        <span>
+                            Data will appear after results are available.
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="analytics-card">
+
+                    <div class="analytics-card-header">
+
+                        <div>
+
+                            <span>
+                                Subject Performance
+                            </span>
+
+                            <strong id="subjectPerformance">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="analytics-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-empty">
+
+                        <i class="fa-solid fa-database"></i>
+
+                        <span>
+                            Subject-wise analysis will appear here.
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="analytics-card">
+
+                    <div class="analytics-card-header">
+
+                        <div>
+
+                            <span>
+                                Students Requiring Attention
+                            </span>
+
+                            <strong id="attentionStudents">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="analytics-icon">
+                            <i class="fa-solid fa-user-clock"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-empty">
+
+                        <i class="fa-solid fa-database"></i>
+
+                        <span>
+                            Academic attention data will appear here.
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             REPORT ACTIONS
+        ================================================== -->
+
+        <section class="reports-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        REPORTS
+                    </span>
+
+                    <h2>
+                        Result Reports
+                    </h2>
+
+                    <p>
+                        Generate reports from available result data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-grid">
+
+
+                <button
+                    type="button"
+                    class="report-card"
+                    id="semesterReportBtn"
+                >
+
+                    <span class="report-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Semester Result Report
+                        </strong>
+
+                        <small>
+                            Generate a semester-wise result report
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="report-card"
+                    id="departmentReportBtn"
+                >
+
+                    <span class="report-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Department Report
+                        </strong>
+
+                        <small>
+                            Analyse results by department
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="report-card"
+                    id="performanceReportBtn"
+                >
+
+                    <span class="report-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Performance Report
+                        </strong>
+
+                        <small>
+                            View academic performance analysis
+                        </small>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         RESULT DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-backdrop"
+        id="resultDetailsModal"
+        hidden
+    >
+
+        <div
+            class="modal result-details-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="resultDetailsTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RESULT DETAILS
+                    </span>
+
+                    <h2 id="resultDetailsTitle">
+                        Student Result
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-btn"
+                    id="closeDetailsBtn"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div
+                class="result-detail-content"
+                id="resultDetailContent"
+            >
+
+                <div class="detail-empty">
+
+                    <i class="fa-solid fa-database"></i>
+
+                    <p>
+                        Select a result record to view its details.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ADD RESULT MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-backdrop"
+        id="addResultModal"
+        hidden
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="addResultTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="section-label">
+                        RESULT MANAGEMENT
+                    </span>
+
+                    <h2 id="addResultTitle">
+                        Add Result
+                    </h2>
+
+                    <p>
+                        Enter result information for a student.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close-btn"
+                    id="closeAddResultBtn"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form
+                id="addResultForm"
+                class="result-form"
+                novalidate
+            >
+
+                <div class="form-grid">
+
+
+                    <div class="field">
+
+                        <label for="studentId">
+                            Student ID / Roll No.
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentId"
+                            placeholder="Enter student ID or roll number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="resultSession">
+                            Academic Session
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="resultSession"
+                            placeholder="e.g. 2026-27"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="resultSemester">
+                            Semester
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="resultSemester"
+                            required
+                        >
+
+                            <option value="">
+                                Select semester
+                            </option>
+
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="resultExam">
+                            Examination
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="resultExam"
+                            required
+                        >
+
+                            <option value="">
+                                Select examination
+                            </option>
+
+                            <option value="mid-semester">
+                                Mid-Semester
+                            </option>
+
+                            <option value="end-semester">
+                                End-Semester
+                            </option>
+
+                            <option value="supplementary">
+                                Supplementary
+                            </option>
+
+                            <option value="backlog">
+                                Backlog
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="resultStatus">
+                            Result Status
+                            <span>*</span>
+                        </label>
+
+                        <select id="resultStatus">
+
+                            <option value="draft">
+                                Draft
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="published">
+                                Published
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="cancelAddResultBtn"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        <i class="fa-solid fa-check"></i>
+                        Save Result
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NOTIFICATION PANEL
+    ====================================================== -->
+
+    <div
+        class="notification-panel"
+        id="notificationPanel"
+        hidden
+    >
+
+        <div class="notification-panel-header">
+
+            <h3>
+                Notifications
+            </h3>
+
+            <button
+                type="button"
+                id="closeNotificationBtn"
+                aria-label="Close notifications"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="notification-panel-body">
+
+            <div class="notification-empty">
+
+                <i class="fa-regular fa-bell-slash"></i>
+
+                <p>
+                    No new notifications
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        id="toastContainer"
+        class="toast-container"
+        aria-live="polite"
+    ></div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="results.js"
+        defer
+    ></script>
+
+</body>
+
+</html>

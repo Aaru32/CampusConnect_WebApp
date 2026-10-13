@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Status | CampusConnect</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="room-status.css">
+</head>
+<body>
+  <main class="page-container">
+
+    <header class="page-header">
+      <div class="header-left">
+        <button class="icon-button" id="backBtn" type="button"
+          aria-label="Go back" title="Go back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div>
+          <h1>Room Status</h1>
+          <p class="page-subtitle">Classroom availability and scheduling</p>
+        </div>
+      </div>
+
+      <button class="icon-button" id="refreshBtn" type="button"
+        aria-label="Refresh rooms" title="Refresh">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+    </header>
+
+    <section class="summary-grid" aria-label="Room summary">
+      <article class="summary-card">
+        <span class="summary-label">Total Rooms</span>
+        <strong id="totalRooms">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Available</span>
+        <strong id="availableRooms">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Occupied</span>
+        <strong id="occupiedRooms">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Reserved</span>
+        <strong id="reservedRooms">0</strong>
+      </article>
+    </section>
+
+    <section class="section-heading">
+      <div>
+        <h2>Classrooms</h2>
+        <p>Check the current status before entering a classroom.</p>
+      </div>
+
+      <button class="primary-button" id="addRoomBtn" type="button">
+        <i class="fa-solid fa-plus"></i>
+        Add Classroom
+      </button>
+    </section>
+
+    <div id="pageMessage" class="message hidden" role="status"></div>
+
+    <section id="roomGrid" class="room-grid" aria-live="polite">
+      <div class="empty-state">
+        <i class="fa-solid fa-door-open"></i>
+        <p>Loading classrooms...</p>
+      </div>
+    </section>
+
+    <section class="reservations-section">
+      <div class="section-heading reservations-heading">
+        <div>
+          <h2>Upcoming Reservations</h2>
+          <p>Scheduled classroom bookings.</p>
+        </div>
+      </div>
+
+      <div id="reservationsList" class="reservations-list">
+        <p class="muted-text">Loading reservations...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Add Classroom Dialog -->
+  <dialog id="roomDialog" class="app-dialog">
+    <form id="roomForm">
+      <div class="dialog-header">
+        <div>
+          <h2>Add Classroom</h2>
+          <p>Enter the classroom details below.</p>
+        </div>
+        <button type="button" class="dialog-close" data-close="roomDialog"
+          aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <label for="roomNumber">Room Number</label>
+      <input id="roomNumber" name="roomNumber" type="text"
+        placeholder="e.g. 101" maxlength="30" required>
+
+      <label for="roomName">Room Name</label>
+      <input id="roomName" name="roomName" type="text"
+        placeholder="e.g. Computer Lab 1" maxlength="100" required>
+
+      <label for="roomStatus">Initial Status</label>
+      <select id="roomStatus" name="status" required>
+        <option value="AVAILABLE">Available</option>
+        <option value="OCCUPIED">Occupied</option>
+        <option value="RESERVED">Reserved</option>
+      </select>
+
+      <div id="initialDurationGroup" class="form-group">
+        <label for="initialDuration">Class Duration (minutes)</label>
+        <input id="initialDuration" name="durationMinutes"
+          type="number" min="1" max="480" value="60">
+        <small>Used when the classroom is initially marked occupied.</small>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button"
+          data-close="roomDialog">Cancel</button>
+        <button type="submit" class="primary-button" id="saveRoomBtn">
+          Add Classroom
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Extend Class Dialog -->
+  <dialog id="extendDialog" class="app-dialog">
+    <form id="extendForm">
+      <div class="dialog-header">
+        <div>
+          <h2>Extend Class</h2>
+          <p id="extendRoomLabel">Add more time to the current class.</p>
+        </div>
+        <button type="button" class="dialog-close" data-close="extendDialog"
+          aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <input id="extendRoomId" type="hidden">
+
+      <label for="extraMinutes">Additional time</label>
+      <select id="extraMinutes" required>
+        <option value="5">5 minutes</option>
+        <option value="10">10 minutes</option>
+        <option value="15" selected>15 minutes</option>
+        <option value="20">20 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="45">45 minutes</option>
+        <option value="60">60 minutes</option>
+      </select>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button"
+          data-close="extendDialog">Cancel</button>
+        <button type="submit" class="primary-button">Extend Time</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Reservation Dialog -->
+  <dialog id="reservationDialog" class="app-dialog">
+    <form id="reservationForm">
+      <div class="dialog-header">
+        <div>
+          <h2>Reserve Classroom</h2>
+          <p id="reservationRoomLabel">Schedule a classroom booking.</p>
+        </div>
+        <button type="button" class="dialog-close"
+          data-close="reservationDialog" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <input id="reservationRoomId" type="hidden">
+
+      <label for="reservationTitle">Purpose / Class Name</label>
+      <input id="reservationTitle" type="text" maxlength="100"
+        placeholder="e.g. Programming lecture" required>
+
+      <label for="reservationStart">Start Date and Time</label>
+      <input id="reservationStart" type="datetime-local" required>
+
+      <label for="reservationEnd">End Date and Time</label>
+      <input id="reservationEnd" type="datetime-local" required>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button"
+          data-close="reservationDialog">Cancel</button>
+        <button type="submit" class="primary-button">Save Reservation</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="room-status.js"></script>
+</body>
+</html>

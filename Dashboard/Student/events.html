@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="notification.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect - Events</title>
+
+    <link rel="stylesheet" href="events.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<script src="notification.js"></script>
+<body>
+
+  
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+           
+            <div class="page-title">
+                <h1>Events</h1>
+                <p>College events and activities</p>
+            </div>
+            
+
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="events-section">
+
+            <!-- PAGE INTRO -->
+            <div class="section-heading">
+                <div>
+                    <h2>Upcoming Events</h2>
+                    <p>Stay updated with the latest college activities.</p>
+                </div>
+
+                <div class="event-count">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span id="eventCount">0 Events</span>
+                </div>
+            </div>
+
+
+            <!-- FILTERS -->
+            <div class="filters">
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="searchEvent"
+                        placeholder="Search events..."
+                        oninput="filterEvents()">
+                </div>
+
+                <select id="eventCategory" onchange="filterEvents()">
+                    <option value="all">All Categories</option>
+                    <option value="academic">Academic</option>
+                    <option value="technical">Technical</option>
+                    <option value="cultural">Cultural</option>
+                    <option value="sports">Sports</option>
+                    <option value="workshop">Workshop</option>
+                </select>
+
+            </div>
+
+
+            <!-- EVENT CARDS -->
+            <div class="events-grid" id="eventsContainer">
+                <!-- Events will be loaded using JavaScript -->
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- EVENT DETAILS MODAL -->
+    <div class="modal-overlay" id="eventModal">
+
+        <div class="event-modal">
+
+            <button class="close-btn" onclick="closeEvent()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <div class="modal-icon" id="modalIcon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
+                <div>
+                    <span class="modal-category" id="modalCategory">
+                        Event
+                    </span>
+
+                    <h2 id="modalTitle">
+                        Event Name
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="event-information">
+
+                <div class="info-item">
+                    <i class="fa-regular fa-calendar"></i>
+                    <div>
+                        <span>Date</span>
+                        <strong id="modalDate"></strong>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <div>
+                        <span>Time</span>
+                        <strong id="modalTime"></strong>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <span>Venue</span>
+                        <strong id="modalVenue"></strong>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <div>
+                        <span>Organized By</span>
+                        <strong id="modalOrganizer"></strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                <h3>About the Event</h3>
+
+                <p id="modalDescription"></p>
+
+            </div>
+
+
+            <div class="deadline">
+
+                <i class="fa-solid fa-hourglass-end"></i>
+
+                <div>
+                    <span>Registration Deadline</span>
+                    <strong id="modalDeadline"></strong>
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button class="register-btn" onclick="registerEvent()">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Register Now
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="events.js"></script>
+
+</body>
+
+</html>
